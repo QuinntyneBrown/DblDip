@@ -1,0 +1,9 @@
+{ 
+  "Projects": "",
+  "DatabaseConnectionPropertyKey": "",
+  "DatabaseSettingsKey": "",
+  "SolutionName": "ShootQ.sln",
+  "RootNamespace": "ShootQ",
+  "SourceFolder": "src",
+  "TestFolder":  "test"
+}
