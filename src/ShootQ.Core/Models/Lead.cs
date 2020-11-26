@@ -13,12 +13,12 @@ namespace ShootQ.Core.Models
 
         protected override void When(dynamic @event) => When(@event);
 
-        public void When(LeadCreated leadCreated)
+        protected void When(LeadCreated leadCreated)
         {
             LeadId = leadCreated.LeadId;
         }
 
-        public void When(LeadRemoved leadRemoved)
+        protected void When(LeadRemoved leadRemoved)
         {
             Deleted = leadRemoved.Deleted;
         }
@@ -28,12 +28,15 @@ namespace ShootQ.Core.Models
 
         }
 
-        public void Remove(string value)
+        public void Remove()
         {
             Apply(new LeadRemoved());
         }
 
         public Guid LeadId { get; private set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public string EmailAddress { get; set; }
         public DateTime? Deleted { get; set; }
     }
 }
