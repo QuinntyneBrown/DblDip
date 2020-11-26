@@ -23,4 +23,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ShootQ.Api\ShootQ.Api.csproj" />
+  </ItemGroup>
+
 </Project>

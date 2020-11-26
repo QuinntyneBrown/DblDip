@@ -13,10 +13,13 @@ namespace ShootQ.Core.Models
         }
 
         public Guid DashboardId { get; private set; }
+        public Guid UserId { get; set; }
+        public string Name { get; set; }
 
-        public class DashboardCard
+        public record DashboardCard
         {
             public Guid CardId { get; set; }
+            public dynamic Options { get; set; }
         }
     }
 }

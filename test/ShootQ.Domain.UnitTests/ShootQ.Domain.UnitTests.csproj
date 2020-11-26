@@ -23,4 +23,9 @@
     <Folder Include="Features\Identity\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\ShootQ.Domain\ShootQ.Domain.csproj" />
+    <ProjectReference Include="..\ShootQ.Testing\ShootQ.Testing.csproj" />
+  </ItemGroup>
+
 </Project>

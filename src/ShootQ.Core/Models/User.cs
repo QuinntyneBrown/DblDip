@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
@@ -15,8 +16,9 @@ namespace ShootQ.Core.Models
             {
                 rng.GetBytes(salt);
             }
+            var transformedPassword = new PasswordHasher().HashPassword(salt, password);
 
-            Apply(new UserCreated(username, password, salt));
+            Apply(new UserCreated(username, transformedPassword, salt));
         }
 
         protected override void When(dynamic @event) => When(@event);
