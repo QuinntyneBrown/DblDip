@@ -14,7 +14,7 @@ namespace ShootQ.Core.Models
 
         protected override void When(dynamic @event) => When(@event);
 
-        public void When(UserCreated userCreated)
+        protected void When(UserCreated userCreated)
         {
             Salt = userCreated.Salt;
             Username = userCreated.Username;
@@ -22,9 +22,19 @@ namespace ShootQ.Core.Models
             Roles = new HashSet<Role>();
         }
 
-        public void When(UserPasswordChanged userPasswordChanged)
+        protected void When(UserPasswordChanged userPasswordChanged)
         {
             Password = userPasswordChanged.Password;
+        }
+
+        protected void When(RoleAdded roleAdded)
+        {
+            Roles.Add(new Role(roleAdded.Name));
+        }
+
+        protected void When(RoleRemoved roleRemoved)
+        {
+            Roles.Remove(new Role(roleRemoved.Name));
         }
 
         protected override void EnsureValidState()
@@ -37,6 +47,16 @@ namespace ShootQ.Core.Models
             Apply(new UserPasswordChanged(password));
         }
 
+        public void AddRole(string name)
+        {
+            Apply(new RoleAdded(name));
+        }
+
+        public void RemoveRole(string value)
+        {
+            Apply(new RoleRemoved(value));
+        }
+
         public Guid UserId { get; private set; }
         public string Username { get; private set; }
         public string Password { get; private set; }
@@ -44,5 +64,14 @@ namespace ShootQ.Core.Models
         public ICollection<Role> Roles { get; private set; }
         public DateTime? Deleted { get; private set; }
 
+        public record Role
+        {
+            public Role(string name)
+            {
+                Name = name;
+            }
+
+            public string Name { get; private set; }
+        }
     }
 }
