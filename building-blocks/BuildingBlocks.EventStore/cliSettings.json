@@ -1,0 +1,1 @@
+{"RootNamespace":"ShootQ","Namespace":"BuildingBlocks.EventStore","Domain":"ShootQ.Domain","Api":"ShootQ.Api","Core":"ShootQ.Core","EntityIdDataType":"Guid"}
