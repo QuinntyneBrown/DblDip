@@ -18,7 +18,7 @@ namespace ShootQ.Core.DomainEvents
         }
 
         public byte[] Salt { get; private set; }
-        public Guid UserId { get; set; }
+        public Guid UserId { get; set; } = Guid.NewGuid();
         public string Username { get; set; }
         public string Password { get; set; }
     }

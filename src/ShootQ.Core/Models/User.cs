@@ -16,6 +16,7 @@ namespace ShootQ.Core.Models
 
         protected void When(UserCreated userCreated)
         {
+            UserId = userCreated.UserId;
             Salt = userCreated.Salt;
             Username = userCreated.Username;
             Password = userCreated.Password;

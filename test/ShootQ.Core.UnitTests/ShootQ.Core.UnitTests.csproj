@@ -19,4 +19,10 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj" />
+    <ProjectReference Include="..\..\src\ShootQ.Core\ShootQ.Core.csproj" />
+    <ProjectReference Include="..\ShootQ.Testing\ShootQ.Testing.csproj" />
+  </ItemGroup>
+
 </Project>
