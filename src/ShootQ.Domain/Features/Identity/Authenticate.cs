@@ -1,13 +1,13 @@
+using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
 using FluentValidation;
 using MediatR;
-using BuildingBlocks.Abstractions;
 using ShootQ.Core.Models;
+using System;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using System;
-using BuildingBlocks.Core;
-using System.Security.Claims;
 
 namespace ShootQ.Domain.Features.Identity
 {

@@ -6,6 +6,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.EventStore\BuildingBlocks.EventStore.csproj" />
   </ItemGroup>
 
 </Project>

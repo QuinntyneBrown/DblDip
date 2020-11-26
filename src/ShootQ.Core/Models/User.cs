@@ -2,6 +2,7 @@ using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 
 namespace ShootQ.Core.Models
 {
@@ -9,7 +10,13 @@ namespace ShootQ.Core.Models
     {
         public User(string username, string password)
         {
-            Apply(new UserCreated(username, password));
+            var salt = new byte[128 / 8];
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            Apply(new UserCreated(username, password, salt));
         }
 
         protected override void When(dynamic @event) => When(@event);
@@ -17,9 +24,9 @@ namespace ShootQ.Core.Models
         protected void When(UserCreated userCreated)
         {
             UserId = userCreated.UserId;
-            Salt = userCreated.Salt;
             Username = userCreated.Username;
             Password = userCreated.Password;
+            Salt = userCreated.Salt;
             Roles = new HashSet<Role>();
         }
 

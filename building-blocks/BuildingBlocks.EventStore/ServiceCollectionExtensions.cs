@@ -13,6 +13,7 @@ namespace BuildingBlocks.EventStore
             services.AddTransient<IAggregateSet, AggregateSet>();
             services.AddTransient<IEventStore, EventStore>();
             services.AddSingleton<IDateTime, MachineDateTime>();
+            services.AddTransient<IAppDbContext, AppDbContext>();
             services.AddDbContext<EventStoreDbContext>(options =>
             {
                 options.UseSqlServer(eventStoreBuilderOptions.ConnectionString,

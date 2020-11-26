@@ -16,4 +16,11 @@
     <ProjectReference Include="..\..\building-blocks\BuildingBlocks.EventStore\BuildingBlocks.EventStore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Dashboards\" />
+    <Folder Include="Features\Leads\" />
+    <Folder Include="Features\Customers\" />
+    <Folder Include="Features\Orders\" />
+  </ItemGroup>
+
 </Project>
