@@ -21,7 +21,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Authenticate.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Authenticate.Response>> Token([FromBody]Authenticate.Request request)
+        public async Task<ActionResult<Authenticate.Response>> Token([FromBody] Authenticate.Request request)
         {
             return await _mediator.Send(request);
         }

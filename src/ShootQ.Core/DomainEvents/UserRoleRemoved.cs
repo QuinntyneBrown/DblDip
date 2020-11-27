@@ -1,10 +1,10 @@
 namespace ShootQ.Core.DomainEvents
 {
-    public class RoleAdded
+    public class UserRoleRemoved
     {
-        public RoleAdded(string name)
+        public UserRoleRemoved(string value)
         {
-            Name = name;
+            Name = value;
         }
 
         public string Name { get; }

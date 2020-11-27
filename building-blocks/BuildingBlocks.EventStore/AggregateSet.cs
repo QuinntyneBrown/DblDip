@@ -35,12 +35,12 @@ namespace BuildingBlocks.EventStore
             IEnumerable<Guid> ids = streamIds != null
                 ? streamIds
                 : (from storedEvent in _context.StoredEvents
-                    where storedEvent.Aggregate == aggregateName
-                    select storedEvent.StreamId).Distinct();
+                   where storedEvent.Aggregate == aggregateName
+                   select storedEvent.StreamId).Distinct();
 
             return from storedEvent in _context.StoredEvents
-                    where ids.Contains(storedEvent.StreamId) && storedEvent.CreatedOn <= createdSince
-                    select storedEvent;
+                   where ids.Contains(storedEvent.StreamId) && storedEvent.CreatedOn <= createdSince
+                   select storedEvent;
         }
 
         public IQueryable<TAggregateRoot> Set<TAggregateRoot>()
@@ -51,9 +51,9 @@ namespace BuildingBlocks.EventStore
             var aggregateName = typeof(TAggregateRoot).Name;
 
             var storedEventsGroups = from storedEvent in StoredEvents(aggregateName).ToList()
-                                    group storedEvent by storedEvent.StreamId into storedEventsGroup
-                                    orderby storedEventsGroup.Key
-                                    select storedEventsGroup;
+                                     group storedEvent by storedEvent.StreamId into storedEventsGroup
+                                     orderby storedEventsGroup.Key
+                                     select storedEventsGroup;
 
             foreach (var storedEventGroup in storedEventsGroups)
             {

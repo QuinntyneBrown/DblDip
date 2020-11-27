@@ -28,13 +28,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShootQ.Api", "src\ShootQ.Ap
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{34BAB564-21CF-4A3F-A539-917141188769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShootQ.Core.UnitTests", "test\ShootQ.Core.UnitTests\ShootQ.Core.UnitTests.csproj", "{C13391A5-D0B6-438E-A262-3D688D8CC905}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShootQ.Core.UnitTests", "test\ShootQ.Core.UnitTests\ShootQ.Core.UnitTests.csproj", "{C13391A5-D0B6-438E-A262-3D688D8CC905}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShootQ.Domain.UnitTests", "test\ShootQ.Domain.UnitTests\ShootQ.Domain.UnitTests.csproj", "{53755AED-DF3E-45DD-9452-C4F6C5B70294}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShootQ.Domain.UnitTests", "test\ShootQ.Domain.UnitTests\ShootQ.Domain.UnitTests.csproj", "{53755AED-DF3E-45DD-9452-C4F6C5B70294}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShootQ.Api.FunctionalTests", "test\ShootQ.Api.FunctionalTests\ShootQ.Api.FunctionalTests.csproj", "{A01E695F-528B-4CA2-AC36-82F92F8EDEA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShootQ.Api.FunctionalTests", "test\ShootQ.Api.FunctionalTests\ShootQ.Api.FunctionalTests.csproj", "{A01E695F-528B-4CA2-AC36-82F92F8EDEA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShootQ.Testing", "test\ShootQ.Testing\ShootQ.Testing.csproj", "{DBD99539-E946-484A-B002-7AC171B46A7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShootQ.Testing", "test\ShootQ.Testing\ShootQ.Testing.csproj", "{DBD99539-E946-484A-B002-7AC171B46A7D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Email", "building-blocks\BuildingBlocks.Email\BuildingBlocks.Email.csproj", "{A0158657-8D8F-49CD-8484-E83BE733C76A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -178,6 +180,18 @@ Global
 		{DBD99539-E946-484A-B002-7AC171B46A7D}.Release|x64.Build.0 = Release|Any CPU
 		{DBD99539-E946-484A-B002-7AC171B46A7D}.Release|x86.ActiveCfg = Release|Any CPU
 		{DBD99539-E946-484A-B002-7AC171B46A7D}.Release|x86.Build.0 = Release|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Debug|x64.Build.0 = Debug|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Debug|x86.Build.0 = Debug|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Release|x64.ActiveCfg = Release|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Release|x64.Build.0 = Release|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Release|x86.ActiveCfg = Release|Any CPU
+		{A0158657-8D8F-49CD-8484-E83BE733C76A}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -194,6 +208,7 @@ Global
 		{53755AED-DF3E-45DD-9452-C4F6C5B70294} = {34BAB564-21CF-4A3F-A539-917141188769}
 		{A01E695F-528B-4CA2-AC36-82F92F8EDEA7} = {34BAB564-21CF-4A3F-A539-917141188769}
 		{DBD99539-E946-484A-B002-7AC171B46A7D} = {34BAB564-21CF-4A3F-A539-917141188769}
+		{A0158657-8D8F-49CD-8484-E83BE733C76A} = {52136440-E4B7-46D2-999C-34815AFBB291}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {19DA0B2B-D232-45F4-98B2-342D8745AE6E}

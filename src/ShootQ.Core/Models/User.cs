@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 
 namespace ShootQ.Core.Models
 {
-    public class User: AggregateRoot
+    public class User : AggregateRoot
     {
         public User(string username, string password)
         {
@@ -37,14 +37,14 @@ namespace ShootQ.Core.Models
             Password = userPasswordChanged.Password;
         }
 
-        protected void When(RoleAdded roleAdded)
+        protected void When(UserRoleAdded userRoleAdded)
         {
-            Roles.Add(new Role(roleAdded.Name));
+            Roles.Add(new Role(userRoleAdded.Name));
         }
 
-        protected void When(RoleRemoved roleRemoved)
+        protected void When(UserRoleRemoved userRoleRemoved)
         {
-            Roles.Remove(new Role(roleRemoved.Name));
+            Roles.Remove(new Role(userRoleRemoved.Name));
         }
 
         protected override void EnsureValidState()
@@ -59,12 +59,12 @@ namespace ShootQ.Core.Models
 
         public void AddRole(string name)
         {
-            Apply(new RoleAdded(name));
+            Apply(new UserRoleAdded(name));
         }
 
         public void RemoveRole(string value)
         {
-            Apply(new RoleRemoved(value));
+            Apply(new UserRoleRemoved(value));
         }
 
         public Guid UserId { get; private set; }
@@ -77,11 +77,11 @@ namespace ShootQ.Core.Models
         public record Role
         {
             public Role(string name)
-            {
-                Name = name;
-            }
-
-            public string Name { get; private set; }
+        {
+            Name = name;
         }
+
+        public string Name { get; private set; }
     }
+}
 }

@@ -10,4 +10,8 @@
     <ProjectReference Include="..\..\building-blocks\BuildingBlocks.EventStore\BuildingBlocks.EventStore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+
 </Project>

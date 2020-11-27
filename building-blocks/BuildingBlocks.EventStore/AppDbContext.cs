@@ -15,7 +15,7 @@ namespace BuildingBlocks.EventStore
         public AppDbContext(IEventStore eventStore, IAggregateSet aggregateSet)
         {
             _eventStore = eventStore;
-            _aggregateSet = aggregateSet; 
+            _aggregateSet = aggregateSet;
         }
         public async Task<TAggregateRoot> FindAsync<TAggregateRoot>(Guid id) where TAggregateRoot : AggregateRoot
         {

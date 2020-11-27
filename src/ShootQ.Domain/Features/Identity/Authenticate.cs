@@ -22,7 +22,8 @@ namespace ShootQ.Domain.Features.Identity
             }
         }
 
-        public class Request : IRequest<Response> {
+        public class Request : IRequest<Response>
+        {
             public string Username { get; set; }
             public string Password { get; set; }
         }
@@ -46,8 +47,9 @@ namespace ShootQ.Domain.Features.Identity
                 _passwordHasher = passwordHasher;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-                
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+
                 var user = _context.Set<User>()
                     .SingleOrDefault(x => x.Username.ToLower() == request.Username.ToLower());
 

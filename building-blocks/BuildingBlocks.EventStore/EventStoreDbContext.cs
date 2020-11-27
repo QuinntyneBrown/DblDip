@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace BuildingBlocks.EventStore
 {
-    public class EventStoreDbContext: DbContext, IEventStoreDbContext
+    public class EventStoreDbContext : DbContext, IEventStoreDbContext
     {
         public EventStoreDbContext(DbContextOptions options)
             : base(options) { }

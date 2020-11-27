@@ -8,7 +8,7 @@ namespace ShootQ.Testing.Builders
 
         public UserBuilder(string username, string password)
         {
-            _user = new User(username,password);
+            _user = new User(username, password);
         }
 
         public User Build()

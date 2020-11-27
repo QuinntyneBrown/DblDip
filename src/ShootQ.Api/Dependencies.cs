@@ -45,7 +45,8 @@ namespace ShootQ.Api
                 options.CustomSchemaIds(x => x.FullName);
             });
 
-            services.ConfigureSwaggerGen(options => {
+            services.ConfigureSwaggerGen(options =>
+            {
                 options.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
             });
 

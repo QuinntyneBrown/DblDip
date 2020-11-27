@@ -4,7 +4,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Lead: AggregateRoot
+    public class Lead : AggregateRoot
     {
         public Lead()
         {

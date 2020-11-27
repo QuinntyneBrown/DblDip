@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ShootQ.Core.Models
 {
-    public class Order: AggregateRoot
+    public class Order : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

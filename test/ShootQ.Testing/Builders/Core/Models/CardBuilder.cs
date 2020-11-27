@@ -6,9 +6,9 @@ namespace ShootQ.Testing.Builders.Core.Models
     {
         private Card _card;
 
-        public CardBuilder()
+        public CardBuilder(string name)
         {
-            _card = new Card();
+            _card = new Card(name);
         }
 
         public Card Build()

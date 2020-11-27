@@ -1,4 +1,5 @@
 using ShootQ.Core.Models;
+using System;
 
 namespace ShootQ.Testing.Builders.Core.Models
 {
@@ -6,9 +7,9 @@ namespace ShootQ.Testing.Builders.Core.Models
     {
         private Dashboard _dashboard;
 
-        public DashboardBuilder()
+        public DashboardBuilder(string name, Guid userId)
         {
-            _dashboard = new Dashboard();
+            _dashboard = new Dashboard(name, userId);
         }
 
         public Dashboard Build()

@@ -39,7 +39,7 @@ namespace ShootQ.Domain.UnitTests.Models
             user.ChangePassword("Foo");
             var salt2 = user.Salt;
 
-            Assert.Equal("Foo",user.Password);
+            Assert.Equal("Foo", user.Password);
             Assert.Equal(salt1, salt2);
         }
     }

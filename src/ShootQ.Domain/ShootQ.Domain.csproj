@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -7,6 +7,8 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="9.3.0" />
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -20,7 +22,10 @@
     <Folder Include="Features\Dashboards\" />
     <Folder Include="Features\Leads\" />
     <Folder Include="Features\Customers\" />
+    <Folder Include="Features\DigitialAssets\" />
+    <Folder Include="Features\Quotes\" />
     <Folder Include="Features\Orders\" />
+    <Folder Include="Sagas\" />
   </ItemGroup>
 
 </Project>
