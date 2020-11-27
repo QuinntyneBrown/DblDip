@@ -1,0 +1,35 @@
+:host {
+    display: grid;
+    grid-template-rows: max-content 1fr;
+    height: 100vh;
+  }
+  
+  mat-toolbar {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    z-index: 2;
+    position: relative;
+  }
+  
+  mat-sidenav-container {
+    display: block;
+  }
+  
+  mat-sidenav {
+    padding-top:30px;
+    min-width: 200px;
+  }
+  
+  button[routerLink] {
+    display: block;
+    width: 100%;
+    text-align: left;
+  }
+  
+  .router-outlet-container {
+    height: 100%;
+  }
+  
+  h1 {
+    margin-left: 10px;
+  }
