@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ShootQ.Domain.Features.Orders
+namespace ShootQ.Domain.Features.Leads
 {
-    public class CreateOrder
+    public class UpdateLead
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Order).NotNull();
-                RuleFor(request => request.Order).SetValidator(new OrderValidator());
+                RuleFor(request => request.Lead).NotNull();
+                RuleFor(request => request.Lead).SetValidator(new LeadValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public OrderDto Order { get; set; }
+        public class Request : IRequest<Response> {  
+            public LeadDto Lead { get; set; }
         }
 
         public class Response
         {
-            public OrderDto Order { get; set; }
+            public LeadDto Lead { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,18 +33,19 @@ namespace ShootQ.Domain.Features.Orders
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var order = new Order();
+                var lead = await _context.FindAsync<Lead>(request.Lead.LeadId);
 
-                _context.Store(order);
+                
+
+                _context.Store(lead);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Order = order.ToDto()
+                    Lead = lead.ToDto()
                 };
             }
         }

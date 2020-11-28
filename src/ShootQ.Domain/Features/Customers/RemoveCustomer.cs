@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Customers
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid CustomerId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Customers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var customer = await _context.FindAsync<Customer>(request.CustomerId);
 

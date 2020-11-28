@@ -6,9 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace ShootQ.Domain.Features.Orders
+namespace ShootQ.Domain.Features.Leads
 {
-    public class RemoveOrder
+    public class RemoveLead
     {
         public class Validator : AbstractValidator<Request>
         {
@@ -18,14 +18,13 @@ namespace ShootQ.Domain.Features.Orders
             }
         }
 
-        public class Request : IRequest<Unit>
-        {
-            public Guid OrderId { get; set; }
+        public class Request : IRequest<Unit> {  
+            public Guid LeadId { get; set; }
         }
 
         public class Response
         {
-            public OrderDto Order { get; set; }
+            public LeadDto Lead { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>
@@ -34,14 +33,13 @@ namespace ShootQ.Domain.Features.Orders
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
 
-                var order = await _context.FindAsync<Order>(request.OrderId);
+                var lead = await _context.FindAsync<Lead>(request.LeadId);
 
-                //order.Remove();
+                lead.Remove();
 
-                _context.Store(order);
+                _context.Store(lead);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

@@ -6,15 +6,15 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ShootQ.Domain.Features.Orders
+namespace ShootQ.Domain.Features.Leads
 {
-    public class GetOrders
+    public class GetLeads
     {
-        public class Request : IRequest<Response> { }
+        public class Request : IRequest<Response> {  }
 
         public class Response
         {
-            public List<OrderDto> Orders { get; set; }
+            public List<LeadDto> Leads { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -23,11 +23,9 @@ namespace ShootQ.Domain.Features.Orders
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
-                return new Response()
-                {
-                    Orders = _context.Set<Order>().Select(x => x.ToDto()).ToList()
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+			    return new Response() { 
+                    Leads = _context.Set<Lead>().Select(x => x.ToDto()).ToList()
                 };
             }
         }

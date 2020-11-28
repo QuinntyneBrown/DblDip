@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.Customers
     {
         public CustomerValidator()
         {
-            
+
         }
     }
 }

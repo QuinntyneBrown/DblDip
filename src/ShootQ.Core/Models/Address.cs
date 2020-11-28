@@ -13,5 +13,8 @@ namespace ShootQ.Core.Models
         }
 
         public Guid AddressId { get; private set; }
+        public string Street { get; set; }
+        public string PostalCode { get; set; }
+        public string Province { get; set; }
     }
 }

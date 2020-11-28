@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Orders
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public OrderDto Order { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Orders
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var order = await _context.FindAsync<Order>(request.Order.OrderId);
 

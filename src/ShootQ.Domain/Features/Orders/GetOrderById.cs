@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Orders
 {
     public class GetOrderById
     {
-        public class Request : IRequest<Response> {  
-            public Guid OrderId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid OrderId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Orders
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var order = await _context.FindAsync<Order>(request.OrderId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Order = order.ToDto()
                 };
             }

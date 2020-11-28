@@ -17,8 +17,8 @@ namespace ShootQ.Core.Models
         public record Photo
         {
             public Guid DigitalAssetId { get; set; }
-        public string Name { get; set; }
-        public DateTime Created { get; set; }
+            public string Name { get; set; }
+            public DateTime Created { get; set; }
+        }
     }
-}
 }
