@@ -16,7 +16,8 @@ namespace ShootQ.Core.Models
 
         public record LineItem
         {
-
+            public decimal Amount { get; set; }
+            public string Decription { get; set; }
         }
     }
 }

@@ -9,14 +9,15 @@ namespace ShootQ.Core.Models
     {
         public PhotoGallery(string name)
         {
-            Apply(new PhotoGalleryCreated(name));
+            Apply(new PhotoGalleryCreated(Guid.NewGuid(), name));
         }
         protected override void When(dynamic @event) => When(@event);
 
         public void When(PhotoGalleryCreated photoGalleryCreated)
         {
+            PhotoGalleryId = photoGalleryCreated.PhotoGalleryId;
             Name = photoGalleryCreated.Name;
-            Photos = new HashSet<PhotoGallery.Photo>();
+            Photos = new HashSet<Photo>();
         }
 
         protected override void EnsureValidState()
