@@ -18,7 +18,7 @@ namespace ShootQ.Core.Models
             }
             var transformedPassword = new PasswordHasher().HashPassword(salt, password);
 
-            Apply(new UserCreated(username, transformedPassword, salt));
+            Apply(new UserCreated(Guid.NewGuid(), username, transformedPassword, salt)) ;
         }
 
         protected override void When(dynamic @event) => When(@event);
@@ -76,12 +76,9 @@ namespace ShootQ.Core.Models
 
         public record Role
         {
-            public Role(string name)
-        {
-            Name = name;
+            public Role(string name) => Name = name;
+ 
+            public string Name { get; private set; }
         }
-
-        public string Name { get; private set; }
     }
-}
 }
