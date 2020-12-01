@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Leads
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public LeadDto Lead { get; set; }
         }
 
@@ -33,11 +34,12 @@ namespace ShootQ.Domain.Features.Leads
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var lead = await _context.FindAsync<Lead>(request.Lead.LeadId);
 
-                
+
 
                 _context.Store(lead);
 

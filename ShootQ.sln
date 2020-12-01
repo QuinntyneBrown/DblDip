@@ -38,7 +38,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ShootQ.Testing", "test\Shoo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Email", "building-blocks\BuildingBlocks.Email\BuildingBlocks.Email.csproj", "{A0158657-8D8F-49CD-8484-E83BE733C76A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.GeoLocation", "building-blocks\BuildingBlocks.GeoLocation\BuildingBlocks.GeoLocation.csproj", "{328EE6B6-D27C-4F7C-BD8B-030FCC5BD4AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.GeoLocation", "building-blocks\BuildingBlocks.GeoLocation\BuildingBlocks.GeoLocation.csproj", "{328EE6B6-D27C-4F7C-BD8B-030FCC5BD4AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

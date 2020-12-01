@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Leads
 {
     public class GetLeadById
     {
-        public class Request : IRequest<Response> {  
-            public Guid LeadId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid LeadId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Leads
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var lead = await _context.FindAsync<Lead>(request.LeadId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Lead = lead.ToDto()
                 };
             }

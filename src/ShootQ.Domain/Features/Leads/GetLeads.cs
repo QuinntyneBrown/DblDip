@@ -10,7 +10,7 @@ namespace ShootQ.Domain.Features.Leads
 {
     public class GetLeads
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace ShootQ.Domain.Features.Leads
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Leads = _context.Set<Lead>().Select(x => x.ToDto()).ToList()
                 };
             }

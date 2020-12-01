@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace BuildingBlocks.GeoLocation
 {
-    public class GoogleMapsService: IGoogleMapsService
+    public class GoogleMapsService : IGoogleMapsService
     {
         private readonly HttpClient _client;
         private readonly IConfiguration _configuration;

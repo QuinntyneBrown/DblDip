@@ -32,7 +32,7 @@ namespace ShootQ.Core.Models
         public record DashboardCard
         {
             public Guid CardId { get; set; }
-        public dynamic Options { get; set; }
+            public dynamic Options { get; set; }
+        }
     }
-}
 }
