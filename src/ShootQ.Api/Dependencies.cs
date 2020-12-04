@@ -110,7 +110,7 @@ namespace ShootQ.Api
                     };
                 });
         }
-        private static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
+        public static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
         {
             var tokenValidationParameters = new TokenValidationParameters
             {

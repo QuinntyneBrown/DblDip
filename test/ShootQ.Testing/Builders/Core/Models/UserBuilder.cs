@@ -5,6 +5,11 @@ namespace ShootQ.Testing.Builders
     public class UserBuilder
     {
         private User _user;
+        
+        public static User WithDefaults()
+        {
+            return new User("quinntynebrown@gmail.com", "ShootQ");
+        }
 
         public UserBuilder(string username, string password)
         {
