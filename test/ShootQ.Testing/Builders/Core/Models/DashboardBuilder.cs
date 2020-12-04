@@ -7,9 +7,14 @@ namespace ShootQ.Testing.Builders.Core.Models
     {
         private Dashboard _dashboard;
 
-        public DashboardBuilder(string name, Guid userId)
+        public static Dashboard WithDefaults(Guid userId)
         {
-            _dashboard = new Dashboard(name, userId);
+            return new Dashboard("Default",userId);
+        }
+
+        public DashboardBuilder()
+        {
+            _dashboard = new Dashboard("Default", Guid.NewGuid());
         }
 
         public Dashboard Build()

@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.Dashboards
 {
     public class DashboardDto
     {
-        public Guid DashboardId { get; private set; }
+        public Guid DashboardId { get; set; }
         public Guid UserId { get; set; }
         public string Name { get; set; }
 

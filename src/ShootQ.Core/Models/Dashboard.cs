@@ -20,9 +20,19 @@ namespace ShootQ.Core.Models
             UserId = dashboardCreated.UserId;
         }
 
+        public void When(DashboardRemoved dashboardRemoved)
+        {
+            Deleted = dashboardRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new DashboardRemoved(deleted));
         }
 
         public Guid DashboardId { get; private set; }
@@ -30,5 +40,6 @@ namespace ShootQ.Core.Models
         public string Name { get; set; }
 
         public record DashboardCard(Guid DashboardCardId, dynamic Options);
+        public DateTime? Deleted { get; set; }
     }
 }

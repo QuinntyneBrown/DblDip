@@ -6,6 +6,11 @@ namespace ShootQ.Testing.Builders.Domain.Dtos
     {
         private CustomerDto _customerDto;
 
+        public static CustomerDto WithDefaults()
+        {
+            return new CustomerDto();
+        }
+
         public CustomerDtoBuilder()
         {
             _customerDto = new CustomerDto();
