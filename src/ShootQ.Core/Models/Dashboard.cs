@@ -29,12 +29,6 @@ namespace ShootQ.Core.Models
         public Guid UserId { get; set; }
         public string Name { get; set; }
 
-        public record DashboardCard
-        {
-            public DashboardCard(Guid cardId, dynamic options) => (CardId, Options) = (cardId, options);
-
-            public Guid CardId { get; set; }
-            public dynamic Options { get; set; }
-        }
+        public record DashboardCard(Guid DashboardCardId, dynamic Options);
     }
 }
