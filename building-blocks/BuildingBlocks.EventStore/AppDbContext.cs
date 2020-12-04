@@ -1,8 +1,6 @@
 ﻿using BuildingBlocks.Abstractions;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,9 +30,11 @@ namespace BuildingBlocks.EventStore
             return _aggregateSet.Set<T>();
         }
 
-        public void Store(AggregateRoot aggregateRoot)
+        public TAggregateRoot Store<TAggregateRoot>(TAggregateRoot aggregateRoot)
+            where TAggregateRoot : AggregateRoot
         {
             _eventStore.Store(aggregateRoot);
+            return aggregateRoot;
         }
     }
 }
