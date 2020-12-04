@@ -4,11 +4,11 @@ using ShootQ.Core.Models;
 using System;
 using System.Linq;
 
-namespace ShootQ.Core.Seeding
+namespace ShootQ.Data
 {
-    public static class SeedData
+    public static class DbInitializer
     {
-        public static void Seed(IAppDbContext context, IConfiguration configuration)
+        public static void Initialize(IAppDbContext context, IConfiguration configuration)
         {
             CardConfiguration.Seed(context, configuration);
             UserConfiguration.Seed(context, configuration);

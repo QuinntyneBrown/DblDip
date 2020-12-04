@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using ShootQ.Core.Seeding;
+using ShootQ.Data;
 using System;
 using System.Linq;
 
@@ -49,7 +49,7 @@ namespace ShootQ.Api
                 if (args.Contains("seeddb"))
                 {
                     dbContext.Database.EnsureCreated();
-                    SeedData.Seed(context, configuration);
+                    DbInitializer.Initialize(context, configuration);
                 }
 
                 if (args.Contains("secret"))

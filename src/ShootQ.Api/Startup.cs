@@ -16,6 +16,8 @@ namespace ShootQ.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
+            Dependencies.ConfigureAuth(services, Configuration);
+
             Dependencies.Configure(services, Configuration);
         }
 

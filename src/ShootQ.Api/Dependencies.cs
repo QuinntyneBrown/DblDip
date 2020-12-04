@@ -1,15 +1,15 @@
-using BuildingBlocks.Abstractions;
 using BuildingBlocks.AspNetCore;
 using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using ShootQ.Domain.Features.Identity;
+using ShootQ.Domain.Features.Customers;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -60,17 +60,25 @@ namespace ShootQ.Api
 
             services.AddHttpContextAccessor();
 
+            services.AddMediatR(typeof(GetCustomers));
+
+            services.AddEventStore(options =>
+            {
+                options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
+                    builder => builder.MigrationsAssembly("ShootQ.Api")
+                        .EnableRetryOnFailure())
+                .UseLoggerFactory(EventStoreDbContext.ConsoleLoggerFactory)
+                .EnableSensitiveDataLogging();
+            });
+
+            services.AddControllers();
+        }
+
+        public static void ConfigureAuth(IServiceCollection services, IConfiguration configuration)
+        {
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
             services.AddSingleton<ITokenProvider, TokenProvider>();
-
-            services.AddMediatR(typeof(Authenticate));
-
-            services.AddEventStore(new EventStoreBuilderOptions
-            {
-                ConnectionString = configuration["Data:DefaultConnection:ConnectionString"],
-                MigrationAssembly = "ShootQ.Api"
-            });
 
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler
             {
@@ -78,10 +86,10 @@ namespace ShootQ.Api
             };
 
             services.AddAuthentication(x =>
-                {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
+            {
+                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
@@ -101,10 +109,7 @@ namespace ShootQ.Api
                         }
                     };
                 });
-
-            services.AddControllers();
         }
-
         private static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
         {
             var tokenValidationParameters = new TokenValidationParameters

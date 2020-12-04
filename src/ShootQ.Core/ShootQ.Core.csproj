@@ -12,10 +12,12 @@
 
   <ItemGroup>
     <Folder Include="Exceptions\" />
+    <Folder Include="Seeding\" />
+    <Folder Include="ValueObjects\" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CSharpFunctionalExtensions" Version="2.13.1" />
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.13.2" />
   </ItemGroup>
 
 </Project>
