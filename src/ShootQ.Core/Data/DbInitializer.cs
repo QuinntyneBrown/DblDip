@@ -1,7 +1,6 @@
 ﻿using BuildingBlocks.Abstractions;
 using Microsoft.Extensions.Configuration;
 using ShootQ.Core.Models;
-using System;
 using System.Linq;
 
 namespace ShootQ.Data

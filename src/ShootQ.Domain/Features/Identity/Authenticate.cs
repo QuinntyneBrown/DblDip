@@ -51,7 +51,7 @@ namespace ShootQ.Domain.Features.Identity
             {
 
                 var user = _context.Set<User>()
-                    .SingleOrDefault(x => x.Username.ToLower() == request.Username.ToLower());
+                    .SingleOrDefault(x => ((string)x.Username).ToLower() == request.Username.ToLower());
 
                 if (user == null)
                     throw new Exception();

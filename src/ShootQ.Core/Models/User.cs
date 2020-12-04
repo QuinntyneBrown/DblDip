@@ -1,6 +1,7 @@
 using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Security.Cryptography;
@@ -26,7 +27,7 @@ namespace ShootQ.Core.Models
         protected void When(UserCreated userCreated)
         {
             UserId = userCreated.UserId;
-            Username = userCreated.Username;
+            Username = (Email)userCreated.Username;
             Password = userCreated.Password;
             Salt = userCreated.Salt;
             Roles = new HashSet<Role>();
@@ -68,17 +69,12 @@ namespace ShootQ.Core.Models
         }
 
         public Guid UserId { get; private set; }
-        public string Username { get; private set; }
+        public Email Username { get; private set; }
         public string Password { get; private set; }
         public byte[] Salt { get; private set; }
         public ICollection<Role> Roles { get; private set; }
         public DateTime? Deleted { get; private set; }
 
-        public record Role
-        {
-            public Role(string name) => Name = name;
- 
-            public string Name { get; private set; }
-        }
+        public record Role(string Name);
     }
 }
