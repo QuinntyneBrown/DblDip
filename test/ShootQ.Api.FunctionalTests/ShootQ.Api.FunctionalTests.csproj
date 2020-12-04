@@ -20,10 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\src\ShootQ.Api\ShootQ.Api.csproj" />
     <ProjectReference Include="..\ShootQ.Testing\ShootQ.Testing.csproj" />
   </ItemGroup>

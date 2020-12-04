@@ -21,7 +21,7 @@ namespace ShootQ.Testing.Factories
                     { "Seed:DefaultUser:Password" ,"ShootQ" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.TokenPath)}" ,"/api/users/token" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.ExpirationMinutes)}" ,"10080" },
-                    { $"{nameof(Authentication)}:{nameof(Authentication.JwtKey)}", secret },
+                    { $"{nameof(Authentication)}:{nameof(Authentication.JwtKey)}", "lTBY2RXrcDQXtstka5XfRYz5NySUs7ni" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.JwtIssuer)}" ,"localhost" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.JwtAudience)}" ,"all" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.AuthType)}" ,"ShootQ" }

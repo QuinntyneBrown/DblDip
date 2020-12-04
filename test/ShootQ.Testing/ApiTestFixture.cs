@@ -38,6 +38,8 @@ namespace ShootQ.Testing
         }
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
+            builder.UseEnvironment("Testing");
+
             builder.ConfigureServices(services =>
             {
 

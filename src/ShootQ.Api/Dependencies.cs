@@ -3,9 +3,11 @@ using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -74,7 +76,7 @@ namespace ShootQ.Api
             services.AddControllers();
         }
 
-        public static void ConfigureAuth(IServiceCollection services, IConfiguration configuration)
+        public static void ConfigureAuth(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
         {
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
@@ -85,11 +87,13 @@ namespace ShootQ.Api
                 InboundClaimTypeMap = new Dictionary<string, string>()
             };
 
-            services.AddAuthentication(x =>
+            if (webHostEnvironment.IsDevelopment() || webHostEnvironment.IsProduction())
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
+                services.AddAuthentication(x =>
+                {
+                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                })
                 .AddJwtBearer(options =>
                 {
                     options.RequireHttpsMetadata = false;
@@ -109,6 +113,7 @@ namespace ShootQ.Api
                         }
                     };
                 });
+            }
         }
         public static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
         {
