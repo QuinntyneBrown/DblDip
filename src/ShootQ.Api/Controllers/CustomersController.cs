@@ -15,7 +15,6 @@ namespace ShootQ.Api.Controllers
 
         public CustomersController(IMediator mediator) => _mediator = mediator;
 
-
         [Authorize]
         [HttpDelete("{customerId}", Name = "RemoveCustomerRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]

@@ -17,7 +17,7 @@ namespace BuildingBlocks.Core
 
             var responseMessage = await client.PostAsync(url, content);
 
-            return JsonConvert.DeserializeObject<TResult>(await responseMessage.Content.ReadAsStringAsync());
+            return (await responseMessage.Content.ReadAsStringAsync()).FromJson<TResult>();
         }
 
 
