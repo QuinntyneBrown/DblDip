@@ -11,9 +11,9 @@ namespace ShootQ.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Wedding(Location start, Location end, Location location, DateTime dateTime, int hours, Guid photographyRateId)
+        public Wedding(Location start, Location end, Location location, DateTime dateTime, int hours)
         {
-            Apply(new WeddingCreated(start, end, location, Guid.NewGuid(), dateTime, hours, photographyRateId));
+            Apply(new WeddingCreated(start, end, location, Guid.NewGuid(), dateTime, hours));
         }
         public void When(WeddingCreated weddingCreated)
         {
@@ -26,19 +26,19 @@ namespace ShootQ.Core.Models
 
             var dateRange = DateRange.Create(weddingCreated.DateTime, weddingCreated.DateTime.AddHours(weddingCreated.Hours));
 
-            Parts.Add(new WeddingPart(dateRange.Value, null, weddingCreated.PhotographyRateId, null));
+            Parts.Add(new WeddingPart(dateRange.Value, null, null));
         }
 
         public void When(WeddingPartAdded weddingPartAdded)
         {
             var dateRange = DateRange.Create(weddingPartAdded.DateTime, weddingPartAdded.DateTime.AddHours(weddingPartAdded.Hours));
 
-            Parts.Add(new WeddingPart(dateRange.Value, weddingPartAdded.Location, weddingPartAdded.PhotographyRateId, weddingPartAdded.Description));
+            Parts.Add(new WeddingPart(dateRange.Value, weddingPartAdded.Location, weddingPartAdded.Description));
         }
 
-        public Wedding AddPart(DateTime dateTime, int hours, Guid photographyRateId, Location destination, string description)
+        public Wedding AddPart(DateTime dateTime, int hours, Price rate, Location destination, string description)
         {
-            Apply(new WeddingPartAdded(dateTime, hours, destination, photographyRateId, description));
+            Apply(new WeddingPartAdded(dateTime, hours, destination, description));
 
             return this;
         }
@@ -86,7 +86,7 @@ namespace ShootQ.Core.Models
         }
     }
 
-    public record WeddingPart(DateRange DateRange, Location Location, Guid PhotographyRateId, string Description);
+    public record WeddingPart(DateRange DateRange, Location Location, string Description);
 
     public record Trip(DateRange DateRange, Location Start, Location End);
 }

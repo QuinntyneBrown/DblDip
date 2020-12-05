@@ -9,9 +9,19 @@ namespace ShootQ.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public WeddingQuote(Email email, Guid weddingId)
+        public WeddingQuote(Email email, Wedding wedding, Rate rate)
         {
-            Apply(new WeddingQuoteCreated(Guid.NewGuid(), email, weddingId));
+            Apply(new WeddingQuoteCreated(Guid.NewGuid(), email, wedding.WeddingId));
+
+            foreach (var part in wedding.Parts)
+            {
+                AddItem((Price)(part.DateRange.Hours * rate.Price), "Wedding Photography");
+            }
+
+            foreach (var trip in wedding.Trips)
+            {
+                AddItem((Price)(trip.DateRange.Hours * 60), "Travel Expense");
+            }
         }
 
         protected override void EnsureValidState()

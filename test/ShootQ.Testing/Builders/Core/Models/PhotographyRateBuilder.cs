@@ -1,16 +1,17 @@
 using ShootQ.Core.Models;
 using ShootQ.Core.ValueObjects;
 using System;
+using static ShootQ.Core.Constants.Rates;
 
 namespace ShootQ.Testing.Builders.Core.Models
 {
     public class PhotographyRateBuilder
     {
-        private PhotographyRate _photographyRate;
+        private Rate _photographyRate;
 
-        public static PhotographyRate WithDefaults()
+        public static Rate WithDefaults()
         {
-            return new PhotographyRate((Price)1m);
+            return new Rate(nameof(PhotographyRate), (Price)100, PhotographyRate);
         }
 
         public PhotographyRateBuilder()
@@ -18,7 +19,7 @@ namespace ShootQ.Testing.Builders.Core.Models
             throw new NotImplementedException();
         }
 
-        public PhotographyRate Build()
+        public Rate Build()
         {
             return _photographyRate;
         }

@@ -8,7 +8,7 @@ namespace ShootQ.Testing.Builders.Core.Models
     {
         private Wedding _wedding;
         
-        public static Wedding WithDefaults(PhotographyRate photographyRate)
+        public static Wedding WithDefaults(Rate photographyRate)
         {
             var configuration = Create();
             var longitude = Convert.ToDouble(configuration["DefaultLocation:Longitude"]);
@@ -17,7 +17,7 @@ namespace ShootQ.Testing.Builders.Core.Models
 
             var defaultLocation = ShootQ.Core.ValueObjects.Location.Create(longitude, latitude).Value;
 
-            return new Wedding(defaultLocation, defaultLocation, defaultLocation, DateTime.UtcNow, 5, photographyRate.PhotographyRateId);
+            return new Wedding(defaultLocation, defaultLocation, defaultLocation, DateTime.UtcNow, 5);
         }
 
         public WeddingBuilder()

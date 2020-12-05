@@ -1,7 +1,9 @@
 ﻿using BuildingBlocks.Abstractions;
 using Microsoft.Extensions.Configuration;
 using ShootQ.Core.Models;
+using ShootQ.Core.ValueObjects;
 using System.Linq;
+using static ShootQ.Core.Constants.Rates;
 
 namespace ShootQ.Data
 {
@@ -13,6 +15,23 @@ namespace ShootQ.Data
             CardConfiguration.Seed(context, configuration);
             UserConfiguration.Seed(context, configuration);
             DashboardConfiguration.Seed(context, configuration);
+        }
+
+        internal class RateConfiguration
+        {
+            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            {
+                var rate = context.FindAsync<Rate>(PhotographyRate).GetAwaiter().GetResult();
+
+                rate ??= new Rate(nameof(PhotographyRate), (Price)100, PhotographyRate);
+
+                if (rate.DomainEvents.Count > 0)
+                {
+                    context.Store(rate);
+
+                    context.SaveChangesAsync(default);
+                }
+            }
         }
 
         internal class CardConfiguration

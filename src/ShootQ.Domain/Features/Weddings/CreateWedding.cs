@@ -55,7 +55,7 @@ namespace ShootQ.Domain.Features.Weddings
 
                 var location = Location.Create(request.Longitude, request.Latitude).Value;
 
-                var wedding = new Wedding(home, home, location, request.DateTime, request.Hours, request.PhotographyRateId);
+                var wedding = new Wedding(home, home, location, request.DateTime, request.Hours);
 
                 _context.Store(wedding);
 

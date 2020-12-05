@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using static ShootQ.Core.Models.Quote;
 
-namespace ShootQ.Domain.Features.Weddings
+namespace ShootQ.Domain.Features.Quotes
 {
     public class QuoteDto
     {

@@ -15,22 +15,11 @@ namespace ShootQ.Api.Controllers
 
         public WeddingsController(IMediator mediator) => _mediator = mediator;
 
-        [Authorize]
         [HttpPost(Name = "CreateWeddingRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateWedding.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<CreateWedding.Response>> Create([FromBody]CreateWedding.Request request)
-            => await _mediator.Send(request);
-
-        [Authorize]
-        [HttpPost("{weddingId}/quote", Name = "QuoteWeddingRoute")]
-        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
-        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(CreateWeddingQuote.Response), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<CreateWeddingQuote.Response>> Quote([FromBody] CreateWeddingQuote.Request request)
-            => await _mediator.Send(request);
-        
+            => await _mediator.Send(request);        
     }
 }
