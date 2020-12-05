@@ -25,4 +25,8 @@
     <ProjectReference Include="..\ShootQ.Testing\ShootQ.Testing.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ValueObjects\" />
+  </ItemGroup>
+
 </Project>

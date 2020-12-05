@@ -2,6 +2,8 @@ using CSharpFunctionalExtensions;
 using NetTopologySuite.Geometries;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using BuildingBlocks.GeoLocation;
+using NetTopologySuite;
 
 namespace ShootQ.Core.ValueObjects
 {
@@ -27,10 +29,16 @@ namespace ShootQ.Core.ValueObjects
 
         }
 
+        public double Distance(Location location)
+            => Point.ProjectTo(2855).Distance(location.Point.ProjectTo(2855)) / 1000;
+
         private Location(double longitude, double latitude)
         {
+            var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
+
             Longitude = longitude;
             Latitude = latitude;
+            Point = geometryFactory.CreatePoint(new Coordinate(longitude, latitude));
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
@@ -41,7 +49,7 @@ namespace ShootQ.Core.ValueObjects
 
         public static Result<Location> Create(double longitude, double latitude)
         {
-            return Result.Success(new Location(longitude, latitude));
+            return CSharpFunctionalExtensions.Result.Success(new Location(longitude, latitude));
         }
     }
 }
