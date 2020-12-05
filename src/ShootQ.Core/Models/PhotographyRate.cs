@@ -5,18 +5,18 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class WeddingRate: AggregateRoot
+    public class PhotographyRate: AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public WeddingRate(Price price)
+        public PhotographyRate(Price price)
         {
-            Apply(new WeddingRateCreated(Guid.NewGuid(), price));
+            Apply(new PhotographyRateCreated(Guid.NewGuid(), price));
         }
-        public void When(WeddingRateCreated weddingRateCreated)
+        public void When(PhotographyRateCreated photographyRateCreated)
         {
-            WeddingRateId = weddingRateCreated.WeddingRateId;
-            Price = weddingRateCreated.Price;
+            PhotographyRateId = photographyRateCreated.PhotographyRateId;
+            Price = photographyRateCreated.Price;
         }
 
         protected override void EnsureValidState()
@@ -24,7 +24,7 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid WeddingRateId { get; private set; }
+        public Guid PhotographyRateId { get; private set; }
         public Price Price { get; set; }
         public DateTime? Deleted { get; set; }
     }

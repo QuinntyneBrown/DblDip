@@ -3,5 +3,5 @@ using System;
 
 namespace ShootQ.Core.DomainEvents
 {
-    public record WeddingRateCreated(Guid WeddingRateId, Price Price);
+    public record PhotographyRateCreated(Guid PhotographyRateId, Price Price);
 }
