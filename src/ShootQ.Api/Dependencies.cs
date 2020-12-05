@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ShootQ.Core.Services;
 using ShootQ.Domain.Features.Customers;
 using System;
 using System.Collections.Generic;
@@ -63,6 +64,8 @@ namespace ShootQ.Api
             services.AddHttpContextAccessor();
 
             services.AddMediatR(typeof(GetCustomers));
+
+            services.AddTransient<IAvailabilityCheck, AvailabilityCheck>();
 
             services.AddEventStore(options =>
             {
