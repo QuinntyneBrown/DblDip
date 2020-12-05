@@ -1,4 +1,5 @@
 using CSharpFunctionalExtensions;
+using NetTopologySuite.Geometries;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
@@ -6,46 +7,41 @@ namespace ShootQ.Core.ValueObjects
 {
     public class Location : ValueObject
     {
-        public const int MaxLength = 250;
         [JsonProperty]
-        public string Value { get; private set; }
+        public double Longitude { get; private set; }
+        [JsonProperty]
+        public double Latitude { get; private set; }
+        [JsonProperty]
+        public string Street { get; private set; }
+        [JsonProperty]
+        public string City { get; private set; }
+        [JsonProperty]
+        public string Province { get; private set; }
+        [JsonProperty]
+        public string PostalCode { get; private set; }
+        [JsonProperty]
+        public Point Point { get; private set; }
 
         protected Location()
         {
 
         }
 
-        private Location(string value)
+        private Location(double longitude, double latitude)
         {
-            Value = value;
-        }
-
-        public static Result<Location> Create(string value)
-        {
-            value = (value ?? string.Empty).Trim();
-
-            if (value.Length == 0)
-                return Result.Failure<Location>("Location should not be empty.");
-
-            if (value.Length > MaxLength)
-                return Result.Failure<Location>("Location name is too long.");
-
-            return Result.Success(new Location(value));
+            Longitude = longitude;
+            Latitude = latitude;
         }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {
-            yield return Value;
+            yield return Longitude;
+            yield return Latitude;
         }
 
-        public static implicit operator string(Location location)
+        public static Result<Location> Create(double longitude, double latitude)
         {
-            return location.Value;
-        }
-
-        public static explicit operator Location(string location)
-        {
-            return Create(location).Value;
+            return Result.Success(new Location(longitude, latitude));
         }
     }
 }

@@ -28,6 +28,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
             };
 
             var client = _fixture.CreateAuthenticatedClient();
+
             var response = await client.PostAsAsync<dynamic, CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
 
             Assert.NotNull(response);

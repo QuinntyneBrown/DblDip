@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="CSharpFunctionalExtensions" Version="2.13.2" />
+    <PackageReference Include="NetTopologySuite" Version="2.1.0" />
   </ItemGroup>
 
 </Project>

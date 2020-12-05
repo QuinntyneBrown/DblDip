@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
@@ -14,10 +15,8 @@ namespace ShootQ.Core.Models
 
         public Guid QuoteId { get; private set; }
 
-        public record LineItem
-        {
-            public decimal Amount { get; set; }
-        public string Decription { get; set; }
+        public Price Total { get; set; }
+
+        public record LineItem(Price Amount, string Description);
     }
-}
 }

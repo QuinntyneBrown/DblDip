@@ -9,7 +9,7 @@ namespace ShootQ.Testing.Builders.Core.Models
 
         public static Wedding WithDefaults(PhotographyRate photographyRate)
         {
-            return new Wedding(Guid.NewGuid(), DateTime.UtcNow, 5, photographyRate.PhotographyRateId);
+            return new Wedding(null, DateTime.UtcNow, 5, photographyRate.PhotographyRateId);
         }
 
         public WeddingBuilder()

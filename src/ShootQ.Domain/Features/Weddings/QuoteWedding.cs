@@ -1,12 +1,11 @@
+using BuildingBlocks.Abstractions;
 using FluentValidation;
 using MediatR;
-using BuildingBlocks.Abstractions;
 using ShootQ.Core.Models;
+using ShootQ.Core.ValueObjects;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using System;
-using ShootQ.Core.ValueObjects;
 
 namespace ShootQ.Domain.Features.Weddings
 {
@@ -22,6 +21,7 @@ namespace ShootQ.Domain.Features.Weddings
 
         public class Request : IRequest<Response> {
             public Guid WeddingId { get; set; }
+            public string Email { get; set; }
         }
 
         public class Response
@@ -32,9 +32,11 @@ namespace ShootQ.Domain.Features.Weddings
         public class Handler : IRequestHandler<Request, Response>
         {
             private readonly IAppDbContext _context;
+            private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context) {            
+            public Handler(IAppDbContext context, IDateTime dateTime) {            
                 _context = context;
+                _dateTime = dateTime;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
@@ -49,6 +51,13 @@ namespace ShootQ.Domain.Features.Weddings
 
                     total += part.DateRange.Hours * rate.Price;
                 }
+
+                wedding.AddQuote((Email)request.Email, (Price)total, _dateTime.UtcNow);
+
+                _context.Store(wedding);
+
+                await _context.SaveChangesAsync(default);
+
                 return new Response()
                 {
                     Total = (Price)total

@@ -5,6 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
+using ShootQ.Core.ValueObjects;
 
 namespace ShootQ.Domain.Features.Weddings
 {
@@ -23,6 +24,7 @@ namespace ShootQ.Domain.Features.Weddings
             public int Hours { get; set; }
             public Guid PhotographyRateId { get; set; }
             public DateTime DateTime { get; set; }
+            public Location Location { get; set; }
         }
 
         public class Response
@@ -38,7 +40,7 @@ namespace ShootQ.Domain.Features.Weddings
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var wedding = new Wedding(request.CustomerId, request.DateTime, request.Hours, request.PhotographyRateId);
+                var wedding = new Wedding(request.Location, request.DateTime, request.Hours, request.PhotographyRateId);
 
                 _context.Store(wedding);
 

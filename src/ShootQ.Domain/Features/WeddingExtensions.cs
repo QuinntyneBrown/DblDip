@@ -10,7 +10,6 @@ namespace ShootQ.Domain.Features
             return new WeddingDto
             {
                 WeddingId = wedding.WeddingId,
-                CustomerId = wedding.CustomerId,
                 Parts = wedding.Parts
             };
         }

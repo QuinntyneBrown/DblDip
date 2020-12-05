@@ -11,27 +11,31 @@ namespace ShootQ.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Wedding(Guid customerId, DateTime dateTime, int hours, Guid photographyRateId)
+        public Wedding(Location location, DateTime dateTime, int hours, Guid photographyRateId)
         {
-            Apply(new WeddingCreated(Guid.NewGuid(), dateTime, hours, customerId, photographyRateId));
+            Apply(new WeddingCreated(location, Guid.NewGuid(), dateTime, hours, photographyRateId));
         }
         public void When(WeddingCreated weddingCreated)
         {
-            WeddingId = weddingCreated.WeddingId;
-            CustomerId = weddingCreated.CustomerId;
-            
+            WeddingId = weddingCreated.WeddingId;            
             Parts = new List<WeddingPart>();
+            WeddingQuotes = new List<WeddingQuote>();
 
             var dateRange = DateRange.Create(weddingCreated.DateTime, weddingCreated.DateTime.AddHours(weddingCreated.Hours));
 
-            Parts.Add(new WeddingPart(dateRange.Value, null, weddingCreated.PhotographyRateId, null));
+            Parts.Add(new WeddingPart(weddingCreated.Location, dateRange.Value, null, weddingCreated.PhotographyRateId, null));
         }
 
         public void When(WeddingPartAdded weddingPartAdded)
         {
             var dateRange = DateRange.Create(weddingPartAdded.DateTime, weddingPartAdded.DateTime.AddHours(weddingPartAdded.Hours));
 
-            Parts.Add(new WeddingPart(dateRange.Value, weddingPartAdded.Location, weddingPartAdded.PhotographyRateId, weddingPartAdded.Description));
+            Parts.Add(new WeddingPart(weddingPartAdded.Location, dateRange.Value, weddingPartAdded.Location, weddingPartAdded.PhotographyRateId, weddingPartAdded.Description));
+        }
+
+        public void When(WeddingQuoteCreated weddingQuoteCreated)
+        {
+            WeddingQuotes.Add(new WeddingQuote(weddingQuoteCreated.Email, weddingQuoteCreated.Total, weddingQuoteCreated.Created));
         }
 
         public Wedding AddPart(DateTime dateTime, int hours, Guid photographyRateId, Location location, string description)
@@ -39,6 +43,11 @@ namespace ShootQ.Core.Models
             Apply(new WeddingPartAdded(dateTime, hours, location, photographyRateId, description));
 
             return this;
+        }
+
+        public void AddQuote(Email email, Price total, DateTime created)
+        {
+            Apply(new WeddingQuoteCreated(email, total, created));
         }
 
         protected override void EnsureValidState()
@@ -56,9 +65,11 @@ namespace ShootQ.Core.Models
         }
 
         public Guid WeddingId { get; private set; }
-        public Guid CustomerId { get; set; }
         public ICollection<WeddingPart> Parts { get; private set; }
+        public ICollection<WeddingQuote> WeddingQuotes { get; private set; }
     }
 
-    public record WeddingPart(DateRange DateRange, Location Location, Guid PhotographyRateId, string Description);
+    public record WeddingPart(Location location, DateRange DateRange, Location Location, Guid PhotographyRateId, string Description);
+
+    public record WeddingQuote(Email Email, Price Total, DateTime Created);
 }
