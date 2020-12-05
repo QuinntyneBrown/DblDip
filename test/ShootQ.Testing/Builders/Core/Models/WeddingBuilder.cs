@@ -7,9 +7,9 @@ namespace ShootQ.Testing.Builders.Core.Models
     {
         private Wedding _wedding;
 
-        public static Wedding WithDefaults()
+        public static Wedding WithDefaults(PhotographyRate photographyRate)
         {
-            throw new NotImplementedException();
+            return new Wedding(Guid.NewGuid(), DateTime.UtcNow, 5, photographyRate.PhotographyRateId);
         }
 
         public WeddingBuilder()

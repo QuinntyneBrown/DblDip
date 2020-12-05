@@ -3,6 +3,8 @@ using ShootQ.Testing;
 using System;
 using Xunit;
 using BuildingBlocks.Core;
+using ShootQ.Testing.Builders.Core.Models;
+using ShootQ.Core.ValueObjects;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
@@ -34,7 +36,18 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
         [Fact]
         public async System.Threading.Tasks.Task Should_QuoteWedding()
-        {   
+        {
+            var photographyRate = _fixture.Context.Store(PhotographyRateBuilder.WithDefaults());
+
+            var wedding = _fixture.Context.Store(WeddingBuilder.WithDefaults(photographyRate));
+
+            await _fixture.Context.SaveChangesAsync(default);
+
+            var client = _fixture.CreateAuthenticatedClient();
+
+            var response = await client.PostAsAsync<dynamic, QuoteWedding.Response>($"api/weddings/{wedding.WeddingId}/quote", null);
+
+            Assert.Equal((Price)5, response.Total);
 
         }
 

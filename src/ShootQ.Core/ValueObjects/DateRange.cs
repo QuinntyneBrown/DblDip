@@ -12,7 +12,7 @@ namespace ShootQ.Core.ValueObjects
         [JsonProperty]
         public DateTime EndDate { get; private set; }
         public int Days => (EndDate.Date - StartDate.Date).Days;
-        public int Hours => (EndDate.Date - StartDate.Date).Hours;
+        public int Hours => (int)(EndDate - StartDate).TotalHours;
 
         protected DateRange()
         {

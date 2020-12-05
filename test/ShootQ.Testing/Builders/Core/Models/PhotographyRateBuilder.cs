@@ -1,4 +1,5 @@
 using ShootQ.Core.Models;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Testing.Builders.Core.Models
@@ -9,7 +10,7 @@ namespace ShootQ.Testing.Builders.Core.Models
 
         public static PhotographyRate WithDefaults()
         {
-            throw new NotImplementedException();
+            return new PhotographyRate((Price)1m);
         }
 
         public PhotographyRateBuilder()
