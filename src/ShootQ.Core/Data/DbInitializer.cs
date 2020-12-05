@@ -9,6 +9,7 @@ namespace ShootQ.Data
     {
         public static void Initialize(IAppDbContext context, IConfiguration configuration)
         {
+            SystemLocationConfiguration.Seed(context, configuration);
             CardConfiguration.Seed(context, configuration);
             UserConfiguration.Seed(context, configuration);
             DashboardConfiguration.Seed(context, configuration);
@@ -55,6 +56,13 @@ namespace ShootQ.Data
                 context.Store(dashboard);
 
                 context.SaveChangesAsync(default).GetAwaiter().GetResult();
+            }
+        }
+
+        internal class SystemLocationConfiguration
+        {
+            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            {
             }
         }
     }
