@@ -8,7 +8,7 @@ namespace ShootQ.Core.Models
     {
         public Card(string name)
         {
-            Apply(new CardCreated(name, Guid.NewGuid()));
+            Apply(new CardCreated(Guid.NewGuid(), name));
         }
         protected override void When(dynamic @event) => When(@event);
 
