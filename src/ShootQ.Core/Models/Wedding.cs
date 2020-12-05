@@ -3,6 +3,7 @@ using ShootQ.Core.DomainEvents;
 using ShootQ.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ShootQ.Core.Models
 {
@@ -42,7 +43,16 @@ namespace ShootQ.Core.Models
 
         protected override void EnsureValidState()
         {
+            if (Parts == null)
+                throw new Exception("Model Invalid. Parts can not be null.");
 
+            foreach(var part in Parts)
+            {
+                if(Parts.Any(x => (x.DateRange.Overlap(part.DateRange) && x != part)))
+                {
+                    throw new Exception("Model Invalid. Parts overlap");
+                }
+            }
         }
 
         public Guid WeddingId { get; private set; }
@@ -50,5 +60,5 @@ namespace ShootQ.Core.Models
         public ICollection<WeddingPart> Parts { get; private set; }
     }
 
-    public record WeddingPart(DateRange dateRange, Location location, Guid PhotographyRateId, string Description);
+    public record WeddingPart(DateRange DateRange, Location Location, Guid PhotographyRateId, string Description);
 }

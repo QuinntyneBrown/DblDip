@@ -1,6 +1,8 @@
+using ShootQ.Domain.Features.Weddings;
 using ShootQ.Testing;
 using System;
 using Xunit;
+using BuildingBlocks.Core;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
@@ -15,6 +17,18 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         [Fact]
         public async System.Threading.Tasks.Task Should_CreateWedding()
         {
+            var dto = new CreateWedding.Request
+            {
+                CustomerId = Guid.NewGuid(),
+                DateTime = DateTime.UtcNow,
+                Hours = 1,
+                PhotographyRateId = Guid.NewGuid()
+            };
+
+            var client = _fixture.CreateAuthenticatedClient();
+            var response = await client.PostAsAsync<dynamic, CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
+
+            Assert.NotNull(response);
 
         }
 

@@ -47,7 +47,7 @@ namespace ShootQ.Domain.Features.Weddings
                 {
                     var rate = await _context.FindAsync<PhotographyRate>(part.PhotographyRateId);
 
-                    total += part.dateRange.Hours * rate.Price;
+                    total += part.DateRange.Hours * rate.Price;
                 }
                 return new Response()
                 {
