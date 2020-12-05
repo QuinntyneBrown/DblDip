@@ -22,7 +22,14 @@ namespace ShootQ.Core.ValueObjects
         [JsonProperty]
         public string PostalCode { get; private set; }
         [JsonProperty]
-        public Point Point { get; private set; }
+
+        [JsonIgnore]
+        public Point Point { get {
+                var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
+
+                return geometryFactory.CreatePoint(new Coordinate(Longitude, Latitude));
+            }  
+        }
 
         protected Location()
         {
@@ -34,11 +41,8 @@ namespace ShootQ.Core.ValueObjects
 
         private Location(double longitude, double latitude)
         {
-            var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
-
             Longitude = longitude;
             Latitude = latitude;
-            Point = geometryFactory.CreatePoint(new Coordinate(longitude, latitude));
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

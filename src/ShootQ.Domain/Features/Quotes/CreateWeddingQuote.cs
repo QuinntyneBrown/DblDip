@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace ShootQ.Domain.Features.Quotes
 {
-    public class CalculateQuote
+    public class CreateWeddingQuote
     {
         public class Request : IRequest<Response>
         {

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Builders\Core\ValueObjects\" />
     <Folder Include="Builders\Domain\Dtos\" />
   </ItemGroup>
 

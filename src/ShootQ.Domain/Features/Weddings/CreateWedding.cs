@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 using ShootQ.Core.ValueObjects;
+using Microsoft.Extensions.Configuration;
 
 namespace ShootQ.Domain.Features.Weddings
 {
@@ -24,7 +25,8 @@ namespace ShootQ.Domain.Features.Weddings
             public int Hours { get; set; }
             public Guid PhotographyRateId { get; set; }
             public DateTime DateTime { get; set; }
-            public Location Location { get; set; }
+            public double Longitude { get; set; }
+            public double Latitude { get; set; }
         }
 
         public class Response
@@ -35,12 +37,25 @@ namespace ShootQ.Domain.Features.Weddings
         public class Handler : IRequestHandler<Request, Response>
         {
             private readonly IAppDbContext _context;
+            private readonly IConfiguration _configuration;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IConfiguration configuration)
+            {
+                _context = context;
+                _configuration = configuration;
+            }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var wedding = new Wedding(request.Location, request.DateTime, request.Hours, request.PhotographyRateId);
+                var longitude = Convert.ToDouble(_configuration["DefaultLocation:Longitude"]);
+                
+                var latitude = Convert.ToDouble(_configuration["DefaultLocation:Latitude"]);
+
+                var home = Location.Create(longitude,latitude).Value;
+
+                var location = Location.Create(request.Longitude, request.Latitude).Value;
+
+                var wedding = new Wedding(home, home, location, request.DateTime, request.Hours, request.PhotographyRateId);
 
                 _context.Store(wedding);
 

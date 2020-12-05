@@ -1,10 +1,11 @@
+using BuildingBlocks.Core;
+using ShootQ.Core.ValueObjects;
 using ShootQ.Domain.Features.Weddings;
 using ShootQ.Testing;
+using ShootQ.Testing.Builders.Core.Models;
+using ShootQ.Testing.Builders.Core.ValueObjects;
 using System;
 using Xunit;
-using BuildingBlocks.Core;
-using ShootQ.Testing.Builders.Core.Models;
-using ShootQ.Core.ValueObjects;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
@@ -19,17 +20,20 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         [Fact]
         public async System.Threading.Tasks.Task Should_CreateWedding()
         {
+            var defaultLocation = LocationBuilder.WithDefaults();
             var dto = new CreateWedding.Request
             {
                 CustomerId = Guid.NewGuid(),
                 DateTime = DateTime.UtcNow,
                 Hours = 1,
-                PhotographyRateId = Guid.NewGuid()
+                PhotographyRateId = Guid.NewGuid(),
+                Longitude = defaultLocation.Longitude,
+                Latitude = defaultLocation.Latitude
             };
 
             var client = _fixture.CreateAuthenticatedClient();
 
-            var response = await client.PostAsAsync<dynamic, CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
+            var response = await client.PostAsAsync<dynamic,CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
 
             Assert.NotNull(response);
 
@@ -46,9 +50,12 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             var client = _fixture.CreateAuthenticatedClient();
 
-            var response = await client.PostAsAsync<dynamic, QuoteWedding.Response>($"api/weddings/{wedding.WeddingId}/quote", null);
+            var response = await client.PostAsAsync<dynamic, CreateWeddingQuote.Response>($"api/weddings/{wedding.WeddingId}/quote", new { 
+                WeddingId = wedding.WeddingId,
+                Email = "quinntynebrown@gmail.com"
+            });
 
-            Assert.Equal((Price)5, response.Total);
+            Assert.Equal((Price)5, response.Quote.Total);
 
         }
 

@@ -11,43 +11,36 @@ namespace ShootQ.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Wedding(Location location, DateTime dateTime, int hours, Guid photographyRateId)
+        public Wedding(Location start, Location end, Location location, DateTime dateTime, int hours, Guid photographyRateId)
         {
-            Apply(new WeddingCreated(location, Guid.NewGuid(), dateTime, hours, photographyRateId));
+            Apply(new WeddingCreated(start, end, location, Guid.NewGuid(), dateTime, hours, photographyRateId));
         }
         public void When(WeddingCreated weddingCreated)
         {
-            WeddingId = weddingCreated.WeddingId;            
+            WeddingId = weddingCreated.WeddingId;
+            Start = weddingCreated.Start;
+            End = weddingCreated.End;
             Parts = new List<WeddingPart>();
             WeddingQuotes = new List<WeddingQuote>();
+            Trips = new List<Trip>();
 
             var dateRange = DateRange.Create(weddingCreated.DateTime, weddingCreated.DateTime.AddHours(weddingCreated.Hours));
 
-            Parts.Add(new WeddingPart(weddingCreated.Location, dateRange.Value, null, weddingCreated.PhotographyRateId, null));
+            Parts.Add(new WeddingPart(dateRange.Value, null, weddingCreated.PhotographyRateId, null));
         }
 
         public void When(WeddingPartAdded weddingPartAdded)
         {
             var dateRange = DateRange.Create(weddingPartAdded.DateTime, weddingPartAdded.DateTime.AddHours(weddingPartAdded.Hours));
 
-            Parts.Add(new WeddingPart(weddingPartAdded.Location, dateRange.Value, weddingPartAdded.Location, weddingPartAdded.PhotographyRateId, weddingPartAdded.Description));
+            Parts.Add(new WeddingPart(dateRange.Value, weddingPartAdded.Location, weddingPartAdded.PhotographyRateId, weddingPartAdded.Description));
         }
 
-        public void When(WeddingQuoteCreated weddingQuoteCreated)
+        public Wedding AddPart(DateTime dateTime, int hours, Guid photographyRateId, Location destination, string description)
         {
-            WeddingQuotes.Add(new WeddingQuote(weddingQuoteCreated.Email, weddingQuoteCreated.Total, weddingQuoteCreated.Created));
-        }
-
-        public Wedding AddPart(DateTime dateTime, int hours, Guid photographyRateId, Location location, string description)
-        {
-            Apply(new WeddingPartAdded(dateTime, hours, location, photographyRateId, description));
+            Apply(new WeddingPartAdded(dateTime, hours, destination, photographyRateId, description));
 
             return this;
-        }
-
-        public void AddQuote(Email email, Price total, DateTime created)
-        {
-            Apply(new WeddingQuoteCreated(email, total, created));
         }
 
         protected override void EnsureValidState()
@@ -65,11 +58,35 @@ namespace ShootQ.Core.Models
         }
 
         public Guid WeddingId { get; private set; }
+        public Location Start { get; set; }
+        public Location End { get; set; }
         public ICollection<WeddingPart> Parts { get; private set; }
         public ICollection<WeddingQuote> WeddingQuotes { get; private set; }
+        public ICollection<Trip> Trips { get; private set; }
+        public IDictionary<DateRange, dynamic> Schedule
+        {
+            get
+            {
+                var schedule = new Dictionary<DateRange, dynamic>();
+
+                foreach(var trip in Trips)
+                {
+                    schedule.Add(trip.DateRange, trip);
+                }
+
+                foreach(var part in Parts)
+                {
+                    schedule.Add(part.DateRange, part);
+                }
+
+                schedule.OrderBy(x => x.Key);
+
+                return schedule;
+            }
+        }
     }
 
-    public record WeddingPart(Location location, DateRange DateRange, Location Location, Guid PhotographyRateId, string Description);
+    public record WeddingPart(DateRange DateRange, Location Location, Guid PhotographyRateId, string Description);
 
-    public record WeddingQuote(Email Email, Price Total, DateTime Created);
+    public record Trip(DateRange DateRange, Location Start, Location End);
 }

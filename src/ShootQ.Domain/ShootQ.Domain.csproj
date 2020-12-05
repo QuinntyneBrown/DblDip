@@ -23,8 +23,6 @@
     <Folder Include="Features\Leads\" />
     <Folder Include="Features\Customers\" />
     <Folder Include="Features\DigitialAssets\" />
-    <Folder Include="Features\Weddings\" />
-    <Folder Include="Features\Quotes\" />
     <Folder Include="Features\Orders\" />
     <Folder Include="Sagas\" />
   </ItemGroup>

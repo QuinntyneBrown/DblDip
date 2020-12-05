@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ShootQ.Domain.Features.Weddings
 {
-    public class QuoteWedding
+    public class CreateWeddingQuote
     {
         public class Validator : AbstractValidator<Request>
         {
@@ -26,7 +26,7 @@ namespace ShootQ.Domain.Features.Weddings
 
         public class Response
         {
-            public Price Total { get; set; }
+            public QuoteDto Quote { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -41,26 +41,29 @@ namespace ShootQ.Domain.Features.Weddings
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var wedding = await _context.FindAsync<Wedding>(request.WeddingId);
+                var quote = new WeddingQuote((Email)request.Email, request.WeddingId);
 
-                var total = 0m;
+                var wedding = await _context.FindAsync<Wedding>(request.WeddingId);
 
                 foreach(var part in wedding.Parts)
                 {
                     var rate = await _context.FindAsync<PhotographyRate>(part.PhotographyRateId);
 
-                    total += part.DateRange.Hours * rate.Price;
+                    quote.AddItem((Price)(part.DateRange.Hours * rate.Price), "Wedding Photography");
                 }
 
-                wedding.AddQuote((Email)request.Email, (Price)total, _dateTime.UtcNow);
+                foreach (var trip in wedding.Trips)
+                {                    
+                    quote.AddItem((Price)(trip.DateRange.Hours * 60), "Travel Expense");
+                }
 
-                _context.Store(wedding);
+                _context.Store(quote);
 
                 await _context.SaveChangesAsync(default);
 
                 return new Response()
                 {
-                    Total = (Price)total
+                    Quote = quote.ToDto()
                 };
             }
         }
