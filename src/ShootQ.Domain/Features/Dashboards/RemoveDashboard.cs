@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Dashboards
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid DashboardId { get; set; }
         }
 
@@ -32,9 +33,10 @@ namespace ShootQ.Domain.Features.Dashboards
             private readonly IAppDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime) => (_context,_dateTime) = (context,dateTime);
+            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var dashboard = await _context.FindAsync<Dashboard>(request.DashboardId);
 

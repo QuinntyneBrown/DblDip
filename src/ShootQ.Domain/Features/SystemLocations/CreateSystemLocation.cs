@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.SystemLocations
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public SystemLocationDto SystemLocation { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.SystemLocations
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var systemLocation = new SystemLocation(request.SystemLocation.Name, request.SystemLocation.Location);
 

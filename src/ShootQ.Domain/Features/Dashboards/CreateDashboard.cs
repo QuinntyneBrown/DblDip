@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Dashboards
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public DashboardDto Dashboard { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Dashboards
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var dashboard = new Dashboard(request.Dashboard.Name, request.Dashboard.UserId);
 

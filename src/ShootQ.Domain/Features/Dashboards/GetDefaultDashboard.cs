@@ -38,7 +38,8 @@ namespace ShootQ.Domain.Features.Dashboards
 
                 var dashboard = _context.Set<Dashboard>().Single(x => x.UserId == currentUserId && x.IsDefault);
 
-                return new Response() { 
+                return new Response()
+                {
                     Dashboard = dashboard.ToDto()
                 };
             }

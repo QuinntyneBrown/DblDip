@@ -20,7 +20,8 @@ namespace ShootQ.Domain.Features.Weddings
             }
         }
 
-        public class Request : IRequest<Response> {
+        public class Request : IRequest<Response>
+        {
             public Guid CustomerId { get; set; }
             public int Hours { get; set; }
             public Guid PhotographyRateId { get; set; }
@@ -45,13 +46,14 @@ namespace ShootQ.Domain.Features.Weddings
                 _configuration = configuration;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var longitude = Convert.ToDouble(_configuration["DefaultLocation:Longitude"]);
-                
+
                 var latitude = Convert.ToDouble(_configuration["DefaultLocation:Latitude"]);
 
-                var home = Location.Create(longitude,latitude).Value;
+                var home = Location.Create(longitude, latitude).Value;
 
                 var location = Location.Create(request.Longitude, request.Latitude).Value;
 

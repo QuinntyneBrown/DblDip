@@ -13,5 +13,5 @@ namespace ShootQ.Domain.Features.Weddings
         = new HashSet<Trip>();
     }
 
- 
+
 }

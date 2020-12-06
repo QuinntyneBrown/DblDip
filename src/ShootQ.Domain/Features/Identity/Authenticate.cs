@@ -67,7 +67,7 @@ namespace ShootQ.Domain.Features.Identity
 
                 return new Response()
                 {
-                    
+
                     AccessToken = _tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }),
                     UserId = user.UserId
                 };

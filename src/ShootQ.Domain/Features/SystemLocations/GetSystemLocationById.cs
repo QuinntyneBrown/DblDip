@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.SystemLocations
 {
     public class GetSystemLocationById
     {
-        public class Request : IRequest<Response> {  
-            public Guid SystemLocationId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid SystemLocationId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.SystemLocations
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var systemLocation = await _context.FindAsync<SystemLocation>(request.SystemLocationId);
 
-                return new Response() { 
+                return new Response()
+                {
                     SystemLocation = systemLocation.ToDto()
                 };
             }

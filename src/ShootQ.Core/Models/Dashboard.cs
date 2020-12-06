@@ -1,6 +1,7 @@
 using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
 using System;
+using System.Collections.Generic;
 
 namespace ShootQ.Core.Models
 {
@@ -30,6 +31,11 @@ namespace ShootQ.Core.Models
             Name = dashboardUpdated.Name;
         }
 
+        public void When(DashboardCardsUpdated dashboardCardsUpdated)
+        {
+            DashboardCards = dashboardCardsUpdated.DashboardCards;
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -40,14 +46,20 @@ namespace ShootQ.Core.Models
             Apply(new DashboardRemoved(deleted));
         }
 
-        public void Update(string value)
+        public void Update(string name)
         {
-            Apply(new DashboardUpdated(value));
+            Apply(new DashboardUpdated(name));
+        }
+
+        public void UpdateDashboardCards(IEnumerable<DashboardCard> dashboardCards)
+        {
+            Apply(new DashboardCardsUpdated(dashboardCards));
         }
 
         public Guid DashboardId { get; private set; }
         public Guid UserId { get; set; }
         public string Name { get; set; }
+        public IEnumerable<DashboardCard> DashboardCards { get; private set; }
         public bool IsDefault { get; set; }
 
         public record DashboardCard(Guid DashboardCardId, dynamic Options);
