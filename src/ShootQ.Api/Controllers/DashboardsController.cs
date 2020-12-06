@@ -32,13 +32,27 @@ namespace ShootQ.Api.Controllers
             => await _mediator.Send(request);
 
         [Authorize]
+        [HttpGet("current", Name = "GetDashboardsByCurrentUserRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetDashboardsByCurrentUser.Response>> Get()
+            => await _mediator.Send(new GetDashboardsByCurrentUser.Request());
+
+        [Authorize]
+        [HttpGet("default", Name = "GetDefaultDashboardRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetDefaultDashboard.Response>> GetDefault()
+            => await _mediator.Send(new GetDefaultDashboard.Request());
+
+        [Authorize]
         [HttpDelete("{dashboardId}", Name = "RemoveDashboardRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task Remove([FromRoute]RemoveDashboard.Request request)
             => await _mediator.Send(request);
-
-       
     }
 }
