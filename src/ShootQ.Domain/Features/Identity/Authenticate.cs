@@ -2,8 +2,10 @@ using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
 using FluentValidation;
 using MediatR;
+using ShootQ.Core;
 using ShootQ.Core.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
@@ -59,9 +61,14 @@ namespace ShootQ.Domain.Features.Identity
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();
 
+                var roles = user?.Roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name)).ToArray();
+
+                var userIdClaim = new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}");
+
                 return new Response()
                 {
-                    AccessToken = _tokenProvider.Get(request.Username, user?.Roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name)).ToList()),
+                    
+                    AccessToken = _tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }),
                     UserId = user.UserId
                 };
             }

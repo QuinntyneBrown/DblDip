@@ -24,6 +24,14 @@ namespace ShootQ.Api.Controllers
             => await _mediator.Send(request);
 
         [Authorize]
+        [HttpPut(Name = "UpdateDashboardRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(UpdateDashboard.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<UpdateDashboard.Response>> Update([FromBody] UpdateDashboard.Request request)
+            => await _mediator.Send(request);
+
+        [Authorize]
         [HttpDelete("{dashboardId}", Name = "RemoveDashboardRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
