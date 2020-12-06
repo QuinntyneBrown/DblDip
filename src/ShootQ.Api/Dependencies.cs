@@ -11,6 +11,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Primitives;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using ShootQ.Core.Data;
 using ShootQ.Core.Services;
 using ShootQ.Domain.Features.Customers;
 using System;
@@ -67,6 +68,8 @@ namespace ShootQ.Api
 
             services.AddTransient<IAvailabilityCheck, AvailabilityCheck>();
 
+            services.AddTransient<IDataIntegrityService, DataIntegrityService>();
+            
             services.AddEventStore(options =>
             {
                 options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],

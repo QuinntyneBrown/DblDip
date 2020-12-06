@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using ShootQ.Core.Models;
 
 namespace ShootQ.Testing.Builders
@@ -6,9 +7,9 @@ namespace ShootQ.Testing.Builders
     {
         private User _user;
         
-        public static User WithDefaults()
+        public static User WithDefaults(IUsernameAvailabilityCheck usernameAvailabilityCheck)
         {
-            return new User("quinntynebrown@gmail.com", "ShootQ");
+            return new User("quinntynebrown@gmail.com", "ShootQ", usernameAvailabilityCheck);
         }
 
         public UserBuilder(string username, string password)

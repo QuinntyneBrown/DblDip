@@ -4,6 +4,9 @@ using FluentValidation;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using System;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 
 namespace ShootQ.Domain.Features.Customers
 {
@@ -32,11 +35,14 @@ namespace ShootQ.Domain.Features.Customers
         {
             private readonly IAppDbContext _context;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor)
+            {
+                _context = context;
+
+            }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var customer = new Customer();
 
                 _context.Store(customer);

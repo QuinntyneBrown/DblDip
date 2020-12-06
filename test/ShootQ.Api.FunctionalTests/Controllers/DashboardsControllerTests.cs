@@ -6,15 +6,18 @@ using ShootQ.Testing.Builders.Core.Models;
 using ShootQ.Testing.Builders.Domain.Dtos;
 using System;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
     public class DashboardsControllerTests: IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
-        public DashboardsControllerTests(ApiTestFixture fixture)
+        private readonly ITestOutputHelper _testOutputHelper;
+        public DashboardsControllerTests(ApiTestFixture fixture, ITestOutputHelper testOutputHelper)
         {
             _fixture = fixture;
+            _testOutputHelper = testOutputHelper;
         }
 
         [Fact]
@@ -22,13 +25,16 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         {
             var dashboard = DashboardDtoBuilder.WithDefaults();
 
-            var client = _fixture.CreateAuthenticatedClient();
+            using(var client = _fixture.CreateAuthenticatedClient())
+            {
+                var response = await client.PostAsAsync<dynamic, CreateDashboard.Response>(Endpoints.Post.AddDashboard, new { dashboard });
 
-            var response = await client.PostAsAsync<dynamic, CreateDashboard.Response>(Endpoints.Post.AddDashboard, new { dashboard });
+                _testOutputHelper.WriteLine($"{response.Dashboard.DashboardId}");
 
-            var sut = await _fixture.Context.FindAsync<Dashboard>(response.Dashboard.DashboardId);
+                var sut = await _fixture.Context.FindAsync<Dashboard>(response.Dashboard.DashboardId);
 
-            Assert.NotEqual(default, sut.DashboardId);
+                Assert.NotEqual(default, sut.DashboardId);
+            }
         }
 
         [Fact]

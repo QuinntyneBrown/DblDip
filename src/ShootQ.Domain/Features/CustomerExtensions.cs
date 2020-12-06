@@ -9,7 +9,7 @@ namespace ShootQ.Domain.Features
         {
             return new CustomerDto
             {
-
+                CustomerId = customer.CustomerId
             };
         }
     }

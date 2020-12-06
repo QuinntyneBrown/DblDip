@@ -1,4 +1,5 @@
 using BuildingBlocks.Core;
+using ShootQ.Core.Exceptions;
 using ShootQ.Domain.Features.Identity;
 using ShootQ.Testing;
 using ShootQ.Testing.Builders;
@@ -19,16 +20,23 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         [Fact]
         public async Task Should_GetToken()
         {
-            _fixture.Context.Store(UserBuilder.WithDefaults());
+            try
+            {
+                _fixture.Context.Store(UserBuilder.WithDefaults(_fixture.DataIntegrityService));
 
-            await _fixture.Context.SaveChangesAsync(default);
+                await _fixture.Context.SaveChangesAsync(default);
+            }
+            catch(DomainException ex)
+            {
+                
+            }
 
             var client = _fixture.CreateClient();
 
             var response = await client.PostAsAsync<dynamic, Authenticate.Response>("api/identity/token", new
             {
                 username = "quinntynebrown@gmail.com",
-                password = "ShootQ"
+                password = "shootq"
             });
 
             Assert.NotNull(response.AccessToken);

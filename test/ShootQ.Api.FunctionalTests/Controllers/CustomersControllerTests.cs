@@ -1,9 +1,9 @@
+using BuildingBlocks.Core;
+using ShootQ.Core.Models;
 using ShootQ.Domain.Features.Customers;
 using ShootQ.Testing;
-using System.Threading.Tasks;
-using Xunit;
-using BuildingBlocks.Core;
 using ShootQ.Testing.Builders.Domain.Dtos;
+using Xunit;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
@@ -17,16 +17,20 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         }
 
         [Fact]
-        public async Task Should_GetCustomers()
+        public async System.Threading.Tasks.Task Should_GetCustomers()
         {
+            _ = _fixture.Context.Store(new Customer());
+
+            await _fixture.Context.SaveChangesAsync(default);
+
             var response = await _fixture.CreateAuthenticatedClient().GetAsync<GetCustomers.Response>("api/customers");
 
-            Assert.Empty(response.Customers);
+            Assert.NotEmpty(response.Customers);
 
         }
 
         [Fact]
-        public async Task Should_AddCustomer()
+        public async System.Threading.Tasks.Task Should_AddCustomer()
         {
             var client = _fixture.CreateAuthenticatedClient();
              

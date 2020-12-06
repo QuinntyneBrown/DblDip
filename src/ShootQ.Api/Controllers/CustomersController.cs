@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ShootQ.Domain.Features.Customers;
+using System;
 using System.Net;
 using System.Threading.Tasks;
 
@@ -14,6 +15,16 @@ namespace ShootQ.Api.Controllers
         private readonly IMediator _mediator;
 
         public CustomersController(IMediator mediator) => _mediator = mediator;
+
+        [Authorize]
+        [HttpPost(Name = "CreateCustomerRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(CreateCustomer.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<CreateCustomer.Response>> Create([FromBody]CreateCustomer.Request request)
+        {
+            return await _mediator.Send(request);
+        }
 
         [Authorize]
         [HttpDelete("{customerId}", Name = "RemoveCustomerRoute")]

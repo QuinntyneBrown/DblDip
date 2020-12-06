@@ -8,7 +8,7 @@ namespace ShootQ.Core.Models
     {
         public Dashboard(string name, Guid userId)
         {
-            Apply(new DashboardCreated(name, Guid.NewGuid(), userId));
+            Apply(new DashboardCreated(Guid.NewGuid(), userId, name));
         }
 
         protected override void When(dynamic @event) => When(@event);

@@ -15,6 +15,7 @@ namespace BuildingBlocks.EventStore
             services.AddSingleton<IDateTime, MachineDateTime>();
             services.AddTransient<IAppDbContext, AppDbContext>();
             services.AddDbContext<EventStoreDbContext>(optionsAction);
+            services.AddTransient<ICorrelationIdAccessor, CorrelationIdAccessor>();
         }
     }
 

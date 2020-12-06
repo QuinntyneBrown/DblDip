@@ -1,6 +1,7 @@
 using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.Exceptions;
 using ShootQ.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,19 @@ namespace ShootQ.Core.Models
 {
     public class User : AggregateRoot
     {
-        public User(string username, string password)
+        public User(string username, string password, IUsernameAvailabilityCheck usernameAvailabilityCheck = null, IPasswordHasher passwordHasher = null)
         {
+            passwordHasher = new PasswordHasher();
+
+            if (usernameAvailabilityCheck != null && usernameAvailabilityCheck.IsAvailable(username) == false)
+                throw new DomainException("Email not available");
+
             var salt = new byte[128 / 8];
             using (var rng = RandomNumberGenerator.Create())
             {
                 rng.GetBytes(salt);
             }
-            var transformedPassword = new PasswordHasher().HashPassword(salt, password);
+            var transformedPassword = passwordHasher.HashPassword(salt, password);
 
             Apply(new UserCreated(Guid.NewGuid(), username, transformedPassword, salt)) ;
         }

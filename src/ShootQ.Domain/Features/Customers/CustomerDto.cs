@@ -4,7 +4,7 @@ namespace ShootQ.Domain.Features.Customers
 {
     public class CustomerDto
     {
-        public Guid CustomerId { get; private set; }
+        public Guid CustomerId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string EmailAddress { get; set; }

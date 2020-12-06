@@ -4,15 +4,18 @@ using ShootQ.Domain.Features.Quotes;
 using ShootQ.Testing;
 using ShootQ.Testing.Builders.Core.Models;
 using Xunit;
+using Xunit.Abstractions;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
     public class QuotesControllerTests: IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
-        public QuotesControllerTests(ApiTestFixture fixture)
+        private ITestOutputHelper _testOutputHelper;
+        public QuotesControllerTests(ApiTestFixture fixture, ITestOutputHelper testOutputHelper)
         {
             _fixture = fixture;
+            _testOutputHelper = testOutputHelper;
         }
 
         [Fact]
@@ -30,6 +33,8 @@ namespace ShootQ.Api.FunctionalTests.Controllers
                 WeddingId = wedding.WeddingId,
                 Email = "quinntynebrown@gmail.com"
             });
+
+            _testOutputHelper.WriteLine($"{response.Quote.Total.Value}");
 
             Assert.Equal((Price)500, response.Quote.Total);
 
