@@ -12,7 +12,7 @@ namespace ShootQ.Core.Models
         
         public void When(QuoteItemAdded quoteItemAdded)
         {
-            LineItems.Add(new LineItem(quoteItemAdded.Amount, quoteItemAdded.Description));
+            LineItems.Add(LineItem.Create(quoteItemAdded.Amount, quoteItemAdded.Description).Value);
         }
 
         public void AddItem(Price amount, string description)
@@ -25,6 +25,5 @@ namespace ShootQ.Core.Models
         public Price Total => (Price)LineItems.Sum(x => x.Amount);
         public ICollection<LineItem> LineItems { get; set; }
 
-        public record LineItem(Price Amount, string Description);
     }
 }

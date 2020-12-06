@@ -1,6 +1,8 @@
 ﻿using BuildingBlocks.Abstractions;
+using ShootQ.Core.Models;
 using ShootQ.Core.ValueObjects;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShootQ.Core.Services
@@ -21,6 +23,8 @@ namespace ShootQ.Core.Services
 
         public Task<bool> IsAvailable(DateRange dateRange)
         {
+            var orders = _context.Set<Order>();
+
             throw new NotImplementedException();
         }
     }
