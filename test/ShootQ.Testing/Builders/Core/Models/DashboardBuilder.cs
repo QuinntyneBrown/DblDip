@@ -9,7 +9,7 @@ namespace ShootQ.Testing.Builders.Core.Models
 
         public static Dashboard WithDefaults(Guid userId)
         {
-            return new Dashboard("Default",userId);
+            return new Dashboard("Default", userId);
         }
 
         public DashboardBuilder()

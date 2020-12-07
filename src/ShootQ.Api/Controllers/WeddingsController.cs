@@ -19,7 +19,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateWedding.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateWedding.Response>> Create([FromBody]CreateWedding.Request request)
-            => await _mediator.Send(request);        
+        public async Task<ActionResult<CreateWedding.Response>> Create([FromBody] CreateWedding.Request request)
+            => await _mediator.Send(request);
     }
 }

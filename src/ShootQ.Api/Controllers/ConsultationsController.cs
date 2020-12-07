@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateConsultation.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateConsultation.Response>> Create([FromBody]CreateConsultation.Request request)
+        public async Task<ActionResult<CreateConsultation.Response>> Create([FromBody] CreateConsultation.Request request)
             => await _mediator.Send(request);
 
 
@@ -33,7 +33,7 @@ namespace ShootQ.Api.Controllers
             => await _mediator.Send(request);
 
         [Authorize]
-        [HttpPut("reschedule",Name = "RescheduleConsultationRoute")]
+        [HttpPut("reschedule", Name = "RescheduleConsultationRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(RescheduleConsultation.Response), (int)HttpStatusCode.OK)]
@@ -53,7 +53,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveConsultation.Request request)
+        public async Task Remove([FromRoute] RemoveConsultation.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -62,7 +62,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetConsultationById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetConsultationById.Response>> GetById([FromRoute]GetConsultationById.Request request)
+        public async Task<ActionResult<GetConsultationById.Response>> GetById([FromRoute] GetConsultationById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -80,6 +80,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetConsultations.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetConsultations.Response>> Get()
-            => await _mediator.Send(new GetConsultations.Request());           
+            => await _mediator.Send(new GetConsultations.Request());
     }
 }

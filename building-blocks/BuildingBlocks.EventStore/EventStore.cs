@@ -24,7 +24,7 @@ namespace BuildingBlocks.EventStore
 
         public void Store(AggregateRoot aggregateRoot)
         {
-            
+
             var type = aggregateRoot.GetType();
             Guid aggregateId = (Guid)type.GetProperty($"{type.Name}Id").GetValue(aggregateRoot, null);
             string aggregate = aggregateRoot.GetType().Name;

@@ -19,7 +19,8 @@ namespace ShootQ.Domain.Features.Consultations
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public ConsultationDto Consultation { get; set; }
         }
 
@@ -34,11 +35,12 @@ namespace ShootQ.Domain.Features.Consultations
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var dateRange = DateRange.Create(request.Consultation.StartDate, request.Consultation.EndDate).Value;
 
-                var consultation = new Consultation(dateRange,request.Consultation.CustomerEmail);
+                var consultation = new Consultation(dateRange, request.Consultation.CustomerEmail);
 
                 _context.Store(consultation);
 

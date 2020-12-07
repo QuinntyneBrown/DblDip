@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Clients
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public ClientDto Client { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Clients
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var client = await _context.FindAsync<Client>(request.Client.ClientId);
 

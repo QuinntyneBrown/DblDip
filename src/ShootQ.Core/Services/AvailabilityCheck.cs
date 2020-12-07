@@ -8,7 +8,7 @@ namespace ShootQ.Core.Services
 {
     public interface IAvailabilityCheck
     {
-        Task<bool> IsAvailable(DateRange dateRange); 
+        Task<bool> IsAvailable(DateRange dateRange);
     }
 
     public class AvailabilityCheck : IAvailabilityCheck

@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Consultations
 {
     public class GetConsultationById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ConsultationId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ConsultationId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Consultations
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var consultation = await _context.FindAsync<Consultation>(request.ConsultationId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Consultation = consultation.ToDto()
                 };
             }

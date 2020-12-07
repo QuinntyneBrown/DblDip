@@ -6,9 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace ShootQ.Domain.Features.Clients
+namespace ShootQ.Domain.Features.Surveys
 {
-    public class RemoveClient
+    public class RemoveSurvey
     {
         public class Validator : AbstractValidator<Request>
         {
@@ -18,14 +18,13 @@ namespace ShootQ.Domain.Features.Clients
             }
         }
 
-        public class Request : IRequest<Unit>
-        {
-            public Guid ClientId { get; set; }
+        public class Request : IRequest<Unit> {  
+            public Guid SurveyId { get; set; }
         }
 
         public class Response
         {
-            public ClientDto Client { get; set; }
+            public SurveyDto Survey { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>
@@ -34,14 +33,13 @@ namespace ShootQ.Domain.Features.Clients
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
 
-                var client = await _context.FindAsync<Client>(request.ClientId);
+                var survey = await _context.FindAsync<Survey>(request.SurveyId);
 
-                //client.Remove();
+                //survey.Remove();
 
-                _context.Store(client);
+                _context.Store(survey);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

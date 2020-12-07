@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace ShootQ.Core.Models
 {
-    public class WeddingQuote: Quote
+    public class WeddingQuote : Quote
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -33,7 +33,7 @@ namespace ShootQ.Core.Models
         {
             WeddingQuoteId = weddingQuoteCreated.WeddingQuoteId;
             LineItems = new List<LineItem>();
-            Email = weddingQuoteCreated.Email;
+            ClientEmail = weddingQuoteCreated.Email;
             WeddingId = weddingQuoteCreated.WeddingId;
         }
 

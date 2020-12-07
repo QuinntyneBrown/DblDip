@@ -16,6 +16,6 @@ namespace BuildingBlocks.Core
         public static string ToJson<T>(this T obj)
         {
             return JsonSerializer.Serialize(obj, _jsonOptions);
-        } 
+        }
     }
 }

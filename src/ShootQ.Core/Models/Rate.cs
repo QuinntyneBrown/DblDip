@@ -5,12 +5,12 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Rate: AggregateRoot
+    public class Rate : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
         public Rate(string name, Price price, Guid rateId = default)
-        {            
+        {
             Apply(new RateCreated(rateId == default ? Guid.NewGuid() : rateId, price, name));
         }
         public void When(RateCreated photographyRateCreated)

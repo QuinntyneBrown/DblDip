@@ -58,7 +58,10 @@ namespace ShootQ.Testing
                 }
             });
         }
-        public IAppDbContext Context { get {
+        public IAppDbContext Context
+        {
+            get
+            {
 
                 if (_context == null)
                 {
@@ -83,9 +86,11 @@ namespace ShootQ.Testing
         }
 
         private IDataIntegrityService _dataIntegrityService;
-        public IDataIntegrityService DataIntegrityService {  get
+        public IDataIntegrityService DataIntegrityService
+        {
+            get
             {
-                if(_dataIntegrityService == null)
+                if (_dataIntegrityService == null)
                 {
                     var options = new DbContextOptionsBuilder()
                         .UseSqlServer(_configuration["Data:DefaultConnection:ConnectionString"])
@@ -98,7 +103,7 @@ namespace ShootQ.Testing
                 }
 
                 return _dataIntegrityService;
-            } 
+            }
         }
 
 
@@ -118,7 +123,7 @@ namespace ShootQ.Testing
             }).CreateClient();
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme, token);
-            
+
             client.DefaultRequestHeaders.Add("correlationId", $"{_correlationId}");
 
             return client;
@@ -132,7 +137,7 @@ namespace ShootQ.Testing
 
             var context = new EventStoreDbContext(options);
 
-            foreach(var storedEvent in context.StoredEvents.Where(x => x.CorrelationId == _correlationId))
+            foreach (var storedEvent in context.StoredEvents.Where(x => x.CorrelationId == _correlationId))
             {
                 context.Remove(storedEvent);
             }

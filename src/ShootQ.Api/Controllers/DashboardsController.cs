@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateDashboard.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateDashboard.Response>> Create([FromBody]CreateDashboard.Request request)
+        public async Task<ActionResult<CreateDashboard.Response>> Create([FromBody] CreateDashboard.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -52,7 +52,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveDashboard.Request request)
+        public async Task Remove([FromRoute] RemoveDashboard.Request request)
             => await _mediator.Send(request);
     }
 }

@@ -7,7 +7,7 @@ namespace ShootQ.Testing.Builders.Core.Models
     public class WeddingBuilder
     {
         private Wedding _wedding;
-        
+
         public static Wedding WithDefaults(Rate photographyRate)
         {
             var configuration = Create();

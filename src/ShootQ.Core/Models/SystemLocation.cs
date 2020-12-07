@@ -5,7 +5,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class SystemLocation: AggregateRoot
+    public class SystemLocation : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

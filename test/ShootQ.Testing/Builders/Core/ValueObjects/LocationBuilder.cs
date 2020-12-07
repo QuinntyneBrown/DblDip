@@ -16,7 +16,7 @@ namespace ShootQ.Testing.Builders.Core.ValueObjects
 
             var latitude = Convert.ToDouble(configuration["DefaultLocation:Latitude"]);
 
-            return ShootQ.Core.ValueObjects.Location.Create(longitude,latitude).Value;
+            return ShootQ.Core.ValueObjects.Location.Create(longitude, latitude).Value;
         }
 
         public LocationBuilder()

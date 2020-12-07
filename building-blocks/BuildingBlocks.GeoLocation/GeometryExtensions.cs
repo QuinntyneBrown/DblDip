@@ -14,13 +14,13 @@ namespace BuildingBlocks.GeoLocation
                 new CoordinateTransformationFactory(),
                 new Dictionary<int, string>
                 {
-                // Coordinate systems:
+                    // Coordinate systems:
 
-                [4326] = GeographicCoordinateSystem.WGS84.WKT,
+                    [4326] = GeographicCoordinateSystem.WGS84.WKT,
 
-                // This coordinate system covers the area of our data.
-                // Different data requires a different coordinate system.
-                [2855] =
+                    // This coordinate system covers the area of our data.
+                    // Different data requires a different coordinate system.
+                    [2855] =
                     @"
                     PROJCS[""NAD83(HARN) / Washington North"",
                         GEOGCS[""NAD83(HARN)"",

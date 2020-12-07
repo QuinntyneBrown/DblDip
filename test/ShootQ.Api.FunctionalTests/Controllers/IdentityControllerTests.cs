@@ -8,7 +8,7 @@ using Xunit;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
-    public class IdentityControllerTests: IClassFixture<ApiTestFixture>
+    public class IdentityControllerTests : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
 
@@ -26,9 +26,9 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
                 await _fixture.Context.SaveChangesAsync(default);
             }
-            catch(DomainException ex)
+            catch (DomainException ex)
             {
-                
+
             }
 
             var client = _fixture.CreateClient();

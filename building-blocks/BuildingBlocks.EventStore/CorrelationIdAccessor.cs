@@ -8,7 +8,7 @@ namespace BuildingBlocks.EventStore
         Guid CorrelationId { get; }
     }
 
-    public class CorrelationIdAccessor: ICorrelationIdAccessor
+    public class CorrelationIdAccessor : ICorrelationIdAccessor
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 

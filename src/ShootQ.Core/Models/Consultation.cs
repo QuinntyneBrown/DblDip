@@ -5,7 +5,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Consultation: AggregateRoot
+    public class Consultation : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -18,7 +18,7 @@ namespace ShootQ.Core.Models
         {
             ConsultationId = consultationCreated.ConsultationId;
             DateRange = consultationCreated.DateRange;
-            ClientEmail = consultationCreated.CustomerEmail;
+            ClientEmail = consultationCreated.ClientEmail;
         }
 
         public void When(ConsultationNoteAdded consultationAdded)
@@ -41,6 +41,11 @@ namespace ShootQ.Core.Models
             Completed = consultationCompleted.Completed;
         }
 
+        public void When(ConsultationPaid consultationPaid)
+        {
+            Paid = consultationPaid.Paid;
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -58,12 +63,17 @@ namespace ShootQ.Core.Models
 
         public void Reschedule(DateTime startDate, DateTime endDate)
         {
-            Apply(new ConsultationRescheduled(startDate,endDate));
+            Apply(new ConsultationRescheduled(startDate, endDate));
         }
 
         public void Complete(DateTime completed)
         {
             Apply(new ConsultationCompleted(completed));
+        }
+
+        public void Pay(DateTime paid)
+        {
+            Apply(new ConsultationPaid(paid));
         }
 
         public Guid ConsultationId { get; private set; }
@@ -72,5 +82,6 @@ namespace ShootQ.Core.Models
         public string Note { get; private set; }
         public DateTime? Deleted { get; set; }
         public DateTime? Completed { get; set; }
+        public DateTime? Paid { get; set; }
     }
 }

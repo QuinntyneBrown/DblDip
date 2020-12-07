@@ -21,7 +21,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateDashboardCards.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateDashboardCards.Response>> Upsert([FromBody] UpdateDashboardCards.Request request, [FromRoute]Guid dashboardId)
+        public async Task<ActionResult<UpdateDashboardCards.Response>> Upsert([FromBody] UpdateDashboardCards.Request request, [FromRoute] Guid dashboardId)
             => await _mediator.Send(request with { DashboardId = dashboardId });
     }
 }

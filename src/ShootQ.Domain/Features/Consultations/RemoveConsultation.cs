@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Consultations
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid ConsultationId { get; set; }
         }
 
@@ -32,9 +33,10 @@ namespace ShootQ.Domain.Features.Consultations
             private readonly IAppDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context,dateTime);
+            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var consultation = await _context.FindAsync<Consultation>(request.ConsultationId);
 

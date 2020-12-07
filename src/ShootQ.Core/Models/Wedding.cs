@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ShootQ.Core.Models
 {
-    public class Wedding: AggregateRoot
+    public class Wedding : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -48,9 +48,9 @@ namespace ShootQ.Core.Models
             if (Parts == null)
                 throw new Exception("Model Invalid. Parts can not be null.");
 
-            foreach(var part in Parts)
+            foreach (var part in Parts)
             {
-                if(Parts.Any(x => (x.DateRange.Overlap(part.DateRange) && x != part)))
+                if (Parts.Any(x => (x.DateRange.Overlap(part.DateRange) && x != part)))
                 {
                     throw new Exception("Model Invalid. Parts overlap");
                 }
@@ -69,12 +69,12 @@ namespace ShootQ.Core.Models
             {
                 var schedule = new Dictionary<DateRange, dynamic>();
 
-                foreach(var trip in Trips)
+                foreach (var trip in Trips)
                 {
                     schedule.Add(trip.DateRange, trip);
                 }
 
-                foreach(var part in Parts)
+                foreach (var part in Parts)
                 {
                     schedule.Add(part.DateRange, part);
                 }

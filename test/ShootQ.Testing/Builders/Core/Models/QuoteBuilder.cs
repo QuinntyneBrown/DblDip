@@ -9,7 +9,7 @@ namespace ShootQ.Testing.Builders.Core.Models
 
         public QuoteBuilder()
         {
-            
+
         }
 
         public Quote Build()

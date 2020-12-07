@@ -69,7 +69,7 @@ namespace ShootQ.Api
             services.AddTransient<IAvailabilityCheck, AvailabilityCheck>();
 
             services.AddTransient<IDataIntegrityService, DataIntegrityService>();
-            
+
             services.AddEventStore(options =>
             {
                 options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],

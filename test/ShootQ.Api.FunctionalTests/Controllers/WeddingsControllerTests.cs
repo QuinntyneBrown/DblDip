@@ -7,7 +7,7 @@ using Xunit;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
-    public class WeddingsControllerTests: IClassFixture<ApiTestFixture>
+    public class WeddingsControllerTests : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
         public WeddingsControllerTests(ApiTestFixture fixture)
@@ -31,7 +31,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             var client = _fixture.CreateClient();
 
-            var response = await client.PostAsAsync<dynamic,CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
+            var response = await client.PostAsAsync<dynamic, CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
 
             Assert.NotNull(response);
 

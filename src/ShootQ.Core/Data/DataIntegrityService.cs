@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace ShootQ.Core.Data
 {
-    public interface IDataIntegrityService: IUsernameAvailabilityCheck
+    public interface IDataIntegrityService : IUsernameAvailabilityCheck
     {
 
     }

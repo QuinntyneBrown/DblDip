@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateSystemLocation.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateSystemLocation.Response>> Create([FromBody]CreateSystemLocation.Request request)
+        public async Task<ActionResult<CreateSystemLocation.Response>> Create([FromBody] CreateSystemLocation.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveSystemLocation.Request request)
+        public async Task Remove([FromRoute] RemoveSystemLocation.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetSystemLocationById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetSystemLocationById.Response>> GetById([FromRoute]GetSystemLocationById.Request request)
+        public async Task<ActionResult<GetSystemLocationById.Response>> GetById([FromRoute] GetSystemLocationById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetSystemLocations.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetSystemLocations.Response>> Get()
-            => await _mediator.Send(new GetSystemLocations.Request());           
+            => await _mediator.Send(new GetSystemLocations.Request());
     }
 }

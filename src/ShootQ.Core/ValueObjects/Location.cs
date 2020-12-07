@@ -24,11 +24,14 @@ namespace ShootQ.Core.ValueObjects
         [JsonProperty]
 
         [JsonIgnore]
-        public Point Point { get {
+        public Point Point
+        {
+            get
+            {
                 var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
 
                 return geometryFactory.CreatePoint(new Coordinate(Longitude, Latitude));
-            }  
+            }
         }
 
         protected Location()

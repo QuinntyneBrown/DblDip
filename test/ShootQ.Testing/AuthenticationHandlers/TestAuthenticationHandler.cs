@@ -18,7 +18,7 @@ namespace ShootQ.Testing.AuthenticationHandlers
             ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock)
             : base(options, logger, encoder, clock)
         {
- 
+
         }
 
         protected override Task<AuthenticateResult> HandleAuthenticateAsync()
@@ -37,7 +37,7 @@ namespace ShootQ.Testing.AuthenticationHandlers
         public static ClaimsPrincipal ValidateToken(string jwtToken)
         {
             var configuration = ConfigurationFactory.Create();
-            
+
             TokenValidationParameters validationParameters = Dependencies.GetTokenValidationParameters(configuration);
 
             return new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out SecurityToken validatedToken);

@@ -16,12 +16,14 @@ namespace ShootQ.Domain.Features.Consultations
             private readonly IAppDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime) {            
+            public Handler(IAppDbContext context, IDateTime dateTime)
+            {
                 _context = context;
                 _dateTime = dateTime;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var consultation = await _context.FindAsync<Consultation>(request.ConsultationId);
 

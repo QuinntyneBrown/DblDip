@@ -1,68 +1,68 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ShootQ.Domain.Features.Clients;
+using ShootQ.Domain.Features.Surveys;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace ShootQ.Api.Controllers
 {
     [ApiController]
-    [Route("api/clients")]
-    public class ClientsController
+    [Route("api/surveys")]
+    public class SurveysController
     {
         private readonly IMediator _mediator;
 
-        public ClientsController(IMediator mediator) => _mediator = mediator;
+        public SurveysController(IMediator mediator) => _mediator = mediator;
 
         [Authorize]
-        [HttpPut(Name = "UpdateClientRoute")]
+        [HttpPost(Name = "CreateSurveyRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(UpdateClient.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateClient.Response>> Update([FromBody] UpdateClient.Request request)
+        [ProducesResponseType(typeof(CreateSurvey.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<CreateSurvey.Response>> Create([FromBody]CreateSurvey.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
-        [HttpPost(Name = "CreateClientRoute")]
+        [HttpPut(Name = "UpdateSurveyRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(CreateClient.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateClient.Response>> Create([FromBody] CreateClient.Request request)
+        [ProducesResponseType(typeof(UpdateSurvey.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<UpdateSurvey.Response>> Update([FromBody] UpdateSurvey.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
-        [HttpDelete("{clientId}", Name = "RemoveClientRoute")]
+        [HttpDelete("{surveyId}", Name = "RemoveSurveyRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute] RemoveClient.Request request)
+        public async Task Remove([FromRoute]RemoveSurvey.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
-        [HttpGet("{clientId}", Name = "GetClientByIdRoute")]
+        [HttpGet("{surveyId}", Name = "GetSurveyByIdRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(GetClientById.Response), (int)HttpStatusCode.OK)]
+        [ProducesResponseType(typeof(GetSurveyById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetClientById.Response>> GetById([FromRoute] GetClientById.Request request)
+        public async Task<ActionResult<GetSurveyById.Response>> GetById([FromRoute]GetSurveyById.Request request)
         {
             var response = await _mediator.Send(request);
 
-            if (response.Client == null)
+            if (response.Survey == null)
             {
-                return new NotFoundObjectResult(request.ClientId);
+                return new NotFoundObjectResult(request.SurveyId);
             }
 
             return response;
         }
 
         [Authorize]
-        [HttpGet(Name = "GetClientsRoute")]
+        [HttpGet(Name = "GetSurveysRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(GetClients.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<GetClients.Response>> Get()
-            => await _mediator.Send(new GetClients.Request());
+        [ProducesResponseType(typeof(GetSurveys.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetSurveys.Response>> Get()
+            => await _mediator.Send(new GetSurveys.Request());           
     }
 }

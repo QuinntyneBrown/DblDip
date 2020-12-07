@@ -3,7 +3,7 @@ using CSharpFunctionalExtensions;
 using Newtonsoft.Json;
 
 namespace ShootQ.Core.ValueObjects
-{ 
+{
     public class Price : ValueObject
     {
         public const decimal MinPriceValue = 0;
@@ -11,7 +11,7 @@ namespace ShootQ.Core.ValueObjects
 
         [JsonProperty]
         public decimal Value { get; private set; }
-        
+
         protected Price()
         {
 

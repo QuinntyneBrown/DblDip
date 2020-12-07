@@ -10,7 +10,7 @@ using Xunit.Abstractions;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
-    public class DashboardsControllerTests: IClassFixture<ApiTestFixture>
+    public class DashboardsControllerTests : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
         private readonly ITestOutputHelper _testOutputHelper;
@@ -25,7 +25,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         {
             var dashboard = DashboardDtoBuilder.WithDefaults();
 
-            using(var client = _fixture.CreateAuthenticatedClient())
+            using (var client = _fixture.CreateAuthenticatedClient())
             {
                 var response = await client.PostAsAsync<dynamic, CreateDashboard.Response>(Endpoints.Post.AddDashboard, new { dashboard });
 
@@ -39,7 +39,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
         [Fact]
         public async System.Threading.Tasks.Task Should_RemoveDashboard()
-        {   
+        {
             var dashboard = _fixture.Context.Store(DashboardBuilder.WithDefaults(Guid.NewGuid()));
 
             await _fixture.Context.SaveChangesAsync(default);

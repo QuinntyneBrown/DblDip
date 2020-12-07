@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ShootQ.Domain.Features.Clients
+namespace ShootQ.Domain.Features.Surveys
 {
-    public class CreateClient
+    public class CreateSurvey
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Client).NotNull();
-                RuleFor(request => request.Client).SetValidator(new ClientValidator());
+                RuleFor(request => request.Survey).NotNull();
+                RuleFor(request => request.Survey).SetValidator(new SurveyValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public ClientDto Client { get; set; }
+        public class Request : IRequest<Response> {  
+            public SurveyDto Survey { get; set; }
         }
 
         public class Response
         {
-            public ClientDto Client { get; set; }
+            public SurveyDto Survey { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,18 +33,17 @@ namespace ShootQ.Domain.Features.Clients
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var client = new Client();
+                var survey = new Survey(request.Survey.Name);
 
-                _context.Store(client);
+                _context.Store(survey);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Client = client.ToDto()
+                    Survey = survey.ToDto()
                 };
             }
         }

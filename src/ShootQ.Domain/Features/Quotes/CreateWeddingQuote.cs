@@ -4,7 +4,6 @@ using MediatR;
 using ShootQ.Core.Models;
 using ShootQ.Core.ValueObjects;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using static ShootQ.Core.Constants.Rates;

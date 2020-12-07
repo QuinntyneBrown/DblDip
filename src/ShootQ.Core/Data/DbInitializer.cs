@@ -23,7 +23,7 @@ namespace ShootQ.Data
             public static void Seed(IAppDbContext context, IConfiguration configuration)
             {
                 SeedRate(nameof(PhotographyRate), Price.Create(100).Value, PhotographyRate);
-                
+
                 SeedRate(nameof(TravelRate), Price.Create(60).Value, TravelRate);
 
                 SeedRate(nameof(ConsulationRate), Price.Create(60).Value, ConsulationRate);

@@ -8,7 +8,7 @@ using Xunit.Abstractions;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
-    public class QuotesControllerTests: IClassFixture<ApiTestFixture>
+    public class QuotesControllerTests : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
         private ITestOutputHelper _testOutputHelper;
@@ -29,7 +29,8 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             var client = _fixture.CreateClient();
 
-            var response = await client.PostAsAsync<dynamic, CreateWeddingQuote.Response>(Endpoints.Post.CreateWeddingQuote, new { 
+            var response = await client.PostAsAsync<dynamic, CreateWeddingQuote.Response>(Endpoints.Post.CreateWeddingQuote, new
+            {
                 WeddingId = wedding.WeddingId,
                 Email = "quinntynebrown@gmail.com"
             });
