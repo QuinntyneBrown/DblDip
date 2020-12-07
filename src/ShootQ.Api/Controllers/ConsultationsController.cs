@@ -41,6 +41,14 @@ namespace ShootQ.Api.Controllers
             => await _mediator.Send(request);
 
         [Authorize]
+        [HttpPut("complete", Name = "CompleteConsultationRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Unit>> CompleteConsultation([FromBody] CompleteConsultation.Request request)
+            => await _mediator.Send(request);
+
+        [Authorize]
         [HttpDelete("{consultationId}", Name = "RemoveConsultationRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]

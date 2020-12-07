@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="Features\Dashboards\" />
     <Folder Include="Features\Leads\" />
-    <Folder Include="Features\Customers\" />
     <Folder Include="Features\DigitialAssets\" />
     <Folder Include="Features\Orders\" />
     <Folder Include="Sagas\" />

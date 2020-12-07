@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using ShootQ.Core.Models;
 using ShootQ.Core.ValueObjects;
+using System;
 using System.Linq;
 using static ShootQ.Core.Constants.Rates;
 
@@ -21,16 +22,26 @@ namespace ShootQ.Data
         {
             public static void Seed(IAppDbContext context, IConfiguration configuration)
             {
-                var rate = context.FindAsync<Rate>(PhotographyRate).GetAwaiter().GetResult();
+                SeedRate(nameof(PhotographyRate), Price.Create(100).Value, PhotographyRate);
+                
+                SeedRate(nameof(TravelRate), Price.Create(60).Value, TravelRate);
 
-                rate ??= new Rate(nameof(PhotographyRate), (Price)100, PhotographyRate);
+                SeedRate(nameof(ConsulationRate), Price.Create(60).Value, ConsulationRate);
 
-                if (rate.DomainEvents.Count > 0)
+                void SeedRate(string name, Price price, Guid id)
                 {
-                    context.Store(rate);
+                    var rate = context.FindAsync<Rate>(id).GetAwaiter().GetResult();
 
-                    context.SaveChangesAsync(default);
+                    rate ??= new Rate(name, price, id);
+
+                    if (rate.DomainEvents.Count > 0)
+                    {
+                        context.Store(rate);
+
+                        context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                    }
                 }
+
             }
         }
 

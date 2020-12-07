@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace ShootQ.Domain.Features.Customers
+namespace ShootQ.Domain.Features.Clients
 {
-    public class UpdateCustomer
+    public class UpdateClient
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Customer).NotNull();
-                RuleFor(request => request.Customer).SetValidator(new CustomerValidator());
+                RuleFor(request => request.Client).NotNull();
+                RuleFor(request => request.Client).SetValidator(new ClientValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public CustomerDto Customer { get; set; }
+        public class Request : IRequest<Response> {  
+            public ClientDto Client { get; set; }
         }
 
         public class Response
         {
-            public CustomerDto Customer { get; set; }
+            public ClientDto Client { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,20 +33,19 @@ namespace ShootQ.Domain.Features.Customers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var customer = await _context.FindAsync<Customer>(request.Customer.CustomerId);
+                var client = await _context.FindAsync<Client>(request.Client.ClientId);
 
-                //customer
+                //client.Update();
 
-                _context.Store(customer);
+                _context.Store(client);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Customer = customer.ToDto()
+                    Client = client.ToDto()
                 };
             }
         }

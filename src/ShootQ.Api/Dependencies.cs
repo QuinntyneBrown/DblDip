@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ShootQ.Core.Data;
 using ShootQ.Core.Services;
-using ShootQ.Domain.Features.Customers;
+using ShootQ.Domain.Features.Identity;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -64,7 +64,7 @@ namespace ShootQ.Api
 
             services.AddHttpContextAccessor();
 
-            services.AddMediatR(typeof(GetCustomers));
+            services.AddMediatR(typeof(Authenticate));
 
             services.AddTransient<IAvailabilityCheck, AvailabilityCheck>();
 

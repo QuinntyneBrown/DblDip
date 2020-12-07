@@ -6,6 +6,6 @@ namespace ShootQ.Domain.Features
     public static class ConsultationExtensions
     {
         public static ConsultationDto ToDto(this Consultation consultation)
-            => new ConsultationDto(consultation.ConsultationId, consultation.DateRange.StartDate, consultation.DateRange.EndDate, consultation.CustomerEmail, consultation.Note);
+            => new ConsultationDto(consultation.ConsultationId, consultation.DateRange.StartDate, consultation.DateRange.EndDate, consultation.ClientEmail, consultation.Note);
     }
 }

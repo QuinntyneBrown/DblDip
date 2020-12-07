@@ -1,13 +1,14 @@
+using ShootQ.Core.ValueObjects;
 using System;
 
-namespace ShootQ.Domain.Features.Customers
+namespace ShootQ.Domain.Features.Clients
 {
-    public class CustomerDto
+    public class ClientDto
     {
-        public Guid CustomerId { get; set; }
+        public Guid ClientId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
-        public string EmailAddress { get; set; }
+        public Email Email { get; set; }
         public string PhoneNumber { get; set; }
         public DateTime? Deleted { get; set; }
     }

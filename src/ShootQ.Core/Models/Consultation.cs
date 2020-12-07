@@ -18,7 +18,7 @@ namespace ShootQ.Core.Models
         {
             ConsultationId = consultationCreated.ConsultationId;
             DateRange = consultationCreated.DateRange;
-            CustomerEmail = consultationCreated.CustomerEmail;
+            ClientEmail = consultationCreated.CustomerEmail;
         }
 
         public void When(ConsultationNoteAdded consultationAdded)
@@ -34,6 +34,11 @@ namespace ShootQ.Core.Models
         public void When(ConsultationRescheduled consultationRescheduled)
         {
             DateRange = DateRange.Create(consultationRescheduled.StartDate, consultationRescheduled.EndDate).Value;
+        }
+
+        public void When(ConsultationCompleted consultationCompleted)
+        {
+            Completed = consultationCompleted.Completed;
         }
 
         protected override void EnsureValidState()
@@ -56,10 +61,16 @@ namespace ShootQ.Core.Models
             Apply(new ConsultationRescheduled(startDate,endDate));
         }
 
+        public void Complete(DateTime completed)
+        {
+            Apply(new ConsultationCompleted(completed));
+        }
+
         public Guid ConsultationId { get; private set; }
         public DateRange DateRange { get; private set; }
-        public Email CustomerEmail { get; set; }
+        public Email ClientEmail { get; set; }
         public string Note { get; private set; }
         public DateTime? Deleted { get; set; }
+        public DateTime? Completed { get; set; }
     }
 }
