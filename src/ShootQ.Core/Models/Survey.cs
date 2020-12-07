@@ -1,7 +1,9 @@
 using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ShootQ.Core.Models
 {
@@ -17,6 +19,24 @@ namespace ShootQ.Core.Models
         {
             SurveyId = surveyCreated.SurveyId;
             Name = surveyCreated.Name;
+            SurveyQuestions = new List<SurveyQuestion>();
+            SurveyResults = new List<SurveyResult>();
+        }
+
+        public void When(SurveyQuestionAdded surveyAdded)
+        {
+            SurveyQuestions = SurveyQuestions.Concat(new[]
+            {
+                new SurveyQuestion(Guid.NewGuid(), surveyAdded.Value)
+            });
+        }
+
+        public void When(SurveyResultAdded surveyResultAdded)
+        {
+            SurveyResults = SurveyResults.Concat(new[]
+            {
+                new SurveyResult(surveyResultAdded.SurveyResultId, surveyResultAdded.ClientEmail, surveyResultAdded.Answers)
+            });
         }
 
         protected override void EnsureValidState()
@@ -24,11 +44,24 @@ namespace ShootQ.Core.Models
 
         }
 
+        public void AddQuestion(string value)
+        {
+            Apply(new SurveyQuestionAdded(value));
+        }
+
+        public void AddSurveyResult(Email email, IEnumerable<Answer> answers)
+        {
+            Apply(new SurveyResultAdded(Guid.NewGuid(), email, answers));
+        }
+
         public Guid SurveyId { get; private set; }
         public string Name { get; private set; }
 
         public IEnumerable<SurveyQuestion>  SurveyQuestions { get; private set; }
+        public IEnumerable<SurveyResult> SurveyResults { get; private set; }
     }
 
-    public record SurveyQuestion(string Value);
+    public record SurveyQuestion(Guid QuestionId, string Value);
+    public record Answer(Guid QuestionId, int Value);
+    public record SurveyResult(Guid SurveyResultId, Email ClientEmail, IEnumerable<Answer> Answers);
 }
