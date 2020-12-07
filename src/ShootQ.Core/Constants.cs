@@ -15,5 +15,10 @@ namespace ShootQ.Core
         {
             public static readonly string UserId = nameof(UserId);
         }
+
+        public static class Surveys
+        {
+            public static readonly Guid Satisfaction = new Guid("99e1d8d1-5084-4228-8be5-d723921e3dce");
+        }
     }
 }
