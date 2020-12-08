@@ -8,7 +8,7 @@ namespace ShootQ.Core.Models
     {
         public Lead()
         {
-            Apply(new LeadCreated());
+            Apply(new LeadCreated(Guid.NewGuid()));
         }
 
         protected override void When(dynamic @event) => When(@event);
@@ -28,9 +28,9 @@ namespace ShootQ.Core.Models
 
         }
 
-        public void Remove()
+        public void Remove(DateTime deleted)
         {
-            Apply(new LeadRemoved());
+            Apply(new LeadRemoved(deleted));
         }
 
         public Guid LeadId { get; private set; }

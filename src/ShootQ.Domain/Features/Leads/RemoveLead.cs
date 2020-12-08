@@ -1,10 +1,10 @@
 using BuildingBlocks.Abstractions;
-using ShootQ.Core.Models;
 using FluentValidation;
 using MediatR;
+using ShootQ.Core.Models;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
 
 namespace ShootQ.Domain.Features.Leads
 {
@@ -31,24 +31,22 @@ namespace ShootQ.Domain.Features.Leads
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
+            private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context,dateTime);
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var lead = await _context.FindAsync<Lead>(request.LeadId);
 
-                lead.Remove();
+                lead.Remove(_dateTime.UtcNow);
 
                 _context.Store(lead);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
-                {
-
-                };
+                return new Unit { };
             }
         }
     }

@@ -10,7 +10,7 @@
 <mat-sidenav-container>
   <mat-sidenav #drawer mode="side" (click)="drawer.close()">
     <button *ngIf="isAdmin$ | async" mat-button routerLink="/employeers">Employeers</button>
-    <button mat-button routerLink="/opportunities">Opportunities</button>
+    <button mat-button routerLink="[]">Leads</button>
     <button mat-button routerLink="/login">Logout</button>
   </mat-sidenav>
 
