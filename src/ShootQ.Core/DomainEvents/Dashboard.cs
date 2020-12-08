@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using static ShootQ.Core.Models.Dashboard;
 
 namespace ShootQ.Core.DomainEvents
 {
@@ -7,4 +9,6 @@ namespace ShootQ.Core.DomainEvents
     public record DashboardCardRemoved(Guid DashboardCardId);
     public record DashboardCardUpdated(Guid DashboardCardId, dynamic Options);
     public record DashboardRemoved(DateTime Deleted);
+    public record DashboardCardsUpdated(IEnumerable<DashboardCard> DashboardCards);
+    public record DashboardUpdated(string Name);
 }

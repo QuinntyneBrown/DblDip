@@ -1,13 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
 import { LoginPageComponent } from './login/login-page.component';
 import { AuthGuard } from './_core/auth.guard';
 
 const routes: Routes = [
   { path: "login", component: LoginPageComponent },
+  { path: "", component: HomeComponent, pathMatch: 'full' },
   {
-    path: "",
+    path: "admin",
     component: AppComponent,
     children: [
       {

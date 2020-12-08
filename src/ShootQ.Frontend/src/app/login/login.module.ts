@@ -10,6 +10,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     LoginPageComponent,
     LoginComponent
   ],
+  exports: [
+    LoginPageComponent,
+    LoginComponent
+  ],
   imports: [
     CommonModule,
     SharedModule,
