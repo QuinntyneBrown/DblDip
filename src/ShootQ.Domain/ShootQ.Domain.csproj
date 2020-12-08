@@ -10,6 +10,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,6 +25,7 @@
     <Folder Include="Features\Leads\" />
     <Folder Include="Features\DigitialAssets\" />
     <Folder Include="Features\Orders\" />
+    <Folder Include="IntegrationEvents\" />
     <Folder Include="Sagas\" />
   </ItemGroup>
 
