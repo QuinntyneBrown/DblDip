@@ -26,8 +26,8 @@ namespace ShootQ.Core.Models
         }
 
         public Guid RateId { get; private set; }
-        public string Name { get; set; }
-        public Price Price { get; set; }
-        public DateTime? Deleted { get; set; }
+        public string Name { get; private set; }
+        public Price Price { get; private set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

@@ -17,8 +17,8 @@ namespace ShootQ.Core.Models
         }
 
         public Guid DigitalAssetId { get; private set; }
-        public string Name { get; set; }
-        public byte[] Bytes { get; set; }
-        public string ContentType { get; set; }
+        public string Name { get; private set; }
+        public byte[] Bytes { get; private set; }
+        public string ContentType { get; private set; }
     }
 }

@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
@@ -13,9 +14,9 @@ namespace ShootQ.Core.Models
         }
 
         public Guid EquipmentId { get; private set; }
-        public string Name { get; set; }
-        decimal Price { get; set; }
-        public string Description { get; set; }
-        public Guid? ReceiptDigitalAssetId { get; set; }
+        public string Name { get; private set; }
+        public Price Price { get; private set; }
+        public string Description { get; private set; }
+        public Guid? ReceiptDigitalAssetId { get; private set; }
     }
 }

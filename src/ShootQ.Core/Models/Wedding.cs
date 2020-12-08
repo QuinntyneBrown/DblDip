@@ -58,8 +58,8 @@ namespace ShootQ.Core.Models
         }
 
         public Guid WeddingId { get; private set; }
-        public Location Start { get; set; }
-        public Location End { get; set; }
+        public Location Start { get; private set; }
+        public Location End { get; private set; }
         public ICollection<WeddingPart> Parts { get; private set; }
         public ICollection<WeddingQuote> WeddingQuotes { get; private set; }
         public ICollection<Trip> Trips { get; private set; }

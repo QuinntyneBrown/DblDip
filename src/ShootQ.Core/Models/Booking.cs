@@ -14,13 +14,13 @@ namespace ShootQ.Core.Models
         }
 
         public Guid BookingId { get; private set; }
-        public Guid CustomerId { get; set; }
-        public string Name { get; set; }
-        public Guid LocationId { get; set; }
-        public DateTime Date { get; set; }
-        public DateTime StartTime { get; set; }
-        public DateTime EndTime { get; set; }
-        public ICollection<BookingDetail> BookingDetails { get; set; }
+        public Guid CustomerId { get; private set; }
+        public string Name { get; private set; }
+        public Guid LocationId { get; private set; }
+        public DateTime Date { get; private set; }
+        public DateTime StartTime { get; private set; }
+        public DateTime EndTime { get; private set; }
+        public ICollection<BookingDetail> BookingDetails { get; private set; }
 
         public record BookingDetail
         {

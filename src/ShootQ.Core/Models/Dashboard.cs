@@ -57,12 +57,12 @@ namespace ShootQ.Core.Models
         }
 
         public Guid DashboardId { get; private set; }
-        public Guid UserId { get; set; }
-        public string Name { get; set; }
+        public Guid UserId { get; private set; }
+        public string Name { get; private set; }
         public IEnumerable<DashboardCard> DashboardCards { get; private set; }
-        public bool IsDefault { get; set; }
+        public bool IsDefault { get; private set; }
 
         public record DashboardCard(Guid DashboardCardId, dynamic Options);
-        public DateTime? Deleted { get; set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

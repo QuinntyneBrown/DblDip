@@ -15,9 +15,9 @@ namespace ShootQ.Core.Models
         }
 
         public Guid OrderId { get; private set; }
-        public decimal Total { get; set; }
+        public decimal Total { get; private set; }
         public DateRange DateRange { get; private set; }
-        public ICollection<LineItem> LineItems { get; set; }
+        public ICollection<LineItem> LineItems { get; private set; }
 
         public record LineItem
         {

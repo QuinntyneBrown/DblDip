@@ -37,7 +37,7 @@ namespace ShootQ.Core.Models
             WeddingId = weddingQuoteCreated.WeddingId;
         }
 
-        public Guid WeddingQuoteId { get; set; }
+        public Guid WeddingQuoteId { get; private set; }
         public Guid WeddingId { get; private set; }
     }
 }
