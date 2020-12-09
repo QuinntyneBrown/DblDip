@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
 using ShootQ.Core.ValueObjects;
 using System;
@@ -13,6 +14,12 @@ namespace ShootQ.Core.Models
 
         public Wedding(Location start, Location end, Location location, DateTime dateTime, int hours)
         {
+            Guard.ArgumentNotNull(nameof(start), start);
+            Guard.ArgumentNotNull(nameof(end), end);
+            Guard.ArgumentNotNull(nameof(location), location);
+            Guard.ArgumentNotNull(nameof(dateTime), dateTime);
+            Guard.ArgumentNotNull(nameof(hours), hours);
+
             Apply(new WeddingCreated(start, end, location, Guid.NewGuid(), dateTime, hours));
         }
         public void When(WeddingCreated weddingCreated)

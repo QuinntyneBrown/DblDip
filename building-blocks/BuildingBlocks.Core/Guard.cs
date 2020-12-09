@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BuildingBlocks.Core
 {
-    static class Guard
+    public static class Guard
     {
         public static void ArgumentNotNull(string argumentName, object value)
         {

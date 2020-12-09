@@ -7,6 +7,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using static ShootQ.Core.Constants.Rates;
+using BuildingBlocks.Core;
 
 namespace ShootQ.Domain.Features.Quotes
 {
