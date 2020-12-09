@@ -20,5 +20,10 @@ namespace ShootQ.Core
         {
             public static readonly Guid Satisfaction = new Guid("99e1d8d1-5084-4228-8be5-d723921e3dce");
         }
+
+        public static class Photographers
+        {
+            public static readonly Guid QuinntyneBrown = new Guid("5cb425e4-0a41-4cfa-a6b8-ba3ac84c14ce");
+        }
     }
 }

@@ -16,12 +16,11 @@ namespace ShootQ.Core.Models
 
         public Guid OrderId { get; private set; }
         public decimal Total { get; private set; }
-        public DateRange DateRange { get; private set; }
         public ICollection<LineItem> LineItems { get; private set; }
 
-        public record LineItem
+        public static System.Threading.Tasks.Task<Order> CreateFromQuoteId(Guid quoteId, IAppDbContext context)
         {
-
+            throw new NotImplementedException();
         }
     }
 }
