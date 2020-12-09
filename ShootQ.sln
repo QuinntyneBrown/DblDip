@@ -6,6 +6,7 @@ MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{714D8ED1-5637-478C-984F-0224EB00F0FC}"
 	ProjectSection(SolutionItems) = preProject
 		cliSettings.json = cliSettings.json
+		README.md = README.md
 		build\resetdb.ps1 = build\resetdb.ps1
 	EndProjectSection
 EndProject
