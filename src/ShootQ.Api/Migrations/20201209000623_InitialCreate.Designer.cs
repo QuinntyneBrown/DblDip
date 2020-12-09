@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ShootQ.Api.Migrations
 {
     [DbContext(typeof(EventStoreDbContext))]
-    [Migration("20201206114449_InitialCreate")]
+    [Migration("20201209000623_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
