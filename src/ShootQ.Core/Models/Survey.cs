@@ -49,9 +49,9 @@ namespace ShootQ.Core.Models
             Apply(new SurveyQuestionAdded(value));
         }
 
-        public void AddSurveyResult(Email email, IEnumerable<Answer> answers)
+        public void AddSurveyResult(Email respondentEmail, IEnumerable<Answer> answers)
         {
-            Apply(new SurveyResultAdded(Guid.NewGuid(), email, answers));
+            Apply(new SurveyResultAdded(Guid.NewGuid(), respondentEmail, answers));
         }
 
         public Guid SurveyId { get; private set; }
@@ -63,5 +63,5 @@ namespace ShootQ.Core.Models
 
     public record SurveyQuestion(Guid QuestionId, string Value);
     public record Answer(Guid QuestionId, int Value);
-    public record SurveyResult(Guid SurveyResultId, Email ClientEmail, IEnumerable<Answer> Answers);
+    public record SurveyResult(Guid SurveyResultId, Email RespondentEmail, IEnumerable<Answer> Answers);
 }

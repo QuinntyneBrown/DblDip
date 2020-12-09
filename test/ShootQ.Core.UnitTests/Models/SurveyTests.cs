@@ -36,7 +36,7 @@ namespace ShootQ.Core.UnitTests.Models
                 new Answer(survey.SurveyQuestions.First().QuestionId ,10)
             });
 
-            Assert.Equal((Email)"quinntynebrown@gmail.com", survey.SurveyResults.Single().ClientEmail);
+            Assert.Equal((Email)"quinntynebrown@gmail.com", survey.SurveyResults.Single().RespondentEmail);
             Assert.Single(survey.SurveyResults);
             Assert.Single(survey.SurveyResults.Single().Answers);
         }
