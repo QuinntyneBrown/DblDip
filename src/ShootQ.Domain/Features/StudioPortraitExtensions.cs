@@ -7,7 +7,7 @@ namespace ShootQ.Domain.Features
     {
         public static StudioPortraitDto ToDto(this StudioPortrait studioPortrait)
         {
-            return new StudioPortraitDto(studioPortrait.StudoPortraitId);
+            return new StudioPortraitDto(studioPortrait.StudioPortraitId);
         }
     }
 }

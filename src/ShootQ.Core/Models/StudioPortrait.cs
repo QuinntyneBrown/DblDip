@@ -12,7 +12,7 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid StudoPortraitId { get; private set; }
+        public Guid StudioPortraitId { get; private set; }
 
         public override DateRange Scheduled => throw new NotImplementedException();
     }

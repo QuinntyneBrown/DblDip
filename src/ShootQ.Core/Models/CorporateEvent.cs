@@ -13,7 +13,7 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid CoporateEventId { get; private set; }
+        public Guid CorporateEventId { get; private set; }
 
         public override DateRange Scheduled { get; }
     }

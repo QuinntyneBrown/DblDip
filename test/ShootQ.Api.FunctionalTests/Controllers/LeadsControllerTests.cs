@@ -1,15 +1,15 @@
 using Newtonsoft.Json;
 using ShootQ.Core.Models;
+using ShootQ.Domain.Features;
 using ShootQ.Domain.Features.Leads;
 using ShootQ.Testing;
-using ShootQ.Testing.Builders;
+using ShootQ.Testing.Builders.Core.Models;
 using ShootQ.Testing.Builders.Domain.Dtos;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using ShootQ.Domain.Features;
 using static ShootQ.Api.FunctionalTests.Controllers.LeadsControllerTests.Endpoints;
 
 namespace ShootQ.Api.FunctionalTests.Controllers

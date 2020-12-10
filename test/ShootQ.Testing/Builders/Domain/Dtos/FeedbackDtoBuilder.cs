@@ -1,0 +1,24 @@
+using ShootQ.Domain.Features.Feedbacks;
+
+namespace ShootQ.Testing.Builders.Domain.Dtos
+{
+    public class FeedbackDtoBuilder
+    {
+        private FeedbackDto _feedbackDto;
+
+        public static FeedbackDto WithDefaults()
+        {
+            return new FeedbackDto(default, default, default);
+        }
+
+        public FeedbackDtoBuilder()
+        {
+            _feedbackDto = WithDefaults();
+        }
+
+        public FeedbackDto Build()
+        {
+            return _feedbackDto;
+        }
+    }
+}

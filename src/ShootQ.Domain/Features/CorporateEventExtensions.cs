@@ -7,7 +7,7 @@ namespace ShootQ.Domain.Features
     {
         public static CorporateEventDto ToDto(this CorporateEvent corporateEvent)
         {
-            return new CorporateEventDto(corporateEvent.CoporateEventId);
+            return new CorporateEventDto(corporateEvent.CorporateEventId);
         }
     }
 }
