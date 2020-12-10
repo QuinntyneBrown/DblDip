@@ -1,7 +1,6 @@
 using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
-using ShootQ.Core.Enums;
 using ShootQ.Core.Exceptions;
 using ShootQ.Core.ValueObjects;
 using System;
@@ -45,14 +44,14 @@ namespace ShootQ.Core.Models
             Password = userPasswordChanged.Password;
         }
 
-        protected void When(UserRoleAdded userRoleAdded)
+        protected void When(RoleReferenceAdded roleReferenceAdded)
         {
-            Roles.Add(new RoleReference(default, userRoleAdded.Name));
+            Roles.Add(new RoleReference(roleReferenceAdded.RoleId, roleReferenceAdded.Name));
         }
 
-        protected void When(UserRoleRemoved userRoleRemoved)
+        protected void When(RoleReferenceRemoved roleReferenceRemoved)
         {
-            Roles.Remove(new RoleReference(default, userRoleRemoved.Name));
+            Roles.Remove(new RoleReference(roleReferenceRemoved.RoleId, roleReferenceRemoved.Name));
         }
 
         protected override void EnsureValidState()
@@ -65,14 +64,14 @@ namespace ShootQ.Core.Models
             Apply(new UserPasswordChanged(password));
         }
 
-        public void AddRole(string name)
+        public void AddRole(Guid roleId, string name)
         {
-            Apply(new UserRoleAdded(name));
+            Apply(new RoleReferenceAdded(roleId, name));
         }
 
-        public void RemoveRole(string value)
+        public void RemoveRole(Guid roleId, string value)
         {
-            Apply(new UserRoleRemoved(value));
+            Apply(new RoleReferenceRemoved(roleId, value));
         }
 
         public Guid UserId { get; private set; }
