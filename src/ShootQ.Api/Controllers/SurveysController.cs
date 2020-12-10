@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateSurvey.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateSurvey.Response>> Create([FromBody]CreateSurvey.Request request)
+        public async Task<ActionResult<CreateSurvey.Response>> Create([FromBody] CreateSurvey.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveSurvey.Request request)
+        public async Task Remove([FromRoute] RemoveSurvey.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetSurveyById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetSurveyById.Response>> GetById([FromRoute]GetSurveyById.Request request)
+        public async Task<ActionResult<GetSurveyById.Response>> GetById([FromRoute] GetSurveyById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetSurveys.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetSurveys.Response>> Get()
-            => await _mediator.Send(new GetSurveys.Request());           
+            => await _mediator.Send(new GetSurveys.Request());
     }
 }

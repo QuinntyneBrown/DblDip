@@ -8,7 +8,7 @@ using BuildingBlocks.Core;
 
 namespace ShootQ.Api.FunctionalTests.Controllers
 {
-    public class SurveysControllerTests: IClassFixture<ApiTestFixture>
+    public class SurveysControllerTests : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
         public SurveysControllerTests(ApiTestFixture fixture)
@@ -24,7 +24,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
         [Fact]
         public async System.Threading.Tasks.Task Should_RemoveSurvey()
-        {   
+        {
 
         }
 

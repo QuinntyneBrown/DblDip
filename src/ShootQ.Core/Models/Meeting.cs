@@ -5,7 +5,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Task : AggregateRoot, IScheduled
+    public class Meeting : AggregateRoot, IScheduled
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -14,10 +14,10 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid TaskId { get; private set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Guid MeetingId { get; private set; }
 
         public DateRange Scheduled { get; private set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
     }
 }

@@ -8,7 +8,7 @@ namespace ShootQ.Testing.Builders.Domain.Dtos
 
         public static SurveyDto WithDefaults()
         {
-            return new SurveyDto(default,"Test");
+            return new SurveyDto(default, "Test");
         }
 
         public SurveyDtoBuilder()

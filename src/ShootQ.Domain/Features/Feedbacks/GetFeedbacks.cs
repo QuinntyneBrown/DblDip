@@ -10,7 +10,7 @@ namespace ShootQ.Domain.Features.Feedbacks
 {
     public class GetFeedbacks
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace ShootQ.Domain.Features.Feedbacks
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Feedbacks = _context.Set<Feedback>().Select(x => x.ToDto()).ToList()
                 };
             }

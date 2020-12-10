@@ -13,6 +13,11 @@ namespace ShootQ.Core.Models
 
         }
 
+        public Client CreateFrom(Lead lead)
+        {
+            throw new NotImplementedException("");
+        }
+
         public Guid ClientId { get; private set; }
         public string Firstname { get; private set; }
         public string Lastname { get; private set; }

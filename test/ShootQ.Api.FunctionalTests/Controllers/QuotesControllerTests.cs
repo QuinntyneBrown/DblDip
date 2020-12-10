@@ -21,6 +21,8 @@ namespace ShootQ.Api.FunctionalTests.Controllers
         [Fact]
         public async System.Threading.Tasks.Task Should_QuoteWedding()
         {
+            var expectedPrice = (Price)500;
+
             var photographyRate = _fixture.Context.Store(PhotographyRateBuilder.WithDefaults());
 
             var wedding = _fixture.Context.Store(WeddingBuilder.WithDefaults(photographyRate));
@@ -31,13 +33,13 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             var response = await client.PostAsAsync<dynamic, CreateWeddingQuote.Response>(Endpoints.Post.CreateWeddingQuote, new
             {
-                WeddingId = wedding.WeddingId,
+                wedding.WeddingId,
                 Email = "quinntynebrown@gmail.com"
             });
 
             _testOutputHelper.WriteLine($"{response.Quote.Total.Value}");
 
-            Assert.Equal((Price)500, response.Quote.Total);
+            Assert.Equal(expectedPrice, response.Quote.Total);
 
         }
 

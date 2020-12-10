@@ -23,16 +23,16 @@ namespace ShootQ.Testing.Builders
         }
     }
 
-    public class RoleBuilder
+    public class RoleReferenceBuilder
     {
-        private User.Role _role;
+        private User.RoleReference _role;
 
-        public RoleBuilder(string name)
+        public RoleReferenceBuilder(string name)
         {
-            _role = new User.Role(name);
+            _role = new User.RoleReference(default, name);
         }
 
-        public User.Role Build()
+        public User.RoleReference Build()
         {
             return _role;
         }

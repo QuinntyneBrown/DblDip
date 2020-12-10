@@ -32,7 +32,7 @@ namespace ShootQ.Core.UnitTests.Models
             var survey = new Survey("Test");
             survey.AddQuestion("How would you rate the pics?");
 
-            survey.AddSurveyResult((Email)"quinntynebrown@gmail.com",new[] {
+            survey.AddSurveyResult((Email)"quinntynebrown@gmail.com", new[] {
                 new Answer(survey.SurveyQuestions.First().QuestionId ,10)
             });
 

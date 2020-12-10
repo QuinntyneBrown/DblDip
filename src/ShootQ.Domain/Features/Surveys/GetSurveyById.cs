@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Surveys
 {
     public class GetSurveyById
     {
-        public class Request : IRequest<Response> {  
-            public Guid SurveyId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid SurveyId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Surveys
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var survey = await _context.FindAsync<Survey>(request.SurveyId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Survey = survey.ToDto()
                 };
             }

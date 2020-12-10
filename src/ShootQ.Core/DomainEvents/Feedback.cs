@@ -3,5 +3,5 @@ using System;
 
 namespace ShootQ.Core.DomainEvents
 {
-    public record FeedbackCreated (Guid FeedbackId, Email ClientEmail, string Description);
+    public record FeedbackCreated(Guid FeedbackId, Email RespondentEmail, string Description);
 }

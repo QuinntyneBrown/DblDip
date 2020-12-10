@@ -2,21 +2,22 @@ using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
 using ShootQ.Core.ValueObjects;
 using System;
+using static System.Guid;
 
 namespace ShootQ.Core.Models
 {
-    public class Feedback: AggregateRoot
+    public class Feedback : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
         public Feedback(Email email, string description)
         {
-            Apply(new FeedbackCreated(Guid.NewGuid(),email,description));
+            Apply(new FeedbackCreated(NewGuid(), email, description));
         }
         public void When(FeedbackCreated feedbackCreated)
         {
             FeedbackId = feedbackCreated.FeedbackId;
-            ClientEmail = feedbackCreated.ClientEmail;
+            RespondentEmail = feedbackCreated.RespondentEmail;
             Description = feedbackCreated.Description;
         }
 
@@ -26,7 +27,7 @@ namespace ShootQ.Core.Models
         }
 
         public Guid FeedbackId { get; private set; }
-        public Email ClientEmail { get; private set; }
+        public Email RespondentEmail { get; private set; }
         public string Description { get; private set; }
     }
 }

@@ -51,7 +51,7 @@ namespace ShootQ.Core.Models
         }
 
         public Guid QuoteId { get; protected set; }
-        public Email ClientEmail { get; protected set; }
+        public Email BillToEmail { get; protected set; }
         public Price Total => (Price)LineItems.Sum(x => x.Amount);
         public ICollection<LineItem> LineItems { get; protected set; }
         public DateTime? Completed { get; protected set; }

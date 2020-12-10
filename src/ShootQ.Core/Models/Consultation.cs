@@ -1,24 +1,25 @@
 using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.Interfaces;
 using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Consultation : AggregateRoot
+    public class Consultation : AggregateRoot, IScheduled
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Consultation(DateRange dateRange, Email customerEmail)
+        public Consultation(DateRange scheduled, Email customerEmail)
         {
-            Apply(new ConsultationCreated(Guid.NewGuid(), customerEmail, dateRange));
+            Apply(new ConsultationCreated(Guid.NewGuid(), customerEmail, scheduled));
         }
 
         public void When(ConsultationCreated consultationCreated)
         {
             ConsultationId = consultationCreated.ConsultationId;
-            DateRange = consultationCreated.DateRange;
-            ClientEmail = consultationCreated.ClientEmail;
+            Scheduled = consultationCreated.Scheduled;
+            RecipientEmail = consultationCreated.ClientEmail;
         }
 
         public void When(ConsultationNoteAdded consultationAdded)
@@ -33,7 +34,7 @@ namespace ShootQ.Core.Models
 
         public void When(ConsultationRescheduled consultationRescheduled)
         {
-            DateRange = DateRange.Create(consultationRescheduled.StartDate, consultationRescheduled.EndDate).Value;
+            Scheduled = DateRange.Create(consultationRescheduled.StartDate, consultationRescheduled.EndDate).Value;
         }
 
         public void When(ConsultationCompleted consultationCompleted)
@@ -77,8 +78,9 @@ namespace ShootQ.Core.Models
         }
 
         public Guid ConsultationId { get; private set; }
-        public DateRange DateRange { get; private set; }
-        public Email ClientEmail { get; private set; }
+        public DateRange Scheduled { get; private set; }
+        public Email RecipientEmail { get; private set; }
+        public string RecipientPhoneNumber { get; private set; }
         public string Note { get; private set; }
         public DateTime? Deleted { get; private set; }
         public DateTime? Completed { get; private set; }

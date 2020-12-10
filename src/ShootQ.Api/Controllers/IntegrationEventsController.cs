@@ -6,7 +6,7 @@ namespace ShootQ.Api.Controllers
 {
     [ApiController]
     [Route("api/integration-events")]
-    public class IntegrationEventsController: Controller
+    public class IntegrationEventsController : Controller
     {
         [HttpGet("connect")]
         public async Task Connect(CancellationToken cancellationToken)
@@ -16,16 +16,16 @@ namespace ShootQ.Api.Controllers
             var response = Response;
             response.Headers.Add("Content-Type", "text/event-stream");
 
-/*            _integrationEventService.Subscribe(async e =>
-            {
-                var @event = JsonConvert.SerializeObject(e);
+            /*            _integrationEventService.Subscribe(async e =>
+                        {
+                            var @event = JsonConvert.SerializeObject(e);
 
-                await response
-                .WriteAsync($"data: {@event}\r\r");
+                            await response
+                            .WriteAsync($"data: {@event}\r\r");
 
-                response.Body.Flush();
+                            response.Body.Flush();
 
-            });*/
+                        });*/
 
             await tcs.Task;
 

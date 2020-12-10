@@ -22,9 +22,6 @@ namespace ShootQ.Core.Models
         public DateTime EndTime { get; private set; }
         public ICollection<BookingDetail> BookingDetails { get; private set; }
 
-        public record BookingDetail
-        {
-
-        }
+        public record BookingDetail;
     }
 }

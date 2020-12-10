@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Feedbacks
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public FeedbackDto Feedback { get; set; }
         }
 
@@ -33,9 +34,10 @@ namespace ShootQ.Domain.Features.Feedbacks
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
-                var feedback = new Feedback(request.Feedback.ClientEmail,request.Feedback.Description);
+                var feedback = new Feedback(request.Feedback.ClientEmail, request.Feedback.Description);
 
                 _context.Store(feedback);
 

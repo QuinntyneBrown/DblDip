@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateFeedback.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateFeedback.Response>> Create([FromBody]CreateFeedback.Request request)
+        public async Task<ActionResult<CreateFeedback.Response>> Create([FromBody] CreateFeedback.Request request)
             => await _mediator.Send(request);
 
 
@@ -30,7 +30,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetFeedbackById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetFeedbackById.Response>> GetById([FromRoute]GetFeedbackById.Request request)
+        public async Task<ActionResult<GetFeedbackById.Response>> GetById([FromRoute] GetFeedbackById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -48,6 +48,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetFeedbacks.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetFeedbacks.Response>> Get()
-            => await _mediator.Send(new GetFeedbacks.Request());           
+            => await _mediator.Send(new GetFeedbacks.Request());
     }
 }

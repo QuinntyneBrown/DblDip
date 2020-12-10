@@ -7,13 +7,13 @@ using System.Linq;
 
 namespace ShootQ.Core.Models
 {
-    public class Survey: AggregateRoot
+    public class Survey : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
         public Survey(string name)
         {
-            Apply(new SurveyCreated(Guid.NewGuid(),name));
+            Apply(new SurveyCreated(Guid.NewGuid(), name));
         }
         public void When(SurveyCreated surveyCreated)
         {
@@ -57,7 +57,7 @@ namespace ShootQ.Core.Models
         public Guid SurveyId { get; private set; }
         public string Name { get; private set; }
 
-        public IEnumerable<SurveyQuestion>  SurveyQuestions { get; private set; }
+        public IEnumerable<SurveyQuestion> SurveyQuestions { get; private set; }
         public IEnumerable<SurveyResult> SurveyResults { get; private set; }
     }
 

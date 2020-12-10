@@ -22,9 +22,7 @@ namespace ShootQ.Testing
     public class ApiTestFixture : WebApplicationFactory<Startup>, IDisposable
     {
         private IAppDbContext _context;
-        private EventStoreDbContext _dbContext;
         private IConfiguration _configuration;
-        private ITestOutputHelper _testOutputHelper;
         private readonly Guid _correlationId = Guid.NewGuid();
 
         public ApiTestFixture()

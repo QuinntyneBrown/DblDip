@@ -2,7 +2,7 @@
 
 namespace ShootQ.Domain.Hubs
 {
-    public class IntegrationEventHub: Hub
+    public class IntegrationEventHub : Hub
     {
     }
 }

@@ -3,7 +3,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Photographer: AggregateRoot
+    public class Photographer : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

@@ -9,18 +9,18 @@ namespace ShootQ.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public WeddingQuote(Email email, Wedding wedding, Rate rate)
+        public WeddingQuote(Email billToEmail, Wedding wedding, Rate rate)
         {
-            Apply(new WeddingQuoteCreated(Guid.NewGuid(), email, wedding.WeddingId));
+            Apply(new WeddingQuoteCreated(Guid.NewGuid(), billToEmail, wedding.WeddingId));
 
             foreach (var part in wedding.Parts)
             {
-                AddItem((Price)(part.DateRange.Hours * rate.Price), "Wedding Photography");
+                AddItem((Price)(part.Scheduled.Hours * rate.Price), "Wedding Photography");
             }
 
             foreach (var trip in wedding.Trips)
             {
-                AddItem((Price)(trip.DateRange.Hours * 60), "Travel Expense");
+                AddItem((Price)(trip.Scheduled.Hours * 60), "Travel Expense");
             }
         }
 
@@ -33,7 +33,7 @@ namespace ShootQ.Core.Models
         {
             WeddingQuoteId = weddingQuoteCreated.WeddingQuoteId;
             LineItems = new List<LineItem>();
-            ClientEmail = weddingQuoteCreated.Email;
+            BillToEmail = weddingQuoteCreated.BillToEmail;
             WeddingId = weddingQuoteCreated.WeddingId;
         }
 

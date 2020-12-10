@@ -57,7 +57,7 @@ namespace ShootQ.Core.Models
 
             foreach (var part in Parts)
             {
-                if (Parts.Any(x => (x.DateRange.Overlap(part.DateRange) && x != part)))
+                if (Parts.Any(x => (x.Scheduled.Overlap(part.Scheduled) && x != part)))
                 {
                     throw new Exception("Model Invalid. Parts overlap");
                 }
@@ -78,12 +78,12 @@ namespace ShootQ.Core.Models
 
                 foreach (var trip in Trips)
                 {
-                    schedule.Add(trip.DateRange, trip);
+                    schedule.Add(trip.Scheduled, trip);
                 }
 
                 foreach (var part in Parts)
                 {
-                    schedule.Add(part.DateRange, part);
+                    schedule.Add(part.Scheduled, part);
                 }
 
                 schedule.OrderBy(x => x.Key);
@@ -93,7 +93,7 @@ namespace ShootQ.Core.Models
         }
     }
 
-    public record WeddingPart(DateRange DateRange, Location Location, string Description);
+    public record WeddingPart(DateRange Scheduled, Location Location, string Description);
 
-    public record Trip(DateRange DateRange, Location Start, Location End);
+    public record Trip(DateRange Scheduled, Location Start, Location End);
 }

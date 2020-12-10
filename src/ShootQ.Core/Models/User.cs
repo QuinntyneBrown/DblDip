@@ -1,6 +1,7 @@
 using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.Enums;
 using ShootQ.Core.Exceptions;
 using ShootQ.Core.ValueObjects;
 using System;
@@ -36,7 +37,7 @@ namespace ShootQ.Core.Models
             Username = (Email)userCreated.Username;
             Password = userCreated.Password;
             Salt = userCreated.Salt;
-            Roles = new HashSet<Role>();
+            Roles = new HashSet<RoleReference>();
         }
 
         protected void When(UserPasswordChanged userPasswordChanged)
@@ -46,12 +47,12 @@ namespace ShootQ.Core.Models
 
         protected void When(UserRoleAdded userRoleAdded)
         {
-            Roles.Add(new Role(userRoleAdded.Name));
+            Roles.Add(new RoleReference(default, userRoleAdded.Name));
         }
 
         protected void When(UserRoleRemoved userRoleRemoved)
         {
-            Roles.Remove(new Role(userRoleRemoved.Name));
+            Roles.Remove(new RoleReference(default, userRoleRemoved.Name));
         }
 
         protected override void EnsureValidState()
@@ -78,9 +79,9 @@ namespace ShootQ.Core.Models
         public Email Username { get; private set; }
         public string Password { get; private set; }
         public byte[] Salt { get; private set; }
-        public ICollection<Role> Roles { get; private set; }
+        public ICollection<RoleReference> Roles { get; private set; }
         public DateTime? Deleted { get; private set; }
 
-        public record Role(string Name);
+        public record RoleReference(Guid RoleId, string Name);
     }
 }
