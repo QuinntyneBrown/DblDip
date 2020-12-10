@@ -13,7 +13,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HireMe.Domain.Features.DigitalAssets
+namespace ShootQ.Domain.Features.DigitalAssets
 {
     public class UploadDigitalAsset
     {
