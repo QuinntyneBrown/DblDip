@@ -6,6 +6,7 @@ namespace ShootQ.Testing.Builders
     {
         private Lead _lead;
 
+        public static Lead WithDefaults() => new Lead();
         public LeadBuilder()
         {
             _lead = new Lead();

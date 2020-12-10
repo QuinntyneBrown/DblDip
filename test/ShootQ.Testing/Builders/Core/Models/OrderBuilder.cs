@@ -6,6 +6,8 @@ namespace ShootQ.Testing.Builders.Core.Models
     {
         private Order _order;
 
+        public static Order WithDefaults() => new Order();
+
         public OrderBuilder()
         {
             _order = new Order();
