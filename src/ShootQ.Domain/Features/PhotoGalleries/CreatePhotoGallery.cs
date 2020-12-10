@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.PhotoGalleries
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public PhotoGalleryDto PhotoGallery { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.PhotoGalleries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var photoGallery = new PhotoGallery(default);
 

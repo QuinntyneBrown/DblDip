@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Portraits
 {
     public class GetPortraitById
     {
-        public class Request : IRequest<Response> {  
-            public Guid PortraitId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid PortraitId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Portraits
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var portrait = await _context.FindAsync<Portrait>(request.PortraitId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Portrait = portrait.ToDto()
                 };
             }

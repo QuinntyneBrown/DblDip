@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Portraits
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid PortraitId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Portraits
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var portrait = await _context.FindAsync<Portrait>(request.PortraitId);
 

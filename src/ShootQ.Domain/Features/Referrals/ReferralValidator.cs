@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.Referrals
     {
         public ReferralValidator()
         {
-            
+
         }
     }
 }

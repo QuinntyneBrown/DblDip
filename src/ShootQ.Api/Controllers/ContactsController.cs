@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateContact.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateContact.Response>> Create([FromBody]CreateContact.Request request)
+        public async Task<ActionResult<CreateContact.Response>> Create([FromBody] CreateContact.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveContact.Request request)
+        public async Task Remove([FromRoute] RemoveContact.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetContactById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetContactById.Response>> GetById([FromRoute]GetContactById.Request request)
+        public async Task<ActionResult<GetContactById.Response>> GetById([FromRoute] GetContactById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetContacts.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetContacts.Response>> Get()
-            => await _mediator.Send(new GetContacts.Request());           
+            => await _mediator.Send(new GetContacts.Request());
     }
 }

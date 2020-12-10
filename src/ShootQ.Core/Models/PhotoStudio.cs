@@ -4,7 +4,7 @@ using ShootQ.Core.ValueObjects;
 
 namespace ShootQ.Core.Models
 {
-    public class PhotoStudio: AggregateRoot
+    public class PhotoStudio : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

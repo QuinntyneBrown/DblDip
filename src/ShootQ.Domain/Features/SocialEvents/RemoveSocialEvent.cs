@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.SocialEvents
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid SocialEventId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.SocialEvents
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var socialEvent = await _context.FindAsync<SocialEvent>(request.SocialEventId);
 

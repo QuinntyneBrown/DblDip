@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.SocialEvents
 {
     public class GetSocialEventById
     {
-        public class Request : IRequest<Response> {  
-            public Guid SocialEventId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid SocialEventId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.SocialEvents
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var socialEvent = await _context.FindAsync<SocialEvent>(request.SocialEventId);
 
-                return new Response() { 
+                return new Response()
+                {
                     SocialEvent = socialEvent.ToDto()
                 };
             }

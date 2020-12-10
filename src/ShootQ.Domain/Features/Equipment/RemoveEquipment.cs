@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Equipment
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid EquipmentId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Equipment
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var equipment = await _context.FindAsync<ShootQ.Core.Models.Equipment>(request.EquipmentId);
 

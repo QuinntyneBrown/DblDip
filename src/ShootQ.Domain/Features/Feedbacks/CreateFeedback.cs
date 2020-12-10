@@ -37,7 +37,7 @@ namespace ShootQ.Domain.Features.Feedbacks
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var feedback = new Feedback(request.Feedback.ClientEmail, request.Feedback.Description);
+                var feedback = new Feedback(request.Feedback.RespondentEmail, request.Feedback.Description);
 
                 _context.Store(feedback);
 

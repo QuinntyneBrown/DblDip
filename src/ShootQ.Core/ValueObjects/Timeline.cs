@@ -35,7 +35,7 @@ namespace ShootQ.Core.ValueObjects
 
         public static Result<Timeline> Create(List<IScheduled> scheduledItems)
         {
-            Guard.ArgumentNotNull(nameof(scheduledItems),scheduledItems);
+            Guard.ArgumentNotNull(nameof(scheduledItems), scheduledItems);
 
             return Result.Success(new Timeline(scheduledItems));
         }

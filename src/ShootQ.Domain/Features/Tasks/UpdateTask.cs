@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Tasks
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public TaskDto Task { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Tasks
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var task = await _context.FindAsync<ShootQ.Core.Models.Task>(request.Task.TaskId);
 

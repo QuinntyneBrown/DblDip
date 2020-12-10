@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateCorporateEvent.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateCorporateEvent.Response>> Create([FromBody]CreateCorporateEvent.Request request)
+        public async Task<ActionResult<CreateCorporateEvent.Response>> Create([FromBody] CreateCorporateEvent.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveCorporateEvent.Request request)
+        public async Task Remove([FromRoute] RemoveCorporateEvent.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCorporateEventById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetCorporateEventById.Response>> GetById([FromRoute]GetCorporateEventById.Request request)
+        public async Task<ActionResult<GetCorporateEventById.Response>> GetById([FromRoute] GetCorporateEventById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCorporateEvents.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetCorporateEvents.Response>> Get()
-            => await _mediator.Send(new GetCorporateEvents.Request());           
+            => await _mediator.Send(new GetCorporateEvents.Request());
     }
 }

@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Equipment
 {
     public class GetEquipmentById
     {
-        public class Request : IRequest<Response> {  
-            public Guid EquipmentId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid EquipmentId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Equipment
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var equipment = await _context.FindAsync<ShootQ.Core.Models.Equipment>(request.EquipmentId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Equipment = equipment.ToDto()
                 };
             }

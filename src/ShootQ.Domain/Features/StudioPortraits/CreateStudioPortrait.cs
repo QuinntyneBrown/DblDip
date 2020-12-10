@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.StudioPortraits
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public StudioPortraitDto StudioPortrait { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.StudioPortraits
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var studioPortrait = new StudioPortrait();
 

@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Roles
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid RoleId { get; set; }
         }
 
@@ -32,10 +33,11 @@ namespace ShootQ.Domain.Features.Roles
             private readonly IAppDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime) 
+            public Handler(IAppDbContext context, IDateTime dateTime)
                 => (_context, _dateTime) = (context, dateTime);
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var role = await _context.FindAsync<Role>(request.RoleId);
 

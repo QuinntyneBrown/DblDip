@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.PhotoGalleries
 {
     public class GetPhotoGalleryById
     {
-        public class Request : IRequest<Response> {  
-            public Guid PhotoGalleryId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid PhotoGalleryId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.PhotoGalleries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var photoGallery = await _context.FindAsync<PhotoGallery>(request.PhotoGalleryId);
 
-                return new Response() { 
+                return new Response()
+                {
                     PhotoGallery = photoGallery.ToDto()
                 };
             }

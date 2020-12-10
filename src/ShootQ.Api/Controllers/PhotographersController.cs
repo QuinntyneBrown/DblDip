@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreatePhotographer.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreatePhotographer.Response>> Create([FromBody]CreatePhotographer.Request request)
+        public async Task<ActionResult<CreatePhotographer.Response>> Create([FromBody] CreatePhotographer.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemovePhotographer.Request request)
+        public async Task Remove([FromRoute] RemovePhotographer.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetPhotographerById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetPhotographerById.Response>> GetById([FromRoute]GetPhotographerById.Request request)
+        public async Task<ActionResult<GetPhotographerById.Response>> GetById([FromRoute] GetPhotographerById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetPhotographers.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetPhotographers.Response>> Get()
-            => await _mediator.Send(new GetPhotographers.Request());           
+            => await _mediator.Send(new GetPhotographers.Request());
     }
 }

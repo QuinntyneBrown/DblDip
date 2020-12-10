@@ -1,5 +1,4 @@
 using BuildingBlocks.Abstractions;
-using ShootQ.Core.Models;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +9,7 @@ namespace ShootQ.Domain.Features.Equipment
 {
     public class GetEquipment
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +22,10 @@ namespace ShootQ.Domain.Features.Equipment
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Equipment = _context.Set<ShootQ.Core.Models.Equipment>().Select(x => x.ToDto()).ToList()
                 };
             }

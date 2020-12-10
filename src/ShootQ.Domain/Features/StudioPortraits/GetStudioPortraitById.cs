@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.StudioPortraits
 {
     public class GetStudioPortraitById
     {
-        public class Request : IRequest<Response> {  
-            public Guid StudioPortraitId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid StudioPortraitId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.StudioPortraits
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var studioPortrait = await _context.FindAsync<StudioPortrait>(request.StudioPortraitId);
 
-                return new Response() { 
+                return new Response()
+                {
                     StudioPortrait = studioPortrait.ToDto()
                 };
             }

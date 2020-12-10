@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.PhotoGalleries
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid PhotoGalleryId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.PhotoGalleries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var photoGallery = await _context.FindAsync<PhotoGallery>(request.PhotoGalleryId);
 

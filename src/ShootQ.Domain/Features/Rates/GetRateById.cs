@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Rates
 {
     public class GetRateById
     {
-        public class Request : IRequest<Response> {  
-            public Guid RateId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid RateId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Rates
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var rate = await _context.FindAsync<Rate>(request.RateId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Rate = rate.ToDto()
                 };
             }

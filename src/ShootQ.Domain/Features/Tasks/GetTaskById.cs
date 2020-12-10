@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Tasks
 {
     public class GetTaskById
     {
-        public class Request : IRequest<Response> {  
-            public Guid TaskId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid TaskId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Tasks
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var task = await _context.FindAsync<ShootQ.Core.Models.Task>(request.TaskId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Task = task.ToDto()
                 };
             }

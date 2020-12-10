@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Contacts
 {
     public class GetContactById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ContactId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ContactId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Contacts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var contact = await _context.FindAsync<Contact>(request.ContactId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Contact = contact.ToDto()
                 };
             }

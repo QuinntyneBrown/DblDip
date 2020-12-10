@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.CorporateEvents
     {
         public CorporateEventValidator()
         {
-            
+
         }
     }
 }

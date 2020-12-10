@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.Roles
     {
         public RoleValidator()
         {
-            
+
         }
     }
 }

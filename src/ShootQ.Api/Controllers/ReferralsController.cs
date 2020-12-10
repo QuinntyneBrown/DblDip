@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateReferral.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateReferral.Response>> Create([FromBody]CreateReferral.Request request)
+        public async Task<ActionResult<CreateReferral.Response>> Create([FromBody] CreateReferral.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveReferral.Request request)
+        public async Task Remove([FromRoute] RemoveReferral.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetReferralById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetReferralById.Response>> GetById([FromRoute]GetReferralById.Request request)
+        public async Task<ActionResult<GetReferralById.Response>> GetById([FromRoute] GetReferralById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetReferrals.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetReferrals.Response>> Get()
-            => await _mediator.Send(new GetReferrals.Request());           
+            => await _mediator.Send(new GetReferrals.Request());
     }
 }

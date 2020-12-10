@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateMeeting.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateMeeting.Response>> Create([FromBody]CreateMeeting.Request request)
+        public async Task<ActionResult<CreateMeeting.Response>> Create([FromBody] CreateMeeting.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveMeeting.Request request)
+        public async Task Remove([FromRoute] RemoveMeeting.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetMeetingById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetMeetingById.Response>> GetById([FromRoute]GetMeetingById.Request request)
+        public async Task<ActionResult<GetMeetingById.Response>> GetById([FromRoute] GetMeetingById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetMeetings.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetMeetings.Response>> Get()
-            => await _mediator.Send(new GetMeetings.Request());           
+            => await _mediator.Send(new GetMeetings.Request());
     }
 }

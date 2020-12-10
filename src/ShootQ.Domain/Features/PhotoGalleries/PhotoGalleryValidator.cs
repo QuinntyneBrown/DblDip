@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.PhotoGalleries
     {
         public PhotoGalleryValidator()
         {
-            
+
         }
     }
 }

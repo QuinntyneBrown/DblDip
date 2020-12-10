@@ -27,7 +27,7 @@ namespace ShootQ.Domain.UnitTests.Models
         public void ShouldRemoveRole()
         {
             var user = new User("quinntynebrown@gmail.com", "password");
-            user.AddRole(Guid.NewGuid(),"Admin");
+            user.AddRole(Guid.NewGuid(), "Admin");
             user.RemoveRole(Guid.NewGuid(), "Admin");
             Assert.Empty(user.Roles);
         }

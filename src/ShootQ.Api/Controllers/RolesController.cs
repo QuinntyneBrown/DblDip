@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateRole.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateRole.Response>> Create([FromBody]CreateRole.Request request)
+        public async Task<ActionResult<CreateRole.Response>> Create([FromBody] CreateRole.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveRole.Request request)
+        public async Task Remove([FromRoute] RemoveRole.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetRoleById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetRoleById.Response>> GetById([FromRoute]GetRoleById.Request request)
+        public async Task<ActionResult<GetRoleById.Response>> GetById([FromRoute] GetRoleById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetRoles.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetRoles.Response>> Get()
-            => await _mediator.Send(new GetRoles.Request());           
+            => await _mediator.Send(new GetRoles.Request());
     }
 }

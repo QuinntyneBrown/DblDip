@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.CorporateEvents
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid CorporateEventId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.CorporateEvents
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var corporateEvent = await _context.FindAsync<CorporateEvent>(request.CorporateEventId);
 

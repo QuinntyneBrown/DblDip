@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Photographers
 {
     public class GetPhotographerById
     {
-        public class Request : IRequest<Response> {  
-            public Guid PhotographerId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid PhotographerId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Photographers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var photographer = await _context.FindAsync<Photographer>(request.PhotographerId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Photographer = photographer.ToDto()
                 };
             }

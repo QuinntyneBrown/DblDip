@@ -10,7 +10,7 @@ namespace ShootQ.Domain.Features.Meetings
 {
     public class GetMeetings
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace ShootQ.Domain.Features.Meetings
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Meetings = _context.Set<Meeting>().Select(x => x.ToDto()).ToList()
                 };
             }

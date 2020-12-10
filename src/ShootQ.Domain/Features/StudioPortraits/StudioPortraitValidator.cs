@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.StudioPortraits
     {
         public StudioPortraitValidator()
         {
-            
+
         }
     }
 }

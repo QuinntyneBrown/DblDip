@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.Contacts
     {
         public ContactValidator()
         {
-            
+
         }
     }
 }

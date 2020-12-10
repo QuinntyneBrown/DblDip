@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.WeddingQuotes
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid WeddingQuoteId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.WeddingQuotes
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var weddingQuote = await _context.FindAsync<WeddingQuote>(request.WeddingQuoteId);
 

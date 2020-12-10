@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateEquipment.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateEquipment.Response>> Create([FromBody]CreateEquipment.Request request)
+        public async Task<ActionResult<CreateEquipment.Response>> Create([FromBody] CreateEquipment.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveEquipment.Request request)
+        public async Task Remove([FromRoute] RemoveEquipment.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEquipmentById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetEquipmentById.Response>> GetById([FromRoute]GetEquipmentById.Request request)
+        public async Task<ActionResult<GetEquipmentById.Response>> GetById([FromRoute] GetEquipmentById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEquipment.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetEquipment.Response>> Get()
-            => await _mediator.Send(new GetEquipment.Request());           
+            => await _mediator.Send(new GetEquipment.Request());
     }
 }

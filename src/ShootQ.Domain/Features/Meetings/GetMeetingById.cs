@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.Meetings
 {
     public class GetMeetingById
     {
-        public class Request : IRequest<Response> {  
-            public Guid MeetingId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid MeetingId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.Meetings
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var meeting = await _context.FindAsync<Meeting>(request.MeetingId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Meeting = meeting.ToDto()
                 };
             }

@@ -6,7 +6,7 @@ namespace ShootQ.Domain.Features.Rates
     {
         public RateValidator()
         {
-            
+
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateTask.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateTask.Response>> Create([FromBody]CreateTask.Request request)
+        public async Task<ActionResult<CreateTask.Response>> Create([FromBody] CreateTask.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveTask.Request request)
+        public async Task Remove([FromRoute] RemoveTask.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetTaskById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetTaskById.Response>> GetById([FromRoute]GetTaskById.Request request)
+        public async Task<ActionResult<GetTaskById.Response>> GetById([FromRoute] GetTaskById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetTasks.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetTasks.Response>> Get()
-            => await _mediator.Send(new GetTasks.Request());           
+            => await _mediator.Send(new GetTasks.Request());
     }
 }

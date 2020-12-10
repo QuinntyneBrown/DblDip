@@ -7,7 +7,7 @@ namespace ShootQ.Domain.Features
     {
         public static PhotoGalleryDto ToDto(this PhotoGallery photoGallery)
         {
-            return new PhotoGalleryDto(photoGallery.PhotoGalleryId);
+            return new PhotoGalleryDto(photoGallery.PhotoGalleryId, photoGallery.PhotographerId, photoGallery.Photos);
         }
     }
 }

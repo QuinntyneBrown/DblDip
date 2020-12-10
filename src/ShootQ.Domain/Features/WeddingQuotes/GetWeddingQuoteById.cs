@@ -10,8 +10,9 @@ namespace ShootQ.Domain.Features.WeddingQuotes
 {
     public class GetWeddingQuoteById
     {
-        public class Request : IRequest<Response> {  
-            public Guid WeddingQuoteId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid WeddingQuoteId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace ShootQ.Domain.Features.WeddingQuotes
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var weddingQuote = await _context.FindAsync<WeddingQuote>(request.WeddingQuoteId);
 
-                return new Response() { 
+                return new Response()
+                {
                     WeddingQuote = weddingQuote.ToDto()
                 };
             }

@@ -6,11 +6,6 @@ namespace ShootQ.Domain.Features
     public static class FeedbackExtensions
     {
         public static FeedbackDto ToDto(this Feedback feedback)
-        {
-            return new FeedbackDto
-            {
-
-            };
-        }
+            => new FeedbackDto(feedback.FeedbackId, feedback.RespondentEmail, feedback.Description);
     }
 }

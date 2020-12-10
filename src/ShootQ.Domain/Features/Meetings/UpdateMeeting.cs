@@ -18,7 +18,8 @@ namespace ShootQ.Domain.Features.Meetings
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public MeetingDto Meeting { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace ShootQ.Domain.Features.Meetings
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var meeting = await _context.FindAsync<Meeting>(request.Meeting.MeetingId);
 

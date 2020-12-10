@@ -20,7 +20,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateRate.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateRate.Response>> Create([FromBody]CreateRate.Request request)
+        public async Task<ActionResult<CreateRate.Response>> Create([FromBody] CreateRate.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveRate.Request request)
+        public async Task Remove([FromRoute] RemoveRate.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetRateById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetRateById.Response>> GetById([FromRoute]GetRateById.Request request)
+        public async Task<ActionResult<GetRateById.Response>> GetById([FromRoute] GetRateById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace ShootQ.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetRates.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetRates.Response>> Get()
-            => await _mediator.Send(new GetRates.Request());           
+            => await _mediator.Send(new GetRates.Request());
     }
 }
