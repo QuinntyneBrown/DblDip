@@ -37,7 +37,7 @@ namespace ShootQ.Domain.Features.Cards
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var card = new Card(default);
+                var card = new Card(request.Card.Name, request.Card.Description);
 
                 _context.Store(card);
 

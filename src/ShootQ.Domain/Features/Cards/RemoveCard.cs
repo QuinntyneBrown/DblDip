@@ -31,15 +31,15 @@ namespace ShootQ.Domain.Features.Cards
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
-
-            public Handler(IAppDbContext context) => _context = context;
+            private readonly IDateTime _dateTime;
+            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var card = await _context.FindAsync<Card>(request.CardId);
 
-                //card.Remove();
+                card.Remove(_dateTime.UtcNow);
 
                 _context.Store(card);
 

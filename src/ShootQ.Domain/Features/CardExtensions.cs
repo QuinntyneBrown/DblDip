@@ -6,11 +6,6 @@ namespace ShootQ.Domain.Features
     public static class CardExtensions
     {
         public static CardDto ToDto(this Card card)
-        {
-            return new CardDto
-            {
-
-            };
-        }
+            => new CardDto(card.CardId, card.Name, card.Description);
     }
 }

@@ -51,7 +51,7 @@ namespace ShootQ.Data
             {
                 var card = context.Set<Card>().FirstOrDefault(x => x.Name == "Leads");
 
-                card ??= new Card("Leads");
+                card ??= new Card("Leads","");
 
                 context.Store(card);
 
