@@ -3,11 +3,11 @@ using FluentValidation;
 using MediatR;
 using ShootQ.Core.Models;
 using ShootQ.Core.ValueObjects;
+using ShootQ.Domain.Features.WeddingQuotes;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using static ShootQ.Core.Constants.Rates;
-using BuildingBlocks.Core;
 
 namespace ShootQ.Domain.Features.Quotes
 {
@@ -29,7 +29,7 @@ namespace ShootQ.Domain.Features.Quotes
 
         public class Response
         {
-            public QuoteDto Quote { get; set; }
+            public WeddingQuoteDto Quote { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -4,7 +4,7 @@ namespace ShootQ.Domain.Features.Leads
 {
     public class LeadDto
     {
-        public Guid LeadId { get; private set; }
+        public Guid LeadId { get; set; }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
         public string EmailAddress { get; set; }

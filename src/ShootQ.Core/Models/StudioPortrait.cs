@@ -1,10 +1,9 @@
-using BuildingBlocks.Abstractions;
 using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
 {
-    public class CoporateEvent: PhotographyJob
+    public class StudioPortrait: PhotographyJob
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -13,8 +12,8 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid CoporateEventId { get; private set; }
+        public Guid StudoPortraitId { get; private set; }
 
-        public override DateRange Scheduled { get; }
+        public override DateRange Scheduled => throw new NotImplementedException();
     }
 }
