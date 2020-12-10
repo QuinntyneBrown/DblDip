@@ -6,11 +6,6 @@ namespace ShootQ.Domain.Features
     public static class WeddingQuoteExtensions
     {
         public static WeddingQuoteDto ToDto(this WeddingQuote weddingQuote)
-        {
-            return new WeddingQuoteDto
-            {
-
-            };
-        }
+            => new WeddingQuoteDto(weddingQuote.WeddingQuoteId, weddingQuote.WeddingId, weddingQuote.Total);
     }
 }
