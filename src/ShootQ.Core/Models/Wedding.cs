@@ -1,6 +1,6 @@
-using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.Interfaces;
 using ShootQ.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ShootQ.Core.Models
 {
-    public class Wedding : AggregateRoot
+    public class Wedding : PhotographyJob
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -25,10 +25,9 @@ namespace ShootQ.Core.Models
         public void When(WeddingCreated weddingCreated)
         {
             WeddingId = weddingCreated.WeddingId;
-            Start = weddingCreated.Start;
-            End = weddingCreated.End;
+            StartLocation = weddingCreated.Start;
+            EndLocation = weddingCreated.End;
             Parts = new List<WeddingPart>();
-            WeddingQuotes = new List<WeddingQuote>();
             Trips = new List<Trip>();
 
             var dateRange = DateRange.Create(weddingCreated.DateTime, weddingCreated.DateTime.AddHours(weddingCreated.Hours));
@@ -65,35 +64,20 @@ namespace ShootQ.Core.Models
         }
 
         public Guid WeddingId { get; private set; }
-        public Location Start { get; private set; }
-        public Location End { get; private set; }
+        public Location StartLocation { get; private set; }
+        public Location EndLocation { get; private set; }
         public ICollection<WeddingPart> Parts { get; private set; }
-        public ICollection<WeddingQuote> WeddingQuotes { get; private set; }
         public ICollection<Trip> Trips { get; private set; }
-        public IDictionary<DateRange, dynamic> Schedule
-        {
-            get
-            {
-                var schedule = new Dictionary<DateRange, dynamic>();
+        public Timeline Timeline
+            => Timeline.Create(new List<IScheduled>()
+            .Concat(Trips)
+            .Concat(Parts)
+            .ToList()).Value;
 
-                foreach (var trip in Trips)
-                {
-                    schedule.Add(trip.Scheduled, trip);
-                }
-
-                foreach (var part in Parts)
-                {
-                    schedule.Add(part.Scheduled, part);
-                }
-
-                schedule.OrderBy(x => x.Key);
-
-                return schedule;
-            }
-        }
+        public override DateRange Scheduled => Timeline.Scheduled;
     }
 
-    public record WeddingPart(DateRange Scheduled, Location Location, string Description);
+    public record WeddingPart(DateRange Scheduled, Location Location, string Description): IScheduled;
 
-    public record Trip(DateRange Scheduled, Location Start, Location End);
+    public record Trip(DateRange Scheduled, Location Start, Location End): IScheduled;
 }

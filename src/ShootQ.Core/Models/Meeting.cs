@@ -5,7 +5,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Meeting : AggregateRoot, IScheduled
+    public class Meeting : AggregateRoot, IScheduledAggregate
     {
         protected override void When(dynamic @event) => When(@event);
 

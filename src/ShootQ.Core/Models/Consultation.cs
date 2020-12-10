@@ -6,20 +6,21 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Consultation : AggregateRoot, IScheduled
+    public class Consultation : AggregateRoot, IScheduledAggregate
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Consultation(DateRange scheduled, Email customerEmail)
+        public Consultation(DateRange scheduled, Email consultantEmail, Email recipientEmail)
         {
-            Apply(new ConsultationCreated(Guid.NewGuid(), customerEmail, scheduled));
+            Apply(new ConsultationCreated(Guid.NewGuid(), consultantEmail, recipientEmail, scheduled));
         }
 
         public void When(ConsultationCreated consultationCreated)
         {
             ConsultationId = consultationCreated.ConsultationId;
             Scheduled = consultationCreated.Scheduled;
-            RecipientEmail = consultationCreated.ClientEmail;
+            ConsultantEmail = consultationCreated.ConsultantEmail;
+            RecipientEmail = consultationCreated.RecipientEmail;
         }
 
         public void When(ConsultationNoteAdded consultationAdded)
@@ -79,6 +80,7 @@ namespace ShootQ.Core.Models
 
         public Guid ConsultationId { get; private set; }
         public DateRange Scheduled { get; private set; }
+        public Email ConsultantEmail { get; private set; }
         public Email RecipientEmail { get; private set; }
         public string RecipientPhoneNumber { get; private set; }
         public string Note { get; private set; }

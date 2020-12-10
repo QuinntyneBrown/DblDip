@@ -1,9 +1,9 @@
-using BuildingBlocks.Abstractions;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Timeline : AggregateRoot
+    public class SocialEvent: PhotographyJob
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -11,7 +11,7 @@ namespace ShootQ.Core.Models
         {
 
         }
-
-        public Guid TimelineId { get; private set; }
+        public override DateRange Scheduled { get; }
+        public Guid SocialEventId { get; private set; }
     }
 }

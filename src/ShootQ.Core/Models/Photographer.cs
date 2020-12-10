@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
@@ -13,5 +14,9 @@ namespace ShootQ.Core.Models
         }
 
         public Guid PhotographerId { get; private set; }
+        public string Name { get; set; }
+        public Email Email { get; set; }
+        public string PhoneNumber { get; set; }
+        public Location PrimaryLocation { get; set; }
     }
 }

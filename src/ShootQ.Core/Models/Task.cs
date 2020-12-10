@@ -5,7 +5,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Task : AggregateRoot, IScheduled
+    public class Task : AggregateRoot, IScheduledAggregate
     {
         protected override void When(dynamic @event) => When(@event);
 

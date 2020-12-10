@@ -40,7 +40,7 @@ namespace ShootQ.Domain.Features.Consultations
 
                 var dateRange = DateRange.Create(request.Consultation.StartDate, request.Consultation.EndDate).Value;
 
-                var consultation = new Consultation(dateRange, request.Consultation.CustomerEmail);
+                var consultation = new Consultation(dateRange, request.Consultation.ConsultantEmail, request.Consultation.RecipientEmail);
 
                 _context.Store(consultation);
 

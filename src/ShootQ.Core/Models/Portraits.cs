@@ -1,9 +1,10 @@
 using BuildingBlocks.Abstractions;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Job : AggregateRoot
+    public class Portraits: PhotographyJob
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -11,7 +12,7 @@ namespace ShootQ.Core.Models
         {
 
         }
-
-        public Guid JobId { get; private set; }
+        public override DateRange Scheduled { get; }
+        public Guid PortraitsId { get; private set; }
     }
 }
