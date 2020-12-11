@@ -3,7 +3,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Expense: AggregateRoot
+    public class TimeEntry: AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -12,16 +12,11 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid ExpenseId { get; private set; }
-        public string Description { get; set; }
-        public ExpenseCategory Category { get; private set; }
+        public Guid TimeEntryId { get; private set; }
+        public int Hours { get; private set; }
+        public DateTime? Completed { get; private set; }
         public Guid ProjectId { get; private set; }
+        public bool Billable { get; private set; }
         public DateTime? Deleted { get; private set; }
-    }
-
-    public enum ExpenseCategory
-    {
-        Parking,
-        EquipmentRental
     }
 }

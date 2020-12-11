@@ -11,14 +11,6 @@ namespace ShootQ.Core
             public static readonly Guid ConsulationRate = new Guid("35ab4b3a-2409-47be-a797-991859aa1b36");
         }
 
-        /*var roles = profile switch
-        {
-            Client => "1",
-            Photographer => "2",
-            ProjectManager => "3",
-            SystemAdministrator => "4"
-        };
-*/
         public static class Roles
         {
             public static readonly Guid Client = new Guid("ff8bf475-567c-4daa-b509-a1c23e7ae78d");
@@ -52,6 +44,16 @@ namespace ShootQ.Core
             public static readonly string CorporateEvent = nameof(CorporateEvent);
             public static readonly string SocialEvent = nameof(SocialEvent);
             public static readonly string StudioPortrait = nameof(StudioPortrait);
+        }
+
+        public static class PhotoGalleries
+        {
+            public static readonly Guid MyImages = Guid.NewGuid();
+        }
+
+        public static class Libaries
+        {
+            public static readonly Guid MyFiles = Guid.NewGuid();
         }
     }
 }

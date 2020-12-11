@@ -13,9 +13,7 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid PhotographerId { get; private set; }
-        public Email ParticipantEmail { get; private set; }
-        public PhoneNumber ParticipantPhoneNumber { get; private set; }
+
 
         public void When(PhotoGallerySent sent)
         {
@@ -33,6 +31,9 @@ namespace ShootQ.Core.Models
         }
 
         public abstract DateRange Scheduled { get; }
+        public Guid PhotographerId { get; private set; }
+        public Email ParticipantEmail { get; private set; }
+        public PhoneNumber ParticipantPhoneNumber { get; private set; }
         public DateTime? GallerySent { get; private set; }
     }
 }

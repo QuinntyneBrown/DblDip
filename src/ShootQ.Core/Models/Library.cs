@@ -1,10 +1,10 @@
 using BuildingBlocks.Abstractions;
 using System;
-using ShootQ.Core.ValueObjects;
+using System.Collections.Generic;
 
 namespace ShootQ.Core.Models
 {
-    public class Venue: AggregateRoot
+    public class Library: AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -13,8 +13,10 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid VenueId { get; private set; }
-        public Location Location { get; set; }
+        public Guid LibraryId { get; private set; }
+        public Guid PhotographerId { get; set; }
+        public ICollection<Guid> MyImages { get; private set; }
+        public ICollection<Guid> MyFiles { get; set; }
         public DateTime? Deleted { get; private set; }
     }
 }

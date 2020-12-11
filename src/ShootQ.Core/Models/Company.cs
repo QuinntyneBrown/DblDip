@@ -1,5 +1,6 @@
 using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
+using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
@@ -43,6 +44,7 @@ namespace ShootQ.Core.Models
         }
 
         public Guid CompanyId { get; private set; }
+        public Url Url { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
 }
