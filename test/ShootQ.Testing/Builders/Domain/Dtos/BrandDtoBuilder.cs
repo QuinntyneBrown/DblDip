@@ -9,7 +9,7 @@ namespace ShootQ.Testing.Builders.Domain.Dtos
 
         public static BrandDto WithDefaults()
         {
-            return new BrandDto();
+            return new BrandDto(default);
         }
 
         public BrandDtoBuilder()

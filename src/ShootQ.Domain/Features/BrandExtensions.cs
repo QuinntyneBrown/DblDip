@@ -6,11 +6,6 @@ namespace ShootQ.Domain.Features
     public static class BrandExtensions
     {
         public static BrandDto ToDto(this Brand brand)
-        {
-            return new BrandDto
-            {
-
-            };
-        }
+            => new BrandDto(brand.BrandId);
     }
 }

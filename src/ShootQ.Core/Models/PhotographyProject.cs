@@ -1,4 +1,3 @@
-using BuildingBlocks.Abstractions;
 using ShootQ.Core.DomainEvents;
 using ShootQ.Core.Interfaces;
 using ShootQ.Core.ValueObjects;
@@ -14,7 +13,9 @@ namespace ShootQ.Core.Models
 
         }
 
-        public Guid PhotographerId { get; set; }
+        public Guid PhotographerId { get; private set; }
+        public Email ParticipantEmail { get; private set; }
+        public PhoneNumber ParticipantPhoneNumber { get; private set; }
 
         public void When(PhotoGallerySent sent)
         {
