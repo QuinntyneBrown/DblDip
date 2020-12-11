@@ -34,7 +34,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             using var client = _fixture.CreateAuthenticatedClient();
 
-            var httpResponseMessage = await client.PostAsync(Post.CreateSystemLocation, stringContent);
+            var httpResponseMessage = await client.PostAsync(Endpoints.Post.CreateSystemLocation, stringContent);
 
             var response = JsonConvert.DeserializeObject<CreateSystemLocation.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 

@@ -34,11 +34,11 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             using var client = _fixture.CreateAuthenticatedClient();
 
-            var httpResponseMessage = await client.PostAsync(Post.CreatePost, stringContent);
+            var httpResponseMessage = await client.PostAsync(Endpoints.Post.CreatePost, stringContent);
 
             var response = JsonConvert.DeserializeObject<CreatePost.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 
-            var sut = context.FindAsync<Post>(response.Post.PostId);
+            var sut = context.FindAsync<ShootQ.Core.Models.Post>(response.Post.PostId);
 
             Assert.NotEqual(default, response.Post.PostId);
         }
@@ -60,7 +60,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
-            var removedPost = await context.FindAsync<Post>(post.PostId);
+            var removedPost = await context.FindAsync<ShootQ.Core.Models.Post>(post.PostId);
 
             Assert.NotEqual(default, removedPost.Deleted);
         }
@@ -82,7 +82,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
-            var sut = await context.FindAsync<Post>(post.PostId);
+            var sut = await context.FindAsync<ShootQ.Core.Models.Post>(post.PostId);
 
         }
 

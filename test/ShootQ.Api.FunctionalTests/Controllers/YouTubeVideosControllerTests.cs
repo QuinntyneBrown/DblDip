@@ -34,7 +34,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             using var client = _fixture.CreateAuthenticatedClient();
 
-            var httpResponseMessage = await client.PostAsync(Post.CreateYouTubeVideo, stringContent);
+            var httpResponseMessage = await client.PostAsync(Endpoints.Post.CreateYouTubeVideo, stringContent);
 
             var response = JsonConvert.DeserializeObject<CreateYouTubeVideo.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 

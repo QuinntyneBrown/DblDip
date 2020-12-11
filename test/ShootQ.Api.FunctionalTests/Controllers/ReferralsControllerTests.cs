@@ -34,7 +34,7 @@ namespace ShootQ.Api.FunctionalTests.Controllers
 
             using var client = _fixture.CreateAuthenticatedClient();
 
-            var httpResponseMessage = await client.PostAsync(Post.CreateReferral, stringContent);
+            var httpResponseMessage = await client.PostAsync(Endpoints.Post.CreateReferral, stringContent);
 
             var response = JsonConvert.DeserializeObject<CreateReferral.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 
