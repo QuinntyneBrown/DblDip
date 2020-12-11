@@ -11,6 +11,22 @@ namespace ShootQ.Core
             public static readonly Guid ConsulationRate = new Guid("35ab4b3a-2409-47be-a797-991859aa1b36");
         }
 
+        /*var roles = profile switch
+        {
+            Client => "1",
+            Photographer => "2",
+            ProjectManager => "3",
+            SystemAdministrator => "4"
+        };
+*/
+        public static class Roles
+        {
+            public static readonly Guid Client = new Guid("ff8bf475-567c-4daa-b509-a1c23e7ae78d");
+            public static readonly Guid Photographer = new Guid("da296e6d-00cb-4978-8d82-1820133b6c1e");
+            public static readonly Guid ProjectManager = new Guid("7d8f10af-024e-4b4b-8476-be54997041de");
+            public static readonly Guid SystemAdministrator = new Guid("9a1481ba-9bfa-4d40-949d-df365713e5bc");
+        }
+
         public static class ClaimTypes
         {
             public static readonly string UserId = nameof(UserId);
@@ -24,6 +40,18 @@ namespace ShootQ.Core
         public static class Photographers
         {
             public static readonly Guid QuinntyneBrown = new Guid("5cb425e4-0a41-4cfa-a6b8-ba3ac84c14ce");
+        }
+
+        public static class Services
+        {
+            public static readonly string Wedding = nameof(Wedding);
+            public static readonly string Engagement = nameof(Engagement);
+            public static readonly string FamilyPortrait = nameof(FamilyPortrait);
+            public static readonly string EditedPhoto = nameof(EditedPhoto);
+            public static readonly string Portrait = nameof(Portrait);
+            public static readonly string CorporateEvent = nameof(CorporateEvent);
+            public static readonly string SocialEvent = nameof(SocialEvent);
+            public static readonly string StudioPortrait = nameof(StudioPortrait);
         }
     }
 }

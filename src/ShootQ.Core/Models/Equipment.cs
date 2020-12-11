@@ -18,5 +18,6 @@ namespace ShootQ.Core.Models
         public Price Price { get; private set; }
         public string Description { get; private set; }
         public Guid? ReceiptDigitalAssetId { get; private set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

@@ -1,15 +1,19 @@
 using ShootQ.Core.Models;
 
-namespace ShootQ.Testing.Builders
+namespace ShootQ.Testing.Builders.Core.Models
 {
     public class LeadBuilder
     {
         private Lead _lead;
 
-        public static Lead WithDefaults() => new Lead();
+        public static Lead WithDefaults()
+        {
+            return new Lead();
+        }
+
         public LeadBuilder()
         {
-            _lead = new Lead();
+            _lead = WithDefaults();
         }
 
         public Lead Build()

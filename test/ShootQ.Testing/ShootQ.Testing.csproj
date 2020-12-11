@@ -13,12 +13,12 @@
 
   <ItemGroup>
     <Folder Include="Builders\Core\ValueObjects\" />
-    <Folder Include="Builders\Domain\Dtos\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="5.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.1" />
     <PackageReference Include="Respawn" Version="3.3.0" />
     <PackageReference Include="XUnit.Abstractions" Version="2.0.3" />
   </ItemGroup>

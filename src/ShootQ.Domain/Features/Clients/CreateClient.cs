@@ -4,6 +4,8 @@ using FluentValidation;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
+using ShootQ.Core.ValueObjects;
+using ShootQ.Domain.IntegrationEvents;
 
 namespace ShootQ.Domain.Features.Clients
 {
@@ -13,14 +15,14 @@ namespace ShootQ.Domain.Features.Clients
         {
             public Validator()
             {
-                RuleFor(request => request.Client).NotNull();
-                RuleFor(request => request.Client).SetValidator(new ClientValidator());
+
             }
         }
 
         public class Request : IRequest<Response>
         {
-            public ClientDto Client { get; set; }
+            public string Name { get; set; }
+            public Email Email { get; set; }            
         }
 
         public class Response
@@ -31,17 +33,25 @@ namespace ShootQ.Domain.Features.Clients
         public class Handler : IRequestHandler<Request, Response>
         {
             private readonly IAppDbContext _context;
+            private readonly IMediator _mediator;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IMediator mediator)
+            {
+                _context = context;
+                _mediator = mediator;
+            }
+
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var client = new Client();
+                var client = new Client(request.Name, request.Email);
 
                 _context.Store(client);
 
                 await _context.SaveChangesAsync(cancellationToken);
+
+                await _mediator.Publish(new ProfileCreated(client));
 
                 return new Response()
                 {

@@ -1,12 +1,22 @@
-using BuildingBlocks.Abstractions;
+using ShootQ.Core.DomainEvents;
 using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Client : AggregateRoot
+    public class Client : Profile
     {
         protected override void When(dynamic @event) => When(@event);
+
+        public Client(string name, Email email)
+            :base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
+        {
+            Apply(new ClientCreated(ProfileId));
+        }
+        public void When(ClientCreated clientCreated)
+        {
+            ClientId = clientCreated.ClientId;            
+        }
 
         protected override void EnsureValidState()
         {
@@ -19,10 +29,6 @@ namespace ShootQ.Core.Models
         }
 
         public Guid ClientId { get; private set; }
-        public string Firstname { get; private set; }
-        public string Lastname { get; private set; }
-        public Email Email { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public DateTime? Deleted { get; private set; }
+
     }
 }

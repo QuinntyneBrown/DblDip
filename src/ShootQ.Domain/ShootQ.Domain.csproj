@@ -26,7 +26,6 @@
     <Folder Include="Features\DigitalAssets\" />
     <Folder Include="Features\Orders\" />
     <Folder Include="IntegrationEvents\" />
-    <Folder Include="Sagas\" />
   </ItemGroup>
 
 </Project>

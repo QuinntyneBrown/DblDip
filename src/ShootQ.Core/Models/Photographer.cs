@@ -1,12 +1,23 @@
-using BuildingBlocks.Abstractions;
+using ShootQ.Core.DomainEvents;
 using ShootQ.Core.ValueObjects;
 using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Photographer : AggregateRoot
+    public class Photographer : Profile
     {
         protected override void When(dynamic @event) => When(@event);
+
+        public Photographer(string name, Email email)
+            : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
+        {
+            Apply(new PhotographerCreated(base.ProfileId));
+        }
+
+        public void When(PhotographerCreated photographerCreated)
+        {
+            PhotographerId = photographerCreated.PhotographerId;
+        }
 
         protected override void EnsureValidState()
         {
@@ -14,9 +25,7 @@ namespace ShootQ.Core.Models
         }
 
         public Guid PhotographerId { get; private set; }
-        public string Name { get; set; }
-        public Email Email { get; set; }
-        public string PhoneNumber { get; set; }
+
         public Location PrimaryLocation { get; set; }
     }
 }

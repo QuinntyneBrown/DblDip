@@ -4,7 +4,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class Portrait : PhotographyJob
+    public class Portrait : PhotographyProject
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -14,5 +14,6 @@ namespace ShootQ.Core.Models
         }
         public override DateRange Scheduled { get; }
         public Guid PortraitId { get; private set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

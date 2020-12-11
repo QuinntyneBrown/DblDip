@@ -1,0 +1,38 @@
+using BuildingBlocks.Abstractions;
+using ShootQ.Core.Models;
+using MediatR;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace ShootQ.Domain.Features.Engagements
+{
+    public class GetEngagementById
+    {
+        public class Request : IRequest<Response> {  
+            public Guid EngagementId { get; set; }        
+        }
+
+        public class Response
+        {
+            public EngagementDto Engagement { get; set; }
+        }
+
+        public class Handler : IRequestHandler<Request, Response>
+        {
+            private readonly IAppDbContext _context;
+
+            public Handler(IAppDbContext context) => _context = context;
+
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+
+                var engagement = await _context.FindAsync<Engagement>(request.EngagementId);
+
+                return new Response() { 
+                    Engagement = engagement.ToDto()
+                };
+            }
+        }
+    }
+}

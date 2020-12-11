@@ -4,7 +4,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class CorporateEvent : PhotographyJob
+    public class CorporateEvent : PhotographyProject
     {
         protected override void When(dynamic @event) => When(@event);
 

@@ -2,8 +2,8 @@
 {
     public enum LeadStatus
     {
-        New,
-        Validated,
-        DepositReceived
+        Inquiry,
+        Booking,
+        ProjectCompletion
     }
 }

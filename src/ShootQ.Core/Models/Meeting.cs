@@ -19,5 +19,6 @@ namespace ShootQ.Core.Models
         public DateRange Scheduled { get; private set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

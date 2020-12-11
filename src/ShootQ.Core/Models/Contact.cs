@@ -13,5 +13,6 @@ namespace ShootQ.Core.Models
         }
 
         public Guid ContactId { get; private set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

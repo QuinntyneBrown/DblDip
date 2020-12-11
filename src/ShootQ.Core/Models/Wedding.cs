@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace ShootQ.Core.Models
 {
-    public class Wedding : PhotographyJob
+    public class Wedding : PhotographyProject
     {
         protected override void When(dynamic @event) => When(@event);
 

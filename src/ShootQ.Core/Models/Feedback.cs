@@ -29,5 +29,6 @@ namespace ShootQ.Core.Models
         public Guid FeedbackId { get; private set; }
         public Email RespondentEmail { get; private set; }
         public string Description { get; private set; }
+        public DateTime? Deleted { get; private set; }
     }
 }

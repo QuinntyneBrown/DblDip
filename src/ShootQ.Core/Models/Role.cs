@@ -14,6 +14,11 @@ namespace ShootQ.Core.Models
         {
             Apply(new RoleCreated(Guid.NewGuid(), name));
         }
+
+        public Role(Guid roleId, string name)
+        {
+            Apply(new RoleCreated(roleId, name));
+        }
         public void When(RoleCreated roleCreated)
         {
             RoleId = roleCreated.RoleId;

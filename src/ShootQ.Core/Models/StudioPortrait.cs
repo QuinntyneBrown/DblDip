@@ -3,7 +3,7 @@ using System;
 
 namespace ShootQ.Core.Models
 {
-    public class StudioPortrait : PhotographyJob
+    public class StudioPortrait : PhotographyProject
     {
         protected override void When(dynamic @event) => When(@event);
 

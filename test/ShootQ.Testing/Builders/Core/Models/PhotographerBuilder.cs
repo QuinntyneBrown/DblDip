@@ -1,4 +1,5 @@
 using ShootQ.Core.Models;
+using ShootQ.Core.ValueObjects;
 
 namespace ShootQ.Testing.Builders.Core.Models
 {
@@ -8,7 +9,7 @@ namespace ShootQ.Testing.Builders.Core.Models
 
         public static Photographer WithDefaults()
         {
-            return new Photographer();
+            return new Photographer("Test", (Email)"test@test.com");
         }
 
         public PhotographerBuilder()
