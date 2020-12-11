@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="9.3.0" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="Microsoft.AspNetCore.SignalR.Core" Version="1.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj" />
+    <ProjectReference Include="..\DblDip.Core\DblDip.Core.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.EventStore\BuildingBlocks.EventStore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Dashboards\" />
+    <Folder Include="Features\Leads\" />
+    <Folder Include="Features\DigitalAssets\" />
+    <Folder Include="Features\Search\" />
+    <Folder Include="Features\Orders\" />
+    <Folder Include="IntegrationEvents\" />
+  </ItemGroup>
+
+</Project>

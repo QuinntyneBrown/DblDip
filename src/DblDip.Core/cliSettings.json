@@ -1,0 +1,8 @@
+{ 
+  "RootNamespace": "DblDip",
+  "Namespace": "DblDip.Core",
+  "Domain": "DblDip.Domain",
+  "Api": "DblDip.Api",
+  "Core": "DblDip.Core",
+  "EntityIdDataType": "Guid"
+}

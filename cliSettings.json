@@ -2,8 +2,8 @@
   "Projects": "",
   "DatabaseConnectionPropertyKey": "",
   "DatabaseSettingsKey": "",
-  "SolutionName": "ShootQ.sln",
-  "RootNamespace": "ShootQ",
+  "SolutionName": "DblDip.sln",
+  "RootNamespace": "DblDip",
   "SourceFolder": "src",
   "TestFolder":  "test"
 }

@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>DblDip.Core</AssemblyName>
+    <RootNamespace>DblDip.Core</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.EventStore\BuildingBlocks.EventStore.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.GeoLocation\BuildingBlocks.GeoLocation.csproj" />
+    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Stripe\BuildingBlocks.Stripe.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="CSharpFunctionalExtensions" Version="2.13.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="5.0.0" />
+    <PackageReference Include="NetTopologySuite" Version="2.1.0" />
+  </ItemGroup>
+
+</Project>

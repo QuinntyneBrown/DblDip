@@ -1,1 +1,1 @@
-{"RootNamespace":"ShootQ","Namespace":"BuildingBlocks.EventStore","Domain":"ShootQ.Domain","Api":"ShootQ.Api","Core":"ShootQ.Core","EntityIdDataType":"Guid"}
+{"RootNamespace":"DblDip","Namespace":"BuildingBlocks.EventStore","Domain":"DblDip.Domain","Api":"DblDip.Api","Core":"DblDip.Core","EntityIdDataType":"Guid"}
