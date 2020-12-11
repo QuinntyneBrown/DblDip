@@ -1,22 +1,14 @@
 using BuildingBlocks.Abstractions;
-using Microsoft.AspNetCore.Http;
-using ShootQ.Core.DomainEvents;
-using System;
-using System.Threading;
-using BuildingBlocks.Abstractions;
 using BuildingBlocks.Core;
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Net.Http.Headers;
-using ShootQ.Core.Models;
+using ShootQ.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace ShootQ.Core.Models
 {
@@ -93,6 +85,7 @@ namespace ShootQ.Core.Models
             }
 
             await context.SaveChangesAsync(cancellationToken);
+
             return digitalAssets;
         }
     }

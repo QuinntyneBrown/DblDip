@@ -13,8 +13,6 @@ namespace ShootQ.Core.Models
 
         }
 
-
-
         public void When(PhotoGallerySent sent)
         {
 

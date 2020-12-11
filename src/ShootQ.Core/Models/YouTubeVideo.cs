@@ -44,6 +44,8 @@ namespace ShootQ.Core.Models
         }
 
         public Guid YouTubeVideoId { get; private set; }
+        public string NativeYouTubeVideoId { get; private set; }
+        public string Description { get; set; }
         public DateTime? Deleted { get; private set; }
     }
 }

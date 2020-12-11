@@ -37,7 +37,7 @@ namespace ShootQ.Core.Models
 
         public Guid PhotographerId { get; private set; }
         public Guid CompanyId { get; private set; }
-        public ICollection<Guid> Services { get; private set; }
+        public ICollection<Guid> ServiceIds { get; private set; }
         public Location PrimaryLocation { get; set; }
     }
 }

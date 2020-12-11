@@ -6,14 +6,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './_shared/shared.module';
 import { CoreModule } from './_core/core.module';
 import { AppContainerComponent } from './app-container.component';
-import { LoginModule } from './login/login.module';
-import { HomeModule } from './home/home.module';
+import { LoginModule } from './public/login/login.module';
+import { HomeModule } from './public/home/home.module';
 import { baseUrl } from './_core/constants';
+import { HeaderComponent } from './public/_shared/header/header.component';
+import { PortfolioComponent } from './public/portfolio/portfolio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AppContainerComponent
+    AppContainerComponent,
+    HeaderComponent,
+    PortfolioComponent
   ],
   imports: [
     SharedModule,
