@@ -15,9 +15,9 @@ namespace ShootQ.Core.Interfaces
             return Scheduled.Overlap(scheduled.Scheduled);
         }
     }
-    public interface IScheduledAggregate : IScheduled
+    public interface IScheduledAggregate : IScheduled, IAggregate
     {
-        void Apply(object @event);
+        
 
         public void Reschedule(DateRange newSchedule)
         {

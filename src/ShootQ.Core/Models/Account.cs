@@ -30,7 +30,7 @@ namespace ShootQ.Core.Models
         public Guid AccountId { get; private set; }
         public ICollection<Guid> ProfileIds { get; private set; }
         public Guid DefaultProfileId { get; private set; }
-        public string Name { get; set; }
+        public string Name { get; private set; }
         public Guid AccountHolderUserId { get; private set; }
         public DateTime? Deleted { get; private set; }
     }

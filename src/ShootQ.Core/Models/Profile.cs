@@ -11,6 +11,12 @@ namespace ShootQ.Core.Models
         {
             Apply(profileCreated);
         }
+
+        public void ChangeAvatar(Guid avatarDigitalAssetId)
+        {
+            Apply(new AvatarChanged(avatarDigitalAssetId));
+        }
+
         public void When(ProfileCreated profileCreated)
         {
             ProfileId = profileCreated.ProfileId;
@@ -18,11 +24,15 @@ namespace ShootQ.Core.Models
             Email = profileCreated.Email;
         }
 
+        public void When(AvatarChanged avatarChanged)
+        {
+            AvatarDigitalAssetId = avatarChanged.AvatarDigitalAssetId;
+        }
+
         protected override void EnsureValidState()
         {
 
         }
-
 
         public Guid AccountId { get; private set; }
         public Guid ProfileId { get; private set; }

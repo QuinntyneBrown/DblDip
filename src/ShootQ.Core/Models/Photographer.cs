@@ -1,6 +1,7 @@
 using ShootQ.Core.DomainEvents;
 using ShootQ.Core.ValueObjects;
 using System;
+using System.Collections.Generic;
 
 namespace ShootQ.Core.Models
 {
@@ -19,13 +20,24 @@ namespace ShootQ.Core.Models
             PhotographerId = photographerCreated.PhotographerId;
         }
 
+        public void When(PhotographerCompanyAdded photographerCompanyAdded)
+        {
+            CompanyId = photographerCompanyAdded.CompanyId;
+        }
+
         protected override void EnsureValidState()
         {
 
         }
 
-        public Guid PhotographerId { get; private set; }
+        public void AddCompany(Guid companyId)
+        {
+            Apply(new PhotographerCompanyAdded(companyId));
+        }
 
+        public Guid PhotographerId { get; private set; }
+        public Guid CompanyId { get; private set; }
+        public ICollection<Guid> Services { get; private set; }
         public Location PrimaryLocation { get; set; }
     }
 }

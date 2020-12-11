@@ -28,6 +28,11 @@ namespace ShootQ.Core.Models
 
         }
 
+        public void When(CompanyLogoChanged companyLogoChanged)
+        {
+            LogoDigitalAssetId = companyLogoChanged.LogoDigitalAssetId;
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -43,7 +48,13 @@ namespace ShootQ.Core.Models
             Apply(new CompanyUpdated(value));
         }
 
+        public void ChangeLogo(Guid logoDigitalAssetId)
+        {
+            Apply(new CompanyLogoChanged(logoDigitalAssetId));
+        }
+
         public Guid CompanyId { get; private set; }
+        public Guid LogoDigitalAssetId { get; private set; }
         public Url Url { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
