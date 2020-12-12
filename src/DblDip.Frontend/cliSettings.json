@@ -1,8 +1,8 @@
 {
-  "RootNamespace": "ShootQ",
-  "Namespace": "ShootQ.Frontend",
-  "Domain": "ShootQ.Domain",
-  "Api": "ShootQ.Api",
-  "Core": "ShootQ.Core",
+  "RootNamespace": "DblDip",
+  "Namespace": "DblDip.Frontend",
+  "Domain": "DblDip.Domain",
+  "Api": "DblDip.Api",
+  "Core": "DblDip.Core",
   "EntityIdDataType": "Guid"
 }
