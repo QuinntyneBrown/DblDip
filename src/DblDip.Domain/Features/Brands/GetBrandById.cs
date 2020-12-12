@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Brands
 {
     public class GetBrandById
     {
-        public class Request : IRequest<Response> {  
-            public Guid BrandId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid BrandId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Brands
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var brand = await _context.FindAsync<Brand>(request.BrandId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Brand = brand.ToDto()
                 };
             }

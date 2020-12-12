@@ -3,7 +3,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class EditedPhoto: Service
+    public class EditedPhoto : Service
     {
         public EditedPhoto()
             : base(default, default, default)

@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateSystemAdministrator.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateSystemAdministrator.Response>> Create([FromBody]CreateSystemAdministrator.Request request)
+        public async Task<ActionResult<CreateSystemAdministrator.Response>> Create([FromBody] CreateSystemAdministrator.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveSystemAdministrator.Request request)
+        public async Task Remove([FromRoute] RemoveSystemAdministrator.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetSystemAdministratorById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetSystemAdministratorById.Response>> GetById([FromRoute]GetSystemAdministratorById.Request request)
+        public async Task<ActionResult<GetSystemAdministratorById.Response>> GetById([FromRoute] GetSystemAdministratorById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetSystemAdministrators.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetSystemAdministrators.Response>> Get()
-            => await _mediator.Send(new GetSystemAdministrators.Request());           
+            => await _mediator.Send(new GetSystemAdministrators.Request());
     }
 }

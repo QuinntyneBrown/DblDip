@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Venues
 {
     public class GetVenueById
     {
-        public class Request : IRequest<Response> {  
-            public Guid VenueId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid VenueId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Venues
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var venue = await _context.FindAsync<Venue>(request.VenueId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Venue = venue.ToDto()
                 };
             }

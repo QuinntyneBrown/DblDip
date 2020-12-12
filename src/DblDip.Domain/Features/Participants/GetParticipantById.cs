@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Participants
 {
     public class GetParticipantById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ParticipantId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ParticipantId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Participants
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var participant = await _context.FindAsync<Participant>(request.ParticipantId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Participant = participant.ToDto()
                 };
             }

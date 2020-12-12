@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Invoices
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public InvoiceDto Invoice { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Invoices
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var invoice = await _context.FindAsync<Invoice>(request.Invoice.InvoiceId);
 

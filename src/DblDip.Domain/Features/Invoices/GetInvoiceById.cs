@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Invoices
 {
     public class GetInvoiceById
     {
-        public class Request : IRequest<Response> {  
-            public Guid InvoiceId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid InvoiceId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Invoices
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var invoice = await _context.FindAsync<Invoice>(request.InvoiceId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Invoice = invoice.ToDto()
                 };
             }

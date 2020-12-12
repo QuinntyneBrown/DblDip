@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateCard.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateCard.Response>> Create([FromBody]CreateCard.Request request)
+        public async Task<ActionResult<CreateCard.Response>> Create([FromBody] CreateCard.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveCard.Request request)
+        public async Task Remove([FromRoute] RemoveCard.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCardById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetCardById.Response>> GetById([FromRoute]GetCardById.Request request)
+        public async Task<ActionResult<GetCardById.Response>> GetById([FromRoute] GetCardById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCards.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetCards.Response>> Get()
-            => await _mediator.Send(new GetCards.Request());           
+            => await _mediator.Send(new GetCards.Request());
     }
 }

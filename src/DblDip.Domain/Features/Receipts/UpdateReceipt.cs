@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Receipts
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public ReceiptDto Receipt { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Receipts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var receipt = await _context.FindAsync<Receipt>(request.Receipt.ReceiptId);
 

@@ -9,13 +9,13 @@ namespace DblDip.Core.Models
         protected override void When(dynamic @event) => When(@event);
 
         public Client(string name, Email email)
-            :base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
+            : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
         {
             Apply(new ClientCreated(ProfileId));
         }
         public void When(ClientCreated clientCreated)
         {
-            ClientId = clientCreated.ClientId;            
+            ClientId = clientCreated.ClientId;
         }
 
         protected override void EnsureValidState()

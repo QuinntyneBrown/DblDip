@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateProjectManager.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateProjectManager.Response>> Create([FromBody]CreateProjectManager.Request request)
+        public async Task<ActionResult<CreateProjectManager.Response>> Create([FromBody] CreateProjectManager.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveProjectManager.Request request)
+        public async Task Remove([FromRoute] RemoveProjectManager.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetProjectManagerById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetProjectManagerById.Response>> GetById([FromRoute]GetProjectManagerById.Request request)
+        public async Task<ActionResult<GetProjectManagerById.Response>> GetById([FromRoute] GetProjectManagerById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetProjectManagers.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetProjectManagers.Response>> Get()
-            => await _mediator.Send(new GetProjectManagers.Request());           
+            => await _mediator.Send(new GetProjectManagers.Request());
     }
 }

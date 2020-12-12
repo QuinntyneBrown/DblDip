@@ -30,7 +30,7 @@ namespace DblDip.Core.Models
 
         protected override void EnsureValidState()
         {
-            
+
         }
 
         public Guid DigitalAssetId { get; private set; }

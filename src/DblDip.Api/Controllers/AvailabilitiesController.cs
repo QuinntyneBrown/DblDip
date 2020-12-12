@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateAvailability.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateAvailability.Response>> Create([FromBody]CreateAvailability.Request request)
+        public async Task<ActionResult<CreateAvailability.Response>> Create([FromBody] CreateAvailability.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateAvailability.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateAvailability.Response>> Update([FromBody]UpdateAvailability.Request request)
+        public async Task<ActionResult<UpdateAvailability.Response>> Update([FromBody] UpdateAvailability.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveAvailability.Request request)
+        public async Task Remove([FromRoute] RemoveAvailability.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetAvailabilityById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetAvailabilityById.Response>> GetById([FromRoute]GetAvailabilityById.Request request)
+        public async Task<ActionResult<GetAvailabilityById.Response>> GetById([FromRoute] GetAvailabilityById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetAvailabilities.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetAvailabilities.Response>> Get()
-            => await _mediator.Send(new GetAvailabilities.Request());           
+            => await _mediator.Send(new GetAvailabilities.Request());
     }
 }

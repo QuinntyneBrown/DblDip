@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Offers
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public OfferDto Offer { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Offers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var offer = await _context.FindAsync<Offer>(request.Offer.OfferId);
 

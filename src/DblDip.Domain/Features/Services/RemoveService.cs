@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Services
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid ServiceId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Services
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var service = await _context.FindAsync<Service>(request.ServiceId);
 

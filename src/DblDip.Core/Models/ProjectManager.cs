@@ -5,7 +5,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class ProjectManager: Profile
+    public class ProjectManager : Profile
     {
         public ProjectManager(string name, Email email)
             : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))

@@ -10,7 +10,7 @@ namespace DblDip.Domain.Features.Availabilities
 {
     public class GetAvailabilities
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace DblDip.Domain.Features.Availabilities
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Availabilities = _context.Set<Availability>().Select(x => x.ToDto()).ToList()
                 };
             }

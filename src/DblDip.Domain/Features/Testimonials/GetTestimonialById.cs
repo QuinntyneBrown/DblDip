@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Testimonials
 {
     public class GetTestimonialById
     {
-        public class Request : IRequest<Response> {  
-            public Guid TestimonialId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid TestimonialId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Testimonials
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var testimonial = await _context.FindAsync<Testimonial>(request.TestimonialId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Testimonial = testimonial.ToDto()
                 };
             }

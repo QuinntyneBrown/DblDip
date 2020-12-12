@@ -16,7 +16,7 @@ namespace DblDip.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<Search.Response>> Search([FromRoute]Search.Request request)
+        public async Task<ActionResult<Search.Response>> Search([FromRoute] Search.Request request)
         {
             return await _mediator.Send(request);
         }

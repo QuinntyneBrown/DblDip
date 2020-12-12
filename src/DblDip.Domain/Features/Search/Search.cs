@@ -18,11 +18,13 @@ namespace DblDip.Domain.Features.Search
         {
             private readonly IAppDbContext _context;
 
-            public Handler(IAppDbContext context) {            
+            public Handler(IAppDbContext context)
+            {
                 _context = context;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 return new Response(null);
             }

@@ -5,7 +5,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Company: AggregateRoot
+    public class Company : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Domain.Dtos
 
         public static WeddingQuoteDto WithDefaults()
         {
-            return new WeddingQuoteDto(default,default,default);
+            return new WeddingQuoteDto(default, default, default);
         }
 
         public WeddingQuoteDtoBuilder()

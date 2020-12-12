@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Questionnaires
 {
     public class GetQuestionnaireById
     {
-        public class Request : IRequest<Response> {  
-            public Guid QuestionnaireId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid QuestionnaireId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Questionnaires
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var questionnaire = await _context.FindAsync<Questionnaire>(request.QuestionnaireId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Questionnaire = questionnaire.ToDto()
                 };
             }

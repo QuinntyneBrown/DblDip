@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Points
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid PointId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Points
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var point = await _context.FindAsync<Point>(request.PointId);
 

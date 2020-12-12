@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Receipts
 {
     public class GetReceiptById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ReceiptId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ReceiptId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Receipts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var receipt = await _context.FindAsync<Receipt>(request.ReceiptId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Receipt = receipt.ToDto()
                 };
             }

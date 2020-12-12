@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.YouTubeVideos
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid YouTubeVideoId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.YouTubeVideos
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var youTubeVideo = await _context.FindAsync<YouTubeVideo>(request.YouTubeVideoId);
 

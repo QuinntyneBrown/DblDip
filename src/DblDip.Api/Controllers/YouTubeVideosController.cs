@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateYouTubeVideo.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateYouTubeVideo.Response>> Create([FromBody]CreateYouTubeVideo.Request request)
+        public async Task<ActionResult<CreateYouTubeVideo.Response>> Create([FromBody] CreateYouTubeVideo.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveYouTubeVideo.Request request)
+        public async Task Remove([FromRoute] RemoveYouTubeVideo.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetYouTubeVideoById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetYouTubeVideoById.Response>> GetById([FromRoute]GetYouTubeVideoById.Request request)
+        public async Task<ActionResult<GetYouTubeVideoById.Response>> GetById([FromRoute] GetYouTubeVideoById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetYouTubeVideos.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetYouTubeVideos.Response>> Get()
-            => await _mediator.Send(new GetYouTubeVideos.Request());           
+            => await _mediator.Send(new GetYouTubeVideos.Request());
     }
 }

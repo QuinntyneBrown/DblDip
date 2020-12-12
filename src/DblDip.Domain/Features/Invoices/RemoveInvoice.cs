@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Invoices
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid InvoiceId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Invoices
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var invoice = await _context.FindAsync<Invoice>(request.InvoiceId);
 

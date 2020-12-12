@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Questionnaires
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid QuestionnaireId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Questionnaires
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var questionnaire = await _context.FindAsync<Questionnaire>(request.QuestionnaireId);
 

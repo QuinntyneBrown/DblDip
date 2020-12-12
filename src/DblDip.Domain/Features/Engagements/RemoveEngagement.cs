@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Engagements
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid EngagementId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Engagements
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var engagement = await _context.FindAsync<Engagement>(request.EngagementId);
 

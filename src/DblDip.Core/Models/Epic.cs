@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
-    public class Epic: AggregateRoot
+    public class Epic : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

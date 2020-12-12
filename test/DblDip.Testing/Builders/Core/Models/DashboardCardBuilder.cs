@@ -9,7 +9,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static DashboardCard WithDefaults()
         {
-            return new DashboardCard(default,default);
+            return new DashboardCard(default, default);
         }
 
         public DashboardCardBuilder()

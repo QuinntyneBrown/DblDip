@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Availabilities
 {
     public class GetAvailabilityById
     {
-        public class Request : IRequest<Response> {  
-            public Guid AvailabilityId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid AvailabilityId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Availabilities
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var availability = await _context.FindAsync<Availability>(request.AvailabilityId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Availability = availability.ToDto()
                 };
             }

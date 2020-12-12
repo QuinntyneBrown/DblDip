@@ -3,7 +3,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class FamilyPortrait: PhotographyProject 
+    public class FamilyPortrait : PhotographyProject
     {
         protected override void When(dynamic @event) => When(@event);
 

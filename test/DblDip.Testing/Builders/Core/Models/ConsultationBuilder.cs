@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Consultation WithDefaults()
         {
-            return new Consultation(default,default,default);
+            return new Consultation(default, default, default);
         }
 
         public ConsultationBuilder()

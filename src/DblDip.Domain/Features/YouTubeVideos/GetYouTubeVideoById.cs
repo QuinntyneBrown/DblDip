@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.YouTubeVideos
 {
     public class GetYouTubeVideoById
     {
-        public class Request : IRequest<Response> {  
-            public Guid YouTubeVideoId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid YouTubeVideoId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.YouTubeVideos
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var youTubeVideo = await _context.FindAsync<YouTubeVideo>(request.YouTubeVideoId);
 
-                return new Response() { 
+                return new Response()
+                {
                     YouTubeVideo = youTubeVideo.ToDto()
                 };
             }

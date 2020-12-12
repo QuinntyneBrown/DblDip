@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Availabilities
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public AvailabilityDto Availability { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Availabilities
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var availability = await _context.FindAsync<Availability>(request.Availability.AvailabilityId);
 

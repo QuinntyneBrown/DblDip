@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.ProjectManagers
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public ProjectManagerDto ProjectManager { get; set; }
         }
 
@@ -33,9 +34,10 @@ namespace DblDip.Domain.Features.ProjectManagers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
-                var projectManager = new ProjectManager(default,default);
+                var projectManager = new ProjectManager(default, default);
 
                 _context.Store(projectManager);
 

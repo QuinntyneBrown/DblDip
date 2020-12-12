@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
-    public class Account: AggregateRoot
+    public class Account : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
         public Account(ICollection<Guid> profileIds, Guid defaultProfileId, string name, Guid accountHolderUserI)

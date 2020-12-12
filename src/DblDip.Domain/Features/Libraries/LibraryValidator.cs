@@ -6,7 +6,7 @@ namespace DblDip.Domain.Features.Libraries
     {
         public LibraryValidator()
         {
-            
+
         }
     }
 }

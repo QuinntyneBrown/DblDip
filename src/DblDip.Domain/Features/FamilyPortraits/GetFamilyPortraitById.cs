@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.FamilyPortraits
 {
     public class GetFamilyPortraitById
     {
-        public class Request : IRequest<Response> {  
-            public Guid FamilyPortraitId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid FamilyPortraitId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.FamilyPortraits
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var familyPortrait = await _context.FindAsync<FamilyPortrait>(request.FamilyPortraitId);
 
-                return new Response() { 
+                return new Response()
+                {
                     FamilyPortrait = familyPortrait.ToDto()
                 };
             }

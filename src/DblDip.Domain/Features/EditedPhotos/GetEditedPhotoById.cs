@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.EditedPhotos
 {
     public class GetEditedPhotoById
     {
-        public class Request : IRequest<Response> {  
-            public Guid EditedPhotoId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid EditedPhotoId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.EditedPhotos
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var editedPhoto = await _context.FindAsync<EditedPhoto>(request.EditedPhotoId);
 
-                return new Response() { 
+                return new Response()
+                {
                     EditedPhoto = editedPhoto.ToDto()
                 };
             }

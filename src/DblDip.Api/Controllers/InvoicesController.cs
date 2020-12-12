@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateInvoice.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateInvoice.Response>> Create([FromBody]CreateInvoice.Request request)
+        public async Task<ActionResult<CreateInvoice.Response>> Create([FromBody] CreateInvoice.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveInvoice.Request request)
+        public async Task Remove([FromRoute] RemoveInvoice.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetInvoiceById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetInvoiceById.Response>> GetById([FromRoute]GetInvoiceById.Request request)
+        public async Task<ActionResult<GetInvoiceById.Response>> GetById([FromRoute] GetInvoiceById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetInvoices.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetInvoices.Response>> Get()
-            => await _mediator.Send(new GetInvoices.Request());           
+            => await _mediator.Send(new GetInvoices.Request());
     }
 }

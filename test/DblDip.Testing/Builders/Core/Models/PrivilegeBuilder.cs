@@ -9,7 +9,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Privilege WithDefaults()
         {
-            return new Privilege(default,default);
+            return new Privilege(default, default);
         }
 
         public PrivilegeBuilder()

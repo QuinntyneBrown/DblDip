@@ -4,7 +4,7 @@ using DblDip.Core.ValueObjects;
 
 namespace DblDip.Core.Models
 {
-    public class Venue: AggregateRoot
+    public class Venue : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

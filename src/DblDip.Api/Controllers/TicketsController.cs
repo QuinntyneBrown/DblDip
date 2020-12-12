@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateTicket.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateTicket.Response>> Create([FromBody]CreateTicket.Request request)
+        public async Task<ActionResult<CreateTicket.Response>> Create([FromBody] CreateTicket.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateTicket.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateTicket.Response>> Update([FromBody]UpdateTicket.Request request)
+        public async Task<ActionResult<UpdateTicket.Response>> Update([FromBody] UpdateTicket.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveTicket.Request request)
+        public async Task Remove([FromRoute] RemoveTicket.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetTicketById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetTicketById.Response>> GetById([FromRoute]GetTicketById.Request request)
+        public async Task<ActionResult<GetTicketById.Response>> GetById([FromRoute] GetTicketById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetTickets.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetTickets.Response>> Get()
-            => await _mediator.Send(new GetTickets.Request());           
+            => await _mediator.Send(new GetTickets.Request());
     }
 }

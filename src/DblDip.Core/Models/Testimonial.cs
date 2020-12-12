@@ -4,7 +4,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Testimonial: AggregateRoot
+    public class Testimonial : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

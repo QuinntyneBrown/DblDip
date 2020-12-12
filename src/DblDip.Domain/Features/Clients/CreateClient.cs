@@ -22,7 +22,7 @@ namespace DblDip.Domain.Features.Clients
         public class Request : IRequest<Response>
         {
             public string Name { get; set; }
-            public Email Email { get; set; }            
+            public Email Email { get; set; }
         }
 
         public class Response

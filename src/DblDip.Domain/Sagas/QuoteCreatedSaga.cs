@@ -1,12 +1,15 @@
 using BuildingBlocks.Abstractions;
+using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
 using MediatR;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace DblDip.Domain.Sagas
 {
-    internal class QuoteCreatedSaga : INotificationHandler<QuoteCreated>
+    public class QuoteCreatedSaga : INotificationHandler<QuoteCreated>
     {
         private readonly IAppDbContext _context;
 
@@ -15,9 +18,29 @@ namespace DblDip.Domain.Sagas
             _context = context;
         }
 
-        public async Task Handle(QuoteCreated notification, CancellationToken cancellationToken)
+        public async System.Threading.Tasks.Task Handle(QuoteCreated notification, CancellationToken cancellationToken)
         {
-            
+            var primaryParticpantEmail = notification.Quote.BillToEmail;
+
+            var user = _context.Set<User>().SingleOrDefault(x => x.Username == primaryParticpantEmail);
+
+            user ??= new User(primaryParticpantEmail);
+
+            if (user.DomainEvents.Any())
+            {
+                var profile = new Lead(primaryParticpantEmail);
+
+                var account = new Account(new List<Guid> { profile.ProfileId }, profile.ProfileId, "", user.UserId);
+
+                _context.Store(profile);
+
+                _context.Store(account);
+
+                _context.Store(user);
+
+                await _context.SaveChangesAsync(default);
+            }
+
         }
     }
 }

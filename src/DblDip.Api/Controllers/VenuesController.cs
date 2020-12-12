@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateVenue.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateVenue.Response>> Create([FromBody]CreateVenue.Request request)
+        public async Task<ActionResult<CreateVenue.Response>> Create([FromBody] CreateVenue.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveVenue.Request request)
+        public async Task Remove([FromRoute] RemoveVenue.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetVenueById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetVenueById.Response>> GetById([FromRoute]GetVenueById.Request request)
+        public async Task<ActionResult<GetVenueById.Response>> GetById([FromRoute] GetVenueById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetVenues.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetVenues.Response>> Get()
-            => await _mediator.Send(new GetVenues.Request());           
+            => await _mediator.Send(new GetVenues.Request());
     }
 }

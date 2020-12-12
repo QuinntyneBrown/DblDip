@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Blogs
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public BlogDto Blog { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Blogs
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var blog = await _context.FindAsync<Blog>(request.Blog.BlogId);
 

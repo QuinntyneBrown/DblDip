@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Posts
 {
     public class GetPostById
     {
-        public class Request : IRequest<Response> {  
-            public Guid PostId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid PostId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Posts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var post = await _context.FindAsync<Post>(request.PostId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Post = post.ToDto()
                 };
             }

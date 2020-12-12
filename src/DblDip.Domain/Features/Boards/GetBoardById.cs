@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Boards
 {
     public class GetBoardById
     {
-        public class Request : IRequest<Response> {  
-            public Guid BoardId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid BoardId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Boards
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var board = await _context.FindAsync<Board>(request.BoardId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Board = board.ToDto()
                 };
             }

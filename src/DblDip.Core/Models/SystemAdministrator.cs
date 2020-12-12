@@ -5,7 +5,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class SystemAdministrator: Profile
+    public class SystemAdministrator : Profile
     {
         protected override void When(dynamic @event) => When(@event);
 

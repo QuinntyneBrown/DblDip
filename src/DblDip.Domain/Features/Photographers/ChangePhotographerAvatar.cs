@@ -20,7 +20,8 @@ namespace DblDip.Domain.Features.Photographers
             }
         }
 
-        public class Request : IRequest<Response> {
+        public class Request : IRequest<Response>
+        {
             public Guid PhotographerId { get; set; }
         }
 
@@ -34,12 +35,14 @@ namespace DblDip.Domain.Features.Photographers
             private readonly IAppDbContext _context;
             private readonly IHttpContextAccessor _httpContextAccessor;
 
-            public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor) {            
+            public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor)
+            {
                 _context = context;
                 _httpContextAccessor = httpContextAccessor;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var photographer = await _context.FindAsync<Photographer>(request.PhotographerId);
 

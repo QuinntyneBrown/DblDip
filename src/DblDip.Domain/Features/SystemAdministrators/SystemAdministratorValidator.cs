@@ -6,7 +6,7 @@ namespace DblDip.Domain.Features.SystemAdministrators
     {
         public SystemAdministratorValidator()
         {
-            
+
         }
     }
 }

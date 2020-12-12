@@ -1,4 +1,4 @@
 namespace DblDip.Core.DomainEvents
 {
-    public record PhotoGallerySent (string Value);
+    public record PhotoGallerySent(string Value);
 }

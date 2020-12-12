@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateBoard.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateBoard.Response>> Create([FromBody]CreateBoard.Request request)
+        public async Task<ActionResult<CreateBoard.Response>> Create([FromBody] CreateBoard.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateBoard.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateBoard.Response>> Update([FromBody]UpdateBoard.Request request)
+        public async Task<ActionResult<UpdateBoard.Response>> Update([FromBody] UpdateBoard.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveBoard.Request request)
+        public async Task Remove([FromRoute] RemoveBoard.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetBoardById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetBoardById.Response>> GetById([FromRoute]GetBoardById.Request request)
+        public async Task<ActionResult<GetBoardById.Response>> GetById([FromRoute] GetBoardById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetBoards.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetBoards.Response>> Get()
-            => await _mediator.Send(new GetBoards.Request());           
+            => await _mediator.Send(new GetBoards.Request());
     }
 }

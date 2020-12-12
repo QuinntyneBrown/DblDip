@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Tickets
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public TicketDto Ticket { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Tickets
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var ticket = await _context.FindAsync<Ticket>(request.Ticket.TicketId);
 

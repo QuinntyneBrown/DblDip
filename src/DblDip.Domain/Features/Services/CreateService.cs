@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Services
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public ServiceDto Service { get; set; }
         }
 
@@ -33,9 +34,10 @@ namespace DblDip.Domain.Features.Services
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
-                var service = new Service(default, default,default);
+                var service = new Service(default, default, default);
 
                 _context.Store(service);
 

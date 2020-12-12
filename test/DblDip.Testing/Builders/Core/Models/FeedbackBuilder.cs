@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Feedback WithDefaults()
         {
-            return new Feedback(default,default);
+            return new Feedback(default, default);
         }
 
         public FeedbackBuilder()

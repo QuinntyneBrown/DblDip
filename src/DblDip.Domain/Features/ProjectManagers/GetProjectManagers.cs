@@ -10,7 +10,7 @@ namespace DblDip.Domain.Features.ProjectManagers
 {
     public class GetProjectManagers
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace DblDip.Domain.Features.ProjectManagers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     ProjectManagers = _context.Set<ProjectManager>().Select(x => x.ToDto()).ToList()
                 };
             }

@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateReceipt.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateReceipt.Response>> Create([FromBody]CreateReceipt.Request request)
+        public async Task<ActionResult<CreateReceipt.Response>> Create([FromBody] CreateReceipt.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateReceipt.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateReceipt.Response>> Update([FromBody]UpdateReceipt.Request request)
+        public async Task<ActionResult<UpdateReceipt.Response>> Update([FromBody] UpdateReceipt.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveReceipt.Request request)
+        public async Task Remove([FromRoute] RemoveReceipt.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetReceiptById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetReceiptById.Response>> GetById([FromRoute]GetReceiptById.Request request)
+        public async Task<ActionResult<GetReceiptById.Response>> GetById([FromRoute] GetReceiptById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetReceipts.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetReceipts.Response>> Get()
-            => await _mediator.Send(new GetReceipts.Request());           
+            => await _mediator.Send(new GetReceipts.Request());
     }
 }

@@ -19,7 +19,8 @@ namespace DblDip.Domain.Features.Photographers
             }
         }
 
-        public class Request : IRequest<Unit> {
+        public class Request : IRequest<Unit>
+        {
             public Guid PhotographerId { get; set; }
             public CompanyDto Company { get; set; }
         }
@@ -28,11 +29,13 @@ namespace DblDip.Domain.Features.Photographers
         {
             private readonly IAppDbContext _context;
 
-            public Handler(IAppDbContext context) {            
+            public Handler(IAppDbContext context)
+            {
                 _context = context;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
                 var photographer = await _context.FindAsync<Photographer>(request.PhotographerId);
 
                 var company = request.Company.CompanyId != default
@@ -42,7 +45,7 @@ namespace DblDip.Domain.Features.Photographers
                 photographer.AddCompany(company.CompanyId);
 
                 _context.Store(photographer);
-                
+
                 _context.Store(company);
 
                 await _context.SaveChangesAsync(cancellationToken);

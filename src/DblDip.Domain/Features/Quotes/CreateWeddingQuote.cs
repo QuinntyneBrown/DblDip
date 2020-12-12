@@ -3,12 +3,12 @@ using FluentValidation;
 using MediatR;
 using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
-using DblDip.Domain.Features.WeddingQuotes;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 using static DblDip.Core.Constants.Rates;
 using DblDip.Domain.IntegrationEvents;
+using DblDip.Domain.Features.WeddingQuotes;
 
 namespace DblDip.Domain.Features.Quotes
 {

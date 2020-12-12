@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Tickets
 {
     public class GetTicketById
     {
-        public class Request : IRequest<Response> {  
-            public Guid TicketId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid TicketId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Tickets
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var ticket = await _context.FindAsync<Ticket>(request.TicketId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Ticket = ticket.ToDto()
                 };
             }

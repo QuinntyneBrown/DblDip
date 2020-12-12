@@ -5,8 +5,8 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public abstract class Profile: AggregateRoot
-    {        
+    public abstract class Profile : AggregateRoot
+    {
         public Profile(ProfileCreated profileCreated)
         {
             Apply(profileCreated);

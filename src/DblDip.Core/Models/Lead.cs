@@ -6,11 +6,12 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Lead : AggregateRoot
+    public class Lead : Profile
     {
-        public Lead()
+        public Lead(Email email)
+            : base(new ProfileCreated(Guid.NewGuid(), null, email, nameof(Lead), typeof(Lead).AssemblyQualifiedName))
         {
-            Apply(new LeadCreated(Guid.NewGuid()));
+            Apply(new LeadCreated(base.ProfileId));
         }
 
         protected override void When(dynamic @event) => When(@event);

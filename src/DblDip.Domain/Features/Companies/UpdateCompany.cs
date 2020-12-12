@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Companies
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public CompanyDto Company { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Companies
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var company = await _context.FindAsync<Company>(request.Company.CompanyId);
 

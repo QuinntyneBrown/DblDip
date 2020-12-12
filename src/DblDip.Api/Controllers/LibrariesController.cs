@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateLibrary.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateLibrary.Response>> Create([FromBody]CreateLibrary.Request request)
+        public async Task<ActionResult<CreateLibrary.Response>> Create([FromBody] CreateLibrary.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveLibrary.Request request)
+        public async Task Remove([FromRoute] RemoveLibrary.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetLibraryById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetLibraryById.Response>> GetById([FromRoute]GetLibraryById.Request request)
+        public async Task<ActionResult<GetLibraryById.Response>> GetById([FromRoute] GetLibraryById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetLibraries.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetLibraries.Response>> Get()
-            => await _mediator.Send(new GetLibraries.Request());           
+            => await _mediator.Send(new GetLibraries.Request());
     }
 }

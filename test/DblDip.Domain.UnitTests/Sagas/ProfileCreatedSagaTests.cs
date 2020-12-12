@@ -16,7 +16,7 @@ namespace DblDip.Domain.UnitTests.Sagas
             var context = AppDbContextBuilder.WithDefaults();
 
             var profile = ClientBuilder.WithDefaults();
-            
+
             var sut = new ProfileCreatedSaga(context);
 
             await sut.Handle(new ProfileCreated(profile), default);

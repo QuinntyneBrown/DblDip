@@ -6,7 +6,7 @@ namespace DblDip.Domain.Features.Offers
     {
         public OfferValidator()
         {
-            
+
         }
     }
 }

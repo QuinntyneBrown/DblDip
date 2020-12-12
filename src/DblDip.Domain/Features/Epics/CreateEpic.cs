@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Epics
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public EpicDto Epic { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Epics
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var epic = new Epic();
 

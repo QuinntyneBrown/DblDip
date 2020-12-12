@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.TimeEntries
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public TimeEntryDto TimeEntry { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.TimeEntries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var timeEntry = new TimeEntry();
 

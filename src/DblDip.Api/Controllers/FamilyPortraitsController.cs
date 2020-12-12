@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateFamilyPortrait.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateFamilyPortrait.Response>> Create([FromBody]CreateFamilyPortrait.Request request)
+        public async Task<ActionResult<CreateFamilyPortrait.Response>> Create([FromBody] CreateFamilyPortrait.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveFamilyPortrait.Request request)
+        public async Task Remove([FromRoute] RemoveFamilyPortrait.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetFamilyPortraitById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetFamilyPortraitById.Response>> GetById([FromRoute]GetFamilyPortraitById.Request request)
+        public async Task<ActionResult<GetFamilyPortraitById.Response>> GetById([FromRoute] GetFamilyPortraitById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetFamilyPortraits.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetFamilyPortraits.Response>> Get()
-            => await _mediator.Send(new GetFamilyPortraits.Request());           
+            => await _mediator.Send(new GetFamilyPortraits.Request());
     }
 }

@@ -4,7 +4,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Service: AggregateRoot
+    public class Service : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -43,7 +43,7 @@ namespace DblDip.Core.Models
 
         public void Update(string value)
         {
-            
+
         }
 
         public void Remove(DateTime deleted)

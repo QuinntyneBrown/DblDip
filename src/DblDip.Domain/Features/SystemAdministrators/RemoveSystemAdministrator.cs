@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.SystemAdministrators
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid SystemAdministratorId { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.SystemAdministrators
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var systemAdministrator = await _context.FindAsync<SystemAdministrator>(request.SystemAdministratorId);
 

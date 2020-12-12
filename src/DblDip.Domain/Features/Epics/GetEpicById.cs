@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Epics
 {
     public class GetEpicById
     {
-        public class Request : IRequest<Response> {  
-            public Guid EpicId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid EpicId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Epics
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var epic = await _context.FindAsync<Epic>(request.EpicId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Epic = epic.ToDto()
                 };
             }

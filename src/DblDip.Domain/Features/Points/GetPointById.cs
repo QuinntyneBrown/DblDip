@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Points
 {
     public class GetPointById
     {
-        public class Request : IRequest<Response> {  
-            public Guid PointId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid PointId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Points
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var point = await _context.FindAsync<Point>(request.PointId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Point = point.ToDto()
                 };
             }

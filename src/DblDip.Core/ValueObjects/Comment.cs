@@ -24,7 +24,7 @@ namespace DblDip.Core.ValueObjects
 
         public static Result<Comment> Create(Email authorEmail, string body)
         {
-            return Result.Success(new Comment(authorEmail,body));
+            return Result.Success(new Comment(authorEmail, body));
         }
 
         protected override IEnumerable<object> GetEqualityComponents()

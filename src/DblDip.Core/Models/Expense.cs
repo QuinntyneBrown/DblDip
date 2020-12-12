@@ -3,7 +3,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Expense: AggregateRoot
+    public class Expense : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

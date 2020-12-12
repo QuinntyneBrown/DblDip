@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.ProjectManagers
 {
     public class GetProjectManagerById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ProjectManagerId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ProjectManagerId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.ProjectManagers
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var projectManager = await _context.FindAsync<ProjectManager>(request.ProjectManagerId);
 
-                return new Response() { 
+                return new Response()
+                {
                     ProjectManager = projectManager.ToDto()
                 };
             }

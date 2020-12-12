@@ -13,6 +13,17 @@ namespace DblDip.Domain.UnitTests.Models
 
             Assert.NotEqual(default, user.UserId);
             Assert.NotEqual(default, user.Roles);
+            Assert.False(user.PasswordResetRequired);
+        }
+
+        [Fact]
+        public void ShouldRequirePasswordReset()
+        {
+            var user = new User("quinntynebrown@gmail.com");
+
+            Assert.NotEqual(default, user.UserId);
+            Assert.NotEqual(default, user.Roles);
+            Assert.True(user.PasswordResetRequired);
         }
 
         [Fact]

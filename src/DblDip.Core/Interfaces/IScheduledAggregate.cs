@@ -17,7 +17,7 @@ namespace DblDip.Core.Interfaces
     }
     public interface IScheduledAggregate : IScheduled, IAggregate
     {
-        
+
 
         public void Reschedule(DateRange newSchedule)
         {

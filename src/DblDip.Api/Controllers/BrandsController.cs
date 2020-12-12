@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateBrand.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateBrand.Response>> Create([FromBody]CreateBrand.Request request)
+        public async Task<ActionResult<CreateBrand.Response>> Create([FromBody] CreateBrand.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveBrand.Request request)
+        public async Task Remove([FromRoute] RemoveBrand.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetBrandById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetBrandById.Response>> GetById([FromRoute]GetBrandById.Request request)
+        public async Task<ActionResult<GetBrandById.Response>> GetById([FromRoute] GetBrandById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetBrands.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetBrands.Response>> Get()
-            => await _mediator.Send(new GetBrands.Request());           
+            => await _mediator.Send(new GetBrands.Request());
     }
 }

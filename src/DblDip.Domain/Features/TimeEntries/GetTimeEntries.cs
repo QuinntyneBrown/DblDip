@@ -10,7 +10,7 @@ namespace DblDip.Domain.Features.TimeEntries
 {
     public class GetTimeEntries
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace DblDip.Domain.Features.TimeEntries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     TimeEntries = _context.Set<TimeEntry>().Select(x => x.ToDto()).ToList()
                 };
             }

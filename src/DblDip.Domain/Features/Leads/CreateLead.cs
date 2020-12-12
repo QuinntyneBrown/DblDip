@@ -1,5 +1,6 @@
 using BuildingBlocks.Abstractions;
 using DblDip.Core.Models;
+using DblDip.Core.ValueObjects;
 using FluentValidation;
 using MediatR;
 using System.Threading;
@@ -37,7 +38,7 @@ namespace DblDip.Domain.Features.Leads
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var lead = new Lead();
+                var lead = new Lead((Email)request.Lead.EmailAddress);
 
                 _context.Store(lead);
 

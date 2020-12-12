@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateCompany.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateCompany.Response>> Create([FromBody]CreateCompany.Request request)
+        public async Task<ActionResult<CreateCompany.Response>> Create([FromBody] CreateCompany.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveCompany.Request request)
+        public async Task Remove([FromRoute] RemoveCompany.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCompanyById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetCompanyById.Response>> GetById([FromRoute]GetCompanyById.Request request)
+        public async Task<ActionResult<GetCompanyById.Response>> GetById([FromRoute] GetCompanyById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCompanies.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetCompanies.Response>> Get()
-            => await _mediator.Send(new GetCompanies.Request());           
+            => await _mediator.Send(new GetCompanies.Request());
     }
 }

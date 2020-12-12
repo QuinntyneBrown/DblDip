@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateEpic.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateEpic.Response>> Create([FromBody]CreateEpic.Request request)
+        public async Task<ActionResult<CreateEpic.Response>> Create([FromBody] CreateEpic.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateEpic.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateEpic.Response>> Update([FromBody]UpdateEpic.Request request)
+        public async Task<ActionResult<UpdateEpic.Response>> Update([FromBody] UpdateEpic.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveEpic.Request request)
+        public async Task Remove([FromRoute] RemoveEpic.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEpicById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetEpicById.Response>> GetById([FromRoute]GetEpicById.Request request)
+        public async Task<ActionResult<GetEpicById.Response>> GetById([FromRoute] GetEpicById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEpics.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetEpics.Response>> Get()
-            => await _mediator.Send(new GetEpics.Request());           
+            => await _mediator.Send(new GetEpics.Request());
     }
 }

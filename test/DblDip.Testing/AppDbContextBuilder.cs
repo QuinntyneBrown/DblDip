@@ -4,6 +4,9 @@ using DblDip.Core.Models;
 using System;
 using DblDip.Data;
 using DblDip.Testing.Factories;
+using BuildingBlocks.Abstractions;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DblDip.Testing
 {
@@ -34,6 +37,20 @@ namespace DblDip.Testing
         public AppDbContextBuilder()
         {
             _appDbContext = WithDefaults();
+        }
+
+        public AppDbContextBuilder Add<TAggregateRoot>(TAggregateRoot aggregateRoot)
+            where TAggregateRoot : AggregateRoot
+        {
+            _appDbContext.Store(aggregateRoot);
+            return this;
+        }
+
+        public AppDbContextBuilder SaveChanges()
+        {
+            _appDbContext.SaveChangesAsync(default).GetAwaiter().GetResult();
+
+            return this;
         }
 
         public AppDbContext Build()

@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Companies
 {
     public class GetCompanyById
     {
-        public class Request : IRequest<Response> {  
-            public Guid CompanyId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid CompanyId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Companies
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var company = await _context.FindAsync<Company>(request.CompanyId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Company = company.ToDto()
                 };
             }

@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateService.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateService.Response>> Create([FromBody]CreateService.Request request)
+        public async Task<ActionResult<CreateService.Response>> Create([FromBody] CreateService.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveService.Request request)
+        public async Task Remove([FromRoute] RemoveService.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetServiceById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetServiceById.Response>> GetById([FromRoute]GetServiceById.Request request)
+        public async Task<ActionResult<GetServiceById.Response>> GetById([FromRoute] GetServiceById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetServices.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetServices.Response>> Get()
-            => await _mediator.Send(new GetServices.Request());           
+            => await _mediator.Send(new GetServices.Request());
     }
 }

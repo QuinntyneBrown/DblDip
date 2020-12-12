@@ -10,7 +10,7 @@ namespace DblDip.Domain.Features.Questionnaires
 {
     public class GetQuestionnaires
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace DblDip.Domain.Features.Questionnaires
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Questionnaires = _context.Set<Questionnaire>().Select(x => x.ToDto()).ToList()
                 };
             }

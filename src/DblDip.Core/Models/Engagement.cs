@@ -3,7 +3,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Engagement: AggregateRoot
+    public class Engagement : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

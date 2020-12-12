@@ -4,7 +4,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class YouTubeVideo: AggregateRoot
+    public class YouTubeVideo : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

@@ -27,11 +27,11 @@ namespace DblDip.Data
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Lead, nameof(DblDip.Core.Constants.Roles.Lead)).GetAwaiter().GetResult();
 
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Client, nameof(DblDip.Core.Constants.Roles.Client)).GetAwaiter().GetResult();
-                
+
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Photographer, nameof(DblDip.Core.Constants.Roles.Photographer)).GetAwaiter().GetResult();
-                
+
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.ProjectManager, nameof(DblDip.Core.Constants.Roles.ProjectManager)).GetAwaiter().GetResult();
-                
+
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.SystemAdministrator, nameof(DblDip.Core.Constants.Roles.SystemAdministrator)).GetAwaiter().GetResult();
 
                 async System.Threading.Tasks.Task AddRoleIfDoesntExists(IAppDbContext context, Guid roleId, string name)
@@ -46,7 +46,7 @@ namespace DblDip.Data
                         await context.SaveChangesAsync(default);
                     }
                 }
-            }            
+            }
         }
 
         internal class RateConfiguration
@@ -82,7 +82,7 @@ namespace DblDip.Data
             {
                 var card = context.Set<Card>().FirstOrDefault(x => x.Name == "Leads");
 
-                card ??= new Card("Leads","");
+                card ??= new Card("Leads", "");
 
                 context.Store(card);
 

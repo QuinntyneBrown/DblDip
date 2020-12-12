@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Libraries
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public LibraryDto Library { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Libraries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var library = await _context.FindAsync<Library>(request.Library.LibraryId);
 

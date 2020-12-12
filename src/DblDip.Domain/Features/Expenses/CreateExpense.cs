@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Expenses
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public ExpenseDto Expense { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Expenses
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var expense = new Expense();
 

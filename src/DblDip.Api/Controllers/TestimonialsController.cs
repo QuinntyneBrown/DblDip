@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveTestimonial.Request request)
+        public async Task Remove([FromRoute] RemoveTestimonial.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetTestimonialById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetTestimonialById.Response>> GetById([FromRoute]GetTestimonialById.Request request)
+        public async Task<ActionResult<GetTestimonialById.Response>> GetById([FromRoute] GetTestimonialById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetTestimonials.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetTestimonials.Response>> Get()
-            => await _mediator.Send(new GetTestimonials.Request());           
+            => await _mediator.Send(new GetTestimonials.Request());
     }
 }

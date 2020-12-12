@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateEditedPhoto.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateEditedPhoto.Response>> Create([FromBody]CreateEditedPhoto.Request request)
+        public async Task<ActionResult<CreateEditedPhoto.Response>> Create([FromBody] CreateEditedPhoto.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveEditedPhoto.Request request)
+        public async Task Remove([FromRoute] RemoveEditedPhoto.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEditedPhotoById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetEditedPhotoById.Response>> GetById([FromRoute]GetEditedPhotoById.Request request)
+        public async Task<ActionResult<GetEditedPhotoById.Response>> GetById([FromRoute] GetEditedPhotoById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEditedPhotos.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetEditedPhotos.Response>> Get()
-            => await _mediator.Send(new GetEditedPhotos.Request());           
+            => await _mediator.Send(new GetEditedPhotos.Request());
     }
 }

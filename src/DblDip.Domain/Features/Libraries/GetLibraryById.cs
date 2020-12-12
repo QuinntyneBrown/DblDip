@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Libraries
 {
     public class GetLibraryById
     {
-        public class Request : IRequest<Response> {  
-            public Guid LibraryId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid LibraryId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Libraries
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var library = await _context.FindAsync<Library>(request.LibraryId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Library = library.ToDto()
                 };
             }

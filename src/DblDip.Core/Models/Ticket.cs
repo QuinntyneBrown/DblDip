@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
-    public class Ticket: AggregateRoot
+    public class Ticket : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 
@@ -28,5 +28,5 @@ namespace DblDip.Core.Models
         public DateTime? Deleted { get; private set; }
     }
 
-    public record TicketState(Guid TicketId, Guid StateId);    
+    public record TicketState(Guid TicketId, Guid StateId);
 }

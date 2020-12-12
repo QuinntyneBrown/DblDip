@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateEngagement.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateEngagement.Response>> Create([FromBody]CreateEngagement.Request request)
+        public async Task<ActionResult<CreateEngagement.Response>> Create([FromBody] CreateEngagement.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveEngagement.Request request)
+        public async Task Remove([FromRoute] RemoveEngagement.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEngagementById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetEngagementById.Response>> GetById([FromRoute]GetEngagementById.Request request)
+        public async Task<ActionResult<GetEngagementById.Response>> GetById([FromRoute] GetEngagementById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEngagements.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetEngagements.Response>> Get()
-            => await _mediator.Send(new GetEngagements.Request());           
+            => await _mediator.Send(new GetEngagements.Request());
     }
 }

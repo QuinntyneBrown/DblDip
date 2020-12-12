@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Posts
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public PostDto Post { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Posts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var post = new Post();
 

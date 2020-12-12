@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.SystemAdministrators
 {
     public class GetSystemAdministratorById
     {
-        public class Request : IRequest<Response> {  
-            public Guid SystemAdministratorId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid SystemAdministratorId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.SystemAdministrators
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var systemAdministrator = await _context.FindAsync<SystemAdministrator>(request.SystemAdministratorId);
 
-                return new Response() { 
+                return new Response()
+                {
                     SystemAdministrator = systemAdministrator.ToDto()
                 };
             }

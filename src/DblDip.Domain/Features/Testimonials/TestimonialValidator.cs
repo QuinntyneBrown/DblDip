@@ -6,7 +6,7 @@ namespace DblDip.Domain.Features.Testimonials
     {
         public TestimonialValidator()
         {
-            
+
         }
     }
 }

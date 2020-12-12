@@ -11,8 +11,12 @@ namespace DblDip.Core.Models
 {
     public class User : AggregateRoot
     {
-        public User(string username, string password, IUsernameAvailabilityCheck usernameAvailabilityCheck = null, IPasswordHasher passwordHasher = null)
+        public User(string username, string password = null, IUsernameAvailabilityCheck usernameAvailabilityCheck = null, IPasswordHasher passwordHasher = null)
         {
+            var passwordResetRequired = string.IsNullOrEmpty(password);
+
+            password ??= BuildingBlocks.Core.Password.Generate(8, 1);
+
             passwordHasher = new PasswordHasher();
 
             if (usernameAvailabilityCheck != null && usernameAvailabilityCheck.IsAvailable(username) == false)
@@ -25,7 +29,7 @@ namespace DblDip.Core.Models
             }
             var transformedPassword = passwordHasher.HashPassword(salt, password);
 
-            Apply(new UserCreated(Guid.NewGuid(), username, transformedPassword, salt));
+            Apply(new UserCreated(Guid.NewGuid(), username, transformedPassword, salt, passwordResetRequired));
         }
 
         protected override void When(dynamic @event) => When(@event);
@@ -37,6 +41,7 @@ namespace DblDip.Core.Models
             Password = userCreated.Password;
             Salt = userCreated.Salt;
             Roles = new HashSet<RoleReference>();
+            PasswordResetRequired = userCreated.PasswordResetRequired;
         }
 
         protected void When(UserPasswordChanged userPasswordChanged)
@@ -78,6 +83,7 @@ namespace DblDip.Core.Models
         public Email Username { get; private set; }
         public string Password { get; private set; }
         public byte[] Salt { get; private set; }
+        public bool PasswordResetRequired { get; private set; }
         public ICollection<RoleReference> Roles { get; private set; }
         public DateTime? Deleted { get; private set; }
 

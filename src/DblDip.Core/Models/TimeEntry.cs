@@ -3,7 +3,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class TimeEntry: AggregateRoot
+    public class TimeEntry : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

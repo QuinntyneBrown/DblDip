@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreatePoint.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreatePoint.Response>> Create([FromBody]CreatePoint.Request request)
+        public async Task<ActionResult<CreatePoint.Response>> Create([FromBody] CreatePoint.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdatePoint.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdatePoint.Response>> Update([FromBody]UpdatePoint.Request request)
+        public async Task<ActionResult<UpdatePoint.Response>> Update([FromBody] UpdatePoint.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemovePoint.Request request)
+        public async Task Remove([FromRoute] RemovePoint.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetPointById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetPointById.Response>> GetById([FromRoute]GetPointById.Request request)
+        public async Task<ActionResult<GetPointById.Response>> GetById([FromRoute] GetPointById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetPoints.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetPoints.Response>> Get()
-            => await _mediator.Send(new GetPoints.Request());           
+            => await _mediator.Send(new GetPoints.Request());
     }
 }
