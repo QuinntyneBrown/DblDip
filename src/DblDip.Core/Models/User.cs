@@ -59,6 +59,11 @@ namespace DblDip.Core.Models
             Roles.Remove(new RoleReference(roleReferenceRemoved.RoleId, roleReferenceRemoved.Name));
         }
 
+        public void When(UserRefreshTokenAdded userRefreshTokenAdded)
+        {
+            RefreshToken = userRefreshTokenAdded.RefreshToken;
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -79,11 +84,17 @@ namespace DblDip.Core.Models
             Apply(new RoleReferenceRemoved(roleId, value));
         }
 
+        public void AddRefreshToken(string refreshToken)
+        {
+            Apply(new UserRefreshTokenAdded(refreshToken));
+        }
+
         public Guid UserId { get; private set; }
         public Email Username { get; private set; }
         public string Password { get; private set; }
         public byte[] Salt { get; private set; }
         public bool PasswordResetRequired { get; private set; }
+        public string RefreshToken { get; private set; }
         public ICollection<RoleReference> Roles { get; private set; }
         public DateTime? Deleted { get; private set; }
 
