@@ -1,12 +1,11 @@
 using BuildingBlocks.Abstractions;
-using MediatR;
 using DblDip.Core;
 using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using static DblDip.Core.Models.User;
 
 namespace DblDip.Domain.Sagas
 {
@@ -40,6 +39,7 @@ namespace DblDip.Domain.Sagas
 
             _context.Store(account);
 
+            await _context.SaveChangesAsync(default);
         }
     }
 }

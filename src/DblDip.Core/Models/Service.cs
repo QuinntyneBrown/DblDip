@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
+        public Service()
+        {
+
+        }
+
         public Service(string name, Guid digitalAssetId, string description)
         {
             Apply(new ServiceCreated(Guid.NewGuid(), name, digitalAssetId, description));

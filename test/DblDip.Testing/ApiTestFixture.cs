@@ -16,6 +16,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Xunit.Abstractions;
+using DblDip.Data;
 
 namespace DblDip.Testing
 {
@@ -60,7 +61,6 @@ namespace DblDip.Testing
         {
             get
             {
-
                 if (_context == null)
                 {
                     var options = new DbContextOptionsBuilder()
@@ -73,6 +73,8 @@ namespace DblDip.Testing
                     var aggregateSet = new AggregateSet(context, dateTime);
 
                     _context = new AppDbContext(eventStore, aggregateSet);
+
+                    DbInitializer.Initialize(_context, _configuration);
                 }
 
                 return _context;

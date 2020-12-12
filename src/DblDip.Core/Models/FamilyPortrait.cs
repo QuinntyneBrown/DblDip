@@ -13,8 +13,6 @@ namespace DblDip.Core.Models
         }
 
         public Guid FamilyPortraitId { get; private set; }
-        public DateTime? Deleted { get; private set; }
-
         public override DateRange Scheduled { get; }
     }
 }

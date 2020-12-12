@@ -11,7 +11,7 @@ namespace BuildingBlocks.Abstractions
             _events ??= new List<object>();
             _events.Add(@event);
         }
-        public void ClearChanges() => _events.Clear();
+        public void ClearChanges() => _events?.Clear();
         public void Apply(object @event)
         {
             When(@event);

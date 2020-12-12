@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 namespace DblDip.Api.Controllers
 {
     [ApiController]
+    [Route("api/search")]
     public class SearchController
     {
         private readonly IMediator _mediator;

@@ -7,12 +7,6 @@ namespace DblDip.Core.Models
 {
     public abstract class PhotographyProject : Service, IScheduledAggregate
     {
-        public PhotographyProject()
-            :base(default, default, default)
-        {
-
-        }
-
         public void When(PhotoGallerySent sent)
         {
 

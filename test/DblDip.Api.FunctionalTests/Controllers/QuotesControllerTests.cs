@@ -23,11 +23,15 @@ namespace DblDip.Api.FunctionalTests.Controllers
         {
             var expectedPrice = (Price)500;
 
-            var photographyRate = _fixture.Context.Store(PhotographyRateBuilder.WithDefaults());
+            var context = _fixture.Context;
 
-            var wedding = _fixture.Context.Store(WeddingBuilder.WithDefaults(photographyRate));
+            var photographyRate = context.Store(PhotographyRateBuilder.WithDefaults());
 
-            await _fixture.Context.SaveChangesAsync(default);
+            var wedding = WeddingBuilder.WithDefaults(photographyRate);
+
+            context.Store(wedding);
+
+            await context.SaveChangesAsync(default);
 
             var client = _fixture.CreateClient();
 
@@ -40,7 +44,6 @@ namespace DblDip.Api.FunctionalTests.Controllers
             _testOutputHelper.WriteLine($"{response.Quote.Total.Value}");
 
             Assert.Equal(expectedPrice, response.Quote.Total);
-
         }
 
         internal static class Endpoints

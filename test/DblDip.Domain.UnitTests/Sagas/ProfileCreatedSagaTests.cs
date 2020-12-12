@@ -4,7 +4,6 @@ using DblDip.Domain.Sagas;
 using DblDip.Testing;
 using DblDip.Testing.Builders.Core.Models;
 using System.Linq;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DblDip.Domain.UnitTests.Sagas
@@ -20,11 +19,13 @@ namespace DblDip.Domain.UnitTests.Sagas
             
             var sut = new ProfileCreatedSaga(context);
 
-            var result = sut.Handle(new ProfileCreated(profile), default);
+            await sut.Handle(new ProfileCreated(profile), default);
 
-            var user = context.Set<User>().Where(x => x.Username == profile.Email);
+            var user = context.Set<User>().Where(x => x.Username == profile.Email).Single();
 
             Assert.NotNull(user);
+
+            Assert.Contains(user.Roles, x => x.RoleId == DblDip.Core.Constants.Roles.Client);
         }
     }
 }

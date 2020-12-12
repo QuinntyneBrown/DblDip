@@ -5,6 +5,7 @@ using DblDip.Core.ValueObjects;
 using System;
 using System.Linq;
 using static DblDip.Core.Constants.Rates;
+using DblDip.Core;
 
 namespace DblDip.Data
 {
@@ -12,10 +13,38 @@ namespace DblDip.Data
     {
         public static void Initialize(IAppDbContext context, IConfiguration configuration)
         {
+            RoleConfiguration.Seed(context, configuration);
             SystemLocationConfiguration.Seed(context, configuration);
-            CardConfiguration.Seed(context, configuration);
-            UserConfiguration.Seed(context, configuration);
-            DashboardConfiguration.Seed(context, configuration);
+            //CardConfiguration.Seed(context, configuration);
+            //UserConfiguration.Seed(context, configuration);
+            //DashboardConfiguration.Seed(context, configuration);
+        }
+
+        internal class RoleConfiguration
+        {
+            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            {
+                AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Client, nameof(DblDip.Core.Constants.Roles.Client)).GetAwaiter().GetResult();
+                
+                AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Photographer, nameof(DblDip.Core.Constants.Roles.Photographer)).GetAwaiter().GetResult();
+                
+                AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.ProjectManager, nameof(DblDip.Core.Constants.Roles.ProjectManager)).GetAwaiter().GetResult();
+                
+                AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.SystemAdministrator, nameof(DblDip.Core.Constants.Roles.SystemAdministrator)).GetAwaiter().GetResult();
+
+                async System.Threading.Tasks.Task AddRoleIfDoesntExists(IAppDbContext context, Guid roleId, string name)
+                {
+                    var role = await context.FindAsync<Role>(roleId);
+
+                    role ??= new Role(roleId, name);
+
+                    if (role.DomainEvents.Any())
+                    {
+                        context.Store(role);
+                        await context.SaveChangesAsync(default);
+                    }
+                }
+            }            
         }
 
         internal class RateConfiguration
@@ -65,7 +94,9 @@ namespace DblDip.Data
             {
                 var user = context.Set<User>().FirstOrDefault(x => x.Username == "quinntynebrown@gmail.com");
 
-                user ??= new User("quinntynebrown@gmail.com", "DblDip");
+                user ??= new User("quinntynebrown@gmail.com", "dbldip");
+
+                user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
 
                 context.Store(user);
 

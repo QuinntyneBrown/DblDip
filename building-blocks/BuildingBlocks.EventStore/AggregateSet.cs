@@ -77,6 +77,9 @@ namespace BuildingBlocks.EventStore
 
             var storedEvents = StoredEvents(typeof(TAggregateRoot).Name, new Guid[1] { streamId }).ToList();
 
+            if (!storedEvents.Any())
+                return null;
+
             foreach (var storedEvent in storedEvents.OrderBy(x => x.CreatedOn))
             {
                 aggregate.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)));

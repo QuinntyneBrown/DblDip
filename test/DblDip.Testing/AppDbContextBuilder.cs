@@ -2,6 +2,8 @@ using BuildingBlocks.EventStore;
 using Microsoft.EntityFrameworkCore;
 using DblDip.Core.Models;
 using System;
+using DblDip.Data;
+using DblDip.Testing.Factories;
 
 namespace DblDip.Testing
 {
@@ -22,11 +24,8 @@ namespace DblDip.Testing
 
             var appDbContext = new AppDbContext(eventStore, aggregateSet);
 
-            appDbContext.Store(new Role(DblDip.Core.Constants.Roles.Client, nameof(DblDip.Core.Constants.Roles.Client)));
-            appDbContext.Store(new Role(DblDip.Core.Constants.Roles.ProjectManager, nameof(DblDip.Core.Constants.Roles.ProjectManager)));
-            appDbContext.Store(new Role(DblDip.Core.Constants.Roles.SystemAdministrator, nameof(DblDip.Core.Constants.Roles.SystemAdministrator)));
-            appDbContext.Store(new Role(DblDip.Core.Constants.Roles.Photographer, nameof(DblDip.Core.Constants.Roles.Photographer)));
-            
+            DbInitializer.Initialize(appDbContext, ConfigurationFactory.Create());
+
             appDbContext.SaveChangesAsync(default).GetAwaiter().GetResult();
 
             return appDbContext;
