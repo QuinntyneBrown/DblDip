@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './public/home/home.component';
-import { LoginPageComponent } from './public/login/login-page.component';
 import { AuthGuard } from './_core/auth.guard';
 
 const routes: Routes = [
-  { path: "login", component: LoginPageComponent },
-  { path: "", component: HomeComponent, pathMatch: 'full' },
+  { path: "", redirectTo: "public", pathMatch: "full" },
+  {
+    path: "public",
+    loadChildren: () => import("src/app/public/public.module").then(m => m.PublicModule)
+  },
   {
     path: "admin",
     component: AppComponent,
