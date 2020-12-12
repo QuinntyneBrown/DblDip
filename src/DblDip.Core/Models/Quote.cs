@@ -51,6 +51,7 @@ namespace DblDip.Core.Models
         }
 
         public Guid QuoteId { get; protected set; }
+        public Email VendorEmail { get; private set; }
         public Email BillToEmail { get; protected set; }
         public Price Total => (Price)LineItems.Sum(x => x.Amount);
         public ICollection<LineItem> LineItems { get; protected set; }

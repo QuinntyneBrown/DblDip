@@ -7,11 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RedirectService {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
-  loginUrl = '/login';
+  loginUrl = '/public/login';
 
   lastPath: string = '';
 
-  defaultPath = '/';
+  defaultPath = '/public';
 
   setLoginUrl(value: string): void {
     this.loginUrl = value;

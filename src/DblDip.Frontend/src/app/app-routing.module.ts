@@ -8,7 +8,7 @@ const routes: Routes = [
     loadChildren: () => import("src/app/public/public.module").then(m => m.PublicModule)
   },
   {
-    path: "admin",
+    path: "workspace",
     loadChildren: () => import("src/app/admin/admin.module").then(m => m.AdminModule)
   }  
 ];

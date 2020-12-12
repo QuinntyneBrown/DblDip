@@ -24,6 +24,8 @@ namespace DblDip.Data
         {
             public static void Seed(IAppDbContext context, IConfiguration configuration)
             {
+                AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Lead, nameof(DblDip.Core.Constants.Roles.Lead)).GetAwaiter().GetResult();
+
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Client, nameof(DblDip.Core.Constants.Roles.Client)).GetAwaiter().GetResult();
                 
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Photographer, nameof(DblDip.Core.Constants.Roles.Photographer)).GetAwaiter().GetResult();
