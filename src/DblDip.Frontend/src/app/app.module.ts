@@ -1,19 +1,17 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SharedModule } from './_shared/shared.module';
-import { CoreModule } from './_core/core.module';
-import { AppContainerComponent } from './app-container.component';
-import { baseUrl } from './_core/constants';
+import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { AppComponent } from './app.component';
+import { baseUrl } from './core/constants';
 import { HomeComponent } from './public/home/home.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AppContainerComponent,
-    //HomeComponent
+    AppComponent
   ],
   imports: [
     SharedModule,
@@ -26,6 +24,6 @@ import { HomeComponent } from './public/home/home.component';
     provide: baseUrl,
     useValue: 'https://localhost:5001/'
   }],
-  bootstrap: [AppContainerComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

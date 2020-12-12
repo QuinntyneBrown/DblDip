@@ -1,0 +1,21 @@
+<mat-toolbar class="mat-elevation-z6" color="primary">
+    <button mat-icon-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+    </button>
+    
+    <h1>Dbl Dip</h1>
+  
+  </mat-toolbar>  
+  
+  <mat-sidenav-container>
+    <mat-sidenav #drawer mode="side" (click)="drawer.close()">
+      <button mat-button routerLink="[]">Leads</button>
+      <button mat-button routerLink="/login">Logout</button>
+    </mat-sidenav>
+  
+    <mat-sidenav-content>
+      <div class="router-outlet-container">
+        <router-outlet #router></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

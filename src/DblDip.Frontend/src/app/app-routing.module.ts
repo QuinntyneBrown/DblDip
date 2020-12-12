@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AuthGuard } from './_core/auth.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "public", pathMatch: "full" },
@@ -11,15 +9,8 @@ const routes: Routes = [
   },
   {
     path: "admin",
-    component: AppComponent,
-    children: [
-      {
-        path: "",
-        canActivate:[AuthGuard],
-        loadChildren: () => import("src/app/leads/leads.module").then(m => m.LeadsModule)
-      },        
-    ],
-  }
+    loadChildren: () => import("src/app/admin/admin.module").then(m => m.AdminModule)
+  }  
 ];
 
 
