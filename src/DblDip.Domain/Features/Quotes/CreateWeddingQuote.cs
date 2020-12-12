@@ -8,6 +8,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using static DblDip.Core.Constants.Rates;
+using DblDip.Domain.IntegrationEvents;
 
 namespace DblDip.Domain.Features.Quotes
 {
@@ -36,11 +37,13 @@ namespace DblDip.Domain.Features.Quotes
         {
             private readonly IAppDbContext _context;
             private readonly IDateTime _dateTime;
+            private readonly IMediator _mediator;
 
-            public Handler(IAppDbContext context, IDateTime dateTime)
+            public Handler(IAppDbContext context, IDateTime dateTime, IMediator mediator)
             {
                 _context = context;
                 _dateTime = dateTime;
+                _mediator = mediator;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
@@ -54,6 +57,8 @@ namespace DblDip.Domain.Features.Quotes
                 _context.Store(quote);
 
                 await _context.SaveChangesAsync(default);
+
+                await _mediator.Publish(new QuoteCreated(quote));
 
                 return new Response()
                 {

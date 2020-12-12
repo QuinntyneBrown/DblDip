@@ -3,7 +3,7 @@ import { NgModule } from "@angular/core";
 import { PortfolioComponent } from './portfolio.component';
 
 const routes: Routes = [
-  { path: "portfolio", component: PortfolioComponent },
+  { path: "", component: PortfolioComponent },
 ];
 
 @NgModule({

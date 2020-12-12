@@ -34,11 +34,13 @@ namespace DblDip.Core.Models
         }
 
         public Guid OrderId { get; private set; }
+        public Guid VendorId { get; private set; }
         public Price Total { get; private set; }
         public Email BillToEmail { get; private set; }
         public ICollection<LineItem> LineItems { get; private set; }
         public OrderStatus Status { get; private set; }
         public DateTime? Deleted { get; set; }
+
 
         public static System.Threading.Tasks.Task<Order> FromQuote(Quote quote)
         {

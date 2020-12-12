@@ -1,4 +1,3 @@
-using DblDip.Core.Models;
 using DblDip.Domain.Features.Participants;
 
 namespace DblDip.Testing.Builders.Domain.Dtos

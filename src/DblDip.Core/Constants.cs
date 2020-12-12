@@ -13,6 +13,7 @@ namespace DblDip.Core
 
         public static class Roles
         {
+            public static readonly Guid Participant = new Guid("43853d94-a615-4f58-bb02-4a46eb60b1df");
             public static readonly Guid Lead = new Guid("d080406c-b3b8-4ec1-b41a-3062f75e9153");
             public static readonly Guid Client = new Guid("ff8bf475-567c-4daa-b509-a1c23e7ae78d");
             public static readonly Guid Photographer = new Guid("da296e6d-00cb-4978-8d82-1820133b6c1e");
