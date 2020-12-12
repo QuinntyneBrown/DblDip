@@ -50,6 +50,7 @@ namespace DblDip.Domain.Features.Identity
                 user.AddRefreshToken(_tokenProvider.GenerateRefreshToken());
 
                 _context.Store(user);
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response

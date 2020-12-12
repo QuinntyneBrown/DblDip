@@ -24,17 +24,9 @@ namespace DblDip.Domain.Features.Identity
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public string Username { get; set; }
-            public string Password { get; set; }
-        }
+        public record Request(string Username, string Password) : IRequest<Response>;
 
-        public class Response
-        {
-            public string AccessToken { get; set; }
-            public Guid UserId { get; set; }
-        }
+        public record Response(string AccessToken, Guid UserId);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -61,16 +53,11 @@ namespace DblDip.Domain.Features.Identity
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();
 
-                var roles = user?.Roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name)).ToArray();
+                var roles = user?.Roles.Select(x => new Claim(Core.Constants.ClaimTypes.Role, x.Name)).ToArray();
 
                 var userIdClaim = new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}");
 
-                return new Response()
-                {
-
-                    AccessToken = _tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }),
-                    UserId = user.UserId
-                };
+                return new Response(_tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }), user.UserId);
             }
 
             public bool ValidateUser(User user, string transformedPassword)

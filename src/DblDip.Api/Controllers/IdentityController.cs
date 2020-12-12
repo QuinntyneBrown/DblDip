@@ -25,5 +25,21 @@ namespace DblDip.Api.Controllers
         {
             return await _mediator.Send(request);
         }
+
+        [HttpPost("refresh", Name = "UserRefreshRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(Authenticate.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Refresh.Response>> Refresh([FromBody] Refresh.Request request)
+        {
+            var response = await _mediator.Send(request);
+
+            if (response == null)
+            {
+                return new UnauthorizedResult();
+            }
+
+            return response;
+        }
     }
 }

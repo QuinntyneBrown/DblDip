@@ -24,6 +24,7 @@ namespace DblDip.Core
         public static class ClaimTypes
         {
             public static readonly string UserId = nameof(UserId);
+            public static readonly string Role = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
         }
 
         public static class Surveys
