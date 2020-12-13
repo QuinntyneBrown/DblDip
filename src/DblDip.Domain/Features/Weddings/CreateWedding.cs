@@ -20,20 +20,9 @@ namespace DblDip.Domain.Features.Weddings
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public Guid CustomerId { get; set; }
-            public int Hours { get; set; }
-            public Guid PhotographyRateId { get; set; }
-            public DateTime DateTime { get; set; }
-            public double Longitude { get; set; }
-            public double Latitude { get; set; }
-        }
-
-        public class Response
-        {
-            public WeddingDto Wedding { get; set; }
-        }
+        public record Request(int Hours, DateTime DateTime, double Longitude, double Latitude) : IRequest<Response>;
+        
+        public record Response(WeddingDto Wedding);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -63,10 +52,7 @@ namespace DblDip.Domain.Features.Weddings
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Response()
-                {
-                    Wedding = wedding.ToDto()
-                };
+                return new Response(wedding.ToDto());
             }
         }
     }

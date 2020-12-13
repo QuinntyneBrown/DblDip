@@ -19,16 +19,9 @@ namespace DblDip.Api.FunctionalTests.Controllers
         public async System.Threading.Tasks.Task Should_CreateWedding()
         {
             var defaultLocation = LocationBuilder.WithDefaults();
-            var dto = new CreateWedding.Request
-            {
-                CustomerId = Guid.NewGuid(),
-                DateTime = DateTime.UtcNow,
-                Hours = 1,
-                PhotographyRateId = Guid.NewGuid(),
-                Longitude = defaultLocation.Longitude,
-                Latitude = defaultLocation.Latitude
-            };
 
+            var dto = new CreateWedding.Request(1,DateTime.UtcNow, defaultLocation.Longitude, defaultLocation.Latitude);
+            
             var client = _fixture.CreateClient();
 
             var response = await client.PostAsAsync<dynamic, CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);

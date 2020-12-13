@@ -1,5 +1,4 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -12,9 +11,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatTableModule} from '@angular/material/table';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-
 @NgModule({
-  imports: [
+  imports: [    
     MatToolbarModule,
     MatIconModule,
     MatSidenavModule,
@@ -26,8 +24,6 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatListModule,
     MatTableModule,
     MatSnackBarModule,
-
-    CommonModule
   ],
   exports: [
     MatToolbarModule,

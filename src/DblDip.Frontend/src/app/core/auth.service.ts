@@ -4,7 +4,9 @@ import { LocalStorageService } from './local-storage.service';
 import { map } from 'rxjs/operators';
 import { accessTokenKey, baseUrl } from './constants';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   constructor(
     @Inject(baseUrl) private _baseUrl: string,

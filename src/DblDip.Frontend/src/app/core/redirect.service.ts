@@ -7,11 +7,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class RedirectService {
   constructor(private route: ActivatedRoute, private router: Router) {}
 
-  loginUrl = '/public/login';
+  loginUrl = '/login';
 
   lastPath: string = '';
 
-  defaultPath = '/public';
+  defaultPath = '/';
 
   setLoginUrl(value: string): void {
     this.loginUrl = value;
@@ -26,11 +26,11 @@ export class RedirectService {
   }
 
   public redirectPreLogin(): void {
-    // if (this.lastPath && this.lastPath !== this.loginUrl) {
-    //   this.router.navigateByUrl(this.lastPath);
-    //   this.lastPath = '';
-    // } else {
-    //   this.router.navigate([this.defaultPath]);
-    // }
+    if (this.lastPath && this.lastPath !== this.loginUrl) {
+      this.router.navigateByUrl(this.lastPath);
+      this.lastPath = '';
+    } else {
+      this.router.navigate([this.defaultPath]);
+    }
   }
 }

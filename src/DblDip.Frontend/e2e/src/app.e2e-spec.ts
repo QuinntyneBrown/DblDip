@@ -10,7 +10,7 @@ describe('workspace-project App', () => {
 
   it('should display welcome message', async () => {
     await page.navigateTo();
-    expect(await page.getTitleText()).toEqual('shootq-frontend app is running!');
+    expect(await page.getTitleText()).toEqual('workspace-frontend app is running!');
   });
 
   afterEach(async () => {

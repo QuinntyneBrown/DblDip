@@ -1,8 +1,1 @@
-{
-  "RootNamespace": "DblDip",
-  "Namespace": "DblDip.Frontend",
-  "Domain": "DblDip.Domain",
-  "Api": "DblDip.Api",
-  "Core": "DblDip.Core",
-  "EntityIdDataType": "Guid"
-}
+{"RootNamespace":"DblDip","Namespace":"DblDip.Workspace.Frontend","Domain":"DblDip.Domain","Api":"DblDip.Api","Core":"DblDip.Core","EntityIdDataType":"Guid"}
