@@ -47,7 +47,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
 
             var wedding = context.Store(new Wedding(Location.Create(1, 1).Value, Location.Create(1, 1).Value, Location.Create(1, 1).Value, DateTime.Now, 4));
 
-            var weddingQuote = new WeddingQuote((Email)"quinntynebrown@gmail.com", wedding, rate);
+            var weddingQuote = new WeddingQuote((Email)"random@gmail.com", wedding, rate);
 
             context.Store(weddingQuote);
 
@@ -55,7 +55,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(new
             {
-                email = "random@gmail.com",
+                email = weddingQuote.BillToEmail,
                 quoteId = weddingQuote.WeddingQuoteId,
             }), Encoding.UTF8, "application/json");
 
