@@ -6,6 +6,7 @@ import { LeadsModule } from './leads/leads.module';
 import { RouterModule } from '@angular/router';
 import { WorkspaceRoutingModule } from './workspace-routing.module';
 import { ClientsModule } from './clients/clients.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [WorkspaceComponent, WorkspaceHeaderComponent],
@@ -15,6 +16,7 @@ import { ClientsModule } from './clients/clients.module';
     WorkspaceRoutingModule,
     CommonModule,
     RouterModule,
+    SharedModule,
   ]
 })
 export class WorkspaceModule { }
