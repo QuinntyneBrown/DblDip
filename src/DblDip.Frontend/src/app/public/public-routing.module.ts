@@ -8,7 +8,9 @@ const routes: Routes = [
     component: PublicComponent,
     children:[
       { path: "", loadChildren: () => import("src/app/public/home/home.module").then(m => m.HomeModule)},
-      { path: "portfolio", loadChildren: () => import("src/app/public/portfolio/portfolio.module").then(m => m.PortfolioModule) }
+      { path: "portfolio", loadChildren: () => import("src/app/public/portfolio/portfolio.module").then(m => m.PortfolioModule) },
+      { path: "login", loadChildren: () => import("src/app/public/login/login.module").then(m => m.LoginModule) },
+      { path: "quote", loadChildren: () => import("src/app/public/quote/quote.module").then(m => m.QuoteModule) }
     ]  
   }
 ];

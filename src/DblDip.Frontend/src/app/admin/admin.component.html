@@ -10,7 +10,7 @@
   <mat-sidenav-container>
     <mat-sidenav #drawer mode="side" (click)="drawer.close()">
       <button mat-button routerLink="[]">Leads</button>
-      <button mat-button routerLink="/login">Logout</button>
+      <button mat-button (click)="logout()">Logout</button>
     </mat-sidenav>
   
     <mat-sidenav-content>

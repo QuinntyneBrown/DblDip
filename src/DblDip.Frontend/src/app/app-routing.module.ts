@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGuard } from './core/auth.guard';
 
 const routes: Routes = [
   { path: "", redirectTo: "public", pathMatch: "full" },
@@ -9,7 +10,8 @@ const routes: Routes = [
   },
   {
     path: "workspace",
-    loadChildren: () => import("src/app/admin/admin.module").then(m => m.AdminModule)
+    loadChildren: () => import("src/app/admin/admin.module").then(m => m.AdminModule),
+    canActivate:[AuthGuard]
   }  
 ];
 

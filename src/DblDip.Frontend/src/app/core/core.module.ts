@@ -24,7 +24,6 @@ import { LocalStorageService } from './local-storage.service';
     AuthGuard,
     AuthService,
     LocalStorageService,
-    RedirectService
   ],
   imports: [
     CommonModule,

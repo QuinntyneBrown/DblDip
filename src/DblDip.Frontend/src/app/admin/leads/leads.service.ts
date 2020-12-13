@@ -5,7 +5,6 @@ import { Lead } from './lead';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-alert("?");
 
 @Injectable({
   providedIn: 'root'

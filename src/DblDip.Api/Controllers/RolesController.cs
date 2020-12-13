@@ -24,7 +24,7 @@ namespace DblDip.Api.Controllers
             => await _mediator.Send(request);
 
         [Authorize]
-        [HttpPost(Name = "UpdateRoleRoute")]
+        [HttpPut(Name = "UpdateRoleRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateRole.Response), (int)HttpStatusCode.OK)]

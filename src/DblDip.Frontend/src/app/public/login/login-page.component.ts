@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AuthService } from '../../core/auth.service';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { RedirectService } from 'src/app/core/redirect.service';
 
 @Component({
   selector: 'app-login-page',
@@ -15,9 +16,10 @@ export class LoginPageComponent implements OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private redirectService: RedirectService
   ) { }
-
+  
   public handleTryToLogin($event: { username: string, password: string }) {
     this.authService
     .tryToLogin({
@@ -25,11 +27,11 @@ export class LoginPageComponent implements OnDestroy {
       password: $event.password
     })
     .pipe(
-      takeUntil(this._destroyed),
+      takeUntil(this._destroyed)
     )
     .subscribe(
       () => {
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl("/workspace/leads");
       },
       errorResponse => {
         // handle error response

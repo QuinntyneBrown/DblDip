@@ -26,11 +26,11 @@ export class RedirectService {
   }
 
   public redirectPreLogin(): void {
-    if (this.lastPath && this.lastPath !== this.loginUrl) {
-      this.router.navigate([this.lastPath]);
-      this.lastPath = '';
-    } else {
-      this.router.navigate([this.defaultPath]);
-    }
+    // if (this.lastPath && this.lastPath !== this.loginUrl) {
+    //   this.router.navigateByUrl(this.lastPath);
+    //   this.lastPath = '';
+    // } else {
+    //   this.router.navigate([this.defaultPath]);
+    // }
   }
 }
