@@ -24,7 +24,7 @@ namespace DblDip.Domain.Features.Identity
             }
         }
 
-        public record Request(Email Email, Guid QuoteId) : IRequest<Response>;
+        public record Request(string Email, Guid QuoteId) : IRequest<Response>;
 
         public record Response(string AccessToken);
 

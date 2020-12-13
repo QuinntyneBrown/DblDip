@@ -12,4 +12,6 @@ namespace DblDip.Core.DomainEvents
     public record QuoteCompleted(DateTime Completed);
 
     public record QuoteDeclined(DateTime Declined);
+
+    public record QuoteCreated(Guid QuoteId);
 }

@@ -52,7 +52,9 @@ namespace DblDip.Testing
                 {
                     var scopedServices = scope.ServiceProvider;
 
+                    var context = scopedServices.GetRequiredService<IAppDbContext>();
 
+                    DbInitializer.Initialize(context, ConfigurationFactory.Create());
 
                 }
             });

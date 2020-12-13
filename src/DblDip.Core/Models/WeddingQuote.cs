@@ -10,8 +10,9 @@ namespace DblDip.Core.Models
         protected override void When(dynamic @event) => When(@event);
 
         public WeddingQuote(Email billToEmail, Wedding wedding, Rate rate)
+            :base(Guid.NewGuid())
         {
-            Apply(new WeddingQuoteCreated(Guid.NewGuid(), billToEmail, wedding.WeddingId));
+            Apply(new WeddingQuoteCreated(QuoteId, billToEmail, wedding.WeddingId));
 
             foreach (var part in wedding.Parts)
             {
@@ -22,11 +23,6 @@ namespace DblDip.Core.Models
             {
                 AddItem((Price)(trip.Scheduled.Hours * 60), "Travel Expense");
             }
-        }
-
-        protected override void EnsureValidState()
-        {
-
         }
 
         public void When(WeddingQuoteCreated weddingQuoteCreated)

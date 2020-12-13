@@ -17,7 +17,17 @@ namespace DblDip.Api.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("token", Name = "UserSignInRoute")]
+        [HttpPost("quote", Name = "UserAuthenticateByEmailAndQuoteIdnRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(Authenticate.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<AuthenticateByEmailAndQuoteId.Response>> TokenByEmailAndQuoteId([FromBody] AuthenticateByEmailAndQuoteId.Request request)
+        {
+            return await _mediator.Send(request);
+        }
+
+
+        [HttpPost("token", Name = "UserAuthenticateRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(Authenticate.Response), (int)HttpStatusCode.OK)]
@@ -25,6 +35,8 @@ namespace DblDip.Api.Controllers
         {
             return await _mediator.Send(request);
         }
+
+
 
         [HttpPost("refresh", Name = "UserRefreshRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]

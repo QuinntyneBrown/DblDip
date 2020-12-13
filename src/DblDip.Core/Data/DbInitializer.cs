@@ -15,9 +15,10 @@ namespace DblDip.Data
         {
             RoleConfiguration.Seed(context, configuration);
             SystemLocationConfiguration.Seed(context, configuration);
-            //CardConfiguration.Seed(context, configuration);
-            //UserConfiguration.Seed(context, configuration);
-            //DashboardConfiguration.Seed(context, configuration);
+            CardConfiguration.Seed(context, configuration);
+            UserConfiguration.Seed(context, configuration);
+            DashboardConfiguration.Seed(context, configuration);
+
         }
 
         internal class RoleConfiguration
@@ -82,11 +83,14 @@ namespace DblDip.Data
             {
                 var card = context.Set<Card>().FirstOrDefault(x => x.Name == "Leads");
 
-                card ??= new Card("Leads", "");
+                if (card == null)
+                {
+                    card = new Card("Leads", "");
 
-                context.Store(card);
+                    context.Store(card);
 
-                context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                    context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                }
             }
         }
 
@@ -94,15 +98,21 @@ namespace DblDip.Data
         {
             public static void Seed(IAppDbContext context, IConfiguration configuration)
             {
-                var user = context.Set<User>().FirstOrDefault(x => x.Username == "quinntynebrown@gmail.com");
+                var username = "quinntynebrown@gmail.com";
 
-                user ??= new User("quinntynebrown@gmail.com", "dbldip");
+                var user = context.Set<User>().SingleOrDefault(x => x.Username == username );
 
-                user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
+                if(user == null)
+                {
+                    user = new User(username, "dbldip");
 
-                context.Store(user);
+                    user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
 
-                context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                    context.Store(user);
+
+                    context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                }
+
             }
         }
 
@@ -114,11 +124,14 @@ namespace DblDip.Data
 
                 var dashboard = context.Set<Dashboard>().FirstOrDefault(x => x.Name == "Default" && x.UserId == user.UserId);
 
-                dashboard ??= new Dashboard("Default", user.UserId);
+                if (dashboard == null)
+                {
+                    dashboard = new Dashboard("Default", user.UserId);
 
-                context.Store(dashboard);
+                    context.Store(dashboard);
 
-                context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                    context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                }
             }
         }
 

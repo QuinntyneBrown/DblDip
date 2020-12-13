@@ -1,4 +1,5 @@
 using DblDip.Core.Models;
+using DblDip.Core.ValueObjects;
 
 namespace DblDip.Testing.Builders.Core.Models
 {
@@ -8,7 +9,9 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static WeddingQuote WithDefaults()
         {
-            return new WeddingQuote(default, default, default);
+            var rate = RateBuilder.WithDefaults();
+
+            return new WeddingQuote((Email)"test@test.com", WeddingBuilder.WithDefaults(rate), rate);
         }
 
         public WeddingQuoteBuilder()

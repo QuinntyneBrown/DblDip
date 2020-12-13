@@ -7,8 +7,24 @@ using System.Linq;
 
 namespace DblDip.Core.Models
 {
-    public abstract class Quote : AggregateRoot
+    public class Quote : AggregateRoot
     {
+        protected override void When(dynamic @event)
+        {
+            if(@event is QuoteCreated || @event is QuoteItemAdded)
+                When(@event);
+        }
+
+        public Quote(Guid quoteId)
+        {
+            Apply(new QuoteCreated(quoteId));
+        }
+
+        public void When(QuoteCreated quoteCreated)
+        {
+            QuoteId = quoteCreated.QuoteId;
+            LineItems = new List<LineItem>();
+        }
 
         public void When(QuoteItemAdded quoteItemAdded)
         {
@@ -28,6 +44,11 @@ namespace DblDip.Core.Models
         public void When(QuoteAccepted quoteAccepted)
         {
             Accepted = quoteAccepted.Accepted;
+        }
+
+        protected override void EnsureValidState()
+        {
+
         }
 
         public void AddItem(Price amount, string description)

@@ -1,9 +1,12 @@
 using BuildingBlocks.Core;
-using DblDip.Core.Exceptions;
+using DblDip.Core.Models;
+using DblDip.Core.ValueObjects;
 using DblDip.Domain.Features.Identity;
 using DblDip.Testing;
-using DblDip.Testing.Builders;
-using System.Threading.Tasks;
+using Newtonsoft.Json;
+using System;
+using System.Net.Http;
+using System.Text;
 using Xunit;
 
 namespace DblDip.Api.FunctionalTests.Controllers
@@ -18,29 +21,47 @@ namespace DblDip.Api.FunctionalTests.Controllers
         }
 
         [Fact]
-        public async Task Should_GetToken()
+        public async System.Threading.Tasks.Task Should_GetToken()
         {
-            try
-            {
-                _fixture.Context.Store(UserBuilder.WithDefaults(_fixture.DataIntegrityService));
-
-                await _fixture.Context.SaveChangesAsync(default);
-            }
-            catch (DomainException ex)
-            {
-
-            }
 
             var client = _fixture.CreateClient();
 
             var response = await client.PostAsAsync<dynamic, Authenticate.Response>("api/identity/token", new
             {
                 username = "quinntynebrown@gmail.com",
-                password = "DblDip"
+                password = "dbldip"
             });
 
             Assert.NotNull(response.AccessToken);
 
+        }
+
+        [Fact()]
+        public async System.Threading.Tasks.Task Should_SignInByEmailAndQuoteId()
+        {
+            var client = _fixture.CreateClient();
+
+            var context = _fixture.Context;
+
+            var rate = context.Store(new Rate("test", (Price)1));
+
+            var wedding = context.Store(new Wedding(Location.Create(1, 1).Value, Location.Create(1, 1).Value, Location.Create(1, 1).Value, DateTime.Now, 4));
+
+            var weddingQuote = new WeddingQuote((Email)"quinntynebrown@gmail.com", wedding, rate);
+
+            context.Store(weddingQuote);
+
+            await context.SaveChangesAsync(default);
+
+            var stringContent = new StringContent(JsonConvert.SerializeObject(new
+            {
+                email = "random@gmail.com",
+                quoteId = weddingQuote.WeddingQuoteId,
+            }), Encoding.UTF8, "application/json");
+
+            var response = await client.PostAsync("api/identity/quote", stringContent);
+
+            Assert.NotNull(response);
         }
     }
 }
