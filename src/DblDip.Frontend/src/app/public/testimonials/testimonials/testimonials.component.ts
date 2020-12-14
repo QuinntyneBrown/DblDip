@@ -11,6 +11,7 @@ export class TestimonialsComponent implements OnInit {
   constructor(public testimonialsService: TestimonialsService) { }
 
   ngOnInit(): void {
+    
   }
 
 }
