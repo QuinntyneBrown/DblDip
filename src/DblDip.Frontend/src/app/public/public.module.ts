@@ -8,6 +8,7 @@ import { TestimonialsModule } from './testimonials/testimonials.module';
 import { AboutModule } from './about/about.module';
 import { PricingModule } from './pricing/pricing.module';
 import { ContactModule } from './contact/contact.module';
+import { PortfolioModule } from './portfolio/portfolio.module';
 
 
 
@@ -21,6 +22,7 @@ import { ContactModule } from './contact/contact.module';
     ContactModule,
     PricingModule,
     TestimonialsModule,
+    PortfolioModule,
     CommonModule,
     SharedModule,
     PublicRoutingModule,

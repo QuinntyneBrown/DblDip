@@ -1,2 +1,20 @@
-<app-workspace-header></app-workspace-header>
-<router-outlet></router-outlet>
+<mat-toolbar class="mat-elevation-z6" color="primary">
+  <button mat-icon-button (click)="drawer.toggle()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  
+  <h1>DblDip: Workspace</h1>
+</mat-toolbar>  
+
+<mat-sidenav-container>
+    <mat-sidenav #drawer mode="side" (click)="drawer.close()">
+      <button mat-button routerLink="/workspace/leads">Leads</button>
+      <button mat-button (click)='logout()'>Logout</button>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <div class="router-outlet-container">
+        <router-outlet #router></router-outlet>
+      </div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>

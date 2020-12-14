@@ -7,7 +7,10 @@ import { PortfolioComponent } from './portfolio/portfolio.component';
 
 
 @NgModule({
-  declarations: [PortfolioFeaturedComponent, PortfolioGalleryComponent, PortfolioComponent],
+  declarations: [
+    PortfolioFeaturedComponent, 
+    PortfolioGalleryComponent, 
+    PortfolioComponent],
   imports: [
     CommonModule
   ]

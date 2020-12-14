@@ -11,7 +11,7 @@ export class RedirectService {
 
   lastPath: string = '';
 
-  defaultPath = '/';
+  defaultPath = '/workspace';
 
   setLoginUrl(value: string): void {
     this.loginUrl = value;
