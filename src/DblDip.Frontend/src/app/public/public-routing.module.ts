@@ -1,7 +1,7 @@
 import { RouterModule, Routes } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { PublicComponent } from "./public/public.component";
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from "./home/home/home.component";
 import { TestimonialsComponent } from "./testimonials/testimonials/testimonials.component";
 import { AboutComponent } from "./about/about/about.component";
 import { PortfolioComponent } from "./portfolio/portfolio/portfolio.component";
@@ -13,7 +13,8 @@ const routes: Routes = [
     path: "", 
     component: PublicComponent,
     children: [
-      { path: "", component: HomeComponent },
+      { path: "", redirectTo:"home" },
+      { path: "home", component: HomeComponent },
       { path: "about", component: AboutComponent },
       { path: "contact", component: ContactComponent },
       { path: "portfolio", component: PortfolioComponent },

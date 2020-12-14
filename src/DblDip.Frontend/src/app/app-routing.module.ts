@@ -8,7 +8,7 @@ const routes: Routes = [
   { 
     path:"", 
     pathMatch:"full", 
-    redirectTo: "workspace" 
+    redirectTo: "public" 
   },
   { path: "login", component: LoginComponent },  
   { 
