@@ -10,10 +10,11 @@ namespace DblDip.Core.Models
     public class Quote : AggregateRoot
     {
         protected override void When(dynamic @event)
-        {
-            if(@event is QuoteCreated || @event is QuoteItemAdded)
-                When(@event);
-        }
+            => (@event switch
+            {
+                QuoteItemAdded => (Action<dynamic>)When,
+                QuoteCreated => (Action<dynamic>)When
+            })(@event);
 
         public Quote(Guid quoteId)
         {

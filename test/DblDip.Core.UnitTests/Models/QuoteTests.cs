@@ -12,9 +12,10 @@ namespace DblDip.Core.UnitTests.Models
         }
 
         [Fact]
-        public async Task Should()
+        public async Task Should_Create()
         {
-
+            // Quote is the base class
+            // Events from classes that implmented
         }
     }
 }

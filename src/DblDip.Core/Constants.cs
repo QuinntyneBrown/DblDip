@@ -37,6 +37,11 @@ namespace DblDip.Core
             public static readonly Guid QuinntyneBrown = new Guid("5cb425e4-0a41-4cfa-a6b8-ba3ac84c14ce");
         }
 
+        public static class WeddingShots
+        {
+            public static readonly string FlatLay = nameof(FlatLay);
+        }
+
         public static class Services
         {
             public static readonly string Wedding = nameof(Wedding);
