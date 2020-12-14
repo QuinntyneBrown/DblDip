@@ -5,12 +5,24 @@ import { HomeComponent } from './home/home.component';
 import { PublicComponent } from './public/public.component';
 import { PublicHeaderComponent } from './public-header/public-header.component';
 import { SharedModule } from '../shared/shared.module';
+import { TestimonialsModule } from './testimonials/testimonials.module';
+import { AboutModule } from './about/about.module';
+import { PricingModule } from './pricing/pricing.module';
+import { ContactModule } from './contact/contact.module';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, PublicComponent, PublicHeaderComponent],
+  declarations: [
+    HomeComponent, 
+    PublicComponent, 
+    PublicHeaderComponent,
+  ],
   imports: [
+    AboutModule,
+    ContactModule,
+    PricingModule,
+    TestimonialsModule,
     CommonModule,
     SharedModule,
     PublicRoutingModule,

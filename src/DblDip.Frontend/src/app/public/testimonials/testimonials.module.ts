@@ -6,6 +6,7 @@ import { TestimonialsComponent } from './testimonials/testimonials.component';
 
 @NgModule({
   declarations: [TestimonialsComponent],
+  exports:[TestimonialsComponent],
   imports: [
     CommonModule
   ]
