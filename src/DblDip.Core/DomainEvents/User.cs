@@ -6,4 +6,5 @@ namespace DblDip.Core.DomainEvents
     public record UserPasswordChanged(string Password);
     public record RoleReferenceAdded(Guid RoleId, string Name);
     public record RoleReferenceRemoved(Guid RoleId, string Name);
+    public record UserRefreshTokenAdded(string RefreshToken);
 }

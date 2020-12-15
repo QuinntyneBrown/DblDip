@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using DblDip.Core.ValueObjects;
 using System;
 
 namespace DblDip.Core.Models
@@ -13,6 +14,8 @@ namespace DblDip.Core.Models
         }
 
         public Guid BlogId { get; private set; }
+        public string Name { get; private set; }
+        public Email AuthorEmail { get; set; }
         public DateTime? Deleted { get; private set; }
     }
 
