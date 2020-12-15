@@ -17,6 +17,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using Xunit.Abstractions;
 using DblDip.Data;
+using static DblDip.Core.Constants.ConfigurationKeys;
 
 namespace DblDip.Testing
 {
@@ -66,7 +67,7 @@ namespace DblDip.Testing
                 if (_context == null)
                 {
                     var options = new DbContextOptionsBuilder()
-                        .UseSqlServer(_configuration["Data:DefaultConnection:ConnectionString"])
+                        .UseSqlServer(_configuration[DataDefaultConnectionString])
                         .Options;
 
                     var context = new EventStoreDbContext(options);
@@ -95,7 +96,7 @@ namespace DblDip.Testing
                 if (_dataIntegrityService == null)
                 {
                     var options = new DbContextOptionsBuilder()
-                        .UseSqlServer(_configuration["Data:DefaultConnection:ConnectionString"])
+                        .UseSqlServer(_configuration[DataDefaultConnectionString])
                         .Options;
                     var dateTime = new MachineDateTime();
 
@@ -134,7 +135,7 @@ namespace DblDip.Testing
         protected override void Dispose(bool disposing)
         {
             var options = new DbContextOptionsBuilder()
-                .UseSqlServer(_configuration["Data:DefaultConnection:ConnectionString"])
+                .UseSqlServer(_configuration[DataDefaultConnectionString])
                 .Options;
 
             var context = new EventStoreDbContext(options);

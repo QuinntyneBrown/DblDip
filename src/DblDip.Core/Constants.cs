@@ -63,5 +63,10 @@ namespace DblDip.Core
         {
             public static readonly Guid MyFiles = Guid.NewGuid();
         }
+
+        public static class ConfigurationKeys
+        {
+            public static readonly string DataDefaultConnectionString = "Data:DefaultConnection:ConnectionString";
+        }
     }
 }

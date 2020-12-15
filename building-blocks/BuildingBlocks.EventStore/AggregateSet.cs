@@ -64,6 +64,8 @@ namespace BuildingBlocks.EventStore
                     aggregate.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)));
                 }
 
+                aggregate.ClearChanges();
+
                 aggregates.Add(aggregate);
             }
 
