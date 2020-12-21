@@ -72,8 +72,11 @@ namespace DblDip.Api
 
             services.AddEventStore(options =>
             {
-                options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
-                    builder => builder.MigrationsAssembly("DblDip.Api")
+                options
+                .LogTo(Console.WriteLine)
+                .UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
+                    builder => builder
+                    .MigrationsAssembly("DblDip.Api")
                         .EnableRetryOnFailure())
                 .UseLoggerFactory(EventStoreDbContext.ConsoleLoggerFactory)
                 .EnableSensitiveDataLogging();

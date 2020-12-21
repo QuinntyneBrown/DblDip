@@ -2,7 +2,6 @@ using BuildingBlocks.Abstractions;
 using DblDip.Core.Models;
 using MediatR;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -10,15 +9,9 @@ namespace DblDip.Domain.Features.Clients
 {
     public class GetClientById
     {
-        public class Request : IRequest<Response>
-        {
-            public Guid ClientId { get; set; }
-        }
+        public record Request(Guid ClientId) : IRequest<Response>;
 
-        public class Response
-        {
-            public ClientDto Client { get; set; }
-        }
+        public record Response(ClientDto Client);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -28,13 +21,9 @@ namespace DblDip.Domain.Features.Clients
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var client = await _context.FindAsync<Client>(request.ClientId);
 
-                return new Response()
-                {
-                    Client = client.ToDto()
-                };
+                return new(client.ToDto());
             }
         }
     }
