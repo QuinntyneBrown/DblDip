@@ -1,6 +1,7 @@
 using BuildingBlocks.Abstractions;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using static Newtonsoft.Json.JsonConvert;
@@ -23,44 +24,34 @@ namespace BuildingBlocks.EventStore
 
         public void Store(AggregateRoot aggregateRoot)
         {
-
             var type = aggregateRoot.GetType();
             Guid aggregateId = (Guid)type.GetProperty($"{type.Name}Id").GetValue(aggregateRoot, null);
             string aggregate = aggregateRoot.GetType().Name;
 
-            foreach (var @event in aggregateRoot.DomainEvents)
+            _changes.AddRange(aggregateRoot.DomainEvents.Select(@event => new StoredEvent()
             {
-                _changes.Add(new StoredEvent()
-                {
-                    StoredEventId = Guid.NewGuid(),
-                    Aggregate = aggregate,
-                    AggregateDotNetType = type.AssemblyQualifiedName,
-                    Data = SerializeObject(@event),
-                    StreamId = aggregateId,
-                    DotNetType = @event.GetType().AssemblyQualifiedName,
-                    Type = @event.GetType().Name,
-                    CreatedOn = _dateTime.UtcNow,
-                    Sequence = 0,
-                    CorrelationId = _correlationIdAccessor.CorrelationId
-                });
-            }
+                StoredEventId = Guid.NewGuid(),
+                Aggregate = aggregate,
+                AggregateDotNetType = type.AssemblyQualifiedName,
+                Data = SerializeObject(@event),
+                StreamId = aggregateId,
+                DotNetType = @event.GetType().AssemblyQualifiedName,
+                Type = @event.GetType().Name,
+                CreatedOn = _dateTime.UtcNow,
+                Sequence = 0,
+                CorrelationId = _correlationIdAccessor.CorrelationId
+            }));
+
             aggregateRoot.ClearChanges();
         }
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            foreach (var e in _changes)
-            {
-                _context.StoredEvents.Add(e);
-            }
-
-            var result = await _context.SaveChangesAsync(cancellationToken);
+            _context.StoredEvents.AddRange(_changes);
 
             _changes.Clear();
 
-            return result;
+            return await _context.SaveChangesAsync(cancellationToken);
         }
-
-
     }
 }
