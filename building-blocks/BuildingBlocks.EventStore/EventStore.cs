@@ -1,5 +1,4 @@
 using BuildingBlocks.Abstractions;
-using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Threading;
