@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System;
@@ -48,10 +49,8 @@ namespace BuildingBlocks.EventStore
             {
                 var aggregate = (TAggregateRoot)FormatterServices.GetUninitializedObject(typeof(TAggregateRoot));
 
-                foreach (var storedEvent in group.OrderBy(x => x.CreatedOn))
-                {
-                    aggregate.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)));
-                }
+                group.OrderBy(x => x.CreatedOn)
+                    .ForEach(x => aggregate.Apply(JsonConvert.DeserializeObject(x.Data, Type.GetType(x.DotNetType))));
 
                 aggregate.ClearChanges();
 

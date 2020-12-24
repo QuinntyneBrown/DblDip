@@ -16,19 +16,13 @@ namespace BuildingBlocks.EventStore
             _aggregateSet = aggregateSet;
         }
         public async Task<TAggregateRoot> FindAsync<TAggregateRoot>(Guid id) where TAggregateRoot : AggregateRoot
-        {
-            return await _aggregateSet.FindAsync<TAggregateRoot>(id);
-        }
+            => await _aggregateSet.FindAsync<TAggregateRoot>(id);
 
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
-        {
-            return await _eventStore.SaveChangesAsync(cancellationToken);
-        }
+            => await _eventStore.SaveChangesAsync(cancellationToken);
 
         public IQueryable<T> Set<T>() where T : AggregateRoot
-        {
-            return _aggregateSet.Set<T>();
-        }
+            => _aggregateSet.Set<T>();
 
         public TAggregateRoot Store<TAggregateRoot>(TAggregateRoot aggregateRoot)
             where TAggregateRoot : AggregateRoot
