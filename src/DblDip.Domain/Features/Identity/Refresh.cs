@@ -46,7 +46,7 @@ namespace DblDip.Domain.Features.Identity
                 }
 
                 var accessToken = _tokenProvider.Get(username);
-                
+
                 user.AddRefreshToken(_tokenProvider.GenerateRefreshToken());
 
                 _context.Store(user);

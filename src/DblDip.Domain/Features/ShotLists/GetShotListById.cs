@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.ShotLists
 {
     public class GetShotListById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ShotListId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ShotListId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.ShotLists
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var shotList = await _context.FindAsync<ShotList>(request.ShotListId);
 
-                return new Response() { 
+                return new Response()
+                {
                     ShotList = shotList.ToDto()
                 };
             }

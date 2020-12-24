@@ -9,7 +9,8 @@ namespace BuildingBlocks.EventStore
     public class EventStoreDbContext : DbContext, IEventStoreDbContext
     {
         public EventStoreDbContext(DbContextOptions options)
-            : base(options) {
+            : base(options)
+        {
 
 
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;

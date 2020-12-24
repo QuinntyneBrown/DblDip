@@ -33,12 +33,14 @@ namespace DblDip.Domain.Features.Identity
             private readonly IAppDbContext _context;
             private readonly ITokenProvider _tokenProvider;
 
-            public Handler(IAppDbContext context, ITokenProvider tokenProvider) {            
+            public Handler(IAppDbContext context, ITokenProvider tokenProvider)
+            {
                 _context = context;
                 _tokenProvider = tokenProvider;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var user = _context.Set<User>().Where(x => x.Username == request.Email).SingleOrDefault();
 
@@ -53,7 +55,7 @@ namespace DblDip.Domain.Features.Identity
                 return new Response(_tokenProvider.Get(request.Email, new List<Claim> {
 
                     new Claim(Core.Constants.ClaimTypes.Role,nameof(Core.Constants.Roles.Lead))
-                })) ;
+                }));
             }
         }
     }

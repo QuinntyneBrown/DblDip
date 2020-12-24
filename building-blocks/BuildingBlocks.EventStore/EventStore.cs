@@ -25,16 +25,14 @@ namespace BuildingBlocks.EventStore
         public void Store(AggregateRoot aggregateRoot)
         {
             var type = aggregateRoot.GetType();
-            Guid aggregateId = (Guid)type.GetProperty($"{type.Name}Id").GetValue(aggregateRoot, null);
-            string aggregate = aggregateRoot.GetType().Name;
 
-            _changes.AddRange(aggregateRoot.DomainEvents.Select(@event => new StoredEvent()
+            _changes.AddRange(aggregateRoot.DomainEvents.Select(@event => new StoredEvent
             {
                 StoredEventId = Guid.NewGuid(),
-                Aggregate = aggregate,
-                AggregateDotNetType = type.AssemblyQualifiedName,
+                Aggregate = aggregateRoot.GetType().Name,
+                AggregateDotNetType = aggregateRoot.GetType().AssemblyQualifiedName,
                 Data = SerializeObject(@event),
-                StreamId = aggregateId,
+                StreamId = (Guid)type.GetProperty($"{type.Name}Id").GetValue(aggregateRoot, null),
                 DotNetType = @event.GetType().AssemblyQualifiedName,
                 Type = @event.GetType().Name,
                 CreatedOn = _dateTime.UtcNow,

@@ -10,7 +10,7 @@ namespace DblDip.Core.Models
         protected override void When(dynamic @event) => When(@event);
 
         public WeddingQuote(Email billToEmail, Wedding wedding, Rate rate)
-            :base(Guid.NewGuid())
+            : base(Guid.NewGuid())
         {
             Apply(new WeddingQuoteCreated(QuoteId, billToEmail, wedding.WeddingId));
 

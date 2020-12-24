@@ -9,14 +9,6 @@ using System.Threading.Tasks;
 
 namespace BuildingBlocks.EventStore
 {
-    public interface IAggregateSet
-    {
-        IQueryable<TAggregateRoot> Set<TAggregateRoot>()
-            where TAggregateRoot : AggregateRoot;
-
-        Task<TAggregateRoot> FindAsync<TAggregateRoot>(Guid id)
-            where TAggregateRoot : AggregateRoot;
-    }
 
     public class AggregateSet : IAggregateSet
     {
@@ -83,7 +75,6 @@ namespace BuildingBlocks.EventStore
 
             static TAggregateRoot Reduce(TAggregateRoot aggregateRoot, StoredEvent storedEvent)
             {
-
                 aggregateRoot.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)));
 
                 aggregateRoot.ClearChanges();

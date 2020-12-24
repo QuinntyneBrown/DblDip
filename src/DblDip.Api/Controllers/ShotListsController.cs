@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateShotList.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateShotList.Response>> Create([FromBody]CreateShotList.Request request)
+        public async Task<ActionResult<CreateShotList.Response>> Create([FromBody] CreateShotList.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateShotList.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateShotList.Response>> Update([FromBody]UpdateShotList.Request request)
+        public async Task<ActionResult<UpdateShotList.Response>> Update([FromBody] UpdateShotList.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveShotList.Request request)
+        public async Task Remove([FromRoute] RemoveShotList.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetShotListById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetShotListById.Response>> GetById([FromRoute]GetShotListById.Request request)
+        public async Task<ActionResult<GetShotListById.Response>> GetById([FromRoute] GetShotListById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetShotLists.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetShotLists.Response>> Get()
-            => await _mediator.Send(new GetShotLists.Request());           
+            => await _mediator.Send(new GetShotLists.Request());
     }
 }

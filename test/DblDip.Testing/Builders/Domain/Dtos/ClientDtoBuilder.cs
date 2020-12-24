@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Domain.Dtos
 
         public static ClientDto WithDefaults()
         {
-            return new (default, default, default, default, default);
+            return new(default, default, default, default, default);
         }
 
         public ClientDtoBuilder()

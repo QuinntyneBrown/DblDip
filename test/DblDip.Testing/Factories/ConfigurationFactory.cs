@@ -17,7 +17,7 @@ namespace DblDip.Testing.Factories
 
                 configuration = new ConfigurationBuilder()
                     .SetBasePath(basePath)
-                    .AddJsonFile("appsettings.json",false)
+                    .AddJsonFile("appsettings.json", false)
                     .AddUserSecrets<Startup>()
                     .Build();
             }

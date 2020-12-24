@@ -1,1 +1,8 @@
-{"RootNamespace":"DblDip","Namespace":"BuildingBlocks.EventStore","Domain":"DblDip.Domain","Api":"DblDip.Api","Core":"DblDip.Core","EntityIdDataType":"Guid"}
+{  
+  "RootNamespace": "DblDip",
+  "Namespace": "BuildingBlocks.EventStore",
+  "Domain": "DblDip.Domain",
+  "Api": "DblDip.Api",
+  "Core": "DblDip.Core",
+  "EntityIdDataType": "Guid"
+}

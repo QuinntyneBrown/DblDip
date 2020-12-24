@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
-    public class ShotList: AggregateRoot
+    public class ShotList : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
 

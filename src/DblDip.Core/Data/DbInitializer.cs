@@ -100,9 +100,9 @@ namespace DblDip.Data
             {
                 var username = "quinntynebrown@gmail.com";
 
-                var user = context.Set<User>().SingleOrDefault(x => x.Username == username );
+                var user = context.Set<User>().SingleOrDefault(x => x.Username == username);
 
-                if(user == null)
+                if (user == null)
                 {
                     user = new User(username, "dbldip");
 

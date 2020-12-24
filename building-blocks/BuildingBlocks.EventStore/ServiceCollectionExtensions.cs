@@ -18,9 +18,4 @@ namespace BuildingBlocks.EventStore
             services.AddTransient<ICorrelationIdAccessor, CorrelationIdAccessor>();
         }
     }
-
-    public class MachineDateTime : IDateTime
-    {
-        public DateTime UtcNow => DateTime.UtcNow;
-    }
 }

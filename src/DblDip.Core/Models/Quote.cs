@@ -11,7 +11,7 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event)
         {
-            if(@event is QuoteCreated || @event is QuoteItemAdded)
+            if (@event is QuoteCreated || @event is QuoteItemAdded)
             {
                 When(@event);
             }

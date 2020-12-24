@@ -20,8 +20,8 @@ namespace DblDip.Api.FunctionalTests.Controllers
         {
             var defaultLocation = LocationBuilder.WithDefaults();
 
-            var dto = new CreateWedding.Request(1,DateTime.UtcNow, defaultLocation.Longitude, defaultLocation.Latitude);
-            
+            var dto = new CreateWedding.Request(1, DateTime.UtcNow, defaultLocation.Longitude, defaultLocation.Latitude);
+
             var client = _fixture.CreateClient();
 
             var response = await client.PostAsAsync<dynamic, CreateWedding.Response>(Endpoints.Post.CreateWedding, dto);
