@@ -6,9 +6,9 @@ namespace BuildingBlocks.EventStore
 {
     public class SnapShot
     {
-        public Guid SnapShotId { get; set; }
-        public DateTime Created { get; set; } = DateTime.UtcNow;
-        public IDictionary<string, HashSet<AggregateRoot>> Data { get; set; }
+        public Guid SnapShotId { get; init; }
+        public DateTime Created { get; init; } = DateTime.UtcNow;
+        public IDictionary<string, HashSet<AggregateRoot>> Data { get; init; }
         = new Dictionary<string, HashSet<AggregateRoot>>();
     }
 }

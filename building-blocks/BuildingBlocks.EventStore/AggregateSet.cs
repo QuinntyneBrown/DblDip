@@ -5,8 +5,8 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Threading.Tasks;
+using static BuildingBlocks.Abstractions.AggregateRoot;
 
 namespace BuildingBlocks.EventStore
 {
@@ -47,7 +47,7 @@ namespace BuildingBlocks.EventStore
 
             static List<TAggregateRoot> Reduce(List<TAggregateRoot> aggregates, IGrouping<Guid, StoredEvent> group)
             {
-                var aggregate = (TAggregateRoot)FormatterServices.GetUninitializedObject(typeof(TAggregateRoot));
+                var aggregate = Create<TAggregateRoot>();
 
                 group.OrderBy(x => x.CreatedOn)
                     .ForEach(x => aggregate.Apply(JsonConvert.DeserializeObject(x.Data, Type.GetType(x.DotNetType))));
@@ -63,14 +63,10 @@ namespace BuildingBlocks.EventStore
         public async Task<TAggregateRoot> FindAsync<TAggregateRoot>(Guid streamId)
             where TAggregateRoot : AggregateRoot
         {
-            var storedEvents = StoredEvents(typeof(TAggregateRoot).Name, new Guid[1] { streamId });
+            var storedEvents = StoredEvents(typeof(TAggregateRoot).Name, new [] { streamId });
 
-            if (!storedEvents.Any())
-                return null;
-
-            return StoredEvents(typeof(TAggregateRoot).Name, new Guid[1] { streamId })
-                .OrderBy(x => x.CreatedOn)
-                .Aggregate((TAggregateRoot)FormatterServices.GetUninitializedObject(typeof(TAggregateRoot)), Reduce);
+            return storedEvents.Any() ? storedEvents.OrderBy(x => x.CreatedOn).Aggregate(Create<TAggregateRoot>(), Reduce)
+                : null;
 
             static TAggregateRoot Reduce(TAggregateRoot aggregateRoot, StoredEvent storedEvent)
             {

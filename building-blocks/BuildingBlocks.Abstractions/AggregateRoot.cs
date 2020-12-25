@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using static System.Runtime.Serialization.FormatterServices;
 
 namespace BuildingBlocks.Abstractions
 {
@@ -20,5 +21,9 @@ namespace BuildingBlocks.Abstractions
         }
         protected abstract void When(dynamic @event);
         protected abstract void EnsureValidState();
+
+        public static TAggregateRoot Create<TAggregateRoot>() 
+            => (TAggregateRoot)GetUninitializedObject(typeof(TAggregateRoot));
+
     }
 }
