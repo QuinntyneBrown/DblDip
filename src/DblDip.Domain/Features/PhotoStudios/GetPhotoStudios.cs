@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.PhotoStudios
 
         public class Response
         {
-            public List<PhotoStudioDto> PhotoStudios { get; set; }
+            public List<PhotoStudioDto> PhotoStudios { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

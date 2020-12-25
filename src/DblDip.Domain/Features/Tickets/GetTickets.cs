@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Tickets
 
         public class Response
         {
-            public List<TicketDto> Tickets { get; set; }
+            public List<TicketDto> Tickets { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

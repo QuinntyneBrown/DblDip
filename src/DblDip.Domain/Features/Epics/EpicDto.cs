@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.Epics
 {
     public class EpicDto
     {
-        public Guid EpicId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid EpicId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

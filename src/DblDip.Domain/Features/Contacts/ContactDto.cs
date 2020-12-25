@@ -4,6 +4,6 @@ namespace DblDip.Domain.Features.Contacts
 {
     public class ContactDto
     {
-        public Guid ContactId { get; set; }
+        public Guid ContactId { get; init; }
     }
 }

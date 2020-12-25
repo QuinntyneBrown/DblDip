@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Offers
     {
         public class Request : IRequest<Response>
         {
-            public Guid OfferId { get; set; }
+            public Guid OfferId { get; init; }
         }
 
         public class Response
         {
-            public OfferDto Offer { get; set; }
+            public OfferDto Offer { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

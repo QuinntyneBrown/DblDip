@@ -17,7 +17,7 @@ namespace DblDip.Domain.Features.Dashboards
 
         public class Response
         {
-            public List<DashboardDto> Dashboards { get; set; }
+            public List<DashboardDto> Dashboards { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

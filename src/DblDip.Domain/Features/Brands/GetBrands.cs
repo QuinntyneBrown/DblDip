@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Brands
 
         public class Response
         {
-            public List<BrandDto> Brands { get; set; }
+            public List<BrandDto> Brands { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

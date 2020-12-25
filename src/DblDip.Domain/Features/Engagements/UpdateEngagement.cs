@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Engagements
 
         public class Request : IRequest<Response>
         {
-            public EngagementDto Engagement { get; set; }
+            public EngagementDto Engagement { get; init; }
         }
 
         public class Response
         {
-            public EngagementDto Engagement { get; set; }
+            public EngagementDto Engagement { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.PhotoGalleries
 
         public class Request : IRequest<Unit>
         {
-            public Guid PhotoGalleryId { get; set; }
+            public Guid PhotoGalleryId { get; init; }
         }
 
         public class Response
         {
-            public PhotoGalleryDto PhotoGallery { get; set; }
+            public PhotoGalleryDto PhotoGallery { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

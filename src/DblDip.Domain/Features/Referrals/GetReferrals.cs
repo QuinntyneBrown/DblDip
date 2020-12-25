@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Referrals
 
         public class Response
         {
-            public List<ReferralDto> Referrals { get; set; }
+            public List<ReferralDto> Referrals { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

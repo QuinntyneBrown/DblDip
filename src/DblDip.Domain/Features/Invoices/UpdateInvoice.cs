@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Invoices
 
         public class Request : IRequest<Response>
         {
-            public InvoiceDto Invoice { get; set; }
+            public InvoiceDto Invoice { get; init; }
         }
 
         public class Response
         {
-            public InvoiceDto Invoice { get; set; }
+            public InvoiceDto Invoice { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

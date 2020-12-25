@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Services
 
         public class Request : IRequest<Unit>
         {
-            public Guid ServiceId { get; set; }
+            public Guid ServiceId { get; init; }
         }
 
         public class Response
         {
-            public ServiceDto Service { get; set; }
+            public ServiceDto Service { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

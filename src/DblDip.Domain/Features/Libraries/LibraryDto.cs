@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.Libraries
 {
     public class LibraryDto
     {
-        public Guid LibraryId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid LibraryId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

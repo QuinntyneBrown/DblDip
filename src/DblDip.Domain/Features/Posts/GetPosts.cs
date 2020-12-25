@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Posts
 
         public class Response
         {
-            public List<PostDto> Posts { get; set; }
+            public List<PostDto> Posts { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

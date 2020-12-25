@@ -5,9 +5,9 @@ namespace DblDip.Domain.Features.Rates
 {
     public class RateDto
     {
-        public Guid RateId { get; set; }
-        public string Name { get; set; }
-        public Price Price { get; set; }
-        public DateTime? Deleted { get; set; }
+        public Guid RateId { get; init; }
+        public string Name { get; init; }
+        public Price Price { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

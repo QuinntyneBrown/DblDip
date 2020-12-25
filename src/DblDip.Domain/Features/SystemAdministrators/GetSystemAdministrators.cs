@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.SystemAdministrators
 
         public class Response
         {
-            public List<SystemAdministratorDto> SystemAdministrators { get; set; }
+            public List<SystemAdministratorDto> SystemAdministrators { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

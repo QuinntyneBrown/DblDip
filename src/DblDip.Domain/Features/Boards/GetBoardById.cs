@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Boards
     {
         public class Request : IRequest<Response>
         {
-            public Guid BoardId { get; set; }
+            public Guid BoardId { get; init; }
         }
 
         public class Response
         {
-            public BoardDto Board { get; set; }
+            public BoardDto Board { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.CorporateEvents
 
         public class Response
         {
-            public List<CorporateEventDto> CorporateEvents { get; set; }
+            public List<CorporateEventDto> CorporateEvents { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

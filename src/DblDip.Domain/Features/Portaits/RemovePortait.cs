@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Portraits
 
         public class Request : IRequest<Unit>
         {
-            public Guid PortraitId { get; set; }
+            public Guid PortraitId { get; init; }
         }
 
         public class Response
         {
-            public PortraitDto Portrait { get; set; }
+            public PortraitDto Portrait { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

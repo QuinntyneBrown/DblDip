@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Feedbacks
 
         public class Response
         {
-            public List<FeedbackDto> Feedbacks { get; set; }
+            public List<FeedbackDto> Feedbacks { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

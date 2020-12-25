@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Photographers
 
         public class Response
         {
-            public List<PhotographerDto> Photographers { get; set; }
+            public List<PhotographerDto> Photographers { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

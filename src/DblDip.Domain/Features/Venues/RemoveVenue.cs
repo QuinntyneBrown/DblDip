@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Venues
 
         public class Request : IRequest<Unit>
         {
-            public Guid VenueId { get; set; }
+            public Guid VenueId { get; init; }
         }
 
         public class Response
         {
-            public VenueDto Venue { get; set; }
+            public VenueDto Venue { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

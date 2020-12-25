@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Posts
     {
         public class Request : IRequest<Response>
         {
-            public Guid PostId { get; set; }
+            public Guid PostId { get; init; }
         }
 
         public class Response
         {
-            public PostDto Post { get; set; }
+            public PostDto Post { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

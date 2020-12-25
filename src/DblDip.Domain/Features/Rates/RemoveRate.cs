@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Rates
 
         public class Request : IRequest<Unit>
         {
-            public Guid RateId { get; set; }
+            public Guid RateId { get; init; }
         }
 
         public class Response
         {
-            public RateDto Rate { get; set; }
+            public RateDto Rate { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

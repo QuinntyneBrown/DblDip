@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Availabilities
 
         public class Request : IRequest<Unit>
         {
-            public Guid AvailabilityId { get; set; }
+            public Guid AvailabilityId { get; init; }
         }
 
         public class Response
         {
-            public AvailabilityDto Availability { get; set; }
+            public AvailabilityDto Availability { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

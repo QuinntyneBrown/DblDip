@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Testimonials
     {
         public class Request : IRequest<Response>
         {
-            public Guid TestimonialId { get; set; }
+            public Guid TestimonialId { get; init; }
         }
 
         public class Response
         {
-            public TestimonialDto Testimonial { get; set; }
+            public TestimonialDto Testimonial { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

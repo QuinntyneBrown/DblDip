@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.YouTubeVideos
     {
         public class Request : IRequest<Response>
         {
-            public Guid YouTubeVideoId { get; set; }
+            public Guid YouTubeVideoId { get; init; }
         }
 
         public class Response
         {
-            public YouTubeVideoDto YouTubeVideo { get; set; }
+            public YouTubeVideoDto YouTubeVideo { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

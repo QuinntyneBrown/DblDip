@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Consultations
 
         public class Request : IRequest<Unit>
         {
-            public Guid ConsultationId { get; set; }
+            public Guid ConsultationId { get; init; }
         }
 
         public class Response
         {
-            public ConsultationDto Consultation { get; set; }
+            public ConsultationDto Consultation { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

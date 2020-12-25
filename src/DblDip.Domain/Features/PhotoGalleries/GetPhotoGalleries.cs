@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.PhotoGalleries
 
         public class Response
         {
-            public List<PhotoGalleryDto> PhotoGalleries { get; set; }
+            public List<PhotoGalleryDto> PhotoGalleries { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

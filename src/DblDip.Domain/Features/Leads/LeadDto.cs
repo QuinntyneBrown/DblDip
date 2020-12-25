@@ -4,11 +4,11 @@ namespace DblDip.Domain.Features.Leads
 {
     public class LeadDto
     {
-        public Guid LeadId { get; set; }
-        public string Firstname { get; set; }
-        public string Lastname { get; set; }
-        public string EmailAddress { get; set; }
-        public string PhoneNumber { get; set; }
-        public DateTime? Deleted { get; set; }
+        public Guid LeadId { get; init; }
+        public string Firstname { get; init; }
+        public string Lastname { get; init; }
+        public string EmailAddress { get; init; }
+        public string PhoneNumber { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

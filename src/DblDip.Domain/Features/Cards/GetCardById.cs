@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Cards
     {
         public class Request : IRequest<Response>
         {
-            public Guid CardId { get; set; }
+            public Guid CardId { get; init; }
         }
 
         public class Response
         {
-            public CardDto Card { get; set; }
+            public CardDto Card { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.SocialEvents
 
         public class Response
         {
-            public List<SocialEventDto> SocialEvents { get; set; }
+            public List<SocialEventDto> SocialEvents { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.ShotLists
 
         public class Response
         {
-            public List<ShotListDto> ShotLists { get; set; }
+            public List<ShotListDto> ShotLists { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Receipts
 
         public class Request : IRequest<Unit>
         {
-            public Guid ReceiptId { get; set; }
+            public Guid ReceiptId { get; init; }
         }
 
         public class Response
         {
-            public ReceiptDto Receipt { get; set; }
+            public ReceiptDto Receipt { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

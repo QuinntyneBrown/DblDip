@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Surveys
 
         public class Response
         {
-            public List<SurveyDto> Surveys { get; set; }
+            public List<SurveyDto> Surveys { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

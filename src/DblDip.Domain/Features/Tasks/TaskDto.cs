@@ -5,9 +5,9 @@ namespace DblDip.Domain.Features.Tasks
 {
     public class TaskDto
     {
-        public Guid TaskId { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public DateRange Scheduled { get; set; }
+        public Guid TaskId { get; init; }
+        public string Name { get; init; }
+        public string Description { get; init; }
+        public DateRange Scheduled { get; init; }
     }
 }

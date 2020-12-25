@@ -5,9 +5,9 @@ namespace DblDip.Domain.Features.Orders
 {
     public class OrderDto
     {
-        public Guid OrderId { get; set; }
-        public decimal Total { get; set; }
-        public ICollection<LineItemDto> LineItems { get; set; }
+        public Guid OrderId { get; init; }
+        public decimal Total { get; init; }
+        public ICollection<LineItemDto> LineItems { get; init; }
 
         public record LineItemDto
         {

@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.SystemLocations
 
         public class Response
         {
-            public List<SystemLocationDto> SystemLocations { get; set; }
+            public List<SystemLocationDto> SystemLocations { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

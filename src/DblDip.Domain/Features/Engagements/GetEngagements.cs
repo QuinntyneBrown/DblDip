@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Engagements
 
         public class Response
         {
-            public List<EngagementDto> Engagements { get; set; }
+            public List<EngagementDto> Engagements { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

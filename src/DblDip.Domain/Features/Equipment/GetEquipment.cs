@@ -13,7 +13,7 @@ namespace DblDip.Domain.Features.Equipment
 
         public class Response
         {
-            public List<EquipmentDto> Equipment { get; set; }
+            public List<EquipmentDto> Equipment { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

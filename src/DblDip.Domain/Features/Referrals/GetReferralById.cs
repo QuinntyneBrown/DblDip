@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Referrals
     {
         public class Request : IRequest<Response>
         {
-            public Guid ReferralId { get; set; }
+            public Guid ReferralId { get; init; }
         }
 
         public class Response
         {
-            public ReferralDto Referral { get; set; }
+            public ReferralDto Referral { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Dashboards
 
         public class Request : IRequest<Response>
         {
-            public DashboardDto Dashboard { get; set; }
+            public DashboardDto Dashboard { get; init; }
         }
 
         public class Response
         {
-            public DashboardDto Dashboard { get; set; }
+            public DashboardDto Dashboard { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

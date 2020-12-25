@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Testimonials
 
         public class Response
         {
-            public List<TestimonialDto> Testimonials { get; set; }
+            public List<TestimonialDto> Testimonials { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

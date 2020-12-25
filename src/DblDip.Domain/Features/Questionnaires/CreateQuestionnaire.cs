@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Questionnaires
 
         public class Request : IRequest<Response>
         {
-            public QuestionnaireDto Questionnaire { get; set; }
+            public QuestionnaireDto Questionnaire { get; init; }
         }
 
         public class Response
         {
-            public QuestionnaireDto Questionnaire { get; set; }
+            public QuestionnaireDto Questionnaire { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

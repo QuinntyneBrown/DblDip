@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Brands
     {
         public class Request : IRequest<Response>
         {
-            public Guid BrandId { get; set; }
+            public Guid BrandId { get; init; }
         }
 
         public class Response
         {
-            public BrandDto Brand { get; set; }
+            public BrandDto Brand { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

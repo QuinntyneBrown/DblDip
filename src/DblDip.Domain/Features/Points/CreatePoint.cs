@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Points
 
         public class Request : IRequest<Response>
         {
-            public PointDto Point { get; set; }
+            public PointDto Point { get; init; }
         }
 
         public class Response
         {
-            public PointDto Point { get; set; }
+            public PointDto Point { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

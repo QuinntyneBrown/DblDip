@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Leads
 
         public class Response
         {
-            public List<LeadDto> Leads { get; set; }
+            public List<LeadDto> Leads { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

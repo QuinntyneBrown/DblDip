@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.PhotoStudios
 
         public class Request : IRequest<Response>
         {
-            public PhotoStudioDto PhotoStudio { get; set; }
+            public PhotoStudioDto PhotoStudio { get; init; }
         }
 
         public class Response
         {
-            public PhotoStudioDto PhotoStudio { get; set; }
+            public PhotoStudioDto PhotoStudio { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

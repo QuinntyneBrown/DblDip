@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Roles
 
         public class Response
         {
-            public List<RoleDto> Roles { get; set; }
+            public List<RoleDto> Roles { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

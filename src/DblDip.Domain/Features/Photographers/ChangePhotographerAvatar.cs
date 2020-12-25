@@ -22,12 +22,12 @@ namespace DblDip.Domain.Features.Photographers
 
         public class Request : IRequest<Response>
         {
-            public Guid PhotographerId { get; set; }
+            public Guid PhotographerId { get; init; }
         }
 
         public class Response
         {
-            public Guid DigitalAssetId { get; set; }
+            public Guid DigitalAssetId { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

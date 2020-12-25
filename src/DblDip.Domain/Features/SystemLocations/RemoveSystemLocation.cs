@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.SystemLocations
 
         public class Request : IRequest<Unit>
         {
-            public Guid SystemLocationId { get; set; }
+            public Guid SystemLocationId { get; init; }
         }
 
         public class Response
         {
-            public SystemLocationDto SystemLocation { get; set; }
+            public SystemLocationDto SystemLocation { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

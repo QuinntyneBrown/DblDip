@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Roles
 
         public class Request : IRequest<Unit>
         {
-            public Guid RoleId { get; set; }
+            public Guid RoleId { get; init; }
         }
 
         public class Response
         {
-            public RoleDto Role { get; set; }
+            public RoleDto Role { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

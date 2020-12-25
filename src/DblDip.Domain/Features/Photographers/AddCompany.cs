@@ -21,8 +21,8 @@ namespace DblDip.Domain.Features.Photographers
 
         public class Request : IRequest<Unit>
         {
-            public Guid PhotographerId { get; set; }
-            public CompanyDto Company { get; set; }
+            public Guid PhotographerId { get; init; }
+            public CompanyDto Company { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

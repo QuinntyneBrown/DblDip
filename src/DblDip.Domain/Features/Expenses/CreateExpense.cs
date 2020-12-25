@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Expenses
 
         public class Request : IRequest<Response>
         {
-            public ExpenseDto Expense { get; set; }
+            public ExpenseDto Expense { get; init; }
         }
 
         public class Response
         {
-            public ExpenseDto Expense { get; set; }
+            public ExpenseDto Expense { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

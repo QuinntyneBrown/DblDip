@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Rates
 
         public class Response
         {
-            public List<RateDto> Rates { get; set; }
+            public List<RateDto> Rates { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

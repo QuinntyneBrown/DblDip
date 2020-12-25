@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.SocialEvents
 
         public class Request : IRequest<Unit>
         {
-            public Guid SocialEventId { get; set; }
+            public Guid SocialEventId { get; init; }
         }
 
         public class Response
         {
-            public SocialEventDto SocialEvent { get; set; }
+            public SocialEventDto SocialEvent { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

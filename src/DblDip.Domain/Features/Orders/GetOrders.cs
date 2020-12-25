@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Orders
 
         public class Response
         {
-            public List<OrderDto> Orders { get; set; }
+            public List<OrderDto> Orders { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

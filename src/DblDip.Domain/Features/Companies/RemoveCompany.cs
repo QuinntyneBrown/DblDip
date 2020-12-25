@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Companies
 
         public class Request : IRequest<Unit>
         {
-            public Guid CompanyId { get; set; }
+            public Guid CompanyId { get; init; }
         }
 
         public class Response
         {
-            public CompanyDto Company { get; set; }
+            public CompanyDto Company { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

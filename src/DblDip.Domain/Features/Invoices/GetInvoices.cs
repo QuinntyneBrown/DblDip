@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Invoices
 
         public class Response
         {
-            public List<InvoiceDto> Invoices { get; set; }
+            public List<InvoiceDto> Invoices { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

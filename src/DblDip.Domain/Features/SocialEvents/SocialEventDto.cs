@@ -6,6 +6,6 @@ namespace DblDip.Domain.Features.SocialEvents
     public class SocialEventDto
     {
         public DateRange Scheduled { get; }
-        public Guid SocialEventId { get; set; }
+        public Guid SocialEventId { get; init; }
     }
 }

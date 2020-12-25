@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Venues
 
         public class Response
         {
-            public List<VenueDto> Venues { get; set; }
+            public List<VenueDto> Venues { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

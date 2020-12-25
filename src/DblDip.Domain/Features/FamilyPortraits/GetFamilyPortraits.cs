@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.FamilyPortraits
 
         public class Response
         {
-            public List<FamilyPortraitDto> FamilyPortraits { get; set; }
+            public List<FamilyPortraitDto> FamilyPortraits { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

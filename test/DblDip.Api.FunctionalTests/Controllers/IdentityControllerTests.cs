@@ -53,7 +53,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
 
             await context.SaveChangesAsync(default);
 
-            var stringContent = new StringContent(JsonConvert.SerializeObject(new AuthenticateByEmailAndQuoteId.Request(weddingQuote.BillToEmail, weddingQuote.WeddingQuoteId)), Encoding.UTF8, "application/json");
+            var stringContent = new StringContent(JsonConvert.SerializeObject(new { email = weddingQuote.BillToEmail.Value, quoteId = weddingQuote.QuoteId }), Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync("api/identity/quote", stringContent);
 

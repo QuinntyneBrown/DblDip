@@ -5,9 +5,9 @@ namespace DblDip.Domain.Features.Meetings
 {
     public class MeetingDto
     {
-        public Guid MeetingId { get; set; }
-        public DateRange Scheduled { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public Guid MeetingId { get; init; }
+        public DateRange Scheduled { get; init; }
+        public string Name { get; init; }
+        public string Description { get; init; }
     }
 }

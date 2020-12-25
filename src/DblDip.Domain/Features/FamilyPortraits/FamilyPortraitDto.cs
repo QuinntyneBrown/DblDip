@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.FamilyPortraits
 {
     public class FamilyPortraitDto
     {
-        public Guid FamilyPortraitId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid FamilyPortraitId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

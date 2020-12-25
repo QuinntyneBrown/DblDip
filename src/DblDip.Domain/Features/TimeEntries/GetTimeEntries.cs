@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.TimeEntries
 
         public class Response
         {
-            public List<TimeEntryDto> TimeEntries { get; set; }
+            public List<TimeEntryDto> TimeEntries { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

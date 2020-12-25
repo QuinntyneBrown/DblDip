@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.Blogs
 {
     public class BlogDto
     {
-        public Guid BlogId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid BlogId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

@@ -21,13 +21,13 @@ namespace DblDip.Domain.Features.DigitalAssets
 
         public class Response
         {
-            public List<Guid> DigitalAssetIds { get; set; }
+            public List<Guid> DigitalAssetIds { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            public IAppDbContext _context { get; set; }
-            public IHttpContextAccessor _httpContextAccessor { get; set; }
+            public IAppDbContext _context { get; init; }
+            public IHttpContextAccessor _httpContextAccessor { get; init; }
             public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor)
             {
                 _context = context;

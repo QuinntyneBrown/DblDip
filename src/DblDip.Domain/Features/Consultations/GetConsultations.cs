@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Consultations
 
         public class Response
         {
-            public List<ConsultationDto> Consultations { get; set; }
+            public List<ConsultationDto> Consultations { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

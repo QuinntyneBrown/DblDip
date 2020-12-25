@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Boards
 
         public class Response
         {
-            public List<BoardDto> Boards { get; set; }
+            public List<BoardDto> Boards { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

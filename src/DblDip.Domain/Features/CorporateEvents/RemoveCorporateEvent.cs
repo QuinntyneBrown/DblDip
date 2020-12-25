@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.CorporateEvents
 
         public class Request : IRequest<Unit>
         {
-            public Guid CorporateEventId { get; set; }
+            public Guid CorporateEventId { get; init; }
         }
 
         public class Response
         {
-            public CorporateEventDto CorporateEvent { get; set; }
+            public CorporateEventDto CorporateEvent { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

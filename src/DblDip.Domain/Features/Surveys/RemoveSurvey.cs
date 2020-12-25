@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Surveys
 
         public class Request : IRequest<Unit>
         {
-            public Guid SurveyId { get; set; }
+            public Guid SurveyId { get; init; }
         }
 
         public class Response
         {
-            public SurveyDto Survey { get; set; }
+            public SurveyDto Survey { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

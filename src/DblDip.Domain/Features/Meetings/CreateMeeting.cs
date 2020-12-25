@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Meetings
 
         public class Request : IRequest<Response>
         {
-            public MeetingDto Meeting { get; set; }
+            public MeetingDto Meeting { get; init; }
         }
 
         public class Response
         {
-            public MeetingDto Meeting { get; set; }
+            public MeetingDto Meeting { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Feedbacks
 
         public class Request : IRequest<Response>
         {
-            public FeedbackDto Feedback { get; set; }
+            public FeedbackDto Feedback { get; init; }
         }
 
         public class Response
         {
-            public FeedbackDto Feedback { get; set; }
+            public FeedbackDto Feedback { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Participants
 
         public class Response
         {
-            public List<ParticipantDto> Participants { get; set; }
+            public List<ParticipantDto> Participants { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

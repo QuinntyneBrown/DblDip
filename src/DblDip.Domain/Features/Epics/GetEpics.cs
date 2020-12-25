@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Epics
 
         public class Response
         {
-            public List<EpicDto> Epics { get; set; }
+            public List<EpicDto> Epics { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -5,7 +5,7 @@ namespace DblDip.Domain.Features.PhotoStudios
 {
     public class PhotoStudioDto
     {
-        public Location Location { get; set; }
-        public Guid PhotoStudioId { get; set; }
+        public Location Location { get; init; }
+        public Guid PhotoStudioId { get; init; }
     }
 }

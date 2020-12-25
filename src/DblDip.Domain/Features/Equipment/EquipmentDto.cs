@@ -5,10 +5,10 @@ namespace DblDip.Domain.Features.Equipment
 {
     public class EquipmentDto
     {
-        public Guid EquipmentId { get; set; }
-        public string Name { get; set; }
-        public Price Price { get; set; }
-        public string Description { get; set; }
-        public Guid? ReceiptDigitalAssetId { get; set; }
+        public Guid EquipmentId { get; init; }
+        public string Name { get; init; }
+        public Price Price { get; init; }
+        public string Description { get; init; }
+        public Guid? ReceiptDigitalAssetId { get; init; }
     }
 }

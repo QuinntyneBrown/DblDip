@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.EditedPhotos
 
         public class Request : IRequest<Unit>
         {
-            public Guid EditedPhotoId { get; set; }
+            public Guid EditedPhotoId { get; init; }
         }
 
         public class Response
         {
-            public EditedPhotoDto EditedPhoto { get; set; }
+            public EditedPhotoDto EditedPhoto { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

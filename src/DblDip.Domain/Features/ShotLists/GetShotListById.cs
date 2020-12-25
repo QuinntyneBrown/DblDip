@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.ShotLists
     {
         public class Request : IRequest<Response>
         {
-            public Guid ShotListId { get; set; }
+            public Guid ShotListId { get; init; }
         }
 
         public class Response
         {
-            public ShotListDto ShotList { get; set; }
+            public ShotListDto ShotList { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

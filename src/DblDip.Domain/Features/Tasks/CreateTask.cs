@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Tasks
 
         public class Request : IRequest<Response>
         {
-            public TaskDto Task { get; set; }
+            public TaskDto Task { get; init; }
         }
 
         public class Response
         {
-            public TaskDto Task { get; set; }
+            public TaskDto Task { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

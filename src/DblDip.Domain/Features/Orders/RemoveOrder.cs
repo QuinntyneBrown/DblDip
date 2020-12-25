@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Orders
 
         public class Request : IRequest<Unit>
         {
-            public Guid OrderId { get; set; }
+            public Guid OrderId { get; init; }
         }
 
         public class Response
         {
-            public OrderDto Order { get; set; }
+            public OrderDto Order { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

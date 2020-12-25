@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.Receipts
 {
     public class ReceiptDto
     {
-        public Guid ReceiptId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid ReceiptId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

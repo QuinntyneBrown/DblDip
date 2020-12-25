@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.ProjectManagers
     {
         public class Request : IRequest<Response>
         {
-            public Guid ProjectManagerId { get; set; }
+            public Guid ProjectManagerId { get; init; }
         }
 
         public class Response
         {
-            public ProjectManagerDto ProjectManager { get; set; }
+            public ProjectManagerDto ProjectManager { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

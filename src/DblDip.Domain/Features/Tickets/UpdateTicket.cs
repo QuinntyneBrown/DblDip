@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Tickets
 
         public class Request : IRequest<Response>
         {
-            public TicketDto Ticket { get; set; }
+            public TicketDto Ticket { get; init; }
         }
 
         public class Response
         {
-            public TicketDto Ticket { get; set; }
+            public TicketDto Ticket { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

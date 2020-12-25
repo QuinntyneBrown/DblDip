@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.Expenses
 {
     public class ExpenseDto
     {
-        public Guid ExpenseId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid ExpenseId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

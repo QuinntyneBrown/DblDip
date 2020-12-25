@@ -24,7 +24,7 @@ namespace DblDip.Domain.Features.Identity
             }
         }
 
-        public record Request(string Email, Guid QuoteId) : IRequest<Response>;
+        public record Request(string Email, Guid QuoteId): IRequest<Response>;
 
         public record Response(string AccessToken);
 
@@ -52,10 +52,10 @@ namespace DblDip.Domain.Features.Identity
                 if (quote == null || quote.Declined.HasValue || quote.Accepted.HasValue)
                     return null;
 
-                return new Response(_tokenProvider.Get(request.Email, new List<Claim> {
-
-                    new Claim(Core.Constants.ClaimTypes.Role,nameof(Core.Constants.Roles.Lead))
-                }));
+                return new Response(_tokenProvider.Get(request.Email, 
+                    new List<Claim> {
+                        new Claim(Core.Constants.ClaimTypes.Role,nameof(Core.Constants.Roles.Lead))
+                    }));
             }
         }
     }

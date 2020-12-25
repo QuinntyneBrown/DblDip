@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Availabilities
 
         public class Response
         {
-            public List<AvailabilityDto> Availabilities { get; set; }
+            public List<AvailabilityDto> Availabilities { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

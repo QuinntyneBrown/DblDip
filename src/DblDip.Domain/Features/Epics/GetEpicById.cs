@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.Epics
     {
         public class Request : IRequest<Response>
         {
-            public Guid EpicId { get; set; }
+            public Guid EpicId { get; init; }
         }
 
         public class Response
         {
-            public EpicDto Epic { get; set; }
+            public EpicDto Epic { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

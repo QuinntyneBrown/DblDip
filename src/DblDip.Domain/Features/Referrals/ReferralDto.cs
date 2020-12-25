@@ -4,6 +4,6 @@ namespace DblDip.Domain.Features.Referrals
 {
     public class ReferralDto
     {
-        public Guid ReferralId { get; set; }
+        public Guid ReferralId { get; init; }
     }
 }

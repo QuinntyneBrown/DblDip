@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Cards
 
         public class Response
         {
-            public List<CardDto> Cards { get; set; }
+            public List<CardDto> Cards { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

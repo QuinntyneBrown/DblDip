@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.ProjectManagers
 
         public class Response
         {
-            public List<ProjectManagerDto> ProjectManagers { get; set; }
+            public List<ProjectManagerDto> ProjectManagers { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

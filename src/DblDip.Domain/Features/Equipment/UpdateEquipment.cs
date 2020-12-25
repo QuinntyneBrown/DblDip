@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Equipment
 
         public class Request : IRequest<Response>
         {
-            public EquipmentDto Equipment { get; set; }
+            public EquipmentDto Equipment { get; init; }
         }
 
         public class Response
         {
-            public EquipmentDto Equipment { get; set; }
+            public EquipmentDto Equipment { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

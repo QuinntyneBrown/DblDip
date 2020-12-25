@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Services
 
         public class Response
         {
-            public List<ServiceDto> Services { get; set; }
+            public List<ServiceDto> Services { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

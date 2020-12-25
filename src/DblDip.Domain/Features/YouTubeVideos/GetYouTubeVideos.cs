@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.YouTubeVideos
 
         public class Response
         {
-            public List<YouTubeVideoDto> YouTubeVideos { get; set; }
+            public List<YouTubeVideoDto> YouTubeVideos { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

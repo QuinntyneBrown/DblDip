@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Companies
 
         public class Response
         {
-            public List<CompanyDto> Companies { get; set; }
+            public List<CompanyDto> Companies { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

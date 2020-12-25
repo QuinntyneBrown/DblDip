@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.Services
 {
     public class ServiceDto
     {
-        public Guid ServiceId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid ServiceId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

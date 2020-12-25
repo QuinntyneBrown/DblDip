@@ -4,7 +4,7 @@ namespace DblDip.Domain.Features.EditedPhotos
 {
     public class EditedPhotoDto
     {
-        public Guid EditedPhotoId { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public Guid EditedPhotoId { get; init; }
+        public DateTime? Deleted { get; init; }
     }
 }

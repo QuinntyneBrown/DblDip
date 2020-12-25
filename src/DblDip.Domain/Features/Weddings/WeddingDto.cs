@@ -6,10 +6,10 @@ namespace DblDip.Domain.Features.Weddings
 {
     public class WeddingDto
     {
-        public Guid WeddingId { get; set; }
-        public ICollection<WeddingPart> Parts { get; set; }
+        public Guid WeddingId { get; init; }
+        public ICollection<WeddingPart> Parts { get; init; }
             = new HashSet<WeddingPart>();
-        public ICollection<Trip> Trips { get; set; }
+        public ICollection<Trip> Trips { get; init; }
         = new HashSet<Trip>();
     }
 

@@ -12,12 +12,12 @@ namespace DblDip.Domain.Features.TimeEntries
     {
         public class Request : IRequest<Response>
         {
-            public Guid TimeEntryId { get; set; }
+            public Guid TimeEntryId { get; init; }
         }
 
         public class Response
         {
-            public TimeEntryDto TimeEntry { get; set; }
+            public TimeEntryDto TimeEntry { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

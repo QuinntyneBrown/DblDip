@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Leads
 
         public class Request : IRequest<Unit>
         {
-            public Guid LeadId { get; set; }
+            public Guid LeadId { get; init; }
         }
 
         public class Response
         {
-            public LeadDto Lead { get; set; }
+            public LeadDto Lead { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

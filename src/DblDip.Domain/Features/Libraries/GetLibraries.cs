@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Libraries
 
         public class Response
         {
-            public List<LibraryDto> Libraries { get; set; }
+            public List<LibraryDto> Libraries { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

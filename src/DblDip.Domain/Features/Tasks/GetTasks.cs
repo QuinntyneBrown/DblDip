@@ -13,7 +13,7 @@ namespace DblDip.Domain.Features.Tasks
 
         public class Response
         {
-            public List<TaskDto> Tasks { get; set; }
+            public List<TaskDto> Tasks { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

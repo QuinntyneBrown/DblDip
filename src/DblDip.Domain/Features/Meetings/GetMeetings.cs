@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Meetings
 
         public class Response
         {
-            public List<MeetingDto> Meetings { get; set; }
+            public List<MeetingDto> Meetings { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

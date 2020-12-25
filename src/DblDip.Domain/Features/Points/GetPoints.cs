@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Points
 
         public class Response
         {
-            public List<PointDto> Points { get; set; }
+            public List<PointDto> Points { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

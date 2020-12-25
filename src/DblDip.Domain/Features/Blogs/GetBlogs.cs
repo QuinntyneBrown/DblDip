@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Blogs
 
         public class Response
         {
-            public List<BlogDto> Blogs { get; set; }
+            public List<BlogDto> Blogs { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

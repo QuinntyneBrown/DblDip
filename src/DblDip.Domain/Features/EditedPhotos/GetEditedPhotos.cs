@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.EditedPhotos
 
         public class Response
         {
-            public List<EditedPhotoDto> EditedPhotos { get; set; }
+            public List<EditedPhotoDto> EditedPhotos { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

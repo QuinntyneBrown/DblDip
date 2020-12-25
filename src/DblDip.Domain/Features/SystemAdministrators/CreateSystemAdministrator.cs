@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.SystemAdministrators
 
         public class Request : IRequest<Response>
         {
-            public SystemAdministratorDto SystemAdministrator { get; set; }
+            public SystemAdministratorDto SystemAdministrator { get; init; }
         }
 
         public class Response
         {
-            public SystemAdministratorDto SystemAdministrator { get; set; }
+            public SystemAdministratorDto SystemAdministrator { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Offers
 
         public class Response
         {
-            public List<OfferDto> Offers { get; set; }
+            public List<OfferDto> Offers { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

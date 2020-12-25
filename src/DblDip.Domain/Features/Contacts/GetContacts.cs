@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Contacts
 
         public class Response
         {
-            public List<ContactDto> Contacts { get; set; }
+            public List<ContactDto> Contacts { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

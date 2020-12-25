@@ -12,17 +12,17 @@ namespace DblDip.Domain.Features.DigitalAssets
     {
         public class Request : IRequest<Response>
         {
-            public Guid DigitalAssetId { get; set; }
+            public Guid DigitalAssetId { get; init; }
         }
 
         public class Response
         {
-            public DigitalAssetDto DigitalAsset { get; set; }
+            public DigitalAssetDto DigitalAsset { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            public IAppDbContext _context { get; set; }
+            public IAppDbContext _context { get; init; }
 
             public Handler(IAppDbContext context) => _context = context;
 

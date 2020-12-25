@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Contacts
 
         public class Request : IRequest<Unit>
         {
-            public Guid ContactId { get; set; }
+            public Guid ContactId { get; init; }
         }
 
         public class Response
         {
-            public ContactDto Contact { get; set; }
+            public ContactDto Contact { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>

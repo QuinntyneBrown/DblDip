@@ -14,7 +14,7 @@ namespace DblDip.Domain.Features.Expenses
 
         public class Response
         {
-            public List<ExpenseDto> Expenses { get; set; }
+            public List<ExpenseDto> Expenses { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

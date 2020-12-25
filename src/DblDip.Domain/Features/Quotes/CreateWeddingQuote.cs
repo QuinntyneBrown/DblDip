@@ -24,13 +24,13 @@ namespace DblDip.Domain.Features.Quotes
 
         public class Request : IRequest<Response>
         {
-            public Guid WeddingId { get; set; }
-            public string Email { get; set; }
+            public Guid WeddingId { get; init; }
+            public string Email { get; init; }
         }
 
         public class Response
         {
-            public WeddingQuoteDto Quote { get; set; }
+            public WeddingQuoteDto Quote { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>

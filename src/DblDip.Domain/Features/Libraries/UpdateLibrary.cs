@@ -20,12 +20,12 @@ namespace DblDip.Domain.Features.Libraries
 
         public class Request : IRequest<Response>
         {
-            public LibraryDto Library { get; set; }
+            public LibraryDto Library { get; init; }
         }
 
         public class Response
         {
-            public LibraryDto Library { get; set; }
+            public LibraryDto Library { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
