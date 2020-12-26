@@ -20,9 +20,9 @@ namespace DblDip.Core.Models
             BlogId = blogCreated.BlogId;
         }
 
-        public void When(BlogPostAdded blogAdded)
+        public void When(BlogPostAdded blogPostAdded)
         {
-
+            _posts.Add(new(blogPostAdded.PostId, blogPostAdded.Title));
         }
 
         public void When(BlogRemoved blogRemoved)
@@ -35,9 +35,9 @@ namespace DblDip.Core.Models
 
         }
 
-        public void AddPost(string value)
+        public void AddPost(Guid postId, string title)
         {
-
+            Apply(new BlogPostAdded(postId, title));
         }
 
         public void Remove(DateTime deleted)
@@ -49,6 +49,8 @@ namespace DblDip.Core.Models
         public string Name { get; private set; }
         public Email AuthorEmail { get; set; }
         public DateTime? Deleted { get; private set; }
-        public ICollection<PostReference> Posts { get; private set; }
+        public IReadOnlyList<PostReference> Posts => _posts;
+
+        private readonly List<PostReference> _posts;
     }
 }
