@@ -9,11 +9,12 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event)
         {
-            if (@event is AvatarChanged || @event is ProfileCreated)
+            if (@event is AvatarChanged || @event is ProfileCreated || @event is ProfileRemoved)
             {
                 When(@event);
             }
         }
+
         public Profile(ProfileCreated profileCreated)
         {
             Apply(profileCreated);
@@ -36,13 +37,23 @@ namespace DblDip.Core.Models
             AvatarDigitalAssetId = avatarChanged.AvatarDigitalAssetId;
         }
 
+        public void When(ProfileRemoved profileRemoved)
+        {
+            Deleted = profileRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
         }
 
-        public Guid AccountId { get; private set; }
+        public void Remove(DateTime deleted)
+        {
+            Apply(new ProfileRemoved(deleted));
+        }
+
         public Guid ProfileId { get; private set; }
+        public Guid AccountId { get; private set; }
         public Email Email { get; set; }
         public PhoneNumber PhoneNumber { get; set; }
         public Guid AvatarDigitalAssetId { get; private set; }
@@ -51,5 +62,5 @@ namespace DblDip.Core.Models
         public string Lastname { get; private set; }
         public string DotNetType { get; set; }
         public DateTime? Deleted { get; private set; }
-    }
+    }    
 }
