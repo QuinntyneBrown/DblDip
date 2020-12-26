@@ -7,6 +7,13 @@ namespace DblDip.Core.Models
 {
     public abstract class Profile : AggregateRoot
     {
+        protected override void When(dynamic @event)
+        {
+            if (@event is AvatarChanged || @event is ProfileCreated)
+            {
+                When(@event);
+            }
+        }
         public Profile(ProfileCreated profileCreated)
         {
             Apply(profileCreated);

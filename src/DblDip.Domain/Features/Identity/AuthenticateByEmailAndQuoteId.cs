@@ -1,15 +1,14 @@
+using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
+using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
-using BuildingBlocks.Abstractions;
-using DblDip.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using DblDip.Core.ValueObjects;
-using System;
-using BuildingBlocks.Core;
-using System.Collections.Generic;
-using System.Security.Claims;
 
 namespace DblDip.Domain.Features.Identity
 {
