@@ -18,10 +18,7 @@ namespace DblDip.Domain.Features.Posts
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public PostDto Post { get; init; }
-        }
+        public record Request(PostDto Post) : IRequest<Response>;
 
         public class Response
         {
@@ -37,7 +34,7 @@ namespace DblDip.Domain.Features.Posts
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var post = new Post();
+                var post = new Post(request.Post.AuthorId, request.Post.Title);
 
                 _context.Store(post);
 

@@ -9,7 +9,7 @@ namespace DblDip.Testing.Builders.Domain.Dtos
 
         public static PostDto WithDefaults()
         {
-            return new PostDto();
+            return new PostDto(default, default, default);
         }
 
         public PostDtoBuilder()

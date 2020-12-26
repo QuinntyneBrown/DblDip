@@ -6,11 +6,6 @@ namespace DblDip.Domain.Features
     public static class PostExtensions
     {
         public static PostDto ToDto(this Post post)
-        {
-            return new PostDto
-            {
-
-            };
-        }
+            => new(post.PostId, post.AuthorId, post.Title);
     }
 }
