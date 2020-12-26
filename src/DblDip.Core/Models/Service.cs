@@ -6,7 +6,13 @@ namespace DblDip.Core.Models
 {
     public class Service : AggregateRoot
     {
-        protected override void When(dynamic @event) => When(@event);
+        protected override void When(dynamic @event)
+        {
+            if(@event is ServiceCreated || @event is ServiceRemoved || @event is ServiceUpdated)
+            {
+                When(@event);
+            }
+        }
 
         public Service()
         {

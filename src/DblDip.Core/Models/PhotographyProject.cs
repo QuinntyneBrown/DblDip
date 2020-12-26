@@ -8,6 +8,13 @@ namespace DblDip.Core.Models
 {
     public abstract class PhotographyProject : AggregateRoot, IScheduledAggregate
     {
+        protected override void When(dynamic @event)
+        {
+            if(@event is PhotoGallerySent)
+            {
+                When(@event);
+            }
+        }
         public void When(PhotoGallerySent sent)
         {
 

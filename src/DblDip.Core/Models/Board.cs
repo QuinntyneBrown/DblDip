@@ -8,7 +8,12 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Board()
+        public Board(string name)
+        {
+
+        }
+
+        private Board()
         {
 
         }
@@ -23,6 +28,4 @@ namespace DblDip.Core.Models
         public DateTime? Deleted { get; private set; }
 
     }
-
-    public record BoardState(string Name, int SortOrder, ICollection<TicketState> TicketStates);
 }
