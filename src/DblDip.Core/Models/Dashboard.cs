@@ -52,7 +52,7 @@ namespace DblDip.Core.Models
             Apply(new DashboardUpdated(name));
         }
 
-        public void UpdateDashboardCards(IEnumerable<DashboardCard> dashboardCards)
+        public void UpdateDashboardCards(ICollection<DashboardCard> dashboardCards)
         {
             Apply(new DashboardCardsUpdated(dashboardCards));
         }
@@ -66,6 +66,6 @@ namespace DblDip.Core.Models
         public record DashboardCard(Guid DashboardCardId, dynamic Options);
         public DateTime? Deleted { get; private set; }
 
-        private IEnumerable<DashboardCard> _dashboardCards; 
+        private ICollection<DashboardCard> _dashboardCards; 
     }
 }

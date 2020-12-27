@@ -9,6 +9,6 @@ namespace DblDip.Core.DomainEvents
     public record DashboardCardRemoved(Guid DashboardCardId);
     public record DashboardCardUpdated(Guid DashboardCardId, dynamic Options);
     public record DashboardRemoved(DateTime Deleted);
-    public record DashboardCardsUpdated(IEnumerable<DashboardCard> DashboardCards);
+    public record DashboardCardsUpdated(ICollection<DashboardCard> DashboardCards);
     public record DashboardUpdated(string Name);
 }

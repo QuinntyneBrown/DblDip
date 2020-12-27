@@ -45,11 +45,10 @@ namespace DblDip.Core.Models
 
         public void Update()
         {
-
+            
         }
 
-        private IEnumerable<ProfileReference> _profiles;
-
+        private ICollection<ProfileReference> _profiles;
         public Guid AccountId { get; private set; }
         public IReadOnlyList<ProfileReference> Profiles => _profiles.ToList();
         public Guid DefaultProfileId { get; private set; }
