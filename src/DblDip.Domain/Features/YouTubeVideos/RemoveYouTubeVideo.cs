@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.YouTubeVideos
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
+                return new ()
                 {
 
                 };

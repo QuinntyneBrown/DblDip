@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.ProjectManagers
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
+                return new ()
                 {
 
                 };

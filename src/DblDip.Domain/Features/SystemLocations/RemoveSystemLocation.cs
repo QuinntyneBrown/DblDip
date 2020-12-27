@@ -46,7 +46,7 @@ namespace DblDip.Domain.Features.SystemLocations
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
+                return new ()
                 {
 
                 };

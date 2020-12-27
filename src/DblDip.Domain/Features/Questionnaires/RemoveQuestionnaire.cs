@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.Questionnaires
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
+                return new ()
                 {
 
                 };

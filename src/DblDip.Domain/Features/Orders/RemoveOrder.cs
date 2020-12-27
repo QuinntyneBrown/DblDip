@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.Orders
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
+                return new ()
                 {
 
                 };
