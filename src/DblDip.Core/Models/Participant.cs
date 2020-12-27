@@ -5,6 +5,11 @@ namespace DblDip.Core.Models
 {
     public class Participant : AggregateRoot
     {
+        public Participant()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         protected override void EnsureValidState()

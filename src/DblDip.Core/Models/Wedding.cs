@@ -76,8 +76,4 @@ namespace DblDip.Core.Models
 
         public override DateRange Scheduled => Timeline.Scheduled;
     }
-
-    public record WeddingPart(DateRange Scheduled, Location Location, string Description): IScheduled;
-
-    public record Trip(DateRange Scheduled, Location Start, Location End): IScheduled;
 }

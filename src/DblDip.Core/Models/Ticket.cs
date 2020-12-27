@@ -27,6 +27,4 @@ namespace DblDip.Core.Models
         public ICollection<Comment> Coments { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
-
-    public record TicketState(Guid TicketId, Guid StateId);
 }

@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Equipment WithDefaults()
         {
-            return new Equipment();
+            return new Equipment(default, default, default);
         }
 
         public EquipmentBuilder()

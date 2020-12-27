@@ -1,6 +1,6 @@
+using DblDip.Core.Models;
 using System;
 using System.Collections.Generic;
-using static DblDip.Core.Models.Role;
 
 namespace DblDip.Domain.Features.Roles
 {

@@ -1,6 +1,5 @@
 using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
-using DblDip.Core.Enums;
 using System;
 using System.Collections.Generic;
 
@@ -55,9 +54,5 @@ namespace DblDip.Core.Models
         public string Name { get; private set; }
         public DateTime? Deleted { get; private set; }
         public ICollection<Privilege> Privileges { get; private set; }
-
-        public record Privilege(AccessRight AccessRight, string Aggregate);
-
     }
-
 }

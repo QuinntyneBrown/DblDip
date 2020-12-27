@@ -37,7 +37,7 @@ namespace DblDip.Domain.Features.Equipment
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var equipment = new DblDip.Core.Models.Equipment();
+                var equipment = new DblDip.Core.Models.Equipment(request.Equipment.Name,request.Equipment.Price,request.Equipment.Description);
 
                 _context.Store(equipment);
 

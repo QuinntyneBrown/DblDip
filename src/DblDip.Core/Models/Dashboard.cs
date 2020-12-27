@@ -2,6 +2,7 @@ using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DblDip.Core.Models
 {
@@ -33,7 +34,7 @@ namespace DblDip.Core.Models
 
         public void When(DashboardCardsUpdated dashboardCardsUpdated)
         {
-            DashboardCards = dashboardCardsUpdated.DashboardCards;
+            _dashboardCards = dashboardCardsUpdated.DashboardCards;
         }
 
         protected override void EnsureValidState()
@@ -59,10 +60,12 @@ namespace DblDip.Core.Models
         public Guid DashboardId { get; private set; }
         public Guid UserId { get; private set; }
         public string Name { get; private set; }
-        public IEnumerable<DashboardCard> DashboardCards { get; private set; }
+        public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
         public bool IsDefault { get; private set; }
 
         public record DashboardCard(Guid DashboardCardId, dynamic Options);
         public DateTime? Deleted { get; private set; }
+
+        private IEnumerable<DashboardCard> _dashboardCards; 
     }
 }

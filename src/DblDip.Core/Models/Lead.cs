@@ -23,7 +23,7 @@ namespace DblDip.Core.Models
 
         protected void When(LeadRemoved leadRemoved)
         {
-            Deleted = leadRemoved.Deleted;
+
         }
 
         protected override void EnsureValidState()
@@ -31,17 +31,12 @@ namespace DblDip.Core.Models
 
         }
 
-        public void Remove(DateTime deleted)
+        public new void Remove(DateTime deleted)
         {
-            Apply(new LeadRemoved(deleted));
+            base.Remove(deleted);
         }
 
         public Guid LeadId { get; private set; }
-        public string Firstname { get; private set; }
-        public string Lastname { get; private set; }
-        public Email Email { get; private set; }
-        public string PhoneNumber { get; private set; }
-        public DateTime? Deleted { get; private set; }
         public LeadStatus Status { get; private set; }
     }
 }

@@ -1,4 +1,3 @@
-using BuildingBlocks.Abstractions;
 using DblDip.Core.ValueObjects;
 using System;
 
@@ -14,6 +13,5 @@ namespace DblDip.Core.Models
         }
         public override DateRange Scheduled { get; }
         public Guid PortraitId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

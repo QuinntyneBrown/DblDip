@@ -8,12 +8,12 @@ namespace DblDip.Testing.Builders.Domain.Dtos
 
         public static EquipmentDto WithDefaults()
         {
-            return new EquipmentDto();
+            return new(default, default, default, default, default);
         }
 
         public EquipmentDtoBuilder()
         {
-            _equipmentDto = new EquipmentDto();
+            _equipmentDto = WithDefaults();
         }
 
         public EquipmentDto Build()
