@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Contacts
 
                 var contact = await _context.FindAsync<Contact>(request.Contact.ContactId);
 
-                //contact.Update();
+                contact.Update();
 
                 _context.Store(contact);
 
