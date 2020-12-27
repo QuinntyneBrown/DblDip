@@ -6,9 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace DblDip.Domain.Features.Clients
+namespace DblDip.Domain.Features.Accounts
 {
-    public class RemoveClient
+    public class RemoveAccount
     {
         public class Validator : AbstractValidator<Request>
         {
@@ -18,14 +18,13 @@ namespace DblDip.Domain.Features.Clients
             }
         }
 
-        public class Request : IRequest<Unit>
-        {
-            public Guid ClientId { get; init; }
+        public class Request : IRequest<Unit> {  
+            public Guid AccountId { get; set; }
         }
 
         public class Response
         {
-            public ClientDto Client { get; init; }
+            public AccountDto Account { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>
@@ -39,18 +38,20 @@ namespace DblDip.Domain.Features.Clients
                 _dateTime = dateTime;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
 
-                var client = await _context.FindAsync<Client>(request.ClientId);
+                var account = await _context.FindAsync<Account>(request.AccountId);
 
-                //client.Remove();
+                account.Remove(_dateTime.UtcNow);
 
-                _context.Store(client);
+                _context.Store(account);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new();
+                return new Unit()
+                {
+
+                };
             }
         }
     }

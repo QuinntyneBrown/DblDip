@@ -30,7 +30,7 @@ namespace DblDip.Domain.Sagas
             {
                 var profile = new Lead(primaryParticpantEmail);
 
-                var account = new Account(new List<Guid> { profile.ProfileId }, profile.ProfileId, "", user.UserId);
+                var account = new Account(new List<ProfileReference> { new (profile.ProfileId,profile.Name) }, profile.ProfileId, "", user.UserId);
 
                 _context.Store(profile);
 
