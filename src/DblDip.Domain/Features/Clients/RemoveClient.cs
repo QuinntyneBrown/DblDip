@@ -41,10 +41,9 @@ namespace DblDip.Domain.Features.Clients
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var client = await _context.FindAsync<Client>(request.ClientId);
 
-                //client.Remove();
+                client.Remove(_dateTime.UtcNow);
 
                 _context.Store(client);
 

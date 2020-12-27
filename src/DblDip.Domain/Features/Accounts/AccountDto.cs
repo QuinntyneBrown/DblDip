@@ -1,3 +1,4 @@
+using DblDip.Core.Models;
 using System;
 using System.Collections.Generic;
 
@@ -9,6 +10,6 @@ namespace DblDip.Domain.Features.Accounts
         public Guid DefaultProfileId { get; init; }
         public string Name { get; init; }
         public Guid AccountHolderUserId { get; init; }
-        public ICollection<dynamic> Profiles { get; init; }
+        public ICollection<ProfileReference> Profiles { get; init; }
     }
 }
