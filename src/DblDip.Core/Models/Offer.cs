@@ -1,15 +1,35 @@
 using BuildingBlocks.Abstractions;
+using DblDip.Core.DomainEvents;
 using System;
 
 namespace DblDip.Core.Models
 {
     public class Offer : AggregateRoot
     {
+        public Offer()
+        {
+            Apply(new OfferCreated(Guid.NewGuid()));
+        }
         protected override void When(dynamic @event) => When(@event);
+
+        public void When(OfferCreated offerCreated)
+        {
+            OfferId = offerCreated.OfferId;
+        }
+
+        public void When(OfferRemoved offerRemoved)
+        {
+            Deleted = offerRemoved.Deleted;
+        }
 
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new OfferRemoved(deleted));
         }
 
         public Guid OfferId { get; private set; }
