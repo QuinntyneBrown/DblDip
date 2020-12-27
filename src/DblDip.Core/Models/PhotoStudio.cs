@@ -13,7 +13,7 @@ namespace DblDip.Core.Models
 
         }
 
-        public Location Location { get; set; }
+        public Location Location { get; private set; }
         public Guid PhotoStudioId { get; private set; }
     }
 }

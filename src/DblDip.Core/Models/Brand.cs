@@ -7,6 +7,11 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
+        public Brand()
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 

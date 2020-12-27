@@ -39,7 +39,7 @@ namespace DblDip.Core.Models
         public Email BillToEmail { get; private set; }
         public ICollection<LineItem> LineItems { get; private set; }
         public OrderStatus Status { get; private set; }
-        public DateTime? Deleted { get; set; }
+        public DateTime? Deleted { get; private set; }
 
 
         public static System.Threading.Tasks.Task<Order> FromQuote(Quote quote)

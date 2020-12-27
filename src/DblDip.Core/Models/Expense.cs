@@ -13,7 +13,7 @@ namespace DblDip.Core.Models
         }
 
         public Guid ExpenseId { get; private set; }
-        public string Description { get; set; }
+        public string Description { get; private set; }
         public ExpenseCategory Category { get; private set; }
         public Guid ProjectId { get; private set; }
         public DateTime? Deleted { get; private set; }

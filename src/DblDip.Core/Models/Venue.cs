@@ -14,7 +14,9 @@ namespace DblDip.Core.Models
         }
 
         public Guid VenueId { get; private set; }
-        public Location Location { get; set; }
+
+        public string Name { get; private set; }
+        public Location Location { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
 }

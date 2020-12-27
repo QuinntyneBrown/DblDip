@@ -1,6 +1,5 @@
 using BuildingBlocks.Abstractions;
 using System;
-using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {

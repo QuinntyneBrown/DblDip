@@ -54,13 +54,13 @@ namespace DblDip.Core.Models
 
         public Guid ProfileId { get; private set; }
         public Guid AccountId { get; private set; }
-        public Email Email { get; set; }
-        public PhoneNumber PhoneNumber { get; set; }
+        public Email Email { get; private set; }
+        public PhoneNumber PhoneNumber { get; private set; }
         public Guid AvatarDigitalAssetId { get; private set; }
         public string Name { get; private set; }
         public string Firstname { get; private set; }
         public string Lastname { get; private set; }
-        public string DotNetType { get; set; }
+        public string DotNetType { get; private set; }
         public DateTime? Deleted { get; private set; }
     }    
 }

@@ -14,9 +14,9 @@ namespace DblDip.Core.Models
         }
 
         public Guid LibraryId { get; private set; }
-        public Guid PhotographerId { get; set; }
+        public Guid PhotographerId { get; private set; }
         public ICollection<Guid> MyImages { get; private set; }
-        public ICollection<Guid> MyFiles { get; set; }
+        public ICollection<Guid> MyFiles { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
 }

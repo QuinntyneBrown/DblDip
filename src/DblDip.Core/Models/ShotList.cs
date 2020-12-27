@@ -60,8 +60,8 @@ namespace DblDip.Core.Models
         }
 
         public Guid ShotListId { get; private set; }
-        public string PhotographyProject { get; set; }
-        public ICollection<Shot> Shots { get; set; }
+        public string PhotographyProject { get; private set; }
+        public ICollection<Shot> Shots { get; private set; }
         public DateTime? Deleted { get; private set; }
 
     }

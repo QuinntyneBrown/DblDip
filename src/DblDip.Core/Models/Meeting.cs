@@ -17,8 +17,8 @@ namespace DblDip.Core.Models
         public Guid MeetingId { get; private set; }
 
         public DateRange Scheduled { get; private set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
 }

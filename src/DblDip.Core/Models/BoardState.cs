@@ -1,4 +1,6 @@
-﻿namespace DblDip.Core.Models
+﻿using System.Collections.Generic;
+
+namespace DblDip.Core.Models
 {
     public record BoardState(string Name, int SortOrder, ICollection<TicketState> TicketStates);
 }

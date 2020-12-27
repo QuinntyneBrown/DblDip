@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Board WithDefaults()
         {
-            return new Board();
+            return new Board(default);
         }
 
         public BoardBuilder()

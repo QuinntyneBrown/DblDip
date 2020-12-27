@@ -38,6 +38,6 @@ namespace DblDip.Core.Models
         public Guid PhotographerId { get; private set; }
         public Guid CompanyId { get; private set; }
         public ICollection<Guid> ServiceIds { get; private set; }
-        public Location PrimaryLocation { get; set; }
+        public Location PrimaryLocation { get; private set; }
     }
 }

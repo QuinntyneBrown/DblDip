@@ -32,7 +32,7 @@ namespace DblDip.Core.Models
 
         public abstract DateRange Scheduled { get; }
         public Guid PhotographerId { get; private set; }
-        public Guid ParticipantId { get; set; }
+        public Guid ParticipantId { get; private set; }
         public Guid AdditionalParticipantIds { get; private set; }
         public Guid? VendorId { get; private set; }
         public DateTime? GallerySent { get; private set; }

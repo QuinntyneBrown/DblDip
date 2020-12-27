@@ -37,7 +37,7 @@ namespace DblDip.Domain.Features.Boards
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var board = new Board();
+                var board = new Board(default);
 
                 _context.Store(board);
 

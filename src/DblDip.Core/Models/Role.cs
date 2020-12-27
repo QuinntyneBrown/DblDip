@@ -52,7 +52,7 @@ namespace DblDip.Core.Models
         }
 
         public Guid RoleId { get; private set; }
-        public string Name { get; set; }
+        public string Name { get; private set; }
         public DateTime? Deleted { get; private set; }
         public ICollection<Privilege> Privileges { get; private set; }
 

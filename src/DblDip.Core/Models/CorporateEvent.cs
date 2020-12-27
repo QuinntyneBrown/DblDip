@@ -6,6 +6,10 @@ namespace DblDip.Core.Models
 {
     public class CorporateEvent : PhotographyProject
     {
+        public CorporateEvent()
+        {
+
+        }
         protected override void When(dynamic @event) => When(@event);
 
         protected override void EnsureValidState()

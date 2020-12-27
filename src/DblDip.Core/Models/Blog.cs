@@ -47,7 +47,7 @@ namespace DblDip.Core.Models
 
         public Guid BlogId { get; private set; }
         public string Name { get; private set; }
-        public Email AuthorEmail { get; set; }
+        public Email AuthorEmail { get; private set; }
         public DateTime? Deleted { get; private set; }
         public IReadOnlyList<PostReference> Posts => _posts;
 
