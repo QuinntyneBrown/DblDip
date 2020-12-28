@@ -18,6 +18,7 @@ namespace DblDip.Core.Models
         public void When(BlogCreated blogCreated)
         {
             BlogId = blogCreated.BlogId;
+            _posts = new ();
         }
 
         public void When(BlogPostAdded blogPostAdded)
@@ -49,8 +50,8 @@ namespace DblDip.Core.Models
         public string Name { get; private set; }
         public Email AuthorEmail { get; private set; }
         public DateTime? Deleted { get; private set; }
-        public IReadOnlyList<PostReference> Posts => _posts;
+        public IReadOnlyList<PostReference> Posts => _posts.AsReadOnly();
 
-        private readonly List<PostReference> _posts;
+        private List<PostReference> _posts;
     }
 }
