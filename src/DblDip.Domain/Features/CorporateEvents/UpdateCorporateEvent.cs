@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.CorporateEvents
 
                 var corporateEvent = await _context.FindAsync<CorporateEvent>(request.CorporateEvent.CorporateEventId);
 
-                //corporateEvent.Update();
+                corporateEvent.Update();
 
                 _context.Store(corporateEvent);
 

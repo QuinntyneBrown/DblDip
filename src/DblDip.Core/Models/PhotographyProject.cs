@@ -20,15 +20,31 @@ namespace DblDip.Core.Models
 
         }
 
+        public void When(PhotographyProjectRemoved photographyProjectRemoved)
+        {
+            Deleted = photographyProjectRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new PhotographyProjectRemoved(deleted));
         }
 
         public void SendGallery()
         {
             Apply(new PhotoGallerySent(default));
         }
+
+        public void Update()
+        {
+
+        }
+
 
         public abstract DateRange Scheduled { get; }
         public Guid PhotographerId { get; private set; }
