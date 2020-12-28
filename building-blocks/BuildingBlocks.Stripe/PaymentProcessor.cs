@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace BuildingBlocks.Stripe
 {
-    public record PaymentDto(string Number, long? ExpMonth, int ExpYear, string Cvc, int Value, string Description, string Currency);
+    public record StripePaymentDto(string Number, long? ExpMonth, int ExpYear, string Cvc, int Value, string Description, string Currency);
     public interface IPaymentProcessor
     {
-        Task<bool> ProcessAsync(PaymentDto payment);
+        Task<bool> ProcessAsync(StripePaymentDto payment);
     }
 
     public class PaymentException : HttpStatusCodeException
@@ -23,7 +23,7 @@ namespace BuildingBlocks.Stripe
 
     public class PaymentProcessor : IPaymentProcessor
     {
-        public async Task<bool> ProcessAsync(PaymentDto payment)
+        public async Task<bool> ProcessAsync(StripePaymentDto payment)
         {
             try
             {

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Brands
 
                 var brand = await _context.FindAsync<Brand>(request.Brand.BrandId);
 
-                //brand.Update();
+                brand.Update();
 
                 _context.Store(brand);
 

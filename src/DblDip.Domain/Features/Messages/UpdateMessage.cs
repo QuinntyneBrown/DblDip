@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Cards
+namespace DblDip.Domain.Features.Messages
 {
-    public class UpdateCard
+    public class UpdateMessage
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Card).NotNull();
-                RuleFor(request => request.Card).SetValidator(new CardValidator());
+                RuleFor(request => request.Message).NotNull();
+                RuleFor(request => request.Message).SetValidator(new MessageValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public CardDto Card { get; init; }
+        public class Request : IRequest<Response> {  
+            public MessageDto Message { get; set; }
         }
 
         public class Response
         {
-            public CardDto Card { get; init; }
+            public MessageDto Message { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,20 +33,19 @@ namespace DblDip.Domain.Features.Cards
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var card = await _context.FindAsync<Card>(request.Card.CardId);
+                var message = await _context.FindAsync<Message>(request.Message.MessageId);
 
-                card.Update();
+                message.Update();
 
-                _context.Store(card);
+                _context.Store(message);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Card = card.ToDto()
+                    Message = message.ToDto()
                 };
             }
         }

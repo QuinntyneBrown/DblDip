@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Cards
+namespace DblDip.Domain.Features.Conversations
 {
-    public class UpdateCard
+    public class CreateConversation
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Card).NotNull();
-                RuleFor(request => request.Card).SetValidator(new CardValidator());
+                RuleFor(request => request.Conversation).NotNull();
+                RuleFor(request => request.Conversation).SetValidator(new ConversationValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public CardDto Card { get; init; }
+        public class Request : IRequest<Response> {  
+            public ConversationDto Conversation { get; set; }
         }
 
         public class Response
         {
-            public CardDto Card { get; init; }
+            public ConversationDto Conversation { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,20 +33,17 @@ namespace DblDip.Domain.Features.Cards
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var card = await _context.FindAsync<Card>(request.Card.CardId);
+                var conversation = new Conversation();
 
-                card.Update();
-
-                _context.Store(card);
+                _context.Store(conversation);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Card = card.ToDto()
+                    Conversation = conversation.ToDto()
                 };
             }
         }

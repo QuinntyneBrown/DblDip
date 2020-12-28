@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Participants
 
                 var participant = await _context.FindAsync<Participant>(request.Participant.ParticipantId);
 
-                //participant.Update();
+                participant.Update();
 
                 _context.Store(participant);
 

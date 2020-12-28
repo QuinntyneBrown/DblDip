@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Boards
 
                 var board = await _context.FindAsync<Board>(request.Board.BoardId);
 
-                //board.Update();
+                board.Update();
 
                 _context.Store(board);
 

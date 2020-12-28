@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Cards
+namespace DblDip.Domain.Features.Payments
 {
-    public class UpdateCard
+    public class CreatePayment
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Card).NotNull();
-                RuleFor(request => request.Card).SetValidator(new CardValidator());
+                RuleFor(request => request.Payment).NotNull();
+                RuleFor(request => request.Payment).SetValidator(new PaymentValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public CardDto Card { get; init; }
+        public class Request : IRequest<Response> {  
+            public PaymentDto Payment { get; set; }
         }
 
         public class Response
         {
-            public CardDto Card { get; init; }
+            public PaymentDto Payment { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,20 +33,17 @@ namespace DblDip.Domain.Features.Cards
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var card = await _context.FindAsync<Card>(request.Card.CardId);
+                var payment = new Payment();
 
-                card.Update();
-
-                _context.Store(card);
+                _context.Store(payment);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Card = card.ToDto()
+                    Payment = payment.ToDto()
                 };
             }
         }

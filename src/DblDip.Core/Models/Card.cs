@@ -24,6 +24,11 @@ namespace DblDip.Core.Models
             Deleted = cardRemoved.Deleted;
         }
 
+        public void When(CardUpdated cardUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -32,6 +37,11 @@ namespace DblDip.Core.Models
         public void Remove(DateTime removed)
         {
             Apply(new CardRemoved(removed));
+        }
+
+        public void Update()
+        {
+            Apply(new CardUpdated());
         }
 
         public Guid CardId { get; private set; }

@@ -38,9 +38,9 @@ namespace DblDip.Core.Models
             Apply(new BrandRemoved(deleted));
         }
 
-        public void Update(string value)
+        public void Update()
         {
-            Apply(new BrandUpdated(value));
+            Apply(new BrandUpdated());
         }
 
         public Guid BrandId { get; private set; }
