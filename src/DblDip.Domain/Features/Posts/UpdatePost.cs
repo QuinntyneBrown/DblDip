@@ -39,7 +39,9 @@ namespace DblDip.Domain.Features.Posts
 
                 var post = await _context.FindAsync<Post>(request.Post.PostId);
 
-                //post.Update();
+                post.UpdateBody(request.Post.Body);
+
+                post.UpdateTitle(request.Post.Title);
 
                 _context.Store(post);
 
