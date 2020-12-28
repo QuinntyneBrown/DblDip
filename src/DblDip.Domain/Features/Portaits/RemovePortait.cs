@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.Portraits
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ()
+                return new()
                 {
 
                 };

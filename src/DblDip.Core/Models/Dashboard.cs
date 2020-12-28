@@ -66,6 +66,6 @@ namespace DblDip.Core.Models
         public record DashboardCard(Guid DashboardCardId, dynamic Options);
         public DateTime? Deleted { get; private set; }
 
-        private ICollection<DashboardCard> _dashboardCards; 
+        private ICollection<DashboardCard> _dashboardCards;
     }
 }

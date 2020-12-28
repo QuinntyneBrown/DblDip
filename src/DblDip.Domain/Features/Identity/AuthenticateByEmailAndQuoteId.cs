@@ -51,7 +51,7 @@ namespace DblDip.Domain.Features.Identity
                 if (quote == null || quote.Declined.HasValue || quote.Accepted.HasValue)
                     return null;
 
-                return new Response(_tokenProvider.Get(request.Email, 
+                return new Response(_tokenProvider.Get(request.Email,
                     new List<Claim> {
                         new Claim(Core.Constants.ClaimTypes.Role,nameof(Core.Constants.Roles.Lead))
                     }));

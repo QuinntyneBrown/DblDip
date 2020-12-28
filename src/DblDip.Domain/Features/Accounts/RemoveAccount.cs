@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Accounts
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid AccountId { get; set; }
         }
 
@@ -37,7 +38,8 @@ namespace DblDip.Domain.Features.Accounts
                 _context = context;
                 _dateTime = dateTime;
             }
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var account = await _context.FindAsync<Account>(request.AccountId);
 

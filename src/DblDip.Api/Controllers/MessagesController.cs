@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreateMessage.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreateMessage.Response>> Create([FromBody]CreateMessage.Request request)
+        public async Task<ActionResult<CreateMessage.Response>> Create([FromBody] CreateMessage.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdateMessage.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdateMessage.Response>> Update([FromBody]UpdateMessage.Request request)
+        public async Task<ActionResult<UpdateMessage.Response>> Update([FromBody] UpdateMessage.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveMessage.Request request)
+        public async Task Remove([FromRoute] RemoveMessage.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetMessageById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetMessageById.Response>> GetById([FromRoute]GetMessageById.Request request)
+        public async Task<ActionResult<GetMessageById.Response>> GetById([FromRoute] GetMessageById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetMessages.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetMessages.Response>> Get()
-            => await _mediator.Send(new GetMessages.Request());           
+            => await _mediator.Send(new GetMessages.Request());
     }
 }

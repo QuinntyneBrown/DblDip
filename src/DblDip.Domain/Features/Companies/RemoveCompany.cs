@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.Companies
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ()
+                return new()
                 {
 
                 };

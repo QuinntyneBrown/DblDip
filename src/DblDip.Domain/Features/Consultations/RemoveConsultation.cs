@@ -46,7 +46,7 @@ namespace DblDip.Domain.Features.Consultations
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ()
+                return new()
                 {
 
                 };

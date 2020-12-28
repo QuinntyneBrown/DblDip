@@ -45,7 +45,7 @@ namespace DblDip.Core.Models
 
         public void Update()
         {
-            
+
         }
 
         private ICollection<ProfileReference> _profiles;

@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Post WithDefaults()
         {
-            return new Post(default,default);
+            return new Post(default, default);
         }
 
         public PostBuilder()

@@ -45,7 +45,7 @@ namespace DblDip.Domain.Features.Receipts
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ()
+                return new()
                 {
 
                 };

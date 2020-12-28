@@ -47,7 +47,7 @@ namespace DblDip.Domain.Features.Roles
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ()
+                return new()
                 {
 
                 };

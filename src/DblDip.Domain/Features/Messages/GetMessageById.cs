@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Messages
 {
     public class GetMessageById
     {
-        public class Request : IRequest<Response> {  
-            public Guid MessageId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid MessageId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Messages
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var message = await _context.FindAsync<Message>(request.MessageId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Message = message.ToDto()
                 };
             }

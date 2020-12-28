@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Payments
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public PaymentDto Payment { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Payments
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var payment = new Payment();
 

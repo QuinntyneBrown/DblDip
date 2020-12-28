@@ -24,7 +24,7 @@ namespace DblDip.Core.Models
 
         public void When(ContactUpdated contactUpdated)
         {
-            
+
         }
 
         protected override void EnsureValidState()

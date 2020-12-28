@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Conversations
 {
     public class GetConversationById
     {
-        public class Request : IRequest<Response> {  
-            public Guid ConversationId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid ConversationId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Conversations
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var conversation = await _context.FindAsync<Conversation>(request.ConversationId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Conversation = conversation.ToDto()
                 };
             }

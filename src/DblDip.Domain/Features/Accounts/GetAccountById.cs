@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Accounts
 {
     public class GetAccountById
     {
-        public class Request : IRequest<Response> {  
-            public Guid AccountId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid AccountId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Accounts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var account = await _context.FindAsync<Account>(request.AccountId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Account = account.ToDto()
                 };
             }

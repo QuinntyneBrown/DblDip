@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Accounts
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public AccountDto Account { get; set; }
         }
 
@@ -33,9 +34,10 @@ namespace DblDip.Domain.Features.Accounts
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
-                var account = new Account(default,request.Account.DefaultProfileId,request.Account.Name, request.Account.AccountHolderUserId);
+                var account = new Account(default, request.Account.DefaultProfileId, request.Account.Name, request.Account.AccountHolderUserId);
 
                 _context.Store(account);
 

@@ -4,7 +4,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Message: AggregateRoot
+    public class Message : AggregateRoot
     {
         public Message()
         {

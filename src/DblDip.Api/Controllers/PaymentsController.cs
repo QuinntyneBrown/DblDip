@@ -20,7 +20,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(CreatePayment.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<CreatePayment.Response>> Create([FromBody]CreatePayment.Request request)
+        public async Task<ActionResult<CreatePayment.Response>> Create([FromBody] CreatePayment.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpdatePayment.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpdatePayment.Response>> Update([FromBody]UpdatePayment.Request request)
+        public async Task<ActionResult<UpdatePayment.Response>> Update([FromBody] UpdatePayment.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -36,7 +36,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemovePayment.Request request)
+        public async Task Remove([FromRoute] RemovePayment.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -45,7 +45,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetPaymentById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetPaymentById.Response>> GetById([FromRoute]GetPaymentById.Request request)
+        public async Task<ActionResult<GetPaymentById.Response>> GetById([FromRoute] GetPaymentById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -63,6 +63,6 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetPayments.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetPayments.Response>> Get()
-            => await _mediator.Send(new GetPayments.Request());           
+            => await _mediator.Send(new GetPayments.Request());
     }
 }

@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Conversations
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid ConversationId { get; set; }
         }
 
@@ -34,7 +35,8 @@ namespace DblDip.Domain.Features.Conversations
 
             public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var conversation = await _context.FindAsync<Conversation>(request.ConversationId);
 

@@ -10,8 +10,9 @@ namespace DblDip.Domain.Features.Payments
 {
     public class GetPaymentById
     {
-        public class Request : IRequest<Response> {  
-            public Guid PaymentId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid PaymentId { get; set; }
         }
 
         public class Response
@@ -25,11 +26,13 @@ namespace DblDip.Domain.Features.Payments
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var payment = await _context.FindAsync<Payment>(request.PaymentId);
 
-                return new Response() { 
+                return new Response()
+                {
                     Payment = payment.ToDto()
                 };
             }

@@ -1,6 +1,7 @@
 ﻿namespace DblDip.Core.Models
 {
-    public class Shot {
+    public class Shot
+    {
 
         public Shot(string name, string description)
         {

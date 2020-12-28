@@ -4,7 +4,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public class Payment: AggregateRoot
+    public class Payment : AggregateRoot
     {
         public Payment()
         {

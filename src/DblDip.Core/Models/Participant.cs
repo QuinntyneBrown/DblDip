@@ -15,7 +15,7 @@ namespace DblDip.Core.Models
 
         public void When(ParticipantUpdated participantUpdated)
         {
-            
+
         }
 
         public void When(ParticipantCreated participantCreated)

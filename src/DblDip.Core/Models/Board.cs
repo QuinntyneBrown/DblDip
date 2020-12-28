@@ -25,7 +25,7 @@ namespace DblDip.Core.Models
 
         public void When(BoardUpdated boardUpdated)
         {
-            
+
         }
 
         public void When(BoardRemoved boardRemoved)

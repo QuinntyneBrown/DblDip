@@ -18,7 +18,7 @@ namespace DblDip.Core.Models
         public void When(BlogCreated blogCreated)
         {
             BlogId = blogCreated.BlogId;
-            _posts = new ();
+            _posts = new();
         }
 
         public void When(BlogPostAdded blogPostAdded)

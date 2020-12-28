@@ -22,7 +22,7 @@ namespace BuildingBlocks.Abstractions
         protected abstract void When(dynamic @event);
         protected abstract void EnsureValidState();
 
-        public static TAggregateRoot Create<TAggregateRoot>() 
+        public static TAggregateRoot Create<TAggregateRoot>()
             => (TAggregateRoot)GetUninitializedObject(typeof(TAggregateRoot));
 
     }

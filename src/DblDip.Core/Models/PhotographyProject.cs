@@ -10,7 +10,7 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event)
         {
-            if(@event is PhotoGallerySent)
+            if (@event is PhotoGallerySent)
             {
                 When(@event);
             }

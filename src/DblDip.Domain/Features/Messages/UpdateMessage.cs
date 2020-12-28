@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Messages
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public MessageDto Message { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace DblDip.Domain.Features.Messages
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var message = await _context.FindAsync<Message>(request.Message.MessageId);
 

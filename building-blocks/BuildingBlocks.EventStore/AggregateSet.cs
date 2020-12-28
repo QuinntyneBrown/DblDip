@@ -63,7 +63,7 @@ namespace BuildingBlocks.EventStore
         public async Task<TAggregateRoot> FindAsync<TAggregateRoot>(Guid streamId)
             where TAggregateRoot : AggregateRoot
         {
-            var storedEvents = StoredEvents(typeof(TAggregateRoot).Name, new [] { streamId });
+            var storedEvents = StoredEvents(typeof(TAggregateRoot).Name, new[] { streamId });
 
             return storedEvents.Any() ? storedEvents.OrderBy(x => x.CreatedOn).Aggregate(Create<TAggregateRoot>(), Reduce)
                 : null;

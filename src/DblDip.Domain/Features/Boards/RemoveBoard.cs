@@ -49,7 +49,7 @@ namespace DblDip.Domain.Features.Boards
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ();
+                return new();
             }
         }
     }

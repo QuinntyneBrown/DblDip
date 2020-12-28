@@ -18,7 +18,8 @@ namespace DblDip.Domain.Features.Messages
             }
         }
 
-        public class Request : IRequest<Unit> {  
+        public class Request : IRequest<Unit>
+        {
             public Guid MessageId { get; set; }
         }
 
@@ -34,7 +35,8 @@ namespace DblDip.Domain.Features.Messages
 
             public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var message = await _context.FindAsync<Message>(request.MessageId);
 

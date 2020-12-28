@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
-    public class Conversation: AggregateRoot
+    public class Conversation : AggregateRoot
     {
         public Conversation()
         {
