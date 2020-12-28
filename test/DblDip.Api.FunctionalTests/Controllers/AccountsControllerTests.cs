@@ -22,7 +22,6 @@ namespace DblDip.Api.FunctionalTests.Controllers
             _fixture = fixture;
         }
 
-
         [Fact]
         public async System.Threading.Tasks.Task Should_CreateAccount()
         {

@@ -65,6 +65,4 @@ namespace DblDip.Core.Models
         public DateTime? Deleted { get; private set; }
 
     }
-
-    public record Shot(string Name, string Description);
 }
