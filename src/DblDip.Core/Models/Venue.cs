@@ -18,6 +18,11 @@ namespace DblDip.Core.Models
             Deleted = venueRemoved.Deleted;
         }
 
+        public void When(VenueUpdated venueUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -26,6 +31,11 @@ namespace DblDip.Core.Models
         public void Remove(DateTime deleted)
         {
             Apply(new VenueRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new VenueUpdated());
         }
 
         public Guid VenueId { get; private set; }

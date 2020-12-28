@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Venues
 
                 var venue = await _context.FindAsync<Venue>(request.Venue.VenueId);
 
-                //venue.Update();
+                venue.Update();
 
                 _context.Store(venue);
 

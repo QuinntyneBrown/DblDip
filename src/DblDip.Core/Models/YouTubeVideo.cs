@@ -10,16 +10,16 @@ namespace DblDip.Core.Models
 
         public YouTubeVideo(string value)
         {
-            Apply(new DomainEvents.YouTubeVideo(value));
+            Apply(new YouTubeVideoCreated(Guid.NewGuid()));
         }
-        public void When(DomainEvents.YouTubeVideo youTubeVideoCreated)
+        public void When(DomainEvents.YouTubeVideoCreated youTubeVideoCreated)
         {
 
         }
 
         public void When(YouTubeVideoRemoved youTubeVideoRemoved)
         {
-
+            Deleted = youTubeVideoRemoved.Deleted;
         }
 
         public void When(YouTubeVideoUpdated youTubeVideoUpdated)
@@ -33,14 +33,14 @@ namespace DblDip.Core.Models
         }
 
 
-        public void Remove(string value)
+        public void Remove(DateTime deleted)
         {
-            Apply(new YouTubeVideoRemoved(value));
+            Apply(new YouTubeVideoRemoved(deleted));
         }
 
-        public void Update(string value)
+        public void Update()
         {
-            Apply(new YouTubeVideoUpdated(value));
+
         }
 
         public Guid YouTubeVideoId { get; private set; }

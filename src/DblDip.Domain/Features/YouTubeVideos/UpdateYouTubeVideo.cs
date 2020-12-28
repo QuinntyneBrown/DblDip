@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.YouTubeVideos
 
                 var youTubeVideo = await _context.FindAsync<YouTubeVideo>(request.YouTubeVideo.YouTubeVideoId);
 
-                youTubeVideo.Update(default);
+                youTubeVideo.Update();
 
                 _context.Store(youTubeVideo);
 

@@ -31,15 +31,17 @@ namespace DblDip.Domain.Features.Venues
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
+            private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
+
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var venue = await _context.FindAsync<Venue>(request.VenueId);
 
-                //venue.Remove();
+                venue.Remove(_dateTime.UtcNow);
 
                 _context.Store(venue);
 
