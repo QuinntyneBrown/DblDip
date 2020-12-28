@@ -37,7 +37,7 @@ namespace DblDip.Domain.Features.Companies
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var company = new Company(default);
+                var company = new Company();
 
                 _context.Store(company);
 

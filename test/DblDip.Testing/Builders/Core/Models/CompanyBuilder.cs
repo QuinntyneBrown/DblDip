@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Company WithDefaults()
         {
-            return new Company(default);
+            return new Company();
         }
 
         public CompanyBuilder()

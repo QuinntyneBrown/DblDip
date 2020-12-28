@@ -9,18 +9,18 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Company(string value)
+        public Company()
         {
-            Apply(new CompanyCreated(value));
+            Apply(new CompanyCreated(Guid.NewGuid()));
         }
         public void When(CompanyCreated companyCreated)
         {
-
+            CompanyId = companyCreated.CompanyId;
         }
 
         public void When(CompanyRemoved companyRemoved)
         {
-
+            Deleted = companyRemoved.Deleted;
         }
 
         public void When(CompanyUpdated companyUpdated)
@@ -38,14 +38,14 @@ namespace DblDip.Core.Models
 
         }
 
-        public void Remove(string value)
+        public void Remove(DateTime deleted)
         {
-            Apply(new CompanyRemoved(value));
+            Apply(new CompanyRemoved(deleted));
         }
 
-        public void Update(string value)
+        public void Update()
         {
-            Apply(new CompanyUpdated(value));
+            Apply(new CompanyUpdated());
         }
 
         public void ChangeLogo(Guid logoDigitalAssetId)

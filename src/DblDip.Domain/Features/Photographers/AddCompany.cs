@@ -40,7 +40,7 @@ namespace DblDip.Domain.Features.Photographers
 
                 var company = request.Company.CompanyId != default
                     ? await _context.FindAsync<Company>(request.Company.CompanyId)
-                    : new Company("");
+                    : new Company();
 
                 photographer.AddCompany(company.CompanyId);
 

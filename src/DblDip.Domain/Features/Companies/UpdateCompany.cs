@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Companies
 
                 var company = await _context.FindAsync<Company>(request.Company.CompanyId);
 
-                company.Update(default);
+                company.Update();
 
                 _context.Store(company);
 
