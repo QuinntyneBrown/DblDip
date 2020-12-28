@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Availabilities
 
                 var availability = await _context.FindAsync<Availability>(request.Availability.AvailabilityId);
 
-                //availability.Update();
+                availability.Update();
 
                 _context.Store(availability);
 

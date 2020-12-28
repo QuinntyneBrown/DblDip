@@ -44,16 +44,13 @@ namespace DblDip.Domain.Features.Availabilities
 
                 var availability = await _context.FindAsync<Availability>(request.AvailabilityId);
 
-                //availability.Remove();
+                availability.Remove(_dateTime.UtcNow);
 
                 _context.Store(availability);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new ()
-                {
-
-                };
+                return new();
             }
         }
     }
