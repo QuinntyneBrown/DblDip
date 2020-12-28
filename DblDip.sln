@@ -7,7 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		cliSettings.json = cliSettings.json
 		README.md = README.md
-		build\resetdb.ps1 = build\resetdb.ps1
+		deploy\Scripts\ResetDB.ps1 = deploy\Scripts\ResetDB.ps1
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building-blocks", "building-blocks", "{52136440-E4B7-46D2-999C-34815AFBB291}"
