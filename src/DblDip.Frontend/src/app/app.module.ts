@@ -4,10 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
-import { baseUrl } from '@core/constants';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { JwtInterceptor } from '@core/jwt.interceptor';
-import { HeadersInterceptor } from '@core/headers.interceptor';
+import { HeadersInterceptor, JwtInterceptor, baseUrl } from '@core';
 
 @NgModule({
   declarations: [

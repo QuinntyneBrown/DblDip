@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '@core/auth.service';
-import { RedirectService } from '@core/redirect.service';
+import { AuthService, RedirectService } from '@core';
 
 @Component({
   selector: 'app-workspace',
