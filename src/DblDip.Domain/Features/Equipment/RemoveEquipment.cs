@@ -44,7 +44,7 @@ namespace DblDip.Domain.Features.Equipment
 
                 var equipment = await _context.FindAsync<DblDip.Core.Models.Equipment>(request.EquipmentId);
 
-                //equipment.Remove(_dateTime.UtcNow);
+                equipment.Remove(_dateTime.UtcNow);
 
                 _context.Store(equipment);
 

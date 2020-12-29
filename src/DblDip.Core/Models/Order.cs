@@ -21,6 +21,16 @@ namespace DblDip.Core.Models
 
         }
 
+        public void When(OrderRemoved orderRemoved)
+        {
+            Deleted = orderRemoved.Deleted;
+        }
+
+        public void When(OrderUpdated orderUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -31,6 +41,16 @@ namespace DblDip.Core.Models
             Apply(new OrderCheckedOut());
 
             Apply(new OrderPaid());
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new OrderRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new OrderUpdated());
         }
 
         public Guid OrderId { get; private set; }
@@ -46,11 +66,5 @@ namespace DblDip.Core.Models
         {
             throw new NotImplementedException();
         }
-    }
-
-    public enum OrderStatus
-    {
-        New,
-        Paid
     }
 }

@@ -31,24 +31,26 @@ namespace DblDip.Domain.Features.Expenses
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
+            private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IDateTime dateTime)
+            {
+                _context = context;
+                _dateTime = dateTime;
+            }
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var expense = await _context.FindAsync<Expense>(request.ExpenseId);
 
-                //expense.Remove(default);
+                expense.Remove(_dateTime.UtcNow);
 
                 _context.Store(expense);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new()
-                {
-
-                };
+                return new();
             }
         }
     }

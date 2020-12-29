@@ -1,4 +1,3 @@
-using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -10,7 +9,7 @@ namespace DblDip.Core.Models
         public ProjectManager(string name, Email email)
             : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
         {
-            Apply(new ProjectManagerCreated(default));
+            Apply(new ProjectManagerCreated(base.ProfileId));
         }
 
         protected override void When(dynamic @event) => When(@event);
@@ -30,12 +29,11 @@ namespace DblDip.Core.Models
 
         }
 
-        public void Update(string value)
+        public void Update()
         {
-            Apply(new ProjectManagerUpdated(value));
+            Apply(new ProjectManagerUpdated());
         }
 
         public Guid ProjectManagerId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

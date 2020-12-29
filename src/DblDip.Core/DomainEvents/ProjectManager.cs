@@ -1,5 +1,7 @@
+using System;
+
 namespace DblDip.Core.DomainEvents
 {
-    public record ProjectManagerCreated(string Value);
-    public record ProjectManagerUpdated(string Value);
+    public record ProjectManagerCreated(Guid ProjectManagerId);
+    public record ProjectManagerUpdated;
 }

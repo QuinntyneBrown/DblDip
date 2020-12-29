@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Orders
 
                 var order = await _context.FindAsync<Order>(request.Order.OrderId);
 
-                //order.Update();
+                order.Update();
 
                 _context.Store(order);
 

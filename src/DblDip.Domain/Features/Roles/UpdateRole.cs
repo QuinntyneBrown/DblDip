@@ -2,6 +2,7 @@ using BuildingBlocks.Abstractions;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -39,7 +40,7 @@ namespace DblDip.Domain.Features.Roles
 
                 var role = await _context.FindAsync<Role>(request.Role.RoleId);
 
-                role.UpdatePrivileges(request.Role.Privileges);
+                role.UpdatePrivileges(request.Role.Privileges.ToList());
 
                 _context.Store(role);
 

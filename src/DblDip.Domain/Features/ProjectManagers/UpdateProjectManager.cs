@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.ProjectManagers
 
                 var projectManager = await _context.FindAsync<ProjectManager>(request.ProjectManager.ProjectManagerId);
 
-                projectManager.Update(default);
+                projectManager.Update();
 
                 _context.Store(projectManager);
 

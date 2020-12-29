@@ -2,6 +2,7 @@ using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DblDip.Core.Models
 {
@@ -22,7 +23,7 @@ namespace DblDip.Core.Models
         {
             RoleId = roleCreated.RoleId;
             Name = roleCreated.Name;
-            Privileges = new List<Privilege>();
+            _privileges = new List<Privilege>();
         }
 
         public void When(RoleRemoved roleRemoved)
@@ -32,7 +33,7 @@ namespace DblDip.Core.Models
 
         public void When(PrivilegesUpdated privilegesUpdated)
         {
-            Privileges = privilegesUpdated.Privileges;
+            _privileges = privilegesUpdated.Privileges.ToList();
         }
 
         protected override void EnsureValidState()
@@ -53,6 +54,8 @@ namespace DblDip.Core.Models
         public Guid RoleId { get; private set; }
         public string Name { get; private set; }
         public DateTime? Deleted { get; private set; }
-        public ICollection<Privilege> Privileges { get; private set; }
+        public IReadOnlyList<Privilege> Privileges => _privileges.AsReadOnly();
+
+        private List<Privilege> _privileges;
     }
 }

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Expenses
 
                 var expense = await _context.FindAsync<Expense>(request.Expense.ExpenseId);
 
-                //expense.Update();
+                expense.Update();
 
                 _context.Store(expense);
 

@@ -4,5 +4,5 @@ using System.Collections.Generic;
 
 namespace DblDip.Domain.Features.Roles
 {
-    public record RoleDto(Guid RoleId, string Name, ICollection<Privilege> Privileges);
+    public record RoleDto(Guid RoleId, string Name, IEnumerable<Privilege> Privileges);
 }

@@ -40,7 +40,7 @@ namespace DblDip.Domain.Sagas
 
             _context.Store(account);
 
-            await _context.SaveChangesAsync(default);
+            await _context.SaveChangesAsync(cancellationToken);
         }
     }
 }

@@ -21,16 +21,37 @@ namespace DblDip.Core.Models
             Photos = new HashSet<Photo>();
         }
 
+        public void When(PhotoGalleryUpdated photoGalleryUpdated)
+        {
+
+        }
+
+        public void When(PhotoGalleryRemoved photoGalleryRemoved)
+        {
+            Deleted = photoGalleryRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Update()
+        {
+            Apply(new PhotoGalleryUpdated());
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new PhotoGalleryRemoved(deleted));
         }
 
         public Guid PhotoGalleryId { get; private set; }
         public Guid PhotographerId { get; private set; }
         public string Name { get; private set; }
         public ICollection<Photo> Photos { get; private set; }
+        public Photo CoverPhoto { get; private set; }
+        public DateTime? Deleted { get; set; }
+        public DateTime? Published { get; private set; }
     }
-
-    public record Photo(Guid DigitalAssetId, string Name, DateTime Created);
 }

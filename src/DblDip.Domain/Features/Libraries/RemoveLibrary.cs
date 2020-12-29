@@ -44,7 +44,7 @@ namespace DblDip.Domain.Features.Libraries
 
                 var library = await _context.FindAsync<Library>(request.LibraryId);
 
-                //library.Remove(_dateTime.UtcNow);
+                library.Remove(_dateTime.UtcNow);
 
                 _context.Store(library);
 

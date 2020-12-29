@@ -22,9 +22,29 @@ namespace DblDip.Core.Models
             Description = equipmentCreated.Description;
         }
 
+        public void When(EquipmentUpdated equipmentUpdated)
+        {
+  
+        }
+
+        public void When(EquipmentRemoved equipmentRemoved)
+        {
+            Deleted = equipmentRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Update()
+        {
+            Apply(new EquipmentUpdated());
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new EquipmentRemoved(deleted));
         }
 
         public Guid EquipmentId { get; private set; }

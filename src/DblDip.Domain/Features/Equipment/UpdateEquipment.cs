@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Equipment
 
                 var equipment = await _context.FindAsync<DblDip.Core.Models.Equipment>(request.Equipment.EquipmentId);
 
-                //equipment.Update();
+                equipment.Update();
 
                 _context.Store(equipment);
 
