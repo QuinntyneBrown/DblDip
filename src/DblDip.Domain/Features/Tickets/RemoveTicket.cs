@@ -31,15 +31,20 @@ namespace DblDip.Domain.Features.Tickets
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
+            private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IDateTime dateTime)
+            {
+                _context = context;
+                _dateTime = dateTime;
+            }
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var ticket = await _context.FindAsync<Ticket>(request.TicketId);
 
-                //ticket.Remove();
+                ticket.Remove(_dateTime.UtcNow);
 
                 _context.Store(ticket);
 

@@ -33,8 +33,11 @@ namespace DblDip.Domain.Features.Venues
             private readonly IAppDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
-
+            public Handler(IAppDbContext context, IDateTime dateTime)
+            {
+                _context = context;
+                _dateTime = dateTime;
+            }
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {

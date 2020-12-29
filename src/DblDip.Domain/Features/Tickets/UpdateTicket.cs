@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Tickets
 
                 var ticket = await _context.FindAsync<Ticket>(request.Ticket.TicketId);
 
-                //ticket.Update();
+                ticket.Update();
 
                 _context.Store(ticket);
 

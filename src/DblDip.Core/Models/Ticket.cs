@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
@@ -7,15 +8,40 @@ namespace DblDip.Core.Models
 {
     public class Ticket : AggregateRoot
     {
+        public Ticket()
+        {
+            Apply(new TicketCreated(Guid.NewGuid()));
+        }
         protected override void When(dynamic @event) => When(@event);
 
-        public Ticket()
+        public void When(TicketCreated ticketCreated)
+        {
+            TicketId = ticketCreated.TicketId;
+        }
+
+        public void When(TicketRemoved ticketRemoved)
+        {
+            Deleted = ticketRemoved.Deleted;
+        }
+
+        public void When(TicketUpdated ticketUpdated)
         {
 
         }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new TicketRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new TicketUpdated());
         }
 
         public Guid TicketId { get; private set; }
