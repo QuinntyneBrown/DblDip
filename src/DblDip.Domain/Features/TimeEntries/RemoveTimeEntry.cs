@@ -44,7 +44,7 @@ namespace DblDip.Domain.Features.TimeEntries
 
                 var timeEntry = await _context.FindAsync<TimeEntry>(request.TimeEntryId);
 
-                //timeEntry.Remove();
+                //timeEntry.Remove(_dateTime.UtcNow);
 
                 _context.Store(timeEntry);
 

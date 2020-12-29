@@ -17,9 +17,29 @@ namespace DblDip.Core.Models
             InvoiceId = invoiceCreated.InvoiceId;
         }
 
+        public void When(InvoiceRemoved invoiceRemoved)
+        {
+            Deleted = invoiceRemoved.Deleted;
+        }
+
+        public void When(InvoiceUpdated invoiceUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new InvoiceRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new InvoiceUpdated());
         }
 
         public Guid InvoiceId { get; private set; }

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Photographers
 
                 var photographer = await _context.FindAsync<Photographer>(request.PhotographerId);
 
-                //photographer.Remove();
+                //photographer.Remove(_dateTime.UtcNow);
 
                 _context.Store(photographer);
 

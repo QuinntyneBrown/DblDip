@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Surveys
 
                 var survey = await _context.FindAsync<Survey>(request.SurveyId);
 
-                //survey.Remove();
+                //survey.Remove(_dateTime.UtcNow);
 
                 _context.Store(survey);
 

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Portraits
 
                 var portrait = await _context.FindAsync<Portrait>(request.PortraitId);
 
-                //portrait.Remove();
+                //portrait.Remove(_dateTime.UtcNow);
 
                 _context.Store(portrait);
 

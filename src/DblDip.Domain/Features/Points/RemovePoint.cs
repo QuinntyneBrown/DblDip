@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Points
 
                 var point = await _context.FindAsync<Point>(request.PointId);
 
-                //point.Remove();
+                //point.Remove(_dateTime.UtcNow);
 
                 _context.Store(point);
 

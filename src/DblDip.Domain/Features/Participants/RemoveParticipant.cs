@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Participants
 
                 var participant = await _context.FindAsync<Participant>(request.ParticipantId);
 
-                //participant.Remove();
+                //participant.Remove(_dateTime.UtcNow);
 
                 _context.Store(participant);
 

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Epics
 
                 var epic = await _context.FindAsync<Epic>(request.EpicId);
 
-                //epic.Remove();
+                //epic.Remove(_dateTime.UtcNow);
 
                 _context.Store(epic);
 

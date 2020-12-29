@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Receipts
 
                 var receipt = await _context.FindAsync<Receipt>(request.ReceiptId);
 
-                //receipt.Remove();
+                //receipt.Remove(_dateTime.UtcNow);
 
                 _context.Store(receipt);
 

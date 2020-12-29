@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Orders
 
                 var order = await _context.FindAsync<Order>(request.OrderId);
 
-                //order.Remove();
+                //order.Remove(_dateTime.UtcNow);
 
                 _context.Store(order);
 

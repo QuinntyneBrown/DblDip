@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.PhotoStudios
 
                 var photoStudio = await _context.FindAsync<PhotoStudio>(request.PhotoStudioId);
 
-                //photoStudio.Remove();
+                //photoStudio.Remove(_dateTime.UtcNow);
 
                 _context.Store(photoStudio);
 

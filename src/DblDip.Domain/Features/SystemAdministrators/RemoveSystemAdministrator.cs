@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.SystemAdministrators
 
                 var systemAdministrator = await _context.FindAsync<SystemAdministrator>(request.SystemAdministratorId);
 
-                //systemAdministrator.Remove();
+                //systemAdministrator.Remove(_dateTime.UtcNow);
 
                 _context.Store(systemAdministrator);
 

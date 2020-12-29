@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Meetings
 
                 var meeting = await _context.FindAsync<Meeting>(request.MeetingId);
 
-                //meeting.Remove();
+                //meeting.Remove(_dateTime.UtcNow);
 
                 _context.Store(meeting);
 

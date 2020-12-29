@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Tasks
 
                 var task = await _context.FindAsync<DblDip.Core.Models.Task>(request.TaskId);
 
-                //task.Remove();
+                //task.Remove(_dateTime.UtcNow);
 
                 _context.Store(task);
 

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Offers
 
                 var offer = await _context.FindAsync<Offer>(request.OfferId);
 
-                //offer.Remove();
+                //offer.Remove(_dateTime.UtcNow);
 
                 _context.Store(offer);
 

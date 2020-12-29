@@ -31,24 +31,26 @@ namespace DblDip.Domain.Features.EditedPhotos
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
+            private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IAppDbContext context, IDateTime dateTime)
+            {
+                _context = context;
+                _dateTime = dateTime;
+            }
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var editedPhoto = await _context.FindAsync<EditedPhoto>(request.EditedPhotoId);
 
-                //editedPhoto.Remove();
+                //editedPhoto.Remove(_dateTime.UtcNow);
 
                 _context.Store(editedPhoto);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new()
-                {
-
-                };
+                return new();
             }
         }
     }

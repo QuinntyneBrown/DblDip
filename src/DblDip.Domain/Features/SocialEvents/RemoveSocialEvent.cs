@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.SocialEvents
 
                 var socialEvent = await _context.FindAsync<SocialEvent>(request.SocialEventId);
 
-                //socialEvent.Remove();
+                //socialEvent.Remove(_dateTime.UtcNow);
 
                 _context.Store(socialEvent);
 

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.StudioPortraits
 
                 var studioPortrait = await _context.FindAsync<StudioPortrait>(request.StudioPortraitId);
 
-                //studioPortrait.Remove();
+                //studioPortrait.Remove(_dateTime.UtcNow);
 
                 _context.Store(studioPortrait);
 

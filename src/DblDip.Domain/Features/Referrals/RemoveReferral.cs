@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Referrals
 
                 var referral = await _context.FindAsync<Referral>(request.ReferralId);
 
-                //referral.Remove();
+                //referral.Remove(_dateTime.UtcNow);
 
                 _context.Store(referral);
 
