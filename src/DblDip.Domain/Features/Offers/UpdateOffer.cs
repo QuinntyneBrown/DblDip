@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Offers
 
                 var offer = await _context.FindAsync<Offer>(request.Offer.OfferId);
 
-                //offer.Update();
+                offer.Update();
 
                 _context.Store(offer);
 

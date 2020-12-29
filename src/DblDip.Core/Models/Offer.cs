@@ -22,6 +22,11 @@ namespace DblDip.Core.Models
             Deleted = offerRemoved.Deleted;
         }
 
+        public void When(OfferUpdated offerUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -30,6 +35,11 @@ namespace DblDip.Core.Models
         public void Remove(DateTime deleted)
         {
             Apply(new OfferRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new OfferUpdated());
         }
 
         public Guid OfferId { get; private set; }
