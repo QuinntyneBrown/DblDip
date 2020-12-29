@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/core/auth.service';
-import { RedirectService } from 'src/app/core/redirect.service';
+import { AuthService } from '@core/auth.service';
+import { RedirectService } from '@core/redirect.service';
 
 @Component({
   selector: 'app-login',

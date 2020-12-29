@@ -2,8 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Quote } from './quote';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { baseUrl } from 'src/app/core/constants';
+import { baseUrl } from '@core/constants';
 
 @Injectable({
   providedIn: 'root'

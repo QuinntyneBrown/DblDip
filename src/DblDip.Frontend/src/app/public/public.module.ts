@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PublicRoutingModule } from './public-routing.module';
 import { PublicComponent } from './public/public.component';
 import { PublicHeaderComponent } from './public-header/public-header.component';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '@shared/shared.module';
 import { TestimonialsModule } from './testimonials/testimonials.module';
 import { AboutModule } from './about/about.module';
 import { PricingModule } from './pricing/pricing.module';
