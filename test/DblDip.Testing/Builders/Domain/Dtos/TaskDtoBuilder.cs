@@ -8,12 +8,12 @@ namespace DblDip.Testing.Builders.Domain.Dtos
 
         public static TaskDto WithDefaults()
         {
-            return new TaskDto();
+            return new TaskDto(default, default, default);
         }
 
         public TaskDtoBuilder()
         {
-            _taskDto = new TaskDto();
+            _taskDto = WithDefaults();
         }
 
         public TaskDto Build()

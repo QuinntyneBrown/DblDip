@@ -1,14 +1,15 @@
-using BuildingBlocks.Abstractions;
-using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
+using BuildingBlocks.Abstractions;
+using DblDip.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Linq;
 using System;
 
 namespace DblDip.Domain.Features.Tasks
 {
-    public class RemoveTask
+    public class CompleteTask
     {
         public class Validator : AbstractValidator<Request>
         {
@@ -18,14 +19,8 @@ namespace DblDip.Domain.Features.Tasks
             }
         }
 
-        public class Request : IRequest<Unit>
-        {
+        public class Request : IRequest<Unit> {
             public Guid TaskId { get; init; }
-        }
-
-        public class Response
-        {
-            public TaskDto Task { get; init; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>
@@ -39,12 +34,11 @@ namespace DblDip.Domain.Features.Tasks
                 _dateTime = dateTime;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
 
                 var task = await _context.FindAsync<DblDip.Core.Models.Task>(request.TaskId);
 
-                task.Remove(_dateTime.UtcNow);
+                task.Complete(_dateTime.UtcNow);
 
                 _context.Store(task);
 

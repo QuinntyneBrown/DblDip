@@ -22,7 +22,6 @@ namespace DblDip.Api.FunctionalTests.Controllers
             _fixture = fixture;
         }
 
-
         [Fact]
         public async System.Threading.Tasks.Task Should_CreateTask()
         {
@@ -38,7 +37,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
 
             var response = JsonConvert.DeserializeObject<CreateTask.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 
-            var sut = context.FindAsync<Task>(response.Task.TaskId);
+            var sut = await context.FindAsync<Task>(response.Task.TaskId);
 
             Assert.NotEqual(default, response.Task.TaskId);
         }
@@ -83,6 +82,29 @@ namespace DblDip.Api.FunctionalTests.Controllers
             httpResponseMessage.EnsureSuccessStatusCode();
 
             var sut = await context.FindAsync<Task>(task.TaskId);
+
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task Should_CompleteTask()
+        {
+            var task = TaskBuilder.WithDefaults();
+
+            var context = _fixture.Context;
+
+            context.Store(task);
+
+            await context.SaveChangesAsync(default);
+
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { taskId = task.TaskId }), Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await _fixture.CreateAuthenticatedClient().PutAsync(Put.Complete, stringContent);
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var sut = await context.FindAsync<Task>(task.TaskId);
+
+            Assert.NotEqual(default, sut.Completed);
 
         }
 
@@ -137,6 +159,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
             public static class Put
             {
                 public static string Update = "api/tasks";
+                public static string Complete = "api/tasks/complete";
             }
 
             public static class Delete

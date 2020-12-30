@@ -5,27 +5,26 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Tasks
+namespace DblDip.Domain.Features.Stories
 {
-    public class CreateTask
+    public class UpdateStory
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-                RuleFor(request => request.Task).NotNull();
-                RuleFor(request => request.Task).SetValidator(new TaskValidator());
+                RuleFor(request => request.Story).NotNull();
+                RuleFor(request => request.Story).SetValidator(new StoryValidator());
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public TaskDto Task { get; init; }
+        public class Request : IRequest<Response> {  
+            public StoryDto Story { get; set; }
         }
 
         public class Response
         {
-            public TaskDto Task { get; init; }
+            public StoryDto Story { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Response>
@@ -34,18 +33,19 @@ namespace DblDip.Domain.Features.Tasks
 
             public Handler(IAppDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var task = new DblDip.Core.Models.Task(request.Task.OwnerId, request.Task.Description);
+                var story = await _context.FindAsync<Story>(request.Story.StoryId);
 
-                _context.Store(task);
+                story.Update();
+
+                _context.Store(story);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {
-                    Task = task.ToDto()
+                    Story = story.ToDto()
                 };
             }
         }

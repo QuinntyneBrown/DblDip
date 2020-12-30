@@ -6,9 +6,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace DblDip.Domain.Features.Tasks
+namespace DblDip.Domain.Features.Stories
 {
-    public class RemoveTask
+    public class RemoveStory
     {
         public class Validator : AbstractValidator<Request>
         {
@@ -18,14 +18,13 @@ namespace DblDip.Domain.Features.Tasks
             }
         }
 
-        public class Request : IRequest<Unit>
-        {
-            public Guid TaskId { get; init; }
+        public class Request : IRequest<Unit> {  
+            public Guid StoryId { get; set; }
         }
 
         public class Response
         {
-            public TaskDto Task { get; init; }
+            public StoryDto Story { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>
@@ -39,18 +38,20 @@ namespace DblDip.Domain.Features.Tasks
                 _dateTime = dateTime;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
-            {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
 
-                var task = await _context.FindAsync<DblDip.Core.Models.Task>(request.TaskId);
+                var story = await _context.FindAsync<Story>(request.StoryId);
 
-                task.Remove(_dateTime.UtcNow);
+                story.Remove(_dateTime.UtcNow);
 
-                _context.Store(task);
+                _context.Store(story);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new();
+                return new Unit()
+                {
+
+                };
             }
         }
     }

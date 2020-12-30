@@ -6,11 +6,6 @@ namespace DblDip.Domain.Features
     public static class TaskExtensions
     {
         public static TaskDto ToDto(this Task task)
-        {
-            return new TaskDto
-            {
-
-            };
-        }
+            => new(task.TaskId, task.Name, task.Description);
     }
 }

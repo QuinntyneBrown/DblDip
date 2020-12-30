@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Task WithDefaults()
         {
-            return new Task();
+            return new Task(default, default);
         }
 
         public TaskBuilder()
