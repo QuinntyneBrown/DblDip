@@ -1,13 +1,19 @@
 using BuildingBlocks.Abstractions;
+using DblDip.Core.DomainEvents;
 using System;
 
 namespace DblDip.Core.Models
 {
-    public class Engagement : AggregateRoot
+    public class Engagement : Service
     {
         protected override void When(dynamic @event) => When(@event);
 
         public Engagement()
+        {
+
+        }
+
+        public void When(EngagementUpdated engagementUpdated)
         {
 
         }
@@ -17,7 +23,11 @@ namespace DblDip.Core.Models
 
         }
 
+        public void Update()
+        {
+            Apply(new EngagementUpdated());
+        }
+
         public Guid EngagementId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

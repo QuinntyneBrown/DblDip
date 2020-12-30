@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.PhotoGalleries
 
                 var photoGallery = await _context.FindAsync<PhotoGallery>(request.PhotoGallery.PhotoGalleryId);
 
-                //photoGallery.Update();
+                photoGallery.Update();
 
                 _context.Store(photoGallery);
 

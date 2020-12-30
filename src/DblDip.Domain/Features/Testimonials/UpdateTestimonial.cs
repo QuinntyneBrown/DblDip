@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Testimonials
 
                 var testimonial = await _context.FindAsync<Testimonial>(request.Testimonial.TestimonialId);
 
-                testimonial.Update(default);
+                testimonial.Update();
 
                 _context.Store(testimonial);
 

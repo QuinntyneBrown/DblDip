@@ -22,6 +22,11 @@ namespace DblDip.Core.Models
             Deleted = receiptRemoved.Deleted;
         }
 
+        public void When(ReceiptUpdated receiptUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -29,6 +34,11 @@ namespace DblDip.Core.Models
         public void Remove(DateTime deleted)
         {
             Apply(new ReceiptRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new ReceiptUpdated());
         }
 
         public Guid ReceiptId { get; private set; }

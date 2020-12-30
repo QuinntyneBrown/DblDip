@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Clients
 
                 var client = await _context.FindAsync<Client>(request.Client.ClientId);
 
-                //client.Update();
+                client.Update();
 
                 _context.Store(client);
 

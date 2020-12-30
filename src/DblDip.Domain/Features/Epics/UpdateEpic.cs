@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Epics
 
                 var epic = await _context.FindAsync<Epic>(request.Epic.EpicId);
 
-                //epic.Update();
+                epic.Update();
 
                 _context.Store(epic);
 

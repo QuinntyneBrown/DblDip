@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.EditedPhotos
 
                 var editedPhoto = await _context.FindAsync<EditedPhoto>(request.EditedPhoto.EditedPhotoId);
 
-                //editedPhoto.Update();
+                editedPhoto.Update();
 
                 _context.Store(editedPhoto);
 

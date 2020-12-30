@@ -44,16 +44,13 @@ namespace DblDip.Domain.Features.TimeEntries
 
                 var timeEntry = await _context.FindAsync<TimeEntry>(request.TimeEntryId);
 
-                //timeEntry.Remove(_dateTime.UtcNow);
+                timeEntry.Remove(_dateTime.UtcNow);
 
                 _context.Store(timeEntry);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new()
-                {
-
-                };
+                return new();
             }
         }
     }

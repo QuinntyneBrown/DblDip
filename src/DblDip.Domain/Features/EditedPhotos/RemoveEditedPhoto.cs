@@ -44,7 +44,7 @@ namespace DblDip.Domain.Features.EditedPhotos
 
                 var editedPhoto = await _context.FindAsync<EditedPhoto>(request.EditedPhotoId);
 
-                //editedPhoto.Remove(_dateTime.UtcNow);
+                editedPhoto.Remove(_dateTime.UtcNow);
 
                 _context.Store(editedPhoto);
 

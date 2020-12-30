@@ -44,7 +44,7 @@ namespace DblDip.Domain.Features.Testimonials
 
                 var testimonial = await _context.FindAsync<Testimonial>(request.TestimonialId);
 
-                testimonial.Remove(default);
+                testimonial.Remove(_dateTime.UtcNow);
 
                 _context.Store(testimonial);
 

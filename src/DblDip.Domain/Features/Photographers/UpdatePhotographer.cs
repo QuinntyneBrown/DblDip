@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Photographers
 
                 var photographer = await _context.FindAsync<Photographer>(request.Photographer.PhotographerId);
 
-                //photographer.Update();
+                photographer.Update();
 
                 _context.Store(photographer);
 

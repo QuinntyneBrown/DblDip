@@ -8,9 +8,9 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event) => When(@event);
 
-        public Testimonial(string value)
+        public Testimonial()
         {
-            Apply(new TestimonialCreated(value));
+            Apply(new TestimonialCreated(Guid.NewGuid()));
         }
         public void When(TestimonialCreated testimonialCreated)
         {
@@ -32,14 +32,14 @@ namespace DblDip.Core.Models
 
         }
 
-        public void Remove(string value)
+        public void Remove(DateTime deleted)
         {
-            Apply(new TestimonialRemoved(value));
+            Apply(new TestimonialRemoved(deleted));
         }
 
-        public void Update(string value)
+        public void Update()
         {
-            Apply(new TestimonialUpdated(value));
+
         }
 
         public Guid TestimonialId { get; private set; }

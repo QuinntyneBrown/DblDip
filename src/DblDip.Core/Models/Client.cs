@@ -18,6 +18,11 @@ namespace DblDip.Core.Models
             ClientId = clientCreated.ClientId;
         }
 
+        public void When(ClientUpdated clientUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -26,6 +31,11 @@ namespace DblDip.Core.Models
         public Client CreateFrom(Lead lead)
         {
             throw new NotImplementedException("");
+        }
+
+        public void Update()
+        {
+            Apply(new ClientUpdated());
         }
 
         public Guid ClientId { get; private set; }

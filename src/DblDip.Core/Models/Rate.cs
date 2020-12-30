@@ -20,9 +20,29 @@ namespace DblDip.Core.Models
             Name = photographyRateCreated.Name;
         }
 
+        public void When(RateUpdated rateUpdated)
+        {
+
+        }
+
+        public void When(RateRemoved rateRemoved)
+        {
+            Deleted = rateRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Update()
+        {
+
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new RateRemoved(deleted));
         }
 
         public Guid RateId { get; private set; }

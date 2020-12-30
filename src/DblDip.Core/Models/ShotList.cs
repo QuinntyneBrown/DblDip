@@ -11,7 +11,7 @@ namespace DblDip.Core.Models
 
         public ShotList()
         {
-            Apply(new ShotListCreated(default));
+            Apply(new ShotListCreated(Guid.NewGuid()));
         }
 
         public void When(ShotAdded shotAdded)
@@ -26,7 +26,7 @@ namespace DblDip.Core.Models
 
         public void When(ShotListCreated shotListCreated)
         {
-
+            ShotListId = shotListCreated.ShotListId;
         }
 
         public void When(ShotListUpdated shotListUpdated)
@@ -36,7 +36,7 @@ namespace DblDip.Core.Models
 
         public void When(ShotListRemoved shotListRemoved)
         {
-
+            Deleted = shotListRemoved.Deleted;
         }
 
         protected override void EnsureValidState()
@@ -49,14 +49,19 @@ namespace DblDip.Core.Models
             Apply(new ShotAdded(value));
         }
 
-        public void Remove(string value)
+        public void RemoveShot(DateTime deleted)
         {
-            Apply(new ShotRemoved(value));
+            
         }
 
-        public void Update(string value)
+        public void Remove(DateTime deleted)
         {
-            Apply(new ShotListUpdated(value));
+            Apply(new ShotListRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new ShotListUpdated());
         }
 
         public Guid ShotListId { get; private set; }

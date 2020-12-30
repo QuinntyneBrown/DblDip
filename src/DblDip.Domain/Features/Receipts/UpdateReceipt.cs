@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Receipts
 
                 var receipt = await _context.FindAsync<Receipt>(request.Receipt.ReceiptId);
 
-                //receipt.Update();
+                receipt.Update();
 
                 _context.Store(receipt);
 

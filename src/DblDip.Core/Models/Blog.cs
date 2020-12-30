@@ -31,6 +31,11 @@ namespace DblDip.Core.Models
             Deleted = blogRemoved.Deleted;
         }
 
+        public void When(BlogUpdated blogUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -44,6 +49,11 @@ namespace DblDip.Core.Models
         public void Remove(DateTime deleted)
         {
             Apply(new BlogRemoved(deleted));
+        }
+
+        public void Update()
+        {
+            Apply(new BlogUpdated());
         }
 
         public Guid BlogId { get; private set; }

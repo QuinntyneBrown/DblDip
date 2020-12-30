@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Invoices
 
                 var invoice = await _context.FindAsync<Invoice>(request.Invoice.InvoiceId);
 
-                //invoice.Update();
+                invoice.Update();
 
                 _context.Store(invoice);
 

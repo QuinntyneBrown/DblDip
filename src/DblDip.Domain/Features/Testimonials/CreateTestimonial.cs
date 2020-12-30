@@ -37,7 +37,7 @@ namespace DblDip.Domain.Features.Testimonials
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var testimonial = new Testimonial(default);
+                var testimonial = new Testimonial();
 
                 _context.Store(testimonial);
 

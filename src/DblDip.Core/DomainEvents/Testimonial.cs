@@ -1,6 +1,8 @@
+using System;
+
 namespace DblDip.Core.DomainEvents
 {
-    public record TestimonialCreated(string Value);
-    public record TestimonialUpdated(string Value);
-    public record TestimonialRemoved(string Value);
+    public record TestimonialCreated(Guid TestimonialId);
+    public record TestimonialUpdated;
+    public record TestimonialRemoved(DateTime Deleted);
 }

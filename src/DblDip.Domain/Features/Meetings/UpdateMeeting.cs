@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Meetings
 
                 var meeting = await _context.FindAsync<Meeting>(request.Meeting.MeetingId);
 
-                //meeting.Update();
+                meeting.Update();
 
                 _context.Store(meeting);
 

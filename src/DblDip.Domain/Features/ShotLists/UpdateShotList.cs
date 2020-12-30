@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.ShotLists
 
                 var shotList = await _context.FindAsync<ShotList>(request.ShotList.ShotListId);
 
-                //shotList.Update();
+                shotList.Update();
 
                 _context.Store(shotList);
 

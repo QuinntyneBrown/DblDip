@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Engagements
 
                 var engagement = await _context.FindAsync<Engagement>(request.Engagement.EngagementId);
 
-                //engagement.Update();
+                engagement.Update();
 
                 _context.Store(engagement);
 

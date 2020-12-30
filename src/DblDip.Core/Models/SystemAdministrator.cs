@@ -1,4 +1,3 @@
-using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -12,12 +11,12 @@ namespace DblDip.Core.Models
         public SystemAdministrator(string name, Email email)
             : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
         {
-            Apply(new SystemAdministratorCreated(default));
+            Apply(new SystemAdministratorCreated(base.ProfileId));
         }
 
         public void When(SystemAdministratorCreated systemAdministratorCreated)
         {
-
+            SystemAdministratorId = systemAdministratorCreated.SystemAdministratorId;
         }
 
         public void When(SystemAdministratorUpdated systemAdministratorUpdated)
@@ -30,9 +29,9 @@ namespace DblDip.Core.Models
 
         }
 
-        public void Update(string value)
+        public void Update()
         {
-            Apply(new SystemAdministratorUpdated(value));
+            Apply(new SystemAdministratorUpdated());
         }
 
         public Guid SystemAdministratorId { get; private set; }

@@ -25,6 +25,11 @@ namespace DblDip.Core.Models
             CompanyId = photographerCompanyAdded.CompanyId;
         }
 
+        public void When(PhotographerUpdated photographerUpdated)
+        {
+
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -33,6 +38,11 @@ namespace DblDip.Core.Models
         public void AddCompany(Guid companyId)
         {
             Apply(new PhotographerCompanyAdded(companyId));
+        }
+
+        public void Update()
+        {
+            Apply(new PhotographerUpdated());
         }
 
         public Guid PhotographerId { get; private set; }

@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Rates
 
                 var rate = await _context.FindAsync<Rate>(request.Rate.RateId);
 
-                //rate.Update();
+                rate.Update();
 
                 _context.Store(rate);
 

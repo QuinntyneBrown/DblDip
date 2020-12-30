@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.FamilyPortraits
 
                 var familyPortrait = await _context.FindAsync<FamilyPortrait>(request.FamilyPortrait.FamilyPortraitId);
 
-                //familyPortrait.Update();
+                familyPortrait.Update();
 
                 _context.Store(familyPortrait);
 

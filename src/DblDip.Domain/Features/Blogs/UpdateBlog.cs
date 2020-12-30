@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Blogs
 
                 var blog = await _context.FindAsync<Blog>(request.Blog.BlogId);
 
-                //blog.Update();
+                blog.Update();
 
                 _context.Store(blog);
 

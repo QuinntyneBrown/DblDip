@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.SocialEvents
 
                 var socialEvent = await _context.FindAsync<SocialEvent>(request.SocialEvent.SocialEventId);
 
-                //socialEvent.Update();
+                socialEvent.Update();
 
                 _context.Store(socialEvent);
 

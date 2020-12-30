@@ -39,6 +39,16 @@ namespace DblDip.Core.Models
             });
         }
 
+        public void When(SurveyUpdated surveyUpdated)
+        {
+
+        }
+
+        public void When(SurveyRemoved surveyRemoved)
+        {
+            Deleted = surveyRemoved.Deleted;
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -54,14 +64,21 @@ namespace DblDip.Core.Models
             Apply(new SurveyResultAdded(Guid.NewGuid(), respondentEmail, answers));
         }
 
+        public void Update()
+        {
+            Apply(new SurveyUpdated());
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new SurveyRemoved(deleted));
+        }
+
         public Guid SurveyId { get; private set; }
         public string Name { get; private set; }
 
         public IEnumerable<SurveyQuestion> SurveyQuestions { get; private set; }
         public IEnumerable<SurveyResult> SurveyResults { get; private set; }
+        public DateTime? Deleted { get; private set; }
     }
-
-    public record SurveyQuestion(Guid QuestionId, string Value);
-    public record Answer(Guid QuestionId, int Value);
-    public record SurveyResult(Guid SurveyResultId, Email RespondentEmail, IEnumerable<Answer> Answers);
 }

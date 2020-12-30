@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Surveys
 
                 var survey = await _context.FindAsync<Survey>(request.Survey.SurveyId);
 
-                //survey.Update();
+                survey.Update();
 
                 _context.Store(survey);
 

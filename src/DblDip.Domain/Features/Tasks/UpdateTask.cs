@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.Tasks
 
                 var task = await _context.FindAsync<DblDip.Core.Models.Task>(request.Task.TaskId);
 
-                //task.Update();
+                task.Update();
 
                 _context.Store(task);
 

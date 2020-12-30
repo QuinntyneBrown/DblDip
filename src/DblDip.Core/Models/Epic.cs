@@ -1,4 +1,5 @@
 using BuildingBlocks.Abstractions;
+using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,11 +8,40 @@ namespace DblDip.Core.Models
 {
     public class Epic : AggregateRoot
     {
+        public Epic()
+        {
+            Apply(new EpicCreated(Guid.NewGuid()));
+        }
         protected override void When(dynamic @event) => When(@event);
+
+        public void When(EpicCreated epicCreated)
+        {
+            EpicId = epicCreated.EpicId;
+        }
+
+        public void When(EpicUpdated epicUpdated)
+        {
+
+        }
+
+        public void When(EpicRemoved epicRemoved)
+        {
+            Deleted = epicRemoved.Deleted;
+        }
 
         protected override void EnsureValidState()
         {
 
+        }
+
+        public void Update()
+        {
+
+        }
+
+        public void Remove(DateTime deleted)
+        {
+            Apply(new EpicRemoved(deleted));
         }
 
         public Guid EpicId { get; private set; }

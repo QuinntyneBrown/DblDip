@@ -39,7 +39,7 @@ namespace DblDip.Domain.Features.SystemAdministrators
 
                 var systemAdministrator = await _context.FindAsync<SystemAdministrator>(request.SystemAdministrator.SystemAdministratorId);
 
-                systemAdministrator.Update(default);
+                systemAdministrator.Update();
 
                 _context.Store(systemAdministrator);
 

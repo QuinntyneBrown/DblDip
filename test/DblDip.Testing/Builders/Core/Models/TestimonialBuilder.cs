@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Testimonial WithDefaults()
         {
-            return new Testimonial(default);
+            return new Testimonial();
         }
 
         public TestimonialBuilder()
