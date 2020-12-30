@@ -50,10 +50,7 @@ namespace DblDip.Domain.Features.Offers
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new()
-                {
-
-                };
+                return new();
             }
         }
     }

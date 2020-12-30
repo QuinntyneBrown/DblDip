@@ -14,6 +14,11 @@ namespace DblDip.Core.Models
             Apply(new AccountCreated(Guid.NewGuid(), profiles, defaultProfileId, name, AccountHolderUserId));
         }
 
+        private Account()
+        {
+
+        }
+
         public void When(AccountCreated accountCreated)
         {
             AccountId = accountCreated.AccountId;

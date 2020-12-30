@@ -1,4 +1,3 @@
-using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.Enums;
 using DblDip.Core.ValueObjects;
@@ -23,7 +22,7 @@ namespace DblDip.Core.Models
 
         protected void When(LeadRemoved leadRemoved)
         {
-
+            base.Deleted = leadRemoved.Deleted;
         }
 
         protected override void EnsureValidState()

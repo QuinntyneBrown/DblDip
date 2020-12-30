@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Domain.Dtos
 
         public static AccountDto WithDefaults()
         {
-            return new AccountDto();
+            return new AccountDto(default, default, default, default, default);
         }
 
         public AccountDtoBuilder()

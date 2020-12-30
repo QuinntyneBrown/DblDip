@@ -10,6 +10,7 @@ namespace DblDip.Core.Models
         {
             Apply(new AvailabilityCreated(Guid.NewGuid()));
         }
+
         protected override void When(dynamic @event) => When(@event);
 
         public void When(AvailabilityCreated availabilityCreated)

@@ -19,7 +19,7 @@ namespace DblDip.Domain.Features.Stories
         }
 
         public class Request : IRequest<Response> {  
-            public StoryDto Story { get; set; }
+            public StoryDto Story { get; init; }
         }
 
         public class Response

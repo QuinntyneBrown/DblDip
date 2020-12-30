@@ -17,6 +17,7 @@ namespace DblDip.Core.Models
         {
 
         }
+
         public void When(BoardCreated boardCreated)
         {
             BoardId = boardCreated.BoardId;

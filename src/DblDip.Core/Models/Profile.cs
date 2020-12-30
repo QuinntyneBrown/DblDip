@@ -61,6 +61,6 @@ namespace DblDip.Core.Models
         public string Firstname { get; private set; }
         public string Lastname { get; private set; }
         public string DotNetType { get; private set; }
-        public DateTime? Deleted { get; private set; }
+        public DateTime? Deleted { get; protected set; }
     }
 }
