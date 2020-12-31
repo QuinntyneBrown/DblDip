@@ -18,15 +18,9 @@ namespace DblDip.Domain.Features.Dashboards
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public DashboardDto Dashboard { get; init; }
-        }
+        public record Request(DashboardDto Dashboard) : IRequest<Response>;
 
-        public class Response
-        {
-            public DashboardDto Dashboard { get; init; }
-        }
+        public record Response(DashboardDto Dashboard);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -37,16 +31,13 @@ namespace DblDip.Domain.Features.Dashboards
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var dashboard = new Dashboard(request.Dashboard.Name, request.Dashboard.UserId);
+                var dashboard = new Dashboard(request.Dashboard.Name, request.Dashboard.ProfileId);
 
                 _context.Store(dashboard);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Response()
-                {
-                    Dashboard = dashboard.ToDto()
-                };
+                return new(dashboard.ToDto());
             }
         }
     }

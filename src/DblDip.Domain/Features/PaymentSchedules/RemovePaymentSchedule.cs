@@ -48,7 +48,7 @@ namespace DblDip.Domain.Features.PaymentSchedules
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Unit()
+                return new()
                 {
 
                 };

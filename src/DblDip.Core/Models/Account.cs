@@ -9,9 +9,9 @@ namespace DblDip.Core.Models
     public class Account : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
-        public Account(ICollection<ProfileReference> profiles, Guid defaultProfileId, string name, Guid accountHolderUserI)
+        public Account(ICollection<ProfileReference> profiles, Guid defaultProfileId, string name, Guid userId)
         {
-            Apply(new AccountCreated(Guid.NewGuid(), profiles, defaultProfileId, name, AccountHolderUserId));
+            Apply(new AccountCreated(Guid.NewGuid(), profiles, defaultProfileId, name, UserId));
         }
 
         private Account()
@@ -25,7 +25,7 @@ namespace DblDip.Core.Models
             _profiles = accountCreated.Profiles;
             DefaultProfileId = accountCreated.DefaultProfileId;
             Name = accountCreated.Name;
-            AccountHolderUserId = accountCreated.AccountHolderUserId;
+            UserId = accountCreated.AccountHolderUserId;
         }
 
         public void When(AccountRemoved accountRemoved)
@@ -57,8 +57,9 @@ namespace DblDip.Core.Models
         public Guid AccountId { get; private set; }
         public IReadOnlyList<ProfileReference> Profiles => _profiles.ToList();
         public Guid DefaultProfileId { get; private set; }
+        public Guid CurrentProfileId { get; set; }
         public string Name { get; private set; }
-        public Guid AccountHolderUserId { get; private set; }
+        public Guid UserId { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
 }

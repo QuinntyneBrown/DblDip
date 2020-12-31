@@ -1,5 +1,6 @@
 using BuildingBlocks.Core;
 using DblDip.Core.Models;
+using DblDip.Core.ValueObjects;
 using DblDip.Domain.Features.Dashboards;
 using DblDip.Testing;
 using DblDip.Testing.Builders.Core.Models;
@@ -21,21 +22,51 @@ namespace DblDip.Api.FunctionalTests.Controllers
         }
 
         [Fact]
-        public async System.Threading.Tasks.Task Should_AddDashboard()
+        public async System.Threading.Tasks.Task Should_CreateDashboard()
         {
             var dashboard = DashboardDtoBuilder.WithDefaults();
 
-            using (var client = _fixture.CreateAuthenticatedClient())
-            {
-                var response = await client.PostAsAsync<dynamic, CreateDashboard.Response>(Endpoints.Post.AddDashboard, new { dashboard });
+            using var client = _fixture.CreateAuthenticatedClient();
 
-                _testOutputHelper.WriteLine($"{response.Dashboard.DashboardId}");
+            var response = await client.PostAsAsync<dynamic, CreateDashboard.Response>(Endpoints.Post.Create, new { dashboard });
 
-                var sut = await _fixture.Context.FindAsync<Dashboard>(response.Dashboard.DashboardId);
+            _testOutputHelper.WriteLine($"{response.Dashboard.DashboardId}");
 
-                Assert.NotEqual(default, sut.DashboardId);
-            }
+            var sut = await _fixture.Context.FindAsync<Dashboard>(response.Dashboard.DashboardId);
+
+            Assert.NotEqual(default, sut.DashboardId);
         }
+
+        [Fact]
+        public async System.Threading.Tasks.Task Should_GetDefaultDashboard()
+        {
+            var profile = new Lead((Email)"quinntynebrown@gmail.com");
+
+            var homeDashboard = new Dashboard("Home", profile.ProfileId);
+
+            var reportingDashboard = new Dashboard("Reporting", profile.ProfileId);
+
+            homeDashboard.SetDefault();
+
+            _fixture.Context.Store(profile);
+
+            _fixture.Context.Store(homeDashboard);
+
+            _fixture.Context.Store(reportingDashboard);
+
+            await _fixture.Context.SaveChangesAsync(default);
+
+            using var client = _fixture.CreateAuthenticatedClient();
+
+            var response = await client.PostAsAsync<dynamic, CreateDashboard.Response>(Endpoints.Post.Create, new { homeDashboard });
+
+            _testOutputHelper.WriteLine($"{response.Dashboard.DashboardId}");
+
+            var sut = await _fixture.Context.FindAsync<Dashboard>(response.Dashboard.DashboardId);
+
+            Assert.NotEqual(default, sut.DashboardId);
+        }
+
 
         [Fact]
         public async System.Threading.Tasks.Task Should_RemoveDashboard()
@@ -59,7 +90,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
         {
             public static class Post
             {
-                public static string AddDashboard = "api/dashboards";
+                public static string Create = "api/dashboards";
             }
 
             public static class Delete

@@ -11,7 +11,7 @@ namespace DblDip.Domain.Features
             {
                 DashboardId = dashboard.DashboardId,
                 Name = dashboard.Name,
-                UserId = dashboard.UserId
+                ProfileId = dashboard.ProfileId
             };
         }
     }

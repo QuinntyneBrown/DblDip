@@ -11,7 +11,7 @@ namespace DblDip.Testing.Builders.Domain.Dtos
             return new DashboardDto()
             {
                 Name = "Default",
-                UserId = new System.Guid()
+                ProfileId = new System.Guid()
             };
         }
 

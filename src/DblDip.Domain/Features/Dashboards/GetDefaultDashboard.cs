@@ -36,7 +36,7 @@ namespace DblDip.Domain.Features.Dashboards
                 var currentUserId = new Guid(_httpContextAccessor.HttpContext.User
                     .FindFirst(Constants.ClaimTypes.UserId).Value);
 
-                var dashboard = _context.Set<Dashboard>().Single(x => x.UserId == currentUserId && x.IsDefault);
+                var dashboard = _context.Set<Dashboard>().Single(x => x.ProfileId == currentUserId && x.IsDefault);
 
                 return new Response()
                 {

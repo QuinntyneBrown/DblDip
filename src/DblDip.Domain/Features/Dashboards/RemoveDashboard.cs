@@ -46,10 +46,7 @@ namespace DblDip.Domain.Features.Dashboards
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new()
-                {
-
-                };
+                return new();
             }
         }
     }

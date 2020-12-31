@@ -6,11 +6,11 @@ using System.Linq;
 
 namespace DblDip.Core.Models
 {
-    public class Dashboard : AggregateRoot
+    public partial class Dashboard : AggregateRoot
     {
-        public Dashboard(string name, Guid userId)
+        public Dashboard(string name, Guid profileId)
         {
-            Apply(new DashboardCreated(Guid.NewGuid(), userId, name));
+            Apply(new DashboardCreated(Guid.NewGuid(), profileId, name));
         }
 
         protected override void When(dynamic @event) => When(@event);
@@ -19,7 +19,7 @@ namespace DblDip.Core.Models
         {
             Name = dashboardCreated.Name;
             DashboardId = dashboardCreated.DashboardId;
-            UserId = dashboardCreated.UserId;
+            ProfileId = dashboardCreated.ProfileId;
         }
 
         public void When(DashboardRemoved dashboardRemoved)
@@ -32,6 +32,10 @@ namespace DblDip.Core.Models
             Name = dashboardUpdated.Name;
         }
 
+        public void When(DashboardDefault dashboardDefault)
+        {
+            IsDefault = dashboardDefault.IsDefault;
+        }
         public void When(DashboardCardsUpdated dashboardCardsUpdated)
         {
             _dashboardCards = dashboardCardsUpdated.DashboardCards;
@@ -52,20 +56,24 @@ namespace DblDip.Core.Models
             Apply(new DashboardUpdated(name));
         }
 
+        public void SetDefault(bool isDefault = true)
+        {
+            Apply(new DashboardDefault(isDefault));
+        }
+
         public void UpdateDashboardCards(ICollection<DashboardCard> dashboardCards)
         {
             Apply(new DashboardCardsUpdated(dashboardCards));
         }
 
         public Guid DashboardId { get; private set; }
-        public Guid UserId { get; private set; }
+        public Guid ProfileId { get; private set; }
         public string Name { get; private set; }
-        public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
-        public bool IsDefault { get; private set; }
-
-        public record DashboardCard(Guid DashboardCardId, dynamic Options);
-        public DateTime? Deleted { get; private set; }
 
         private ICollection<DashboardCard> _dashboardCards;
+        public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
+        public bool IsDefault { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
     }
 }

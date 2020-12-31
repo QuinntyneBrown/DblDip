@@ -37,7 +37,7 @@ namespace DblDip.Domain.Features.Dashboards
                 var currentUserId = new Guid(_httpContextAccessor.HttpContext.User
                     .FindFirst(Constants.ClaimTypes.UserId).Value);
 
-                var dashboards = _context.Set<Dashboard>().Where(x => x.UserId == currentUserId);
+                var dashboards = _context.Set<Dashboard>().Where(x => x.ProfileId == currentUserId);
 
                 return new Response()
                 {

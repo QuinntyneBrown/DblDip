@@ -122,7 +122,7 @@ namespace DblDip.Data
             {
                 var user = context.Set<User>().Single(x => x.Username == "quinntynebrown@gmail.com");
 
-                var dashboard = context.Set<Dashboard>().FirstOrDefault(x => x.Name == "Default" && x.UserId == user.UserId);
+                var dashboard = context.Set<Dashboard>().FirstOrDefault(x => x.Name == "Default" && x.ProfileId == user.UserId);
 
                 if (dashboard == null)
                 {

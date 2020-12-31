@@ -5,7 +5,7 @@ using System;
 
 namespace DblDip.Core.Models
 {
-    public abstract class Profile : AggregateRoot
+    public class Profile : AggregateRoot
     {
         protected override void When(dynamic @event)
         {
@@ -53,6 +53,7 @@ namespace DblDip.Core.Models
         }
 
         public Guid ProfileId { get; private set; }
+        public Guid? DefaultDashboardId { get; private set; }
         public Guid AccountId { get; private set; }
         public Email Email { get; private set; }
         public PhoneNumber PhoneNumber { get; private set; }
