@@ -15,9 +15,9 @@ namespace DblDip.Core.Models
             }
         }
 
-        public Profile(ProfileCreated profileCreated)
+        public Profile(string name, Email email, System.Type type)
         {
-            Apply(profileCreated);
+            Apply(new ProfileCreated(Guid.NewGuid(),name,email, type.Name, type.AssemblyQualifiedName));
         }
 
         public void ChangeAvatar(Guid avatarDigitalAssetId)
@@ -30,6 +30,8 @@ namespace DblDip.Core.Models
             ProfileId = profileCreated.ProfileId;
             Name = profileCreated.Name;
             Email = profileCreated.Email;
+            Type = profileCreated.Type;
+            DotNetType = profileCreated.DotNetType;
         }
 
         public void When(AvatarChanged avatarChanged)
@@ -61,6 +63,7 @@ namespace DblDip.Core.Models
         public string Name { get; private set; }
         public string Firstname { get; private set; }
         public string Lastname { get; private set; }
+        public string Type { get; private set; }
         public string DotNetType { get; private set; }
         public DateTime? Deleted { get; protected set; }
     }

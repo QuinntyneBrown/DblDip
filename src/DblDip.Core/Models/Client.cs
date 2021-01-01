@@ -9,7 +9,7 @@ namespace DblDip.Core.Models
         protected override void When(dynamic @event) => When(@event);
 
         public Client(string name, Email email)
-            : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
+            : base(name, email, typeof(Client))
         {
             Apply(new ClientCreated(ProfileId));
         }

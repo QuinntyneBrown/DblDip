@@ -8,7 +8,7 @@ namespace DblDip.Testing.Builders.Core.Models
 
         public static Profile WithDefaults()
         {
-            return new Profile(default);
+            return new Profile(default, default, typeof(Profile));
         }
 
         public ProfileBuilder()

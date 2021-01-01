@@ -8,7 +8,7 @@ namespace DblDip.Core.Models
     public class Lead : Profile
     {
         public Lead(Email email)
-            : base(new ProfileCreated(Guid.NewGuid(), null, email, nameof(Lead), typeof(Lead).AssemblyQualifiedName))
+            : base(null, email, typeof(Lead))
         {
             Apply(new LeadCreated(base.ProfileId));
         }

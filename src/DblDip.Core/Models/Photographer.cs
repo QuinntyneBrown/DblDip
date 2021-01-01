@@ -10,7 +10,7 @@ namespace DblDip.Core.Models
         protected override void When(dynamic @event) => When(@event);
 
         public Photographer(string name, Email email)
-            : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
+            : base(name, email, typeof(Photographer))
         {
             Apply(new PhotographerCreated(base.ProfileId));
         }

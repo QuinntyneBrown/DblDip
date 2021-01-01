@@ -9,7 +9,7 @@ namespace DblDip.Core.Models
         protected override void When(dynamic @event) => When(@event);
 
         public SystemAdministrator(string name, Email email)
-            : base(new ProfileCreated(Guid.NewGuid(), name, email, nameof(Client), typeof(Client).AssemblyQualifiedName))
+            : base(name, email, typeof(SystemAdministrator))
         {
             Apply(new SystemAdministratorCreated(base.ProfileId));
         }
