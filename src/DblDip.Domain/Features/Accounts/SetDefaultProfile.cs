@@ -5,42 +5,37 @@ using DblDip.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Linq;
-using System;
 using Microsoft.AspNetCore.Http;
-using BuildingBlocks.Core;
+using System;
 using DblDip.Core;
-using System.Collections.Generic;
-using System.Security.Claims;
 
-namespace DblDip.Domain.Features.Profiles
+namespace DblDip.Domain.Features.Accounts
 {
-    public class SetCurrentProfile
+    public class SetDefaultProfile
     {
         public class Validator : AbstractValidator<Request>
         {
             public Validator()
             {
-
+                RuleFor(x => x.ProfileId).NotEqual(Guid.NewGuid());
             }
         }
 
-        public record Request(Guid ProfileId): IRequest<Response>;
-    
-        public record Response(string AccessToken);
+        public class Request : IRequest<Unit> {
+            public Guid ProfileId { get; set; }
+        }
 
-        public class Handler : IRequestHandler<Request, Response>
+        public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;
-            private readonly ITokenProvider _tokenProvider;
             private readonly IHttpContextAccessor _httpContextAccessor;
-            public Handler(IAppDbContext context, ITokenProvider tokenProvider, IHttpContextAccessor httpContextAccessor)
-            {
+
+            public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor) {            
                 _context = context;
-                _tokenProvider = tokenProvider;
                 _httpContextAccessor = httpContextAccessor;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
 
                 var user = await _context.FindAsync<User>(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.UserId).Value));
 
@@ -51,10 +46,13 @@ namespace DblDip.Domain.Features.Profiles
                 if (account.UserId != user.UserId)
                     throw new Exception("Security Exception");
 
-                return new Response(_tokenProvider.Get(user.Username, new List<Claim> {
-                    new (Constants.ClaimTypes.UserId, $"{user.UserId}"),
-                    new (Constants.ClaimTypes.ProfileId, $"{request.ProfileId}")
-                }));
+                account.SetDefaultProfileId(request.ProfileId);
+
+                _context.Store(account);
+
+                await _context.SaveChangesAsync(cancellationToken);
+
+                return new ();
             }
         }
     }
