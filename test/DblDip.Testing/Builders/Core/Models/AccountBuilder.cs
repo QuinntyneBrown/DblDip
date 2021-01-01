@@ -1,4 +1,7 @@
 using DblDip.Core.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace DblDip.Testing.Builders.Core.Models
 {
@@ -11,9 +14,9 @@ namespace DblDip.Testing.Builders.Core.Models
             return new Account(default, default, default, default);
         }
 
-        public AccountBuilder()
+        public AccountBuilder(List<Guid> profileIds, Guid userId)
         {
-            _account = WithDefaults();
+            _account = new Account(profileIds, profileIds.First(), "Quinntyne", userId);
         }
 
         public Account Build()

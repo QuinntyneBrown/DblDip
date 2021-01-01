@@ -21,10 +21,7 @@ namespace DblDip.Domain.Features.Accounts
             }
         }
 
-        public class Request : IRequest<Unit> {
-            public Guid ProfileId { get; set; }
-        }
-
+        public record Request(Guid ProfileId) : IRequest<Unit>;
         public class Handler : IRequestHandler<Request, Unit>
         {
             private readonly IAppDbContext _context;

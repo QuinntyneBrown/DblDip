@@ -11,6 +11,8 @@ using System.Net.Http;
 using System.Text;
 using Xunit;
 using static DblDip.Api.FunctionalTests.Controllers.AccountsControllerTests.Endpoints;
+using System.Collections.Generic;
+using DblDip.Testing.Builders;
 
 namespace DblDip.Api.FunctionalTests.Controllers
 {
@@ -62,6 +64,56 @@ namespace DblDip.Api.FunctionalTests.Controllers
             var removedAccount = await context.FindAsync<Account>(account.AccountId);
 
             Assert.NotEqual(default, removedAccount.Deleted);
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task Should_SetCurrentProfile()
+        {
+            var user = UserBuilder.WithDefaults(default);
+
+            var profile = ProfileBuilder.WithDefaults();
+
+            var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
+
+            var context = _fixture.Context;
+
+            context.Store(user);
+
+            context.Store(profile);
+
+            context.Store(account);
+
+            await context.SaveChangesAsync(default);
+
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { profileId = profile.ProfileId }), Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await _fixture.CreateAuthenticatedClient().PutAsync(Put.Current, stringContent);
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var sut = await context.FindAsync<Account>(account.AccountId);
+
+        }
+
+        [Fact]
+        public async System.Threading.Tasks.Task Should_SetDefaultProfile()
+        {
+            var account = AccountBuilder.WithDefaults();
+
+            var context = _fixture.Context;
+
+            context.Store(account);
+
+            await context.SaveChangesAsync(default);
+
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { account = account.ToDto() }), Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await _fixture.CreateAuthenticatedClient().PutAsync(Put.Update, stringContent);
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var sut = await context.FindAsync<Account>(account.AccountId);
+
         }
 
         [Fact]
@@ -136,6 +188,8 @@ namespace DblDip.Api.FunctionalTests.Controllers
             public static class Put
             {
                 public static string Update = "api/accounts";
+                public static string Current = "api/accounts/profile/current";
+                public static string Default = "api/accounts/profile/default";
             }
 
             public static class Delete
