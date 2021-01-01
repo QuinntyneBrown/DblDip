@@ -9,9 +9,9 @@ namespace DblDip.Core.Models
     public class Account : AggregateRoot
     {
         protected override void When(dynamic @event) => When(@event);
-        public Account(ICollection<ProfileReference> profiles, Guid defaultProfileId, string name, Guid userId)
+        public Account(ICollection<Guid> profileIds, Guid defaultProfileId, string name, Guid userId)
         {
-            Apply(new AccountCreated(Guid.NewGuid(), profiles, defaultProfileId, name, UserId));
+            Apply(new AccountCreated(Guid.NewGuid(), profileIds, defaultProfileId, name, userId));
         }
 
         private Account()
@@ -22,7 +22,7 @@ namespace DblDip.Core.Models
         public void When(AccountCreated accountCreated)
         {
             AccountId = accountCreated.AccountId;
-            _profiles = accountCreated.Profiles;
+            _profileIds = accountCreated.ProfileIds;
             DefaultProfileId = accountCreated.DefaultProfileId;
             Name = accountCreated.Name;
             UserId = accountCreated.AccountHolderUserId;
@@ -38,6 +38,15 @@ namespace DblDip.Core.Models
 
         }
 
+        public void When(SetDefaultProfile setDefaultProfile)
+        {
+            DefaultProfileId = setDefaultProfile.ProfileId;
+        }
+
+        public void When(SetCurrentProfile setCurrentProfile)
+        {
+            CurrentProfileId = setCurrentProfile.ProfileId;
+        }
         protected override void EnsureValidState()
         {
 
@@ -48,14 +57,24 @@ namespace DblDip.Core.Models
             Apply(new AccountRemoved(deleted));
         }
 
+        public void SetDefaultProfileId(Guid profileId)
+        {
+            DefaultProfileId = profileId;
+        }
+
+        public void SetCurrentProfileId(Guid profileId)
+        {
+            CurrentProfileId = profileId;
+        }
+
         public void Update()
         {
 
         }
 
-        private ICollection<ProfileReference> _profiles;
+        private ICollection<Guid> _profileIds;
         public Guid AccountId { get; private set; }
-        public IReadOnlyList<ProfileReference> Profiles => _profiles.ToList();
+        public IReadOnlyList<Guid> ProfileIds => _profileIds.ToList();
         public Guid DefaultProfileId { get; private set; }
         public Guid CurrentProfileId { get; set; }
         public string Name { get; private set; }

@@ -2,6 +2,7 @@ using BuildingBlocks.Abstractions;
 using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
 using MediatR;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -29,7 +30,7 @@ namespace DblDip.Domain.Sagas
             {
                 var profile = new Lead(primaryParticpantEmail);
 
-                var account = new Account(new List<ProfileReference> { new(profile.ProfileId, profile.Name) }, profile.ProfileId, "", user.UserId);
+                var account = new Account(new List<Guid> { profile.ProfileId }, profile.ProfileId, "", user.UserId);
 
                 _context.Store(profile);
 
