@@ -41,6 +41,8 @@ namespace DblDip.Domain.Features.Accounts
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
+                var claims = _httpContextAccessor.HttpContext.User.Identity;
+
                 var user = await _context.FindAsync<User>(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.UserId).Value));
 
                 var profile = await _context.FindAsync<Profile>(request.ProfileId);

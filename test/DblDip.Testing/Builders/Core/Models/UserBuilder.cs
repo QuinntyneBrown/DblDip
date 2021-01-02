@@ -9,7 +9,7 @@ namespace DblDip.Testing.Builders
 
         public static User WithDefaults(IUsernameAvailabilityCheck usernameAvailabilityCheck)
         {
-            return new User("quinntynebrown@gmail.com", "DblDip", usernameAvailabilityCheck);
+            return new User("test@gmail.com", "DblDip", usernameAvailabilityCheck);
         }
 
         public UserBuilder(string username, string password)

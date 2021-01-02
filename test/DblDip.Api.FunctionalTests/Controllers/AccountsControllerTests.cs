@@ -13,6 +13,7 @@ using Xunit;
 using static DblDip.Api.FunctionalTests.Controllers.AccountsControllerTests.Endpoints;
 using System.Collections.Generic;
 using DblDip.Testing.Builders;
+using DblDip.Testing.Factories;
 
 namespace DblDip.Api.FunctionalTests.Controllers
 {
@@ -75,6 +76,8 @@ namespace DblDip.Api.FunctionalTests.Controllers
 
             var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
 
+            profile.UpdateAccountId(account.AccountId);
+
             var context = _fixture.Context;
 
             context.Store(user);
@@ -85,9 +88,11 @@ namespace DblDip.Api.FunctionalTests.Controllers
 
             await context.SaveChangesAsync(default);
 
+            var token = TokenFactory.CreateToken(user);
+
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { profileId = profile.ProfileId }), Encoding.UTF8, "application/json");
 
-            var httpResponseMessage = await _fixture.CreateAuthenticatedClient().PutAsync(Put.Current, stringContent);
+            var httpResponseMessage = await _fixture.CreateAuthenticatedClient(token).PutAsync(Put.Current, stringContent);
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
@@ -188,8 +193,8 @@ namespace DblDip.Api.FunctionalTests.Controllers
             public static class Put
             {
                 public static string Update = "api/accounts";
-                public static string Current = "api/accounts/profile/current";
-                public static string Default = "api/accounts/profile/default";
+                public static string Current = "api/accounts/current-profile";
+                public static string Default = "api/accounts/default-profile";
             }
 
             public static class Delete

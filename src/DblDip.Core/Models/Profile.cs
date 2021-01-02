@@ -9,7 +9,7 @@ namespace DblDip.Core.Models
     {
         protected override void When(dynamic @event)
         {
-            if (@event is AvatarChanged || @event is ProfileCreated || @event is ProfileRemoved)
+            if (@event is AvatarChanged || @event is ProfileCreated || @event is ProfileRemoved || @event is ProfileAccountIdUpdated)
             {
                 When(@event);
             }
@@ -44,6 +44,11 @@ namespace DblDip.Core.Models
             Deleted = profileRemoved.Deleted;
         }
 
+        public void When(ProfileAccountIdUpdated profileAccountIdUpdated)
+        {
+            AccountId = profileAccountIdUpdated.AccountId;
+        }
+
         protected override void EnsureValidState()
         {
 
@@ -52,6 +57,11 @@ namespace DblDip.Core.Models
         public void Remove(DateTime deleted)
         {
             Apply(new ProfileRemoved(deleted));
+        }
+
+        public void UpdateAccountId(Guid accountId)
+        {
+            Apply(new ProfileAccountIdUpdated(accountId));
         }
 
         public Guid ProfileId { get; private set; }

@@ -1,4 +1,7 @@
-﻿using BuildingBlocks.Core;
+﻿using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
+using DblDip.Core;
+using DblDip.Core.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -27,6 +30,17 @@ namespace DblDip.Testing.Factories
                 .ToList();
 
             return _tokenProvider.Get(userName, claims);
+        }
+
+        public static string CreateToken(User user)
+        {
+
+            var claims = user.Roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name))
+                .ToList();
+
+            claims.Add(new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}"));
+
+            return _tokenProvider.Get(user.Username, claims);
         }
     }
 }
