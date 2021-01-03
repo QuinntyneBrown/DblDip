@@ -1,10 +1,9 @@
 using BuildingBlocks.Abstractions;
-using MediatR;
-using Microsoft.AspNetCore.Http;
 using DblDip.Core;
 using DblDip.Core.Models;
+using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
-using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -33,10 +32,12 @@ namespace DblDip.Domain.Features.Dashboards
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var currentUserId = new Guid(_httpContextAccessor.HttpContext.User
-                    .FindFirst(Constants.ClaimTypes.UserId).Value);
+                var profileId = new Guid(_httpContextAccessor.HttpContext.User
+                    .FindFirst(Constants.ClaimTypes.ProfileId).Value);
 
-                var dashboard = _context.Set<Dashboard>().Single(x => x.ProfileId == currentUserId && x.IsDefault);
+                var profile = await _context.FindAsync<Profile>(profileId);
+
+                var dashboard = await _context.FindAsync<Dashboard>(profile.DefaultDashboardId.Value);
 
                 return new Response()
                 {

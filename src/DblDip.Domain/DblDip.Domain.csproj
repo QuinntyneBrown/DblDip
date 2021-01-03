@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Dashboards\" />
     <Folder Include="Features\Leads\" />
     <Folder Include="Features\DigitalAssets\" />
     <Folder Include="Features\Profiles\" />

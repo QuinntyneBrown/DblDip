@@ -36,9 +36,9 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task<ActionResult<GetDashboardsByCurrentUser.Response>> Get()
-            => await _mediator.Send(new GetDashboardsByCurrentUser.Request());
-/*
+        public async Task<ActionResult<GetDashboardsByCurrentProfile.Response>> Get()
+            => await _mediator.Send(new GetDashboardsByCurrentProfile.Request());
+
         [Authorize]
         [HttpGet("default", Name = "GetDefaultDashboardRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
@@ -46,7 +46,7 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetDefaultDashboard.Response>> GetDefault()
             => await _mediator.Send(new GetDefaultDashboard.Request());
-*/
+
         [Authorize]
         [HttpDelete("{dashboardId}", Name = "RemoveDashboardRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]

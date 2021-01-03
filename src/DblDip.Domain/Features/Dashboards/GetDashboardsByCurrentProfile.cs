@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace DblDip.Domain.Features.Dashboards
 {
-    public class GetDashboardsByCurrentUser
+    public class GetDashboardsByCurrentProfile
     {
         public class Request : IRequest<Response> { }
 
@@ -34,10 +34,10 @@ namespace DblDip.Domain.Features.Dashboards
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var currentUserId = new Guid(_httpContextAccessor.HttpContext.User
-                    .FindFirst(Constants.ClaimTypes.UserId).Value);
+                var profileId = new Guid(_httpContextAccessor.HttpContext.User
+                    .FindFirst(Constants.ClaimTypes.ProfileId).Value);
 
-                var dashboards = _context.Set<Dashboard>().Where(x => x.ProfileId == currentUserId);
+                var dashboards = _context.Set<Dashboard>().Where(x => x.ProfileId == profileId);
 
                 return new Response()
                 {
