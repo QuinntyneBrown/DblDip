@@ -23,5 +23,13 @@ namespace DblDip.Api.Controllers
         public async Task<ActionResult<SetCurrentProfile.Response>> CurrentProfile([FromBody] SetCurrentProfile.Request request)
             => await _mediator.Send(request);
 
+        [Authorize]
+        [HttpPut("default-profile", Name = "SetDefaultProfileRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<Unit>> DefaultProfile([FromBody] SetDefaultProfile.Request request)
+            => await _mediator.Send(request);
+
     }
 }

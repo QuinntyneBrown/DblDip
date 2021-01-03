@@ -20,11 +20,6 @@ namespace DblDip.Core.Models
             Apply(new ProfileCreated(Guid.NewGuid(),name,email, type.Name, type.AssemblyQualifiedName));
         }
 
-        public void ChangeAvatar(Guid avatarDigitalAssetId)
-        {
-            Apply(new AvatarChanged(avatarDigitalAssetId));
-        }
-
         public void When(ProfileCreated profileCreated)
         {
             ProfileId = profileCreated.ProfileId;
@@ -62,6 +57,11 @@ namespace DblDip.Core.Models
         public void UpdateAccountId(Guid accountId)
         {
             Apply(new ProfileAccountIdUpdated(accountId));
+        }
+
+        public void ChangeAvatar(Guid avatarDigitalAssetId)
+        {
+            Apply(new AvatarChanged(avatarDigitalAssetId));
         }
 
         public Guid ProfileId { get; private set; }

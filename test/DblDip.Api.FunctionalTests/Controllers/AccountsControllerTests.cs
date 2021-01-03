@@ -103,21 +103,35 @@ namespace DblDip.Api.FunctionalTests.Controllers
         [Fact]
         public async System.Threading.Tasks.Task Should_SetDefaultProfile()
         {
-            var account = AccountBuilder.WithDefaults();
+            var user = UserBuilder.WithDefaults(default);
+
+            var profile = ProfileBuilder.WithDefaults();
+
+            var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
+
+            profile.UpdateAccountId(account.AccountId);
 
             var context = _fixture.Context;
+
+            context.Store(user);
+
+            context.Store(profile);
 
             context.Store(account);
 
             await context.SaveChangesAsync(default);
 
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { account = account.ToDto() }), Encoding.UTF8, "application/json");
+            var token = TokenFactory.CreateToken(user);
 
-            var httpResponseMessage = await _fixture.CreateAuthenticatedClient().PutAsync(Put.Update, stringContent);
+            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { profileId = profile.ProfileId }), Encoding.UTF8, "application/json");
+
+            var httpResponseMessage = await _fixture.CreateAuthenticatedClient(token).PutAsync(Put.Default, stringContent);
 
             httpResponseMessage.EnsureSuccessStatusCode();
 
             var sut = await context.FindAsync<Account>(account.AccountId);
+
+            Assert.Equal(profile.ProfileId, account.DefaultProfileId);
 
         }
 
