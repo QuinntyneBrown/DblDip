@@ -136,6 +136,39 @@ namespace DblDip.Api.FunctionalTests.Controllers
         }
 
         [Fact]
+        public async System.Threading.Tasks.Task Should_GetCurrentAccountProfiles()
+        {
+            var user = UserBuilder.WithDefaults(default);
+
+            var profile = ProfileBuilder.WithDefaults();
+
+            var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
+
+            profile.UpdateAccountId(account.AccountId);
+
+            var context = _fixture.Context;
+
+            context.Store(user);
+
+            context.Store(profile);
+
+            context.Store(account);
+
+            await context.SaveChangesAsync(default);
+
+            var token = TokenFactory.CreateToken(user);
+
+            var httpResponseMessage = await _fixture.CreateAuthenticatedClient(token).GetAsync(Get.Profiles);
+
+            httpResponseMessage.EnsureSuccessStatusCode();
+
+            var response = JsonConvert.DeserializeObject<GetCurrentAccountProfiles.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
+
+            Assert.Single(response.Profiles);
+
+        }
+
+        [Fact]
         public async System.Threading.Tasks.Task Should_UpdateAccount()
         {
             var account = AccountBuilder.WithDefaults();
@@ -222,6 +255,7 @@ namespace DblDip.Api.FunctionalTests.Controllers
             public static class Get
             {
                 public static string Accounts = "api/accounts";
+                public static string Profiles = "api/accounts/current/profiles";
                 public static string By(Guid accountId)
                 {
                     return $"api/accounts/{accountId}";

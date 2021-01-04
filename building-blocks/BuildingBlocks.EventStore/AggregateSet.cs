@@ -34,13 +34,13 @@ namespace BuildingBlocks.EventStore
                    select storedEvent;
         }
 
-        public IQueryable<TAggregateRoot> Set<TAggregateRoot>()
+        public IQueryable<TAggregateRoot> Set<TAggregateRoot>(List<Guid> ids = null)
             where TAggregateRoot : AggregateRoot
         {
 
             var aggregateName = typeof(TAggregateRoot).Name;
 
-            return (from storedEvent in StoredEvents(aggregateName).AsEnumerable()
+            return (from storedEvent in StoredEvents(aggregateName, ids?.ToArray()).AsEnumerable()
                     group storedEvent by storedEvent.StreamId into storedEventsGroup
                     orderby storedEventsGroup.Key
                     select storedEventsGroup).Aggregate(new List<TAggregateRoot>(), Reduce).AsQueryable();

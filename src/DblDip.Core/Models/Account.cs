@@ -2,14 +2,22 @@ using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Collections.ObjectModel;
 
 namespace DblDip.Core.Models
 {
     public class Account : AggregateRoot
     {
-        protected override void When(dynamic @event) => When(@event);
-        public Account(ICollection<Guid> profileIds, Guid defaultProfileId, string name, Guid userId)
+        public Guid AccountId { get; private set; }
+        public Guid DefaultProfileId { get; private set; }
+        public Guid CurrentProfileId { get; private set; }
+        public string Name { get; private set; }
+        public Guid UserId { get; private set; }
+        public IReadOnlyList<Guid> ProfileIds => new ReadOnlyCollection<Guid>(_profileIds);
+        public DateTime? Deleted { get; private set; }
+        
+        private IList<Guid> _profileIds;
+        public Account(IList<Guid> profileIds, Guid defaultProfileId, string name, Guid userId)
         {
             Apply(new AccountCreated(Guid.NewGuid(), profileIds, defaultProfileId, name, userId));
         }
@@ -18,6 +26,8 @@ namespace DblDip.Core.Models
         {
 
         }
+
+        protected override void When(dynamic @event) => When(@event);
 
         public void When(AccountCreated accountCreated)
         {
@@ -47,6 +57,7 @@ namespace DblDip.Core.Models
         {
             CurrentProfileId = setCurrentProfile.ProfileId;
         }
+
         protected override void EnsureValidState()
         {
 
@@ -71,14 +82,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        private ICollection<Guid> _profileIds;
-        public Guid AccountId { get; private set; }
-        public IReadOnlyList<Guid> ProfileIds => _profileIds.ToList();
-        public Guid DefaultProfileId { get; private set; }
-        public Guid CurrentProfileId { get; set; }
-        public string Name { get; private set; }
-        public Guid UserId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

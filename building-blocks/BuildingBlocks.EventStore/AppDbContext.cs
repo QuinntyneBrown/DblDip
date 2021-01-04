@@ -1,5 +1,6 @@
 ﻿using BuildingBlocks.Abstractions;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -21,8 +22,8 @@ namespace BuildingBlocks.EventStore
         public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
             => await _eventStore.SaveChangesAsync(cancellationToken);
 
-        public IQueryable<T> Set<T>() where T : AggregateRoot
-            => _aggregateSet.Set<T>();
+        public IQueryable<T> Set<T>(List<Guid> ids = null) where T : AggregateRoot
+            => _aggregateSet.Set<T>(ids);
 
         public TAggregateRoot Store<TAggregateRoot>(TAggregateRoot aggregateRoot)
             where TAggregateRoot : AggregateRoot

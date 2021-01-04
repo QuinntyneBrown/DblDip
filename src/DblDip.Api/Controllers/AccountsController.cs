@@ -31,5 +31,13 @@ namespace DblDip.Api.Controllers
         public async Task<ActionResult<Unit>> DefaultProfile([FromBody] SetDefaultProfile.Request request)
             => await _mediator.Send(request);
 
+        [Authorize]
+        [HttpGet("current/profiles", Name = "GetCurrentAccountProfilesRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(GetCurrentAccountProfiles.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetCurrentAccountProfiles.Response>> GetCurrentAccountProfiles()
+            => await _mediator.Send(new GetCurrentAccountProfiles.Request());
+
     }
 }
