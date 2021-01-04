@@ -1,7 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DblDip.Domain.Features.SystemLocations;
+using DblDip.Domain.Features;
 using System.Net;
 using System.Threading.Tasks;
 

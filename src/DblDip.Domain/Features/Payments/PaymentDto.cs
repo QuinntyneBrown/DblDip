@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Payments
+namespace DblDip.Domain.Features
 {
     public class PaymentDto
     {

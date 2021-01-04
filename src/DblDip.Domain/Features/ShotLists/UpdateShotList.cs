@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.ShotLists
+namespace DblDip.Domain.Features
 {
     public class UpdateShotList
     {

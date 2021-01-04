@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Photographers
+namespace DblDip.Domain.Features
 {
     public class PhotographerValidator : AbstractValidator<PhotographerDto>
     {

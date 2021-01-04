@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Referrals
+namespace DblDip.Domain.Features
 {
     public class ReferralDto
     {

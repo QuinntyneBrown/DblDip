@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Discounts
+namespace DblDip.Domain.Features
 {
     public class DiscountDto
     {

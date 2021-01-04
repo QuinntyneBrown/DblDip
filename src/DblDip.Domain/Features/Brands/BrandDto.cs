@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Brands
+namespace DblDip.Domain.Features
 {
     public record BrandDto(Guid BrandId);
 }

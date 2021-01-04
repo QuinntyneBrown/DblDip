@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Tickets
+namespace DblDip.Domain.Features
 {
     public class TicketValidator : AbstractValidator<TicketDto>
     {

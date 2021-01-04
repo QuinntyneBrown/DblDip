@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Companies
+namespace DblDip.Domain.Features
 {
     public class CompanyValidator : AbstractValidator<CompanyDto>
     {

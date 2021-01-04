@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Conversations
+namespace DblDip.Domain.Features
 {
     public class UpdateConversation
     {

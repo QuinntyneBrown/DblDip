@@ -1,6 +1,6 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using DblDip.Domain.Features.Identity;
+using DblDip.Domain.Features;
 using System.Net;
 using System.Threading.Tasks;
 

@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Stories
+namespace DblDip.Domain.Features
 {
     public class StoryDto
     {

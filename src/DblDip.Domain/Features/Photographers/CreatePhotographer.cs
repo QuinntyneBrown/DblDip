@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DblDip.Core.ValueObjects;
 using DblDip.Domain.IntegrationEvents;
 
-namespace DblDip.Domain.Features.Photographers
+namespace DblDip.Domain.Features
 {
     public class CreatePhotographer
     {

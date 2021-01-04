@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using static DblDip.Core.Models.Quote;
 
-namespace DblDip.Domain.Features.Quotes
+namespace DblDip.Domain.Features
 {
     public class QuoteDto
     {

@@ -1,5 +1,5 @@
 using DblDip.Core.Models;
-using DblDip.Domain.Features.EditedPhotos;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

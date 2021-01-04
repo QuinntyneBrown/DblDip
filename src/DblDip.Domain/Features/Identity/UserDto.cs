@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Identity
+namespace DblDip.Domain.Features
 {
     public class UserDto
     {

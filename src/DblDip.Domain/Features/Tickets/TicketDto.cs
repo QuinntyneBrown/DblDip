@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Tickets
+namespace DblDip.Domain.Features
 {
     public class TicketDto
     {

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Roles
+namespace DblDip.Domain.Features
 {
     public class RoleValidator : AbstractValidator<RoleDto>
     {

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.SystemLocations
+namespace DblDip.Domain.Features
 {
     public class GetSystemLocations
     {

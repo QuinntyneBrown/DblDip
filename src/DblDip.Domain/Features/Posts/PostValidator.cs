@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Posts
+namespace DblDip.Domain.Features
 {
     public class PostValidator : AbstractValidator<PostDto>
     {

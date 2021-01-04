@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.PaymentSchedules
+namespace DblDip.Domain.Features
 {
     public class PaymentScheduleValidator : AbstractValidator<PaymentScheduleDto>
     {

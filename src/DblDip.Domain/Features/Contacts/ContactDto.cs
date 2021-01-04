@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Contacts
+namespace DblDip.Domain.Features
 {
     public class ContactDto
     {

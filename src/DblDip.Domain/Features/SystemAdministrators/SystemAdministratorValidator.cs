@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.SystemAdministrators
+namespace DblDip.Domain.Features
 {
     public class SystemAdministratorValidator : AbstractValidator<SystemAdministratorDto>
     {

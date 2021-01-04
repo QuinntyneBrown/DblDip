@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Receipts
+namespace DblDip.Domain.Features
 {
     public class ReceiptDto
     {

@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Identity
+namespace DblDip.Domain.Features
 {
     public class AuthenticateByEmailAndQuoteId
     {

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Blogs
+namespace DblDip.Domain.Features
 {
     public class BlogValidator : AbstractValidator<BlogDto>
     {

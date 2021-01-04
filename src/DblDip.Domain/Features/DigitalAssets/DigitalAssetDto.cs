@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.DigitalAssets
+namespace DblDip.Domain.Features
 {
     public record DigitalAssetDto(Guid DigitalAssetId, string Name, byte[] Bytes, string ContentType);
 }

@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.SocialEvents
+namespace DblDip.Domain.Features
 {
     public class UpdateSocialEvent
     {

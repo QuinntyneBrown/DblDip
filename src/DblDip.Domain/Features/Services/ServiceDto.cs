@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Services
+namespace DblDip.Domain.Features
 {
     public class ServiceDto
     {

@@ -8,7 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using System;
 
-namespace DblDip.Domain.Features.Photographers
+namespace DblDip.Domain.Features
 {
     public class ChangePhotographerAvatar
     {

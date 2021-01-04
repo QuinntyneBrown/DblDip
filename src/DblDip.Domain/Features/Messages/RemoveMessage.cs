@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace DblDip.Domain.Features.Messages
+namespace DblDip.Domain.Features
 {
     public class RemoveMessage
     {

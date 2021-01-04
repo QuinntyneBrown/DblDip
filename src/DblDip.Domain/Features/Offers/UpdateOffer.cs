@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Offers
+namespace DblDip.Domain.Features
 {
     public class UpdateOffer
     {

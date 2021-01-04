@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Venues
+namespace DblDip.Domain.Features
 {
     public class VenueDto
     {

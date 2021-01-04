@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DblDip.Core.ValueObjects;
 
-namespace DblDip.Domain.Features.Consultations
+namespace DblDip.Domain.Features
 {
     public class CreateConsultation
     {

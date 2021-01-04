@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Receipts
+namespace DblDip.Domain.Features
 {
     public class ReceiptValidator : AbstractValidator<ReceiptDto>
     {

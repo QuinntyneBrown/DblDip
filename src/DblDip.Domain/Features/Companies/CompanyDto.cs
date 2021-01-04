@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Companies
+namespace DblDip.Domain.Features
 {
     public class CompanyDto
     {

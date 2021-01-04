@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Epics
+namespace DblDip.Domain.Features
 {
     public class EpicDto
     {

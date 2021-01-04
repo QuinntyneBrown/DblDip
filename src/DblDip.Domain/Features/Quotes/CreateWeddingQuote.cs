@@ -8,9 +8,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using static DblDip.Core.Constants.Rates;
 using DblDip.Domain.IntegrationEvents;
-using DblDip.Domain.Features.WeddingQuotes;
+using DblDip.Domain.Features;
 
-namespace DblDip.Domain.Features.Quotes
+namespace DblDip.Domain.Features
 {
     public class CreateWeddingQuote
     {

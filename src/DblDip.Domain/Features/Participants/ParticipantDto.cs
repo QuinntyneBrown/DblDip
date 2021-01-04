@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Participants
+namespace DblDip.Domain.Features
 {
     public class ParticipantDto
     {

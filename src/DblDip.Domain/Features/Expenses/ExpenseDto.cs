@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Expenses
+namespace DblDip.Domain.Features
 {
     public class ExpenseDto
     {

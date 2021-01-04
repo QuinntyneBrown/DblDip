@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Testimonials
+namespace DblDip.Domain.Features
 {
     public class TestimonialDto
     {

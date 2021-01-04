@@ -1,5 +1,5 @@
 using BuildingBlocks.Core;
-using DblDip.Domain.Features.Weddings;
+using DblDip.Domain.Features;
 using DblDip.Testing;
 using DblDip.Testing.Builders;
 using System;

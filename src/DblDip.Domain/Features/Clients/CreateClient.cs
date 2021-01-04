@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using DblDip.Core.ValueObjects;
 using DblDip.Domain.IntegrationEvents;
 
-namespace DblDip.Domain.Features.Clients
+namespace DblDip.Domain.Features
 {
     public class CreateClient
     {

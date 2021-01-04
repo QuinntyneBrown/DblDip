@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.StudioPortraits
+namespace DblDip.Domain.Features
 {
     public class GetStudioPortraitById
     {

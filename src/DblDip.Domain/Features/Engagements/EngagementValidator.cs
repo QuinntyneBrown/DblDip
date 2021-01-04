@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Engagements
+namespace DblDip.Domain.Features
 {
     public class EngagementValidator : AbstractValidator<EngagementDto>
     {

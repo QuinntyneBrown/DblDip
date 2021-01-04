@@ -1,7 +1,7 @@
 using DblDip.Core.ValueObjects;
 using System;
 
-namespace DblDip.Domain.Features.Equipment
+namespace DblDip.Domain.Features
 {
     public class EquipmentDto
     {

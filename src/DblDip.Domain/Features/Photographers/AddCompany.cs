@@ -2,12 +2,12 @@ using BuildingBlocks.Abstractions;
 using FluentValidation;
 using MediatR;
 using DblDip.Core.Models;
-using DblDip.Domain.Features.Companies;
+using DblDip.Domain.Features;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Photographers
+namespace DblDip.Domain.Features
 {
     public class AddCompany
     {

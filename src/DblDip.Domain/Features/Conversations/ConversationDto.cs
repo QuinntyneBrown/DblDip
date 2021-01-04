@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Conversations
+namespace DblDip.Domain.Features
 {
     public class ConversationDto
     {

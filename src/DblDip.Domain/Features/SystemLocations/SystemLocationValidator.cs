@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.SystemLocations
+namespace DblDip.Domain.Features
 {
     public class SystemLocationValidator : AbstractValidator<SystemLocationDto>
     {

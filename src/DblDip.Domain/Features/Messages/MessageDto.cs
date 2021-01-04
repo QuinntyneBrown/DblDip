@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Messages
+namespace DblDip.Domain.Features
 {
     public class MessageDto
     {

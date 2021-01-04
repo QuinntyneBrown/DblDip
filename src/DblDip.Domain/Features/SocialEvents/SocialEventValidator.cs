@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.SocialEvents
+namespace DblDip.Domain.Features
 {
     public class SocialEventValidator : AbstractValidator<SocialEventDto>
     {

@@ -5,7 +5,7 @@ using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Orders
+namespace DblDip.Domain.Features
 {
     public class UpdateOrder
     {

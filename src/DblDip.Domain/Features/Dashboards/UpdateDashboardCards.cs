@@ -8,7 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using static DblDip.Core.Models.Dashboard;
 
-namespace DblDip.Domain.Features.Dashboards
+namespace DblDip.Domain.Features
 {
     public class UpdateDashboardCards
     {

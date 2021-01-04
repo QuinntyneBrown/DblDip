@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Discounts
+namespace DblDip.Domain.Features
 {
     public class DiscountValidator : AbstractValidator<DiscountDto>
     {

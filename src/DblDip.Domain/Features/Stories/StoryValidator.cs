@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Stories
+namespace DblDip.Domain.Features
 {
     public class StoryValidator : AbstractValidator<StoryDto>
     {

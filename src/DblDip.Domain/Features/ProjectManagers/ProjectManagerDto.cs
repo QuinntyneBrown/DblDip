@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.ProjectManagers
+namespace DblDip.Domain.Features
 {
     public class ProjectManagerDto
     {

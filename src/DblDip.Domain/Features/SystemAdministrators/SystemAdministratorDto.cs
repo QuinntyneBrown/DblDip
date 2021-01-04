@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.SystemAdministrators
+namespace DblDip.Domain.Features
 {
     public class SystemAdministratorDto
     {

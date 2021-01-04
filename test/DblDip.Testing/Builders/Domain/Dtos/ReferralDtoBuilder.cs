@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.Referrals;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

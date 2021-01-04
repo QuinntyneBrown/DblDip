@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Offers
+namespace DblDip.Domain.Features
 {
     public class OfferValidator : AbstractValidator<OfferDto>
     {

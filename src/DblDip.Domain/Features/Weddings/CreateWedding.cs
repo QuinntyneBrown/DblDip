@@ -8,7 +8,7 @@ using System;
 using DblDip.Core.ValueObjects;
 using Microsoft.Extensions.Configuration;
 
-namespace DblDip.Domain.Features.Weddings
+namespace DblDip.Domain.Features
 {
     public class CreateWedding
     {

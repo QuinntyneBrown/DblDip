@@ -1,5 +1,5 @@
 using DblDip.Core.Models;
-using DblDip.Domain.Features.Surveys;
+using DblDip.Domain.Features;
 
 namespace DblDip.Domain.Features
 {

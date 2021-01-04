@@ -1,6 +1,6 @@
 using DblDip.Core.Models;
-using DblDip.Domain.Features.Quotes;
-using DblDip.Domain.Features.Weddings;
+using DblDip.Domain.Features;
+using DblDip.Domain.Features;
 
 namespace DblDip.Domain.Features
 {

@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Points
+namespace DblDip.Domain.Features
 {
     public class PointDto
     {

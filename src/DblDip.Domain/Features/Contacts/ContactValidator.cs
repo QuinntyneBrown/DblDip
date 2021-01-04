@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Contacts
+namespace DblDip.Domain.Features
 {
     public class ContactValidator : AbstractValidator<ContactDto>
     {

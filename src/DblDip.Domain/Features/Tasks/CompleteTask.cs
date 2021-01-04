@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 
-namespace DblDip.Domain.Features.Tasks
+namespace DblDip.Domain.Features
 {
     public class CompleteTask
     {

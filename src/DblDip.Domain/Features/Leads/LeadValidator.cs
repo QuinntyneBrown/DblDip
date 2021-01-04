@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Leads
+namespace DblDip.Domain.Features
 {
     public class LeadValidator : AbstractValidator<LeadDto>
     {

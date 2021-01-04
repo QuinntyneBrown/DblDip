@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Messages
+namespace DblDip.Domain.Features
 {
     public class MessageValidator : AbstractValidator<MessageDto>
     {

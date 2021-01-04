@@ -1,6 +1,6 @@
 using BuildingBlocks.Core;
 using DblDip.Core.ValueObjects;
-using DblDip.Domain.Features.Quotes;
+using DblDip.Domain.Features;
 using DblDip.Testing;
 using DblDip.Testing.Builders;
 using Xunit;

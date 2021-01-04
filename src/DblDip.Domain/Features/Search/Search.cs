@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Search
+namespace DblDip.Domain.Features
 {
     public class Search
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.EditedPhotos
+namespace DblDip.Domain.Features
 {
     public class EditedPhotoDto
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Questionnaires
+namespace DblDip.Domain.Features
 {
     public class QuestionnaireDto
     {

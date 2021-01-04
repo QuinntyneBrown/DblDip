@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.Participants;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

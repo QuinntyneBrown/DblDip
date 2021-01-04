@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Surveys
+namespace DblDip.Domain.Features
 {
     public class SurveyValidator : AbstractValidator<SurveyDto>
     {

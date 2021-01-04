@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.Cards;
+using DblDip.Domain.Features;
 using System;
 
 namespace DblDip.Testing.Builders

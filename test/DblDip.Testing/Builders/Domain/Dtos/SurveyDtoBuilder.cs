@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.Surveys;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

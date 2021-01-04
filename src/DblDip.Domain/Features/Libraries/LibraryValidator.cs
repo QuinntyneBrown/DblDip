@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Libraries
+namespace DblDip.Domain.Features
 {
     public class LibraryValidator : AbstractValidator<LibraryDto>
     {

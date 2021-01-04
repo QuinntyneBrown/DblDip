@@ -1,7 +1,7 @@
 using BuildingBlocks.Abstractions;
 using DblDip.Core;
 using DblDip.Core.Models;
-using DblDip.Domain.Features.Profiles;
+using DblDip.Domain.Features;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;

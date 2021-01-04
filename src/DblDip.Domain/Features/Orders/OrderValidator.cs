@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Orders
+namespace DblDip.Domain.Features
 {
     public class OrderValidator : AbstractValidator<OrderDto>
     {

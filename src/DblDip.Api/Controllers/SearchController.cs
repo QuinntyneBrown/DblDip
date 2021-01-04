@@ -1,6 +1,6 @@
-﻿using MediatR;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using DblDip.Domain.Features.Search;
+using DblDip.Domain.Features;
 using System.Threading.Tasks;
 
 namespace DblDip.Api.Controllers

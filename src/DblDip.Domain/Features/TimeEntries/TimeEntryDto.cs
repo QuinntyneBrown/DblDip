@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.TimeEntries
+namespace DblDip.Domain.Features
 {
     public class TimeEntryDto
     {

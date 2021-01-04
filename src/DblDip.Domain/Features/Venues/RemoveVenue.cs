@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System;
 
-namespace DblDip.Domain.Features.Venues
+namespace DblDip.Domain.Features
 {
     public class RemoveVenue
     {

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.YouTubeVideos
+namespace DblDip.Domain.Features
 {
     public class YouTubeVideoValidator : AbstractValidator<YouTubeVideoDto>
     {

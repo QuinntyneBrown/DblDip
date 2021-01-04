@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.ShotLists
+namespace DblDip.Domain.Features
 {
     public class ShotListValidator : AbstractValidator<ShotListDto>
     {

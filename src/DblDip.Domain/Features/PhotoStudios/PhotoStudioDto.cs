@@ -1,7 +1,7 @@
 using BuildingBlocks.GeoLocation;
 using System;
 
-namespace DblDip.Domain.Features.PhotoStudios
+namespace DblDip.Domain.Features
 {
     public class PhotoStudioDto
     {

@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Surveys
+namespace DblDip.Domain.Features
 {
     public record SurveyDto(Guid SurveyId, string Name);
 

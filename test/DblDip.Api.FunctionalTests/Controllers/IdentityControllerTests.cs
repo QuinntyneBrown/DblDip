@@ -1,7 +1,7 @@
 using BuildingBlocks.Core;
 using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
-using DblDip.Domain.Features.Identity;
+using DblDip.Domain.Features;
 using DblDip.Testing;
 using Newtonsoft.Json;
 using System;

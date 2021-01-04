@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.Equipment;
+using DblDip.Domain.Features;
 
 namespace DblDip.Domain.Features
 {

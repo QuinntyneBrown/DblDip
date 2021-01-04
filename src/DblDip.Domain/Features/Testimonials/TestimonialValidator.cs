@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Testimonials
+namespace DblDip.Domain.Features
 {
     public class TestimonialValidator : AbstractValidator<TestimonialDto>
     {

@@ -13,7 +13,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using DblDip.Core.Data;
 using DblDip.Core.Services;
-using DblDip.Domain.Features.Identity;
+using DblDip.Domain.Features;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;

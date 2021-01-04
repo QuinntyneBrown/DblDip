@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Dashboards
+namespace DblDip.Domain.Features
 {
     public class DashboardCardDto
     {

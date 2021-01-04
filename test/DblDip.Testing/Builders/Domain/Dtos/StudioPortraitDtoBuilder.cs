@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.StudioPortraits;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

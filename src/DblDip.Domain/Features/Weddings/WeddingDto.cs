@@ -2,7 +2,7 @@ using DblDip.Core.Models;
 using System;
 using System.Collections.Generic;
 
-namespace DblDip.Domain.Features.Weddings
+namespace DblDip.Domain.Features
 {
     public class WeddingDto
     {

@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.WeddingQuotes;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

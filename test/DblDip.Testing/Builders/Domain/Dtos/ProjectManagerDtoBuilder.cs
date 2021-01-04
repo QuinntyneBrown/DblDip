@@ -1,5 +1,5 @@
 using DblDip.Core.Models;
-using DblDip.Domain.Features.ProjectManagers;
+using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
 {

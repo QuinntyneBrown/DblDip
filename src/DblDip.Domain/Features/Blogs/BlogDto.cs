@@ -1,6 +1,6 @@
 using System;
 
-namespace DblDip.Domain.Features.Blogs
+namespace DblDip.Domain.Features
 {
     public class BlogDto
     {
