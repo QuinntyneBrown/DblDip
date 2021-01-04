@@ -2,7 +2,7 @@
 using DblDip.Core.Models;
 using DblDip.Domain.Features.Payments;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class PaymentDtoBuilder
     {

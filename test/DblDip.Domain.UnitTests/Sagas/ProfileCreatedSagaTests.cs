@@ -2,7 +2,7 @@ using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
 using DblDip.Domain.Sagas;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
+using DblDip.Testing.Builders;
 using System.Linq;
 using Xunit;
 

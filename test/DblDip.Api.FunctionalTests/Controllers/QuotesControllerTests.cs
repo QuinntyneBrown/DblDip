@@ -2,11 +2,11 @@ using BuildingBlocks.Core;
 using DblDip.Core.ValueObjects;
 using DblDip.Domain.Features.Quotes;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
+using DblDip.Testing.Builders;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class QuotesControllerTests : IClassFixture<ApiTestFixture>
     {

@@ -1,7 +1,7 @@
 using DblDip.Core.Models;
 using System;
 
-namespace DblDip.Testing.Builders.Core.Models
+namespace DblDip.Testing.Builders
 {
     public class ProfileBuilder
     {

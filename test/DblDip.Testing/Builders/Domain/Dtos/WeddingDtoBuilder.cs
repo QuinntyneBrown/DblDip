@@ -1,6 +1,6 @@
 using DblDip.Domain.Features.Weddings;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class WeddingDtoBuilder
     {

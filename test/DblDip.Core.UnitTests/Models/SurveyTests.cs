@@ -3,7 +3,7 @@ using DblDip.Core.ValueObjects;
 using System.Linq;
 using Xunit;
 
-namespace DblDip.Core.UnitTests.Models
+namespace DblDip.Core.UnitTests
 {
     public class SurveyTests
     {

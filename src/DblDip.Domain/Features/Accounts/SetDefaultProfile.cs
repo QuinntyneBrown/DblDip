@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using DblDip.Core;
 
-namespace DblDip.Domain.Features.Accounts
+namespace DblDip.Domain.Features
 {
     public class SetDefaultProfile
     {

@@ -1,7 +1,7 @@
 using DblDip.Core.Models;
 using static DblDip.Core.Models.Role;
 
-namespace DblDip.Testing.Builders.Core.Models
+namespace DblDip.Testing.Builders
 {
     public class PrivilegeBuilder
     {

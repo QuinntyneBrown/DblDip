@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace DblDip.Domain.Features.Availabilities
+namespace DblDip.Domain.Features
 {
     public class AvailabilityValidator : AbstractValidator<AvailabilityDto>
     {

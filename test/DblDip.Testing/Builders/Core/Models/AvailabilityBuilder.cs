@@ -1,6 +1,6 @@
 using DblDip.Core.Models;
 
-namespace DblDip.Testing.Builders.Core.Models
+namespace DblDip.Testing.Builders
 {
     public class AvailabilityBuilder
     {

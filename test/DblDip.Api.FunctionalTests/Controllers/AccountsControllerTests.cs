@@ -1,21 +1,18 @@
-using Newtonsoft.Json;
 using DblDip.Core.Models;
 using DblDip.Domain.Features;
-using DblDip.Domain.Features.Accounts;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
-using DblDip.Testing.Builders.Domain.Dtos;
+using DblDip.Testing.Builders;
+using DblDip.Testing.Factories;
+using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using static DblDip.Api.FunctionalTests.Controllers.AccountsControllerTests.Endpoints;
-using System.Collections.Generic;
-using DblDip.Testing.Builders;
-using DblDip.Testing.Factories;
+using static DblDip.Api.FunctionalTests.AccountsControllerTests.Endpoints;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class AccountsControllerTests : IClassFixture<ApiTestFixture>
     {

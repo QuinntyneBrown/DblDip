@@ -3,16 +3,16 @@ using DblDip.Core.Models;
 using DblDip.Domain.Features;
 using DblDip.Domain.Features.Blogs;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
-using DblDip.Testing.Builders.Domain.Dtos;
+using DblDip.Testing.Builders;
+using DblDip.Testing.Builders;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using static DblDip.Api.FunctionalTests.Controllers.BlogsControllerTests.Endpoints;
+using static DblDip.Api.FunctionalTests.BlogsControllerTests.Endpoints;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class BlogsControllerTests : IClassFixture<ApiTestFixture>
     {

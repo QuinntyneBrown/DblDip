@@ -2,7 +2,7 @@ using System;
 using DblDip.Core.ValueObjects;
 using static DblDip.Testing.Factories.ConfigurationFactory;
 
-namespace DblDip.Testing.Builders.Core.ValueObjects
+namespace DblDip.Testing.Builders
 {
     public class LocationBuilder
     {

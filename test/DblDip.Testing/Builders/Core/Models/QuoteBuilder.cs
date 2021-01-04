@@ -2,7 +2,7 @@ using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
 using System;
 
-namespace DblDip.Testing.Builders.Core.Models
+namespace DblDip.Testing.Builders
 {
     public class QuoteBuilder
     {

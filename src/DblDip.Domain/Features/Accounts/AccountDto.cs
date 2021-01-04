@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace DblDip.Domain.Features.Accounts
+namespace DblDip.Domain.Features
 {
     public class AccountDto
     {

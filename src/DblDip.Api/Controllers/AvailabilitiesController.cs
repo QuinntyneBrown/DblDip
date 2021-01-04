@@ -1,4 +1,4 @@
-using DblDip.Domain.Features.Availabilities;
+using DblDip.Domain.Features;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;

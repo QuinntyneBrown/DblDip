@@ -3,13 +3,13 @@ using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
 using DblDip.Domain.Features.Dashboards;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
-using DblDip.Testing.Builders.Domain.Dtos;
+using DblDip.Testing.Builders;
+using DblDip.Testing.Builders;
 using System;
 using Xunit;
 using Xunit.Abstractions;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class DashboardsControllerTests : IClassFixture<ApiTestFixture>
     {

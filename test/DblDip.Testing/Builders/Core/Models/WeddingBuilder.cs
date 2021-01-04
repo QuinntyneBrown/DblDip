@@ -2,7 +2,7 @@ using DblDip.Core.Models;
 using System;
 using static DblDip.Testing.Factories.ConfigurationFactory;
 
-namespace DblDip.Testing.Builders.Core.Models
+namespace DblDip.Testing.Builders
 {
     public class WeddingBuilder
     {

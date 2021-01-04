@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace DblDip.Domain.Features.Availabilities
+namespace DblDip.Domain.Features
 {
     public class GetAvailabilities
     {

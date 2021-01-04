@@ -1,11 +1,11 @@
 using BuildingBlocks.Core;
 using DblDip.Domain.Features.Weddings;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.ValueObjects;
+using DblDip.Testing.Builders;
 using System;
 using Xunit;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class WeddingsControllerTests : IClassFixture<ApiTestFixture>
     {

@@ -3,16 +3,16 @@ using DblDip.Core.Models;
 using DblDip.Domain.Features;
 using DblDip.Domain.Features.Referrals;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
-using DblDip.Testing.Builders.Domain.Dtos;
+using DblDip.Testing.Builders;
+using DblDip.Testing.Builders;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using static DblDip.Api.FunctionalTests.Controllers.ReferralsControllerTests.Endpoints;
+using static DblDip.Api.FunctionalTests.ReferralsControllerTests.Endpoints;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class ReferralsControllerTests : IClassFixture<ApiTestFixture>
     {

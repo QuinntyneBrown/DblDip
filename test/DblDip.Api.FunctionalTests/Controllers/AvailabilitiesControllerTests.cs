@@ -1,18 +1,18 @@
 using Newtonsoft.Json;
 using DblDip.Core.Models;
 using DblDip.Domain.Features;
-using DblDip.Domain.Features.Availabilities;
+using DblDip.Domain.Features;
 using DblDip.Testing;
-using DblDip.Testing.Builders.Core.Models;
-using DblDip.Testing.Builders.Domain.Dtos;
+using DblDip.Testing.Builders;
+using DblDip.Testing.Builders;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using Xunit;
-using static DblDip.Api.FunctionalTests.Controllers.AvailabilitiesControllerTests.Endpoints;
+using static DblDip.Api.FunctionalTests.AvailabilitiesControllerTests.Endpoints;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class AvailabilitiesControllerTests : IClassFixture<ApiTestFixture>
     {

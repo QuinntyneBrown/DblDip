@@ -1,6 +1,6 @@
 using DblDip.Domain.Features.SystemLocations;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class SystemLocationDtoBuilder
     {

@@ -1,6 +1,6 @@
-using DblDip.Domain.Features.Accounts;
+using DblDip.Domain.Features;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class AccountDtoBuilder
     {

@@ -12,7 +12,7 @@ using DblDip.Core;
 using System.Collections.Generic;
 using System.Security.Claims;
 
-namespace DblDip.Domain.Features.Accounts
+namespace DblDip.Domain.Features
 {
     public class SetCurrentProfile
     {

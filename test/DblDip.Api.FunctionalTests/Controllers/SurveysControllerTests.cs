@@ -6,7 +6,7 @@ using System;
 using Xunit;
 using BuildingBlocks.Core;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class SurveysControllerTests : IClassFixture<ApiTestFixture>
     {

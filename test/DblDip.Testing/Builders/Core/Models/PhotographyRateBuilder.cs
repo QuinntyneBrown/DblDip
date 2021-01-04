@@ -3,7 +3,7 @@ using DblDip.Core.ValueObjects;
 using System;
 using static DblDip.Core.Constants.Rates;
 
-namespace DblDip.Testing.Builders.Core.Models
+namespace DblDip.Testing.Builders
 {
     public class PhotographyRateBuilder
     {

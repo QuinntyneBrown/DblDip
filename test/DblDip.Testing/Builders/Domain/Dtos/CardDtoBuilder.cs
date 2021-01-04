@@ -1,7 +1,7 @@
 using DblDip.Domain.Features.Cards;
 using System;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class CardDtoBuilder
     {

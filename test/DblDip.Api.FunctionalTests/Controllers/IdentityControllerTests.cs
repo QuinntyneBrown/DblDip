@@ -9,7 +9,7 @@ using System.Net.Http;
 using System.Text;
 using Xunit;
 
-namespace DblDip.Api.FunctionalTests.Controllers
+namespace DblDip.Api.FunctionalTests
 {
     public class IdentityControllerTests : IClassFixture<ApiTestFixture>
     {

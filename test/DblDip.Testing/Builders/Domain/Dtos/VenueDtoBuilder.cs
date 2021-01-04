@@ -1,7 +1,7 @@
 using DblDip.Core.Models;
 using DblDip.Domain.Features.Venues;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class VenueDtoBuilder
     {

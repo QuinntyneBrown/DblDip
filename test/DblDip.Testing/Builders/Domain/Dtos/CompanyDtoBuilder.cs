@@ -1,7 +1,7 @@
 using DblDip.Core.Models;
 using DblDip.Domain.Features.Companies;
 
-namespace DblDip.Testing.Builders.Domain.Dtos
+namespace DblDip.Testing.Builders
 {
     public class CompanyDtoBuilder
     {
