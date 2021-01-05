@@ -4,7 +4,6 @@ using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
 using MediatR;
 using System;
-using System.Collections.Generic;
 using System.Threading;
 
 namespace DblDip.Domain.Sagas

@@ -6,6 +6,9 @@ namespace DblDip.Core.Models
 {
     public class Availability : AggregateRoot
     {
+        public Guid AvailabilityId { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
         public Availability()
         {
             Apply(new AvailabilityCreated(Guid.NewGuid()));
@@ -42,8 +45,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid AvailabilityId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

@@ -2,11 +2,6 @@
 
 namespace DblDip.Domain.Hubs
 {
-    public interface IIntergrationEventHub
-    {
-
-    }
-
     public class IntegrationEventHub : Hub
     {
     }
