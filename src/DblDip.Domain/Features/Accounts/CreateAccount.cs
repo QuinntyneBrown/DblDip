@@ -37,7 +37,7 @@ namespace DblDip.Domain.Features
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var account = new Account(default, request.Account.DefaultProfileId, request.Account.Name, request.Account.AccountHolderUserId);
+                var account = new Account(request.Account.DefaultProfileId, request.Account.Name, request.Account.AccountHolderUserId);
 
                 _context.Store(account);
 

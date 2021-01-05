@@ -33,8 +33,7 @@ namespace DblDip.Domain.Sagas
 
             user.AddRole(role.RoleId, role.Name);
 
-            var account = new Account(new List<Guid>
-            {  profile.ProfileId }, profile.ProfileId, profile.Name, user.UserId);
+            var account = new Account(profile.ProfileId, profile.Name, user.UserId);
 
             _context.Store(user);
 

@@ -30,7 +30,7 @@ namespace DblDip.Domain.Sagas
             {
                 var profile = new Lead(primaryParticpantEmail);
 
-                var account = new Account(new List<Guid> { profile.ProfileId }, profile.ProfileId, "", user.UserId);
+                var account = new Account(profile.ProfileId, "", user.UserId);
 
                 _context.Store(profile);
 
@@ -38,7 +38,7 @@ namespace DblDip.Domain.Sagas
 
                 _context.Store(user);
 
-                await _context.SaveChangesAsync(default);
+                await _context.SaveChangesAsync(cancellationToken);
             }
 
         }

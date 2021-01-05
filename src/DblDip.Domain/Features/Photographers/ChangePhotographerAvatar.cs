@@ -48,7 +48,7 @@ namespace DblDip.Domain.Features
 
                 var digitalAsset = (await DigitalAsset.Upload(_httpContextAccessor, _context, cancellationToken)).Single();
 
-                photographer.ChangeAvatar(digitalAsset.DigitalAssetId);
+                photographer.UpdateAvatar(digitalAsset.DigitalAssetId);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

@@ -11,12 +11,12 @@ namespace DblDip.Testing.Builders
 
         public static Account WithDefaults()
         {
-            return new Account(default, default, default, default);
+            return new Account(default, default, default);
         }
 
-        public AccountBuilder(List<Guid> profileIds, Guid userId)
+        public AccountBuilder(Guid profileId, Guid userId)
         {
-            _account = new Account(profileIds, profileIds.First(), "Quinntyne", userId);
+            _account = new Account(profileId, "Quinntyne", userId);
         }
 
         public Account Build()

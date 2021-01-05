@@ -7,17 +7,30 @@ namespace DblDip.Core.Models
 {
     public class Profile : AggregateRoot
     {
-        protected override void When(dynamic @event)
-        {
-            if (@event is AvatarChanged || @event is ProfileCreated || @event is ProfileRemoved || @event is ProfileAccountIdUpdated)
-            {
-                When(@event);
-            }
-        }
+        public Guid ProfileId { get; private set; }
+        public Guid? DefaultDashboardId { get; private set; }
+        public Guid AccountId { get; private set; }
+        public Email Email { get; private set; }
+        public PhoneNumber PhoneNumber { get; private set; }
+        public Guid AvatarDigitalAssetId { get; private set; }
+        public string Name { get; private set; }
+        public string Firstname { get; private set; }
+        public string Lastname { get; private set; }
+        public string Type { get; private set; }
+        public string DotNetType { get; private set; }
+        public DateTime? Deleted { get; protected set; }
 
         public Profile(string name, Email email, System.Type type)
         {
-            Apply(new ProfileCreated(Guid.NewGuid(),name,email, type.Name, type.AssemblyQualifiedName));
+            Apply(new ProfileCreated(Guid.NewGuid(), name, email, type.Name, type.AssemblyQualifiedName));
+        }
+
+        protected override void When(dynamic @event)
+        {
+            if (@event is AvatarUpdated || @event is ProfileCreated || @event is ProfileRemoved || @event is ProfileAccountIdUpdated || @event is ProfileNameUpdated)
+            {
+                When(@event);
+            }
         }
 
         public void When(ProfileCreated profileCreated)
@@ -29,9 +42,9 @@ namespace DblDip.Core.Models
             DotNetType = profileCreated.DotNetType;
         }
 
-        public void When(AvatarChanged avatarChanged)
+        public void When(AvatarUpdated avatarUpdated)
         {
-            AvatarDigitalAssetId = avatarChanged.AvatarDigitalAssetId;
+            AvatarDigitalAssetId = avatarUpdated.AvatarDigitalAssetId;
         }
 
         public void When(ProfileRemoved profileRemoved)
@@ -42,6 +55,11 @@ namespace DblDip.Core.Models
         public void When(ProfileAccountIdUpdated profileAccountIdUpdated)
         {
             AccountId = profileAccountIdUpdated.AccountId;
+        }
+
+        public void When(ProfileNameUpdated profileNameUpdated)
+        {
+            Name = profileNameUpdated.Name;
         }
 
         protected override void EnsureValidState()
@@ -59,22 +77,14 @@ namespace DblDip.Core.Models
             Apply(new ProfileAccountIdUpdated(accountId));
         }
 
-        public void ChangeAvatar(Guid avatarDigitalAssetId)
+        public void UpdateAvatar(Guid avatarDigitalAssetId)
         {
-            Apply(new AvatarChanged(avatarDigitalAssetId));
+            Apply(new AvatarUpdated(avatarDigitalAssetId));
         }
 
-        public Guid ProfileId { get; private set; }
-        public Guid? DefaultDashboardId { get; private set; }
-        public Guid AccountId { get; private set; }
-        public Email Email { get; private set; }
-        public PhoneNumber PhoneNumber { get; private set; }
-        public Guid AvatarDigitalAssetId { get; private set; }
-        public string Name { get; private set; }
-        public string Firstname { get; private set; }
-        public string Lastname { get; private set; }
-        public string Type { get; private set; }
-        public string DotNetType { get; private set; }
-        public DateTime? Deleted { get; protected set; }
+        public void UpdateName(string name)
+        {
+            Apply(new ProfileNameUpdated(name));
+        }
     }
 }

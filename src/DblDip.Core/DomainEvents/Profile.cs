@@ -7,4 +7,5 @@ namespace DblDip.Core.DomainEvents
     public record ProfileAvatarAdded(string Value);
     public record ProfileRemoved(DateTime Deleted);
     public record ProfileAccountIdUpdated (Guid AccountId);
+    public record ProfileNameUpdated (string Name);
 }

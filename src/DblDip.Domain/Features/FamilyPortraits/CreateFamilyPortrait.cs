@@ -18,15 +18,9 @@ namespace DblDip.Domain.Features
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public FamilyPortraitDto FamilyPortrait { get; init; }
-        }
+        public record Request(FamilyPortraitDto FamilyPortrait) : IRequest<Response>;
 
-        public class Response
-        {
-            public FamilyPortraitDto FamilyPortrait { get; init; }
-        }
+        public record Response(FamilyPortraitDto FamilyPortrait);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -36,17 +30,13 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var familyPortrait = new FamilyPortrait();
 
                 _context.Store(familyPortrait);
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                return new Response()
-                {
-                    FamilyPortrait = familyPortrait.ToDto()
-                };
+                return new(familyPortrait.ToDto());
             }
         }
     }

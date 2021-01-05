@@ -71,7 +71,7 @@ namespace DblDip.Api.FunctionalTests
 
             var profile = ProfileBuilder.WithDefaults();
 
-            var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
+            var account = new AccountBuilder(profile.ProfileId, user.UserId).Build();
 
             profile.UpdateAccountId(account.AccountId);
 
@@ -104,7 +104,7 @@ namespace DblDip.Api.FunctionalTests
 
             var profile = ProfileBuilder.WithDefaults();
 
-            var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
+            var account = new AccountBuilder(profile.ProfileId, user.UserId).Build();
 
             profile.UpdateAccountId(account.AccountId);
 
@@ -139,7 +139,7 @@ namespace DblDip.Api.FunctionalTests
 
             var profile = ProfileBuilder.WithDefaults();
 
-            var account = new AccountBuilder(new List<Guid> { profile.ProfileId }, user.UserId).Build();
+            var account = new AccountBuilder(profile.ProfileId, user.UserId).Build();
 
             profile.UpdateAccountId(account.AccountId);
 

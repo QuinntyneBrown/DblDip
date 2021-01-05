@@ -17,9 +17,9 @@ namespace DblDip.Core.Models
         public DateTime? Deleted { get; private set; }
         
         private IList<Guid> _profileIds;
-        public Account(IList<Guid> profileIds, Guid defaultProfileId, string name, Guid userId)
+        public Account(Guid profileId, string name, Guid userId)
         {
-            Apply(new AccountCreated(Guid.NewGuid(), profileIds, defaultProfileId, name, userId));
+            Apply(new AccountCreated(Guid.NewGuid(), new List<Guid> { profileId }, profileId, name, userId));
         }
 
         private Account()

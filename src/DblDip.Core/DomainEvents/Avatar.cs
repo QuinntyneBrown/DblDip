@@ -2,5 +2,5 @@
 
 namespace DblDip.Core.DomainEvents
 {
-    public record AvatarChanged(Guid AvatarDigitalAssetId);
+    public record AvatarUpdated(Guid AvatarDigitalAssetId);
 }
