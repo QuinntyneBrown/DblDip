@@ -8,6 +8,13 @@ namespace DblDip.Core.Models
 {
     public class Blog : AggregateRoot
     {
+        private List<PostReference> _posts;
+        public Guid BlogId { get; private set; }
+        public string Name { get; private set; }
+        public Email AuthorEmail { get; private set; }
+        public DateTime? Deleted { get; private set; }
+        public IReadOnlyList<PostReference> Posts => _posts.AsReadOnly();
+
         public Blog()
         {
             Apply(new BlogCreated(Guid.NewGuid()));
@@ -55,13 +62,5 @@ namespace DblDip.Core.Models
         {
             Apply(new BlogUpdated());
         }
-
-        public Guid BlogId { get; private set; }
-        public string Name { get; private set; }
-        public Email AuthorEmail { get; private set; }
-        public DateTime? Deleted { get; private set; }
-        public IReadOnlyList<PostReference> Posts => _posts.AsReadOnly();
-
-        private List<PostReference> _posts;
     }
 }
