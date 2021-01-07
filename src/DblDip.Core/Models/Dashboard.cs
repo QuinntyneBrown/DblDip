@@ -8,6 +8,14 @@ namespace DblDip.Core.Models
 {
     public partial class Dashboard : AggregateRoot
     {
+        public Guid DashboardId { get; private set; }
+        public Guid ProfileId { get; private set; }
+        public string Name { get; private set; }
+
+        private ICollection<DashboardCard> _dashboardCards;
+        public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
+        public bool IsDefault { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Dashboard(string name, Guid profileId)
         {
             Apply(new DashboardCreated(Guid.NewGuid(), profileId, name));
@@ -65,15 +73,5 @@ namespace DblDip.Core.Models
         {
             Apply(new DashboardCardsUpdated(dashboardCards));
         }
-
-        public Guid DashboardId { get; private set; }
-        public Guid ProfileId { get; private set; }
-        public string Name { get; private set; }
-
-        private ICollection<DashboardCard> _dashboardCards;
-        public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
-        public bool IsDefault { get; private set; }
-        public DateTime? Deleted { get; private set; }
-
     }
 }
