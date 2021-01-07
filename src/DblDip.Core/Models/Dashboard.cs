@@ -15,6 +15,10 @@ namespace DblDip.Core.Models
         public bool IsDefault { get; private set; }
         public DateTime? Deleted { get; private set; }
         public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
+
+        public Dashboard(IEnumerable<object> events)
+            : base(events) { }
+
         public Dashboard(string name, Guid profileId)
         {
             Apply(new DashboardCreated(Guid.NewGuid(), profileId, name));

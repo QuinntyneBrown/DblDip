@@ -1,4 +1,7 @@
 using BuildingBlocks.Abstractions;
+using BuildingBlocks.Core;
+using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -50,6 +53,34 @@ namespace BuildingBlocks.EventStore
             _changes.Clear();
 
             return await _context.SaveChangesAsync(cancellationToken);
+        }
+
+        public async Task<EventStream> LoadEventStreamAsync(Guid eventStreamId)
+        {
+            return new EventStream
+            {
+                EventStreamId = eventStreamId,
+                Events = await _context.StoredEvents.Where(x => x.StreamId == eventStreamId).OrderBy(x => x.CreatedOn)
+                    .Select(x => JsonConvert.DeserializeObject(x.Data, Type.GetType(x.DotNetType)))
+                    .ToListAsync()
+            };
+        }
+
+        public async Task AppendToStreamAsync(Guid aggregateId, int streamVersion, List<object> events)
+        {
+            _changes.AddRange(events.Select(@event => new StoredEvent
+            {
+                StoredEventId = Guid.NewGuid(),
+                Data = SerializeObject(@event),
+                StreamId = aggregateId,
+                DotNetType = @event.GetType().AssemblyQualifiedName,
+                Type = @event.GetType().Name,
+                CreatedOn = _dateTime.UtcNow,
+                Sequence = 0,
+                CorrelationId = _correlationIdAccessor.CorrelationId
+            }));
+
+            await SaveChangesAsync(default);
         }
     }
 }

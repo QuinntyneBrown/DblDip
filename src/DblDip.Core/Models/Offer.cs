@@ -1,11 +1,22 @@
 using BuildingBlocks.Abstractions;
 using DblDip.Core.DomainEvents;
 using System;
+using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
     public class Offer : AggregateRoot
     {
+        public Guid OfferId { get; private set; }
+        public string Name { get; private set; }
+        public string Code { get; private set; }
+        public string Description { get; private set; }
+        public DateTime Expires { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
+        public Offer(IEnumerable<object> events)
+            : base(events) { }
+
         public Offer()
         {
             Apply(new OfferCreated(Guid.NewGuid()));
@@ -42,11 +53,6 @@ namespace DblDip.Core.Models
             Apply(new OfferUpdated());
         }
 
-        public Guid OfferId { get; private set; }
-        public string Name { get; private set; }
-        public string Code { get; private set; }
-        public string Description { get; private set; }
-        public DateTime Expires { get; private set; }
-        public DateTime? Deleted { get; private set; }
+
     }
 }
