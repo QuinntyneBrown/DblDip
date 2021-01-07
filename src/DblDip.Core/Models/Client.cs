@@ -6,6 +6,7 @@ namespace DblDip.Core.Models
 {
     public class Client : Profile
     {
+        public Guid ClientId { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Client(string name, Email email)
@@ -37,8 +38,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ClientUpdated());
         }
-
-        public Guid ClientId { get; private set; }
-
     }
 }

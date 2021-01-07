@@ -8,6 +8,15 @@ namespace DblDip.Core.Models
 {
     public class Consultation : AggregateRoot, IScheduledAggregate
     {
+        public Guid ConsultationId { get; private set; }
+        public DateRange Scheduled { get; private set; }
+        public Email ConsultantEmail { get; private set; }
+        public Email RecipientEmail { get; private set; }
+        public string RecipientPhoneNumber { get; private set; }
+        public string Note { get; private set; }
+        public DateTime? Deleted { get; private set; }
+        public DateTime? Completed { get; private set; }
+        public DateTime? Paid { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Consultation(DateRange scheduled, Email consultantEmail, Email recipientEmail)
@@ -77,15 +86,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ConsultationPaid(paid));
         }
-
-        public Guid ConsultationId { get; private set; }
-        public DateRange Scheduled { get; private set; }
-        public Email ConsultantEmail { get; private set; }
-        public Email RecipientEmail { get; private set; }
-        public string RecipientPhoneNumber { get; private set; }
-        public string Note { get; private set; }
-        public DateTime? Deleted { get; private set; }
-        public DateTime? Completed { get; private set; }
-        public DateTime? Paid { get; private set; }
     }
 }

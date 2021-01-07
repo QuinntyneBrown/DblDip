@@ -6,6 +6,9 @@ namespace DblDip.Core.Models
 {
     public class Brand : AggregateRoot
     {
+        public Guid BrandId { get; private set; }
+        public Guid LogoDigitalAssetId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Brand()
@@ -42,9 +45,5 @@ namespace DblDip.Core.Models
         {
             Apply(new BrandUpdated());
         }
-
-        public Guid BrandId { get; private set; }
-        public Guid LogoDigitalAssetId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

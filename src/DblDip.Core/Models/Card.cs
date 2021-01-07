@@ -6,6 +6,10 @@ namespace DblDip.Core.Models
 {
     public class Card : AggregateRoot
     {
+        public Guid CardId { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Card(string name, string description)
         {
             Apply(new CardCreated(Guid.NewGuid(), name, description));
@@ -43,10 +47,5 @@ namespace DblDip.Core.Models
         {
             Apply(new CardUpdated());
         }
-
-        public Guid CardId { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

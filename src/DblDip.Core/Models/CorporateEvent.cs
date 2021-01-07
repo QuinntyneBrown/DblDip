@@ -5,6 +5,9 @@ namespace DblDip.Core.Models
 {
     public class CorporateEvent : PhotographyProject
     {
+        public Guid CorporateEventId { get; private set; }
+
+        public override DateRange Scheduled { get; }
         public CorporateEvent()
         {
 
@@ -16,8 +19,5 @@ namespace DblDip.Core.Models
 
         }
 
-        public Guid CorporateEventId { get; private set; }
-
-        public override DateRange Scheduled { get; }
     }
 }

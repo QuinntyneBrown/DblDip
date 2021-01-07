@@ -6,6 +6,8 @@ namespace DblDip.Core.Models
 {
     public class Contact : AggregateRoot
     {
+        public Guid ContactId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Contact()
         {
             Apply(new ContactCreated(Guid.NewGuid()));
@@ -41,8 +43,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid ContactId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

@@ -7,6 +7,10 @@ namespace DblDip.Core.Models
 {
     public class Company : AggregateRoot
     {
+        public Guid CompanyId { get; private set; }
+        public Guid LogoDigitalAssetId { get; private set; }
+        public Url Url { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Company()
@@ -52,10 +56,5 @@ namespace DblDip.Core.Models
         {
             Apply(new CompanyLogoChanged(logoDigitalAssetId));
         }
-
-        public Guid CompanyId { get; private set; }
-        public Guid LogoDigitalAssetId { get; private set; }
-        public Url Url { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }
