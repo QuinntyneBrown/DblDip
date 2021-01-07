@@ -7,6 +7,13 @@ namespace DblDip.Core.Models
 {
     public class Conversation : AggregateRoot
     {
+        private List<Guid> _profileIds;
+
+        private List<Guid> _messageIds;
+        public Guid ConversationId { get; private set; }
+        public IReadOnlyList<Guid> ProfileIds => _profileIds.AsReadOnly();
+        public IReadOnlyList<Guid> MessageIds => _messageIds.AsReadOnly();
+        public DateTime? Deleted { get; private set; }
         public Conversation()
         {
             Apply(new ConversationCreated(Guid.NewGuid()));
@@ -44,14 +51,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ConversationRemoved(deleted));
         }
-
-        public Guid ConversationId { get; private set; }
-        public IReadOnlyList<Guid> ProfileIds => _profileIds.AsReadOnly();
-        public IReadOnlyList<Guid> MessageIds => _messageIds.AsReadOnly();
-
-        private List<Guid> _profileIds;
-
-        private List<Guid> _messageIds;
-        public DateTime? Deleted { get; private set; }
     }
 }
