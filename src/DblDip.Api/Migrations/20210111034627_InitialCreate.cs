@@ -769,7 +769,7 @@ namespace DblDip.Api.Migrations
                 columns: table => new
                 {
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Username_Value = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Salt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
                     PasswordResetRequired = table.Column<bool>(type: "bit", nullable: false),

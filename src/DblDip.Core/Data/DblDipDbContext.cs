@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using DblDip.Core.Models;
 using BuildingBlocks.EventStore;
+using DblDip.Core.ValueObjects;
 
 namespace DblDip.Core.Data
 {
@@ -89,6 +90,9 @@ namespace DblDip.Core.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
+            modelBuilder.Entity<User>().Property(user => user.Username).HasConversion(
+                property => (string)property,
+                property => (Email)property);
         }
 
         protected override void OnTrackedAggregatesChanged(IAggregateRoot aggregateRoot, EntityState entityState)

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DblDip.Api.Migrations
 {
     [DbContext(typeof(DblDipDbContext))]
-    [Migration("20210111031555_InitialCreate")]
+    [Migration("20210111034627_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -1063,6 +1063,9 @@ namespace DblDip.Api.Migrations
 
                     b.Property<byte[]>("Salt")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
@@ -2160,25 +2163,7 @@ namespace DblDip.Api.Migrations
                                 .HasForeignKey("UserId");
                         });
 
-                    b.OwnsOne("DblDip.Core.ValueObjects.Email", "Username", b1 =>
-                        {
-                            b1.Property<Guid>("UserId")
-                                .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Value")
-                                .HasColumnType("nvarchar(max)");
-
-                            b1.HasKey("UserId");
-
-                            b1.ToTable("Users");
-
-                            b1.WithOwner()
-                                .HasForeignKey("UserId");
-                        });
-
                     b.Navigation("Roles");
-
-                    b.Navigation("Username");
                 });
 
             modelBuilder.Entity("DblDip.Core.Models.Venue", b =>

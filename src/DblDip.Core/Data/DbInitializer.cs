@@ -18,7 +18,7 @@ namespace DblDip.Data
             SystemLocationConfiguration.Seed(context, configuration);
             CardConfiguration.Seed(context, configuration);
             UserConfiguration.Seed(context, configuration);
-            DashboardConfiguration.Seed(context, configuration);
+            //DashboardConfiguration.Seed(context, configuration);
 
         }
 
@@ -82,6 +82,7 @@ namespace DblDip.Data
         {
             public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
+
                 var card = context.Set<Card>().FirstOrDefault(x => x.Name == "Leads");
 
                 if (card == null)
@@ -92,6 +93,7 @@ namespace DblDip.Data
 
                     context.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }
+
             }
         }
 
@@ -99,21 +101,27 @@ namespace DblDip.Data
         {
             public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
-                var username = "quinntynebrown@gmail.com";
-
-                var user = context.Set<User>().SingleOrDefault(x => x.Username == username);
-
-                if (user == null)
+                try
                 {
-                    user = new User(username, "dbldip");
+                    var username = (Email)"quinntynebrown@gmail.com";
 
-                    user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
+                    var user = context.Users.FirstOrDefault(x => x.Username ==username);
 
-                    context.Add(user);
+                    if (user == null)
+                    {
+                        user = new User(username, "dbldip");
 
-                    context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                        user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
+
+                        context.Add(user);
+
+                        context.SaveChangesAsync(default).GetAwaiter().GetResult();
+                    }
                 }
-
+                catch(Exception e)
+                {
+                    throw e;
+                }
             }
         }
 
