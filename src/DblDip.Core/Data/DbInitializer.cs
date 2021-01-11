@@ -1,12 +1,11 @@
-﻿using BuildingBlocks.EventStore;
-using Microsoft.Extensions.Configuration;
+﻿using DblDip.Core;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Linq;
 using static DblDip.Core.Constants.Rates;
-using DblDip.Core;
-using DblDip.Core.Data;
 
 namespace DblDip.Data
 {
@@ -18,7 +17,7 @@ namespace DblDip.Data
             SystemLocationConfiguration.Seed(context, configuration);
             CardConfiguration.Seed(context, configuration);
             UserConfiguration.Seed(context, configuration);
-            //DashboardConfiguration.Seed(context, configuration);
+            DashboardConfiguration.Seed(context, configuration);
 
         }
 
@@ -101,26 +100,20 @@ namespace DblDip.Data
         {
             public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
-                try
+
+                var username = (Email)"quinntynebrown@gmail.com";
+
+                var user = context.Users.FirstOrDefault(x => x.Username ==username);
+
+                if (user == null)
                 {
-                    var username = (Email)"quinntynebrown@gmail.com";
+                    user = new User(username, "dbldip");
 
-                    var user = context.Users.FirstOrDefault(x => x.Username ==username);
+                    user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
 
-                    if (user == null)
-                    {
-                        user = new User(username, "dbldip");
+                    context.Add(user);
 
-                        user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
-
-                        context.Add(user);
-
-                        context.SaveChangesAsync(default).GetAwaiter().GetResult();
-                    }
-                }
-                catch(Exception e)
-                {
-                    throw e;
+                    context.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }
             }
         }
