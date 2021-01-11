@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using MediatR;
 using DblDip.Core.Models;
 using System;
@@ -18,9 +18,9 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
 
-            public Handler(IAppDbContext context)
+            public Handler(IDblDipDbContext context)
                 => _context = context;
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
@@ -31,7 +31,7 @@ namespace DblDip.Domain.Features
 
                 dashboard.UpdateDashboardCards(dashboardCards);
 
-                _context.Store(dashboard);
+                _context.Add(dashboard);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

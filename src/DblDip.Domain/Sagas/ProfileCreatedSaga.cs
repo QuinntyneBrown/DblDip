@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core;
 using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
@@ -10,9 +10,9 @@ namespace DblDip.Domain.Sagas
 {
     public class ProfileCreatedSaga : INotificationHandler<ProfileCreated>
     {
-        private readonly IAppDbContext _context;
+        private readonly IDblDipDbContext _context;
 
-        public ProfileCreatedSaga(IAppDbContext context)
+        public ProfileCreatedSaga(IDblDipDbContext context)
             => _context = context;
 
         public async System.Threading.Tasks.Task Handle(ProfileCreated notification, CancellationToken cancellationToken)
@@ -34,9 +34,9 @@ namespace DblDip.Domain.Sagas
 
             var account = new Account(profile.ProfileId, profile.Name, user.UserId);
 
-            _context.Store(user);
+            _context.Add(user);
 
-            _context.Store(account);
+            _context.Add(account);
 
             await _context.SaveChangesAsync(cancellationToken);
         }

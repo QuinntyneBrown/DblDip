@@ -1,6 +1,6 @@
 using System;
 
-namespace BuildingBlocks.Abstractions
+namespace BuildingBlocks.EventStore
 {
     public interface IDateTime
     {

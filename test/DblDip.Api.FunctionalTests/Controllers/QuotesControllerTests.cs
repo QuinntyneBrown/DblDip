@@ -25,11 +25,13 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            var photographyRate = context.Store(PhotographyRateBuilder.WithDefaults());
+            var photographyRate = PhotographyRateBuilder.WithDefaults();
+
+            context.Add(photographyRate);
 
             var wedding = WeddingBuilder.WithDefaults(photographyRate);
 
-            context.Store(wedding);
+            context.Add(wedding);
 
             await context.SaveChangesAsync(default);
 

@@ -1,9 +1,11 @@
 using CSharpFunctionalExtensions;
 using Newtonsoft.Json;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace DblDip.Core.ValueObjects
 {
+    [Owned]
     public class StoryPoints : ValueObject
     {
         public const int MaxLength = 250;

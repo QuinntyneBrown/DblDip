@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -30,16 +30,16 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
 
-            public Handler(IAppDbContext context) => _context = context;
+            public Handler(IDblDipDbContext context) => _context = context;
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var order = new Order();
 
-                _context.Store(order);
+                _context.Add(order);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

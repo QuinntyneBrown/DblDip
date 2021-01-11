@@ -14,6 +14,9 @@ namespace DblDip.Core.Models
         {
             Apply(new ClientCreated(ProfileId));
         }
+
+        protected Client() { }
+
         public void When(ClientCreated clientCreated)
         {
             ClientId = clientCreated.ClientId;

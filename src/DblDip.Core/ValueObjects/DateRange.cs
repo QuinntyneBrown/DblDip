@@ -2,9 +2,11 @@ using CSharpFunctionalExtensions;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
 
 namespace DblDip.Core.ValueObjects
 {
+    [Owned]
     public class DateRange : ValueObject
     {
         [JsonProperty]

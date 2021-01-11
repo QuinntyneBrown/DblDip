@@ -25,14 +25,14 @@ namespace DblDip.Testing.Builders
 
     public class RoleReferenceBuilder
     {
-        private User.RoleReference _role;
+        private RoleReference _role;
 
         public RoleReferenceBuilder(string name)
         {
-            _role = new User.RoleReference(default, name);
+            _role = new RoleReference(default, name);
         }
 
-        public User.RoleReference Build()
+        public RoleReference Build()
         {
             return _role;
         }

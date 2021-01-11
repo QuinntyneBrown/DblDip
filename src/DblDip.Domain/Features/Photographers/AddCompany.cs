@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using FluentValidation;
 using MediatR;
 using DblDip.Core.Models;
@@ -27,9 +27,9 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Unit>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
 
-            public Handler(IAppDbContext context)
+            public Handler(IDblDipDbContext context)
             {
                 _context = context;
             }
@@ -44,9 +44,9 @@ namespace DblDip.Domain.Features
 
                 photographer.AddCompany(company.CompanyId);
 
-                _context.Store(photographer);
+                _context.Add(photographer);
 
-                _context.Store(company);
+                _context.Add(company);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

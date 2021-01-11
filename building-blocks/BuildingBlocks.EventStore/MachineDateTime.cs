@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
+﻿using BuildingBlocks.EventStore;
 using System;
 
 namespace BuildingBlocks.EventStore

@@ -5,6 +5,12 @@ namespace DblDip.Core.Models
 {
     public class FamilyPortrait : PhotographyProject
     {
+        public FamilyPortrait()
+            :base()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         protected override void EnsureValidState()

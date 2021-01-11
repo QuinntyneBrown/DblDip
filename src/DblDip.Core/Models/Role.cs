@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public class Role : AggregateRoot
     {
+        protected Role()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public Role(string name)

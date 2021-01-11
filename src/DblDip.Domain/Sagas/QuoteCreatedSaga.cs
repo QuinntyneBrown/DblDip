@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
 using MediatR;
@@ -9,9 +9,9 @@ namespace DblDip.Domain.Sagas
 {
     public class QuoteCreatedSaga : INotificationHandler<QuoteCreated>
     {
-        private readonly IAppDbContext _context;
+        private readonly IDblDipDbContext _context;
 
-        public QuoteCreatedSaga(IAppDbContext context)
+        public QuoteCreatedSaga(IDblDipDbContext context)
         {
             _context = context;
         }
@@ -30,11 +30,11 @@ namespace DblDip.Domain.Sagas
 
                 var account = new Account(profile.ProfileId, "", user.UserId);
 
-                _context.Store(profile);
+                _context.Add(profile);
 
-                _context.Store(account);
+                _context.Add(account);
 
-                _context.Store(user);
+                _context.Add(user);
 
                 await _context.SaveChangesAsync(cancellationToken);
             }

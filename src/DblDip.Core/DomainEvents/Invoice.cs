@@ -1,8 +1,9 @@
+using BuildingBlocks.EventStore;
 using System;
 
 namespace DblDip.Core.DomainEvents
 {
-    public record InvoiceCreated(Guid InvoiceId);
-    public record InvoiceRemoved (DateTime Deleted);
-    public record InvoiceUpdated;
+    public record InvoiceCreated(Guid InvoiceId): Event;
+    public record InvoiceRemoved (DateTime Deleted): Event;
+    public record InvoiceUpdated: Event;
 }

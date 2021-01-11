@@ -1,8 +1,8 @@
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.Models;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Xunit;
 
 namespace DblDip.Core.UnitTests
@@ -20,7 +20,7 @@ namespace DblDip.Core.UnitTests
         {
             Guid expectedId = Guid.NewGuid();
 
-            var events = new List<object>
+            var events = new List<IEvent>
             {
                 new OfferCreated(expectedId)
             };

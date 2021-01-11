@@ -52,7 +52,7 @@ namespace DblDip.Api.FunctionalTests
 
             var client = _fixture.CreateAuthenticatedClient();
 
-            context.Store(projectManager);
+            context.Add(projectManager);
 
             await context.SaveChangesAsync(default);
 
@@ -72,7 +72,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(projectManager);
+            context.Add(projectManager);
 
             await context.SaveChangesAsync(default);
 
@@ -93,7 +93,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(projectManager);
+            context.Add(projectManager);
 
             await context.SaveChangesAsync(default);
 
@@ -113,7 +113,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(projectManager);
+            context.Add(projectManager);
 
             await context.SaveChangesAsync(default);
 

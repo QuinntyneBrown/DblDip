@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using BuildingBlocks.Core;
 using DblDip.Core.Models;
 using MediatR;
@@ -24,9 +24,9 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly ITokenProvider _tokenProvider;
-            public Handler(IAppDbContext context, ITokenProvider tokenProvider)
+            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider)
             {
                 _context = context;
                 _tokenProvider = tokenProvider;
@@ -49,7 +49,7 @@ namespace DblDip.Domain.Features
 
                 user.AddRefreshToken(_tokenProvider.GenerateRefreshToken());
 
-                _context.Store(user);
+                _context.Add(user);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

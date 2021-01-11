@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using System;
 using System.Collections.Generic;
 

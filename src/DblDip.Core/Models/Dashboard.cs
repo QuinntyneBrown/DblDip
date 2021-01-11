@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public class Dashboard : AggregateRoot
     {
+        protected Dashboard()
+        {
+
+        }
+
         private ICollection<DashboardCard> _dashboardCards;
         public Guid DashboardId { get; private set; }
         public Guid ProfileId { get; private set; }
@@ -16,7 +21,7 @@ namespace DblDip.Core.Models
         public DateTime? Deleted { get; private set; }
         public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
 
-        public Dashboard(IEnumerable<object> events)
+        public Dashboard(IEnumerable<IEvent> events)
             : base(events) { }
 
         public Dashboard(string name, Guid profileId)

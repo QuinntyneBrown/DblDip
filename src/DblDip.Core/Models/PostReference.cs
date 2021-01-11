@@ -1,6 +1,23 @@
-﻿using System;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DblDip.Core.Models
 {
-    public record PostReference(Guid PostId, string Title);
+    [Owned]
+    public class PostReference
+    {
+        public Guid PostId { get; set; }
+        public string Title { get; set; }
+
+        public PostReference(Guid postId, string title)
+        {
+            PostId = postId;
+            Title = title;
+        }
+
+        public PostReference()
+        {
+
+        }
+    }
 }

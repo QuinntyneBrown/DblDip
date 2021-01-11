@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using Xunit;
 using static DblDip.Api.FunctionalTests.ClientsControllerTests.Endpoints;
+using DblDip.Core.ValueObjects;
 
 namespace DblDip.Api.FunctionalTests
 {
@@ -26,21 +27,25 @@ namespace DblDip.Api.FunctionalTests
         [Fact]
         public async System.Threading.Tasks.Task Should_CreateClient()
         {
-            var context = _fixture.Context;
+            try
+            {
+                var context = _fixture.Context;
 
-            var client = ClientDtoBuilder.WithDefaults();
+                StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { Name = "Quinntyne", Email = "quinntyne@hotmail.com" }), Encoding.UTF8, "application/json");
 
-            StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { client }), Encoding.UTF8, "application/json");
+                using var httpClient = _fixture.CreateAuthenticatedClient();
 
-            using var httpClient = _fixture.CreateAuthenticatedClient();
+                var httpResponseMessage = await httpClient.PostAsync(Endpoints.Post.CreateClient, stringContent);
 
-            var httpResponseMessage = await httpClient.PostAsync(Endpoints.Post.CreateClient, stringContent);
+                var response = JsonConvert.DeserializeObject<CreateClient.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 
-            var response = JsonConvert.DeserializeObject<CreateClient.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
+                var sut = context.FindAsync<Client>(response.Client.ClientId);
 
-            var sut = context.FindAsync<Client>(response.Client.ClientId);
-
-            Assert.NotEqual(default, response.Client.ClientId);
+                Assert.NotEqual(default, response.Client.ClientId);
+            } catch (Exception e)
+            {
+                throw e;
+            }
         }
 
         [Fact]
@@ -52,7 +57,7 @@ namespace DblDip.Api.FunctionalTests
 
             var httpClient = _fixture.CreateAuthenticatedClient();
 
-            context.Store(client);
+            context.Add(client);
 
             await context.SaveChangesAsync(default);
 
@@ -72,7 +77,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(client);
+            context.Add(client);
 
             await context.SaveChangesAsync(default);
 
@@ -93,7 +98,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(client);
+            context.Add(client);
 
             await context.SaveChangesAsync(default);
 
@@ -113,7 +118,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(client);
+            context.Add(client);
 
             await context.SaveChangesAsync(default);
 

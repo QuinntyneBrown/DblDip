@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
+﻿using BuildingBlocks.EventStore;
 using Microsoft.Extensions.Configuration;
 using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
@@ -6,12 +6,13 @@ using System;
 using System.Linq;
 using static DblDip.Core.Constants.Rates;
 using DblDip.Core;
+using DblDip.Core.Data;
 
 namespace DblDip.Data
 {
     public static class DbInitializer
     {
-        public static void Initialize(IAppDbContext context, IConfiguration configuration)
+        public static void Initialize(IDblDipDbContext context, IConfiguration configuration)
         {
             RoleConfiguration.Seed(context, configuration);
             SystemLocationConfiguration.Seed(context, configuration);
@@ -23,7 +24,7 @@ namespace DblDip.Data
 
         internal class RoleConfiguration
         {
-            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.Lead, nameof(DblDip.Core.Constants.Roles.Lead)).GetAwaiter().GetResult();
 
@@ -35,7 +36,7 @@ namespace DblDip.Data
 
                 AddRoleIfDoesntExists(context, DblDip.Core.Constants.Roles.SystemAdministrator, nameof(DblDip.Core.Constants.Roles.SystemAdministrator)).GetAwaiter().GetResult();
 
-                async System.Threading.Tasks.Task AddRoleIfDoesntExists(IAppDbContext context, Guid roleId, string name)
+                async System.Threading.Tasks.Task AddRoleIfDoesntExists(IDblDipDbContext context, Guid roleId, string name)
                 {
                     var role = await context.FindAsync<Role>(roleId);
 
@@ -43,7 +44,7 @@ namespace DblDip.Data
 
                     if (role.DomainEvents.Any())
                     {
-                        context.Store(role);
+                        context.Add(role);
                         await context.SaveChangesAsync(default);
                     }
                 }
@@ -52,7 +53,7 @@ namespace DblDip.Data
 
         internal class RateConfiguration
         {
-            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
                 SeedRate(nameof(PhotographyRate), Price.Create(100).Value, PhotographyRate);
 
@@ -68,7 +69,7 @@ namespace DblDip.Data
 
                     if (rate.DomainEvents.Count > 0)
                     {
-                        context.Store(rate);
+                        context.Add(rate);
 
                         context.SaveChangesAsync(default).GetAwaiter().GetResult();
                     }
@@ -79,7 +80,7 @@ namespace DblDip.Data
 
         internal class CardConfiguration
         {
-            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
                 var card = context.Set<Card>().FirstOrDefault(x => x.Name == "Leads");
 
@@ -87,7 +88,7 @@ namespace DblDip.Data
                 {
                     card = new Card("Leads", "");
 
-                    context.Store(card);
+                    context.Add(card);
 
                     context.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }
@@ -96,7 +97,7 @@ namespace DblDip.Data
 
         internal class UserConfiguration
         {
-            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
                 var username = "quinntynebrown@gmail.com";
 
@@ -108,7 +109,7 @@ namespace DblDip.Data
 
                     user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
 
-                    context.Store(user);
+                    context.Add(user);
 
                     context.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }
@@ -118,7 +119,7 @@ namespace DblDip.Data
 
         internal class DashboardConfiguration
         {
-            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
                 var user = context.Set<User>().Single(x => x.Username == "quinntynebrown@gmail.com");
 
@@ -128,7 +129,7 @@ namespace DblDip.Data
                 {
                     dashboard = new Dashboard("Default", user.UserId);
 
-                    context.Store(dashboard);
+                    context.Add(dashboard);
 
                     context.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }
@@ -137,7 +138,7 @@ namespace DblDip.Data
 
         internal class SystemLocationConfiguration
         {
-            public static void Seed(IAppDbContext context, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IConfiguration configuration)
             {
             }
         }

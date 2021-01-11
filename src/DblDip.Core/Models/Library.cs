@@ -1,7 +1,8 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DblDip.Core.Models
 {
@@ -45,7 +46,9 @@ namespace DblDip.Core.Models
 
         public Guid LibraryId { get; private set; }
         public Guid PhotographerId { get; private set; }
+        [NotMapped]
         public ICollection<Guid> MyImages { get; private set; }
+        [NotMapped]
         public ICollection<Guid> MyFiles { get; private set; }
         public DateTime? Deleted { get; private set; }
     }

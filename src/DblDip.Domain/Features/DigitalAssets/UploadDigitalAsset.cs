@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using BuildingBlocks.Core;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -26,9 +26,9 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            public IAppDbContext _context { get; init; }
+            public IDblDipDbContext _context { get; init; }
             public IHttpContextAccessor _httpContextAccessor { get; init; }
-            public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor)
+            public Handler(IDblDipDbContext context, IHttpContextAccessor httpContextAccessor)
             {
                 _context = context;
                 _httpContextAccessor = httpContextAccessor;
@@ -70,7 +70,7 @@ namespace DblDip.Domain.Features
 
                                 var digitalAsset = new DigitalAsset(name, bytes, contentType);
 
-                                _context.Store(digitalAsset);
+                                _context.Add(digitalAsset);
 
                                 digitalAssets.Add(digitalAsset);
                             }

@@ -1,86 +1,94 @@
-using BuildingBlocks.Abstractions;
-using BuildingBlocks.Core;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using static BuildingBlocks.EventStore.AggregateRoot;
 using static Newtonsoft.Json.JsonConvert;
 
 namespace BuildingBlocks.EventStore
 {
-    public class EventStore : IEventStore
+    public class EventStore : DbContext, IEventStore
     {
         private readonly List<StoredEvent> _changes = new List<StoredEvent>();
         private readonly IDateTime _dateTime;
-        private readonly IEventStoreDbContext _context;
         private readonly ICorrelationIdAccessor _correlationIdAccessor;
-
-        public EventStore(IEventStoreDbContext context, IDateTime dateTime, ICorrelationIdAccessor correlationIdAccessor)
+        protected virtual void OnTrackedAggregatesChanged(IAggregateRoot aggregateRoot, EntityState entityState)
         {
+
+        }
+
+        protected readonly List<IAggregateRoot> _trackedAggregates = new List<IAggregateRoot>();
+        protected List<IAggregateRoot> TrackedAggregates { get; }
+        public EventStore(DbContextOptions options, IDateTime dateTime, ICorrelationIdAccessor correlationIdAccessor)
+            : base(options)
+        {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
             _dateTime = dateTime;
-            _context = context;
             _correlationIdAccessor = correlationIdAccessor;
         }
 
-        public void Store(AggregateRoot aggregateRoot)
+        public DbSet<StoredEvent> StoredEvents { get; protected set; }
+
+        public async Task<TAggregateRoot> LoadAsync<TAggregateRoot>(Guid id)
+            where TAggregateRoot : AggregateRoot
         {
-            var type = aggregateRoot.GetType();
+            var events = (await StoredEvents.Where(x => x.StreamId == id).OrderBy(x => x.CreatedOn).ToListAsync())
+                    .Select(x => DeserializeObject(x.Data, Type.GetType(x.DotNetType)) as IEvent);
 
-            _changes.AddRange(aggregateRoot.DomainEvents.Select(@event => new StoredEvent
-            {
-                StoredEventId = Guid.NewGuid(),
-                Aggregate = aggregateRoot.GetType().Name,
-                AggregateDotNetType = aggregateRoot.GetType().AssemblyQualifiedName,
-                Data = SerializeObject(@event),
-                StreamId = (Guid)type.GetProperty($"{type.Name}Id").GetValue(aggregateRoot, null),
-                DotNetType = @event.GetType().AssemblyQualifiedName,
-                Type = @event.GetType().Name,
-                CreatedOn = _dateTime.UtcNow,
-                Sequence = 0,
-                CorrelationId = _correlationIdAccessor.CorrelationId
-            }));
+            if (!events.Any())
+                return null;
 
-            aggregateRoot.ClearChanges();
+            var aggregate = events.Aggregate(Create<TAggregateRoot>(), (x, y) => x.Apply(y) as TAggregateRoot);
+
+            aggregate.ClearChanges();
+
+            _trackedAggregates.Add(aggregate);
+
+            OnTrackedAggregatesChanged(aggregate, EntityState.Modified);
+
+            return aggregate;
         }
 
-        public async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
+        public void Add(IAggregateRoot aggregateRoot)
         {
-            _context.StoredEvents.AddRange(_changes);
+            _trackedAggregates.Add(aggregateRoot);
 
-            _changes.Clear();
+            OnTrackedAggregatesChanged(aggregateRoot, EntityState.Added);
 
-            return await _context.SaveChangesAsync(cancellationToken);
         }
 
-        public async Task<EventStream> LoadEventStreamAsync(Guid eventStreamId)
+        public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
-            return new EventStream
+            foreach (var aggregateRoot in _trackedAggregates)
             {
-                EventStreamId = eventStreamId,
-                Events = await _context.StoredEvents.Where(x => x.StreamId == eventStreamId).OrderBy(x => x.CreatedOn)
-                    .Select(x => JsonConvert.DeserializeObject(x.Data, Type.GetType(x.DotNetType)))
-                    .ToListAsync()
-            };
-        }
+                var type = aggregateRoot.GetType();
 
-        public async Task AppendToStreamAsync(Guid aggregateId, int streamVersion, List<object> events)
-        {
-            _changes.AddRange(events.Select(@event => new StoredEvent
-            {
-                StoredEventId = Guid.NewGuid(),
-                Data = SerializeObject(@event),
-                StreamId = aggregateId,
-                DotNetType = @event.GetType().AssemblyQualifiedName,
-                Type = @event.GetType().Name,
-                CreatedOn = _dateTime.UtcNow,
-                Sequence = 0,
-                CorrelationId = _correlationIdAccessor.CorrelationId
-            }));
+                StoredEvents.AddRange(aggregateRoot.DomainEvents
+                    .Select(@event => {
+                        var type = aggregateRoot.GetType();
 
-            await SaveChangesAsync(default);
+                        return new StoredEvent
+                        {
+                            StoredEventId = Guid.NewGuid(),
+                            Aggregate = aggregateRoot.GetType().Name,
+                            AggregateDotNetType = aggregateRoot.GetType().AssemblyQualifiedName,
+                            Data = SerializeObject(@event),
+                            StreamId = (Guid)type.GetProperty($"{type.Name}Id").GetValue(aggregateRoot, null),
+                            DotNetType = @event.GetType().AssemblyQualifiedName,
+                            Type = @event.GetType().Name,
+                            CreatedOn = @event.Created,
+                            CorrelationId = _correlationIdAccessor.CorrelationId
+                        };
+                    }));
+            }
+
+            _trackedAggregates.Clear();
+
+            return await base.SaveChangesAsync(cancellationToken);
         }
     }
+
 }

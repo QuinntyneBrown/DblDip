@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
@@ -7,6 +7,19 @@ namespace DblDip.Core.Models
 {
     public class PhotoGallery : AggregateRoot
     {
+        public Guid PhotoGalleryId { get; private set; }
+        public Guid PhotographerId { get; private set; }
+        public string Name { get; private set; }
+        public ICollection<Photo> Photos { get; private set; }
+        public Guid CoverPhotoDigitalAssetId { get; private set; }
+        public DateTime? Deleted { get; set; }
+        public DateTime? Published { get; private set; }
+
+        protected PhotoGallery()
+        {
+
+        }
+
         public PhotoGallery(string name)
         {
             Apply(new PhotoGalleryCreated(Guid.NewGuid(), name));
@@ -46,12 +59,6 @@ namespace DblDip.Core.Models
             Apply(new PhotoGalleryRemoved(deleted));
         }
 
-        public Guid PhotoGalleryId { get; private set; }
-        public Guid PhotographerId { get; private set; }
-        public string Name { get; private set; }
-        public ICollection<Photo> Photos { get; private set; }
-        public Photo CoverPhoto { get; private set; }
-        public DateTime? Deleted { get; set; }
-        public DateTime? Published { get; private set; }
+
     }
 }

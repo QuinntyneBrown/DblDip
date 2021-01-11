@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 
@@ -6,6 +6,13 @@ namespace DblDip.Core.Models
 {
     public class TimeEntry : AggregateRoot
     {
+        public Guid TimeEntryId { get; private set; }
+        public int Hours { get; private set; }
+        public DateTime? Completed { get; private set; }
+        public Guid ProjectId { get; private set; }
+        public bool Billable { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
         public TimeEntry()
         {
             Apply(new TimeEntryCreated(Guid.NewGuid()));
@@ -41,12 +48,5 @@ namespace DblDip.Core.Models
         {
             Apply(new TimeEntryUpdated());
         }
-
-        public Guid TimeEntryId { get; private set; }
-        public int Hours { get; private set; }
-        public DateTime? Completed { get; private set; }
-        public Guid ProjectId { get; private set; }
-        public bool Billable { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

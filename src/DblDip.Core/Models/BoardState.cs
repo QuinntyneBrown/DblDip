@@ -1,6 +1,18 @@
-﻿using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace DblDip.Core.Models
 {
-    public record BoardState(string Name, int SortOrder, ICollection<TicketState> TicketStates);
+    [Owned]
+    public class BoardState
+    {
+        protected BoardState()
+        {
+
+        }
+
+        public string Name { get; set; }
+        public int SortOrder { get; set; } 
+        public ICollection<TicketState> TicketStates { get; set; }
+    }
 }

@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
@@ -14,7 +14,7 @@ namespace DblDip.Core.Models
         public DateTime Expires { get; private set; }
         public DateTime? Deleted { get; private set; }
 
-        public Offer(IEnumerable<object> events)
+        public Offer(IEnumerable<IEvent> events)
             : base(events) { }
 
         public Offer()

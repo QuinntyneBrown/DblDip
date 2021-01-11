@@ -48,11 +48,11 @@ namespace DblDip.Api.FunctionalTests
 
             homeDashboard.SetDefault();
 
-            _fixture.Context.Store(profile);
+            _fixture.Context.Add(profile);
 
-            _fixture.Context.Store(homeDashboard);
+            _fixture.Context.Add(homeDashboard);
 
-            _fixture.Context.Store(reportingDashboard);
+            _fixture.Context.Add(reportingDashboard);
 
             await _fixture.Context.SaveChangesAsync(default);
 
@@ -71,7 +71,9 @@ namespace DblDip.Api.FunctionalTests
         [Fact]
         public async System.Threading.Tasks.Task Should_RemoveDashboard()
         {
-            var dashboard = _fixture.Context.Store(DashboardBuilder.WithDefaults(Guid.NewGuid()));
+            var dashboard = DashboardBuilder.WithDefaults(Guid.NewGuid());
+
+            _fixture.Context.Add(dashboard);
 
             await _fixture.Context.SaveChangesAsync(default);
 

@@ -1,8 +1,9 @@
+using BuildingBlocks.EventStore;
 using System;
 
 namespace DblDip.Core.DomainEvents
 {
-    public record ConversationUpdated;
-    public record ConversationCreated(Guid ConversationId);
-    public record ConversationRemoved(DateTime Deleted);
+    public record ConversationUpdated: Event;
+    public record ConversationCreated(Guid ConversationId): Event;
+    public record ConversationRemoved(DateTime Deleted): Event;
 }

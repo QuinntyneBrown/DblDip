@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public class Feedback : AggregateRoot
     {
+        protected Feedback()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public Feedback(Email email, string description)

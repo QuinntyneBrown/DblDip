@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using BuildingBlocks.Stripe;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
@@ -9,6 +9,11 @@ namespace DblDip.Core.Models
 {
     public class Order : AggregateRoot
     {
+        public Order()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public void When(OrderCheckedOut orderCheckedOut)

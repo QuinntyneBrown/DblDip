@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using MediatR;
 using System.Collections.Generic;
 using System.Threading;
@@ -16,9 +16,9 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
 
-            public Handler(IAppDbContext context)
+            public Handler(IDblDipDbContext context)
             {
                 _context = context;
             }

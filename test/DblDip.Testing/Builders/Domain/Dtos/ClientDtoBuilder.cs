@@ -1,3 +1,4 @@
+using DblDip.Core.ValueObjects;
 using DblDip.Domain.Features;
 
 namespace DblDip.Testing.Builders
@@ -8,7 +9,7 @@ namespace DblDip.Testing.Builders
 
         public static ClientDto WithDefaults()
         {
-            return new(default, default, default, default, default);
+            return new(default, "Quinntyne", "Brown", (Email)"quinntyne@hotmail.com");
         }
 
         public ClientDtoBuilder()

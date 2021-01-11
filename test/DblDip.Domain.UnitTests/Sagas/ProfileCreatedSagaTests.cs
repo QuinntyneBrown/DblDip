@@ -13,7 +13,7 @@ namespace DblDip.Domain.UnitTests.Sagas
         [Fact]
         public async System.Threading.Tasks.Task Should_CreateUserAndAccountWithRolesUponProfileCreated()
         {
-            var context = AppDbContextBuilder.WithDefaults();
+            var context = DblDipDbContextBuilder.WithDefaults();
 
             var profile = ClientBuilder.WithDefaults();
 

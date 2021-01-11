@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -9,6 +9,11 @@ namespace DblDip.Core.Models
 {
     public class Survey : AggregateRoot
     {
+        protected Survey()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public Survey(string name)

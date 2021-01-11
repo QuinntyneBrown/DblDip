@@ -4,9 +4,11 @@ using Newtonsoft.Json;
 using DblDip.Core.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace DblDip.Core.ValueObjects
 {
+    [Owned]
     public class Timeline : ValueObject, IScheduled
     {
         public const int MaxLength = 250;

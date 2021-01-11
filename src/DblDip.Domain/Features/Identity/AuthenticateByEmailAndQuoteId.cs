@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using BuildingBlocks.Core;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -29,10 +29,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly ITokenProvider _tokenProvider;
 
-            public Handler(IAppDbContext context, ITokenProvider tokenProvider)
+            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider)
             {
                 _context = context;
                 _tokenProvider = tokenProvider;

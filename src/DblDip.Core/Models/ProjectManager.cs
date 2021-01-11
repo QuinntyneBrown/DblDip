@@ -6,6 +6,11 @@ namespace DblDip.Core.Models
 {
     public class ProjectManager : Profile
     {
+        protected ProjectManager()
+        {
+
+        }
+
         public ProjectManager(string name, Email email)
             : base(name, email, typeof(ProjectManager))
         {

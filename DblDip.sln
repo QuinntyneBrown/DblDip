@@ -5,6 +5,7 @@ VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{714D8ED1-5637-478C-984F-0224EB00F0FC}"
 	ProjectSection(SolutionItems) = preProject
+		references\architecture.txt = references\architecture.txt
 		cliSettings.json = cliSettings.json
 		style-guides\csharp.md = style-guides\csharp.md
 		README.md = README.md
@@ -12,8 +13,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building-blocks", "building-blocks", "{52136440-E4B7-46D2-999C-34815AFBB291}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Abstractions", "building-blocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj", "{A9D472A9-F057-4721-A8EF-6DC850A485FA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Core", "building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj", "{26097CC9-3F11-4836-B7ED-8EDE80ED7BA5}"
 EndProject
@@ -55,18 +54,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Debug|x64.Build.0 = Debug|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Debug|x86.Build.0 = Debug|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Release|x64.ActiveCfg = Release|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Release|x64.Build.0 = Release|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Release|x86.ActiveCfg = Release|Any CPU
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA}.Release|x86.Build.0 = Release|Any CPU
 		{26097CC9-3F11-4836-B7ED-8EDE80ED7BA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{26097CC9-3F11-4836-B7ED-8EDE80ED7BA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26097CC9-3F11-4836-B7ED-8EDE80ED7BA5}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -228,7 +215,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A9D472A9-F057-4721-A8EF-6DC850A485FA} = {52136440-E4B7-46D2-999C-34815AFBB291}
 		{26097CC9-3F11-4836-B7ED-8EDE80ED7BA5} = {52136440-E4B7-46D2-999C-34815AFBB291}
 		{656AECF0-152C-4326-897C-BDF648F47DC0} = {52136440-E4B7-46D2-999C-34815AFBB291}
 		{13185604-A5D7-4237-950B-9CB846E822DB} = {52136440-E4B7-46D2-999C-34815AFBB291}

@@ -1,5 +1,9 @@
-using BuildingBlocks.Abstractions;
 using BuildingBlocks.EventStore;
+using DblDip.Api;
+using DblDip.Core.Data;
+using DblDip.Data;
+using DblDip.Testing.AuthenticationHandlers;
+using DblDip.Testing.Factories;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -7,23 +11,17 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using DblDip.Api;
-using DblDip.Core.Data;
-using DblDip.Testing.AuthenticationHandlers;
-using DblDip.Testing.Factories;
 using System;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using Xunit.Abstractions;
-using DblDip.Data;
 using static DblDip.Core.Constants.ConfigurationKeys;
 
 namespace DblDip.Testing
 {
     public class ApiTestFixture : WebApplicationFactory<Startup>, IDisposable
     {
-        private IAppDbContext _context;
+        private IDblDipDbContext _context;
         private IConfiguration _configuration;
         private readonly Guid _correlationId = Guid.NewGuid();
 
@@ -53,14 +51,14 @@ namespace DblDip.Testing
                 {
                     var scopedServices = scope.ServiceProvider;
 
-                    var context = scopedServices.GetRequiredService<IAppDbContext>();
+                    var context = scopedServices.GetRequiredService<IDblDipDbContext>();
 
                     DbInitializer.Initialize(context, ConfigurationFactory.Create());
 
                 }
             });
         }
-        public IAppDbContext Context
+        public IDblDipDbContext Context
         {
             get
             {
@@ -70,12 +68,9 @@ namespace DblDip.Testing
                         .UseSqlServer(_configuration[DataDefaultConnectionString])
                         .Options;
 
-                    var context = new EventStoreDbContext(options);
                     var dateTime = new MachineDateTime();
-                    var eventStore = new EventStore(context, dateTime, new TestCorrelationIdAccessor(_correlationId));
-                    var aggregateSet = new AggregateSet(context, dateTime);
 
-                    _context = new AppDbContext(eventStore, aggregateSet);
+                    _context = new DblDipDbContext(options, dateTime, new TestCorrelationIdAccessor(_correlationId));
 
                     DbInitializer.Initialize(_context, _configuration);
                 }
@@ -100,9 +95,9 @@ namespace DblDip.Testing
                         .Options;
                     var dateTime = new MachineDateTime();
 
-                    var context = new EventStoreDbContext(options);
+                    
 
-                    _dataIntegrityService = new DataIntegrityService(new AggregateSet(context, dateTime));
+                    _dataIntegrityService = new DataIntegrityService();
                 }
 
                 return _dataIntegrityService;
@@ -138,7 +133,7 @@ namespace DblDip.Testing
                 .UseSqlServer(_configuration[DataDefaultConnectionString])
                 .Options;
 
-            var context = new EventStoreDbContext(options);
+            var context = new DblDipDbContext(options, default, new TestCorrelationIdAccessor(_correlationId));
 
             foreach (var storedEvent in context.StoredEvents.Where(x => x.CorrelationId == _correlationId))
             {

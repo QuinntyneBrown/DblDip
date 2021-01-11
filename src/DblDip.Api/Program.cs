@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +9,7 @@ using Microsoft.Extensions.Hosting;
 using DblDip.Data;
 using System;
 using System.Linq;
+using DblDip.Core.Data;
 
 namespace DblDip.Api
 {
@@ -29,8 +30,7 @@ namespace DblDip.Api
 
             using (var scope = services.CreateScope())
             {
-                var dbContext = scope.ServiceProvider.GetRequiredService<EventStoreDbContext>();
-                var context = scope.ServiceProvider.GetRequiredService<IAppDbContext>();
+                var context = scope.ServiceProvider.GetRequiredService<DblDipDbContext>();
                 var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
                 if (args.Contains("ci"))
@@ -38,17 +38,17 @@ namespace DblDip.Api
 
                 if (args.Contains("dropdb"))
                 {
-                    dbContext.Database.EnsureDeleted();
+                    context.Database.EnsureDeleted();
                 }
 
                 if (args.Contains("migratedb"))
                 {
-                    dbContext.Database.Migrate();
+                    context.Database.Migrate();
                 }
 
                 if (args.Contains("seeddb"))
                 {
-                    dbContext.Database.EnsureCreated();
+                    context.Database.EnsureCreated();
                     DbInitializer.Initialize(context, configuration);
                 }
 

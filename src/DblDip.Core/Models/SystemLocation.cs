@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -7,6 +7,16 @@ namespace DblDip.Core.Models
 {
     public class SystemLocation : AggregateRoot
     {
+        protected SystemLocation()
+        {
+
+        }
+
+        public Guid SystemLocationId { get; private set; }
+        public string Name { get; private set; }
+        public Location Location { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
         protected override void When(dynamic @event) => When(@event);
 
         public SystemLocation(string name, Location location)
@@ -34,10 +44,5 @@ namespace DblDip.Core.Models
         {
             Apply(new SystemLocationRemoved(deleted));
         }
-
-        public Guid SystemLocationId { get; private set; }
-        public string Name { get; private set; }
-        public Location Location { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

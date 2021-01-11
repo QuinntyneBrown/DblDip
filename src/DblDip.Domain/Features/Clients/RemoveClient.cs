@@ -1,10 +1,12 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
+using DblDip.Core.Data;
 
 namespace DblDip.Domain.Features
 {
@@ -14,26 +16,19 @@ namespace DblDip.Domain.Features
         {
             public Validator()
             {
-
+                RuleFor(x => x.ClientId).NotNull();
+                RuleFor(x => x.ClientId).NotEqual(new Guid());
             }
         }
 
-        public class Request : IRequest<Unit>
-        {
-            public Guid ClientId { get; init; }
-        }
-
-        public class Response
-        {
-            public ClientDto Client { get; init; }
-        }
+        public record Request(Guid ClientId) : IRequest<Unit>;
 
         public class Handler : IRequestHandler<Request, Unit>
         {
-            private readonly IAppDbContext _context;
+            private readonly IEventStore _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime)
+            public Handler(IEventStore context, IDateTime dateTime)
             {
                 _context = context;
                 _dateTime = dateTime;
@@ -41,11 +36,9 @@ namespace DblDip.Domain.Features
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
-                var client = await _context.FindAsync<Client>(request.ClientId);
+                var client = await _context.LoadAsync<Client>(request.ClientId);
 
                 client.Remove(_dateTime.UtcNow);
-
-                _context.Store(client);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

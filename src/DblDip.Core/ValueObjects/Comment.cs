@@ -1,9 +1,11 @@
 using CSharpFunctionalExtensions;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 
 namespace DblDip.Core.ValueObjects
 {
+    [Owned]
     public class Comment : ValueObject
     {
         public const int MaxLength = 250;

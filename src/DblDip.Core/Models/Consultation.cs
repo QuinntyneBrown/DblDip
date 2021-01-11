@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.Interfaces;
 using DblDip.Core.ValueObjects;
@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public class Consultation : AggregateRoot, IScheduledAggregate
     {
+        protected Consultation()
+        {
+
+        }
+
         public Guid ConsultationId { get; private set; }
         public DateRange Scheduled { get; private set; }
         public Email ConsultantEmail { get; private set; }

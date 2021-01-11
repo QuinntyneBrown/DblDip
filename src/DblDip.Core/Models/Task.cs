@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.Interfaces;
 using DblDip.Core.ValueObjects;
@@ -8,6 +8,19 @@ namespace DblDip.Core.Models
 {
     public class Task : AggregateRoot, IScheduledAggregate
     {
+        protected Task()
+        {
+
+        }
+
+        public Guid TaskId { get; private set; }
+        public Guid OwnerId { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public DateTime? DueDate { get; private set; }
+        public DateRange Scheduled { get; private set; }
+        public DateTime? Deleted { get; private set; }
+        public DateTime? Completed { get; set; }
         public Task(Guid ownerId, string description)
         {
             Apply(new TaskCreated(Guid.NewGuid(), ownerId, description));
@@ -55,14 +68,5 @@ namespace DblDip.Core.Models
         {
             Apply(new TaskCompleted(completed));
         }
-
-        public Guid TaskId { get; private set; }
-        public Guid OwnerId { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public DateTime? DueDate { get; private set; }
-        public DateRange Scheduled { get; private set; }
-        public DateTime? Deleted { get; private set; }
-        public DateTime? Completed { get; set; }
     }
 }

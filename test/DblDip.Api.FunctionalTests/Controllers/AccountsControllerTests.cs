@@ -50,7 +50,7 @@ namespace DblDip.Api.FunctionalTests
 
             var client = _fixture.CreateAuthenticatedClient();
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 
@@ -76,11 +76,11 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(user);
+            context.Add(user);
 
-            context.Store(profile);
+            context.Add(profile);
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 
@@ -109,11 +109,11 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(user);
+            context.Add(user);
 
-            context.Store(profile);
+            context.Add(profile);
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 
@@ -144,11 +144,11 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(user);
+            context.Add(user);
 
-            context.Store(profile);
+            context.Add(profile);
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 
@@ -171,7 +171,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 
@@ -192,7 +192,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 
@@ -212,7 +212,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(account);
+            context.Add(account);
 
             await context.SaveChangesAsync(default);
 

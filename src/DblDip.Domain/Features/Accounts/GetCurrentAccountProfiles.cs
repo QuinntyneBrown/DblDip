@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core;
 using DblDip.Core.Models;
 using DblDip.Domain.Features;
@@ -20,10 +20,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly IHttpContextAccessor _httpContextAccessor;
 
-            public Handler(IAppDbContext context, IHttpContextAccessor httpContextAccessor)
+            public Handler(IDblDipDbContext context, IHttpContextAccessor httpContextAccessor)
             {
                 _context = context;
                 _httpContextAccessor = httpContextAccessor;
@@ -31,11 +31,12 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
+                
                 var user = await _context.FindAsync<User>(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.UserId).Value));
 
                 var account = _context.Set<Account>().Single(x => x.UserId == user.UserId);
 
-                return new Response(_context.Set<Profile>(account.ProfileIds.ToList())
+                return new Response(_context.Set<Profile>().Where(x => account.ProfileIds.Contains(x.ProfileId))
                     .Select(x => x.ToDto())
                     .ToList());
             }

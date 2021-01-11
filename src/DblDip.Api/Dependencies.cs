@@ -70,7 +70,11 @@ namespace DblDip.Api
 
             services.AddTransient<IDataIntegrityService, DataIntegrityService>();
 
-            services.AddEventStore(options =>
+            services.AddTransient<IDblDipDbContext, DblDipDbContext>();
+
+            services.AddEventStore();
+
+            services.AddDbContext<DblDipDbContext>((options =>
             {
                 options
                 .LogTo(Console.WriteLine)
@@ -78,10 +82,8 @@ namespace DblDip.Api
                     builder => builder
                     .MigrationsAssembly("DblDip.Api")
                         .EnableRetryOnFailure())
-                .UseLoggerFactory(EventStoreDbContext.ConsoleLoggerFactory)
                 .EnableSensitiveDataLogging();
-            });
-
+            }));
             services.AddControllers();
         }
 

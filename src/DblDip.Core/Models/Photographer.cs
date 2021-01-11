@@ -2,11 +2,17 @@ using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DblDip.Core.Models
 {
     public class Photographer : Profile
     {
+        protected Photographer()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public Photographer(string name, Email email)
@@ -47,6 +53,7 @@ namespace DblDip.Core.Models
 
         public Guid PhotographerId { get; private set; }
         public Guid CompanyId { get; private set; }
+        [NotMapped]
         public ICollection<Guid> ServiceIds { get; private set; }
         public Location PrimaryLocation { get; private set; }
     }

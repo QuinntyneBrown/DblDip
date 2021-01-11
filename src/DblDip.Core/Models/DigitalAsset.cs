@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using BuildingBlocks.Core;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
@@ -9,11 +9,17 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using DblDip.Core.Data;
 
 namespace DblDip.Core.Models
 {
     public class DigitalAsset : AggregateRoot
     {
+        protected DigitalAsset()
+        {
+
+        }
+
         public DigitalAsset(string name, byte[] bytes, string contentType)
         {
             Apply(new DigitalAssetCreated(Guid.NewGuid(), name, bytes, contentType));
@@ -38,7 +44,7 @@ namespace DblDip.Core.Models
         public byte[] Bytes { get; private set; }
         public string ContentType { get; private set; }
 
-        public static async System.Threading.Tasks.Task<ICollection<DigitalAsset>> Upload(IHttpContextAccessor httpContextAccessor, IAppDbContext context, CancellationToken cancellationToken)
+        public static async System.Threading.Tasks.Task<ICollection<DigitalAsset>> Upload(IHttpContextAccessor httpContextAccessor, IDblDipDbContext context, CancellationToken cancellationToken)
         {
             var httpContext = httpContextAccessor.HttpContext;
             var defaultFormOptions = new FormOptions();
@@ -74,7 +80,7 @@ namespace DblDip.Core.Models
 
                             var digitalAsset = new DigitalAsset(name, bytes, contentType);
 
-                            context.Store(digitalAsset);
+                            context.Add(digitalAsset);
 
                             digitalAssets.Add(digitalAsset);
                         }

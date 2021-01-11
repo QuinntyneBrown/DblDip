@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -26,10 +26,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly IConfiguration _configuration;
 
-            public Handler(IAppDbContext context, IConfiguration configuration)
+            public Handler(IDblDipDbContext context, IConfiguration configuration)
             {
                 _context = context;
                 _configuration = configuration;
@@ -48,7 +48,7 @@ namespace DblDip.Domain.Features
 
                 var wedding = new Wedding(home, home, location, request.DateTime, request.Hours);
 
-                _context.Store(wedding);
+                _context.Add(wedding);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

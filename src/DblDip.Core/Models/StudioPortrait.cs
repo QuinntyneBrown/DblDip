@@ -5,6 +5,11 @@ namespace DblDip.Core.Models
 {
     public class StudioPortrait : PhotographyProject
     {
+        public StudioPortrait()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         protected override void EnsureValidState()

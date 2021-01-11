@@ -1,6 +1,6 @@
 using FluentValidation;
 using MediatR;
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,10 +29,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly ITokenProvider _tokenProvider;
             private readonly IHttpContextAccessor _httpContextAccessor;
-            public Handler(IAppDbContext context, ITokenProvider tokenProvider, IHttpContextAccessor httpContextAccessor)
+            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider, IHttpContextAccessor httpContextAccessor)
             {
                 _context = context;
                 _tokenProvider = tokenProvider;
@@ -49,7 +49,7 @@ namespace DblDip.Domain.Features
 
                 account.SetCurrentProfileId(request.ProfileId);
 
-                _context.Store(account);
+                _context.Add(account);
 
                 await _context.SaveChangesAsync(default);
 

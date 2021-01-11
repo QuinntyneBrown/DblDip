@@ -1,4 +1,5 @@
+using BuildingBlocks.EventStore;
 namespace DblDip.Core.DomainEvents
 {
-    public record EngagementUpdated;
+    public record EngagementUpdated: Event;
 }

@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using System;
 using DblDip.Core.ValueObjects;
 using DblDip.Core.DomainEvents;
@@ -7,6 +7,10 @@ namespace DblDip.Core.Models
 {
     public class Venue : AggregateRoot
     {
+        public Guid VenueId { get; private set; }
+        public string Name { get; private set; }
+        public Location Location { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Venue()
         {
             Apply(new VenueCreated(Guid.NewGuid()));
@@ -37,10 +41,5 @@ namespace DblDip.Core.Models
         {
             Apply(new VenueUpdated());
         }
-
-        public Guid VenueId { get; private set; }
-        public string Name { get; private set; }
-        public Location Location { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

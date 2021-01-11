@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 
@@ -6,6 +6,11 @@ namespace DblDip.Core.Models
 {
     public class Card : AggregateRoot
     {
+        protected Card()
+        {
+
+        }
+
         public Guid CardId { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }

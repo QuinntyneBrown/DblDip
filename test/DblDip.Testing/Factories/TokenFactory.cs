@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
+﻿using BuildingBlocks.EventStore;
 using BuildingBlocks.Core;
 using DblDip.Core;
 using DblDip.Core.Models;

@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -7,6 +7,11 @@ namespace DblDip.Core.Models
 {
     public class Equipment : AggregateRoot
     {
+        protected Equipment()
+        {
+
+        }
+
         public Equipment(string name, Price price, string description)
         {
             Apply(new EquipmentCreated(Guid.NewGuid(), name, price, description));

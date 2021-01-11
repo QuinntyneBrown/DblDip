@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 
@@ -6,6 +6,11 @@ namespace DblDip.Core.Models
 {
     public class Testimonial : AggregateRoot
     {
+        public Guid TestimonialId { get; private set; }
+        public Guid PhotographerId { get; private set; }
+        public Guid ClientId { get; private set; }
+        public string Description { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Testimonial()
@@ -41,11 +46,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid TestimonialId { get; private set; }
-        public Guid PhotographerId { get; private set; }
-        public Guid ClientId { get; private set; }
-        public string Description { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

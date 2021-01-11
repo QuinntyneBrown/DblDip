@@ -1,4 +1,5 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
+using DblDip.Core.Data;
 using MediatR;
 using DblDip.Core.Models;
 using System;
@@ -13,10 +14,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Unit>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime)
+            public Handler(IDblDipDbContext context, IDateTime dateTime)
             {
                 _context = context;
                 _dateTime = dateTime;
@@ -29,7 +30,7 @@ namespace DblDip.Domain.Features
 
                 consultation.Complete(_dateTime.UtcNow);
 
-                _context.Store(consultation);
+                _context.Add(consultation);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

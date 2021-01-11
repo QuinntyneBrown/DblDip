@@ -4,9 +4,11 @@ using Newtonsoft.Json;
 using System.Collections.Generic;
 using BuildingBlocks.GeoLocation;
 using NetTopologySuite;
+using Microsoft.EntityFrameworkCore;
 
 namespace DblDip.Core.ValueObjects
 {
+    [Owned]
     public class Location : ValueObject
     {
         [JsonProperty]

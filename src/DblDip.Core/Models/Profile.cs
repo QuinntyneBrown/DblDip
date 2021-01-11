@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -7,6 +7,12 @@ namespace DblDip.Core.Models
 {
     public class Profile : AggregateRoot
     {
+        protected Profile()
+        {
+
+        }
+
+
         public Guid ProfileId { get; private set; }
         public Guid? DefaultDashboardId { get; private set; }
         public Guid AccountId { get; private set; }

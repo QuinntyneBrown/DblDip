@@ -1,10 +1,11 @@
+using BuildingBlocks.EventStore;
 using System;
 
 namespace DblDip.Core.DomainEvents
 {
-    public record ShotAdded(string Value);
-    public record ShotRemoved(Guid ShotId);
-    public record ShotListCreated(Guid ShotListId);
-    public record ShotListUpdated;
-    public record ShotListRemoved(DateTime Deleted);
+    public record ShotAdded(string Value): Event;
+    public record ShotRemoved(Guid ShotId): Event;
+    public record ShotListCreated(Guid ShotListId): Event;
+    public record ShotListUpdated: Event;
+    public record ShotListRemoved(DateTime Deleted): Event;
 }

@@ -1,9 +1,16 @@
-﻿using System;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DblDip.Core.Models
 {
+    [Owned]
     public class ProfileReference
     {
+        protected ProfileReference()
+        {
+
+        }
+
         public ProfileReference(Guid profileId, string name)
         {
             ProfileId = profileId;

@@ -1,4 +1,5 @@
 ﻿using BuildingBlocks.Core;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 
@@ -15,9 +16,8 @@ namespace DblDip.Core.Interfaces
             return Scheduled.Overlap(scheduled.Scheduled);
         }
     }
-    public interface IScheduledAggregate : IScheduled, IAggregate
+    public interface IScheduledAggregate : IScheduled, IAggregateRoot
     {
-
 
         public void Reschedule(DateRange newSchedule)
         {

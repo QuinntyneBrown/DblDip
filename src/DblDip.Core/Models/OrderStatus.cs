@@ -1,4 +1,4 @@
-﻿namespace DblDip.Core.Models
+namespace DblDip.Core.Models
 {
     public enum OrderStatus
     {

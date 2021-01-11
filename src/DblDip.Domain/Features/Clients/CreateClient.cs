@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -6,6 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DblDip.Core.ValueObjects;
 using DblDip.Domain.IntegrationEvents;
+using DblDip.Core.Data;
 
 namespace DblDip.Domain.Features
 {
@@ -21,8 +22,8 @@ namespace DblDip.Domain.Features
 
         public class Request : IRequest<Response>
         {
-            public string Name { get; init; }
-            public Email Email { get; init; }
+            public string Name { get; set; }
+            public Email Email { get; set; }
         }
 
         public class Response
@@ -32,10 +33,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly IMediator _mediator;
 
-            public Handler(IAppDbContext context, IMediator mediator)
+            public Handler(IDblDipDbContext context, IMediator mediator)
             {
                 _context = context;
                 _mediator = mediator;
@@ -47,7 +48,7 @@ namespace DblDip.Domain.Features
 
                 var client = new Client(request.Name, request.Email);
 
-                _context.Store(client);
+                _context.Add(client);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

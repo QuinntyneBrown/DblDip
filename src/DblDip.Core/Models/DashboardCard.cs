@@ -1,6 +1,25 @@
-﻿using System;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DblDip.Core.Models
 {
-    public record DashboardCard(Guid DashboardCardId, dynamic Options);
+    [Owned]
+    public class DashboardCard
+    {
+        public Guid DashboardCardId { get; set; }
+        [NotMapped]
+        public dynamic Options { get; set; }
+        public DashboardCard()
+        {
+
+        }
+
+        public DashboardCard(Guid dashboardCardId, dynamic options)
+        {
+            DashboardCardId = dashboardCardId;
+            Options = options;
+        }
+
+    }
 }

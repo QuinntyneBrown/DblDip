@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.Interfaces;
 using DblDip.Core.ValueObjects;
@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public abstract class PhotographyProject : AggregateRoot, IScheduledAggregate
     {
+        protected PhotographyProject()
+        {
+
+        }
+
         protected override void When(dynamic @event)
         {
             if (@event is PhotoGallerySent)
@@ -45,7 +50,7 @@ namespace DblDip.Core.Models
 
         }
 
-
+        public Guid PhotographyProjectId { get; private set; }
         public abstract DateRange Scheduled { get; }
         public Guid PhotographerId { get; private set; }
         public Guid ParticipantId { get; private set; }

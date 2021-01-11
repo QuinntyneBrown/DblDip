@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
@@ -8,6 +8,14 @@ namespace DblDip.Core.Models
 {
     public class Ticket : AggregateRoot
     {
+        public Guid TicketId { get; private set; }
+        public Guid EpicId { get; private set; }
+        public string Name { get; private set; }
+        public string Url { get; private set; }
+        public string AcceptanceCriteria { get; private set; }
+        public int Priority { get; private set; }
+        public ICollection<Comment> Coments { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Ticket()
         {
             Apply(new TicketCreated(Guid.NewGuid()));
@@ -43,14 +51,5 @@ namespace DblDip.Core.Models
         {
             Apply(new TicketUpdated());
         }
-
-        public Guid TicketId { get; private set; }
-        public Guid EpicId { get; private set; }
-        public string Name { get; private set; }
-        public string Url { get; private set; }
-        public string AcceptanceCriteria { get; private set; }
-        public int Priority { get; private set; }
-        public ICollection<Comment> Coments { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

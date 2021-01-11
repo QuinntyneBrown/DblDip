@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using CSharpFunctionalExtensions;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace DblDip.Core.ValueObjects
 {
+    [Owned]
     public class Price : ValueObject
     {
         public const decimal MinPriceValue = 0;

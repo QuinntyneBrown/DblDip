@@ -1,10 +1,11 @@
+using BuildingBlocks.EventStore;
 using System;
 
 namespace DblDip.Core.DomainEvents
 {
-    public record StoryCreated (Guid StoryId);
-    public record StoryUpdated;
-    public record StoryRemoved (DateTime Deleted);
-    public record StoryTaskAdded (Guid TaskId);
-    public record StoryTaskRemoved (Guid TaskId);
+    public record StoryCreated (Guid StoryId): Event;
+    public record StoryUpdated: Event;
+    public record StoryRemoved (DateTime Deleted): Event;
+    public record StoryTaskAdded (Guid TaskId): Event;
+    public record StoryTaskRemoved (Guid TaskId): Event;
 }

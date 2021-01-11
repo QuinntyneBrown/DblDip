@@ -22,7 +22,7 @@ namespace DblDip.Domain.UnitTests.Sagas
 
             var quote = new WeddingQuote(email, wedding, rate);
 
-            var context = new AppDbContextBuilder()
+            var context = new DblDipDbContextBuilder()
                 .Add(rate)
                 .Add(wedding)
                 .Add(quote)

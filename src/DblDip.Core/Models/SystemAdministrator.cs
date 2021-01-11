@@ -6,6 +6,11 @@ namespace DblDip.Core.Models
 {
     public class SystemAdministrator : Profile
     {
+        protected SystemAdministrator()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public SystemAdministrator(string name, Email email)

@@ -1,4 +1,4 @@
-﻿using BuildingBlocks.Abstractions;
+﻿using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
 using System;
@@ -13,18 +13,11 @@ namespace DblDip.Core.Services
 
     public class AvailabilityCheck : IAvailabilityCheck
     {
-        private readonly IAppDbContext _context;
 
-        public AvailabilityCheck(IAppDbContext context)
-        {
-            _context = context;
-        }
 
         public Task<bool> IsAvailable(DateRange dateRange)
         {
-            var orders = _context.Set<Order>();
-
-            throw new NotImplementedException();
+            return System.Threading.Tasks.Task.FromResult(true);
         }
     }
 }

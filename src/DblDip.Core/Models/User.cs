@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using BuildingBlocks.Core;
 using DblDip.Core.DomainEvents;
 using DblDip.Core.Exceptions;
@@ -11,6 +11,23 @@ namespace DblDip.Core.Models
 {
     public class User : AggregateRoot
     {
+        protected User()
+        {
+
+        }
+
+        public Guid UserId { get; private set; }
+        public Email Username { get; private set; }
+        public string Password { get; private set; }
+        public byte[] Salt { get; private set; }
+        public bool PasswordResetRequired { get; private set; }
+        public string RefreshToken { get; private set; }
+        public ICollection<RoleReference> Roles { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
+        public User(IEnumerable<IEvent> events)
+            : base(events) { }
+
         public User(string username, string password = null, IUsernameAvailabilityCheck usernameAvailabilityCheck = null, IPasswordHasher passwordHasher = null)
         {
             var passwordResetRequired = string.IsNullOrEmpty(password);
@@ -88,16 +105,5 @@ namespace DblDip.Core.Models
         {
             Apply(new UserRefreshTokenAdded(refreshToken));
         }
-
-        public Guid UserId { get; private set; }
-        public Email Username { get; private set; }
-        public string Password { get; private set; }
-        public byte[] Salt { get; private set; }
-        public bool PasswordResetRequired { get; private set; }
-        public string RefreshToken { get; private set; }
-        public ICollection<RoleReference> Roles { get; private set; }
-        public DateTime? Deleted { get; private set; }
-
-        public record RoleReference(Guid RoleId, string Name);
     }
 }

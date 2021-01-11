@@ -1,4 +1,4 @@
-using BuildingBlocks.Abstractions;
+using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 
@@ -6,6 +6,11 @@ namespace DblDip.Core.Models
 {
     public class Post : AggregateRoot
     {
+        protected Post()
+        {
+
+        }
+
         protected override void When(dynamic @event) => When(@event);
 
         public Post(Guid authorId, string title)

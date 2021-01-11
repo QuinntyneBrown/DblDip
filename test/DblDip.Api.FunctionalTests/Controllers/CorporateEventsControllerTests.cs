@@ -50,7 +50,7 @@ namespace DblDip.Api.FunctionalTests
 
             var client = _fixture.CreateAuthenticatedClient();
 
-            context.Store(corporateEvent);
+            context.Add(corporateEvent);
 
             await context.SaveChangesAsync(default);
 
@@ -70,7 +70,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(corporateEvent);
+            context.Add(corporateEvent);
 
             await context.SaveChangesAsync(default);
 
@@ -91,7 +91,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(corporateEvent);
+            context.Add(corporateEvent);
 
             await context.SaveChangesAsync(default);
 
@@ -111,7 +111,7 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            context.Store(corporateEvent);
+            context.Add(corporateEvent);
 
             await context.SaveChangesAsync(default);
 

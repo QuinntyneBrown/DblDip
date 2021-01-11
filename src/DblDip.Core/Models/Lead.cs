@@ -7,6 +7,11 @@ namespace DblDip.Core.Models
 {
     public class Lead : Profile
     {
+        protected Lead()
+        {
+
+        }
+
         public Lead(Email email)
             : base(null, email, typeof(Lead))
         {

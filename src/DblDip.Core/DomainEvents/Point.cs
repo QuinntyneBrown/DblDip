@@ -1,8 +1,9 @@
+using BuildingBlocks.EventStore;
 using System;
 
 namespace DblDip.Core.DomainEvents
 {
-    public record PointCreated (Guid PointId);
-    public record PointUpdated;
-    public record PointRemoved (DateTime Deleted);
+    public record PointCreated (Guid PointId): Event;
+    public record PointUpdated: Event;
+    public record PointRemoved (DateTime Deleted): Event;
 }

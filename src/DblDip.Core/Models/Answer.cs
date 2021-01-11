@@ -1,6 +1,22 @@
-﻿using System;
+using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DblDip.Core.Models
 {
-    public record Answer(Guid QuestionId, int Value);
+    [Owned]
+    public class Answer
+    {
+        public Guid QuestionId { get; set; }
+        public int Value { get; set; }
+        public Answer()
+        {
+
+        }
+
+        public Answer(Guid questionId, int value)
+        {
+            QuestionId = questionId;
+            Value = value;
+        }
+    }
 }

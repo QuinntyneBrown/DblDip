@@ -1,6 +1,7 @@
+using BuildingBlocks.EventStore;
 using FluentValidation;
 using MediatR;
-using BuildingBlocks.Abstractions;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
@@ -25,10 +26,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Unit>
         {
-            private readonly IAppDbContext _context;
+            private readonly IDblDipDbContext _context;
             private readonly IDateTime _dateTime;
 
-            public Handler(IAppDbContext context, IDateTime dateTime)
+            public Handler(IDblDipDbContext context, IDateTime dateTime)
             {
                 _context = context;
                 _dateTime = dateTime;
@@ -40,7 +41,7 @@ namespace DblDip.Domain.Features
 
                 task.Complete(_dateTime.UtcNow);
 
-                _context.Store(task);
+                _context.Add(task);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

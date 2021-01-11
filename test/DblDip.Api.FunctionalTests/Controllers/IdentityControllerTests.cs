@@ -43,13 +43,17 @@ namespace DblDip.Api.FunctionalTests
 
             var context = _fixture.Context;
 
-            var rate = context.Store(new Rate("test", (Price)1));
+            var rate =new Rate("test", (Price)1);
 
-            var wedding = context.Store(new Wedding(Location.Create(1, 1).Value, Location.Create(1, 1).Value, Location.Create(1, 1).Value, DateTime.Now, 4));
+            context.Add(rate);
+
+            var wedding = new Wedding(Location.Create(1, 1).Value, Location.Create(1, 1).Value, Location.Create(1, 1).Value, DateTime.Now, 4);
+
+            context.Add(wedding);
 
             var weddingQuote = new WeddingQuote((Email)"random@gmail.com", wedding, rate);
 
-            context.Store(weddingQuote);
+            context.Add(weddingQuote);
 
             await context.SaveChangesAsync(default);
 

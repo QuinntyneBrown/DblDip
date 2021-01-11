@@ -20,7 +20,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Abstractions\BuildingBlocks.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\DblDip.Core\DblDip.Core.csproj" />
     <ProjectReference Include="..\DblDip.Testing\DblDip.Testing.csproj" />
   </ItemGroup>

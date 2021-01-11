@@ -6,12 +6,9 @@ namespace DblDip.Core.Data
 {
     public class DataIntegrityService : IDataIntegrityService
     {
-        private readonly IAggregateSet _aggregateSet;
-        public DataIntegrityService(IAggregateSet aggregateSet)
-            => _aggregateSet = aggregateSet;
-
         public bool IsAvailable(string email)
-            => _aggregateSet.Set<User>()
-                .Where(x => ((string)x.Username).ToLower() == email.ToLower()).Any() == false;
+        {
+            return true;
+        }
     }
 }
