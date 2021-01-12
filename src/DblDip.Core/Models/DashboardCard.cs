@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DblDip.Core.Models
 {
@@ -8,8 +8,8 @@ namespace DblDip.Core.Models
     public class DashboardCard
     {
         public Guid DashboardCardId { get; set; }
-        [NotMapped]
-        public dynamic Options { get; set; }
+
+        public string Options { get; set; }
         public DashboardCard()
         {
 
@@ -20,6 +20,5 @@ namespace DblDip.Core.Models
             DashboardCardId = dashboardCardId;
             Options = options;
         }
-
     }
 }

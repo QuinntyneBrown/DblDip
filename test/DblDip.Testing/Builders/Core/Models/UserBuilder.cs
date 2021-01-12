@@ -29,7 +29,7 @@ namespace DblDip.Testing.Builders
 
         public RoleReferenceBuilder(string name)
         {
-            _role = new RoleReference(default, name);
+            _role = new RoleReference(default);
         }
 
         public RoleReference Build()

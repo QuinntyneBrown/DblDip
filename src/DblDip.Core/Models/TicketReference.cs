@@ -6,17 +6,14 @@ namespace DblDip.Core.Models
     [Owned]
     public class TicketReference
     {
+        public Guid TicketId { get; init; }
         protected TicketReference()
         {
 
         }
-
-        public Guid TicketId { get; init; }
-        public string Title { get; init; }
-        public TicketReference(Guid ticketId, string title)
+        public TicketReference(Guid ticketId)
         {
             TicketId = ticketId;
-            Title = title;
         }
     }
 }

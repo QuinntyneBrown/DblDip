@@ -32,10 +32,10 @@ namespace DblDip.Testing.Factories
             return _tokenProvider.Get(userName, claims);
         }
 
-        public static string CreateToken(User user)
+        public static string CreateToken(User user, IEnumerable<Role> roles)
         {
 
-            var claims = user.Roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name))
+            var claims = roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name))
                 .ToList();
 
             claims.Add(new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}"));

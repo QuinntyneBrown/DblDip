@@ -6,6 +6,6 @@ namespace DblDip.Domain.Features
     {
         public Guid DashboardCardId { get; init; }
         public Guid DashboardId { get; init; }
-        public dynamic Options { get; init; }
+        public DashboardCardOptionsDto Options { get; init; }
     }
 }

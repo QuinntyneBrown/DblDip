@@ -1271,9 +1271,6 @@ namespace DblDip.Api.Migrations
                             b1.Property<Guid>("PostId")
                                 .HasColumnType("uniqueidentifier");
 
-                            b1.Property<string>("Title")
-                                .HasColumnType("nvarchar(max)");
-
                             b1.HasKey("BlogId", "Id");
 
                             b1.ToTable("PostReference");
@@ -1445,6 +1442,9 @@ namespace DblDip.Api.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("uniqueidentifier");
 
+                            b1.Property<string>("Options")
+                                .HasColumnType("nvarchar(max)");
+
                             b1.HasKey("DashboardId", "DashboardCardId");
 
                             b1.ToTable("DashboardCard");
@@ -1470,9 +1470,6 @@ namespace DblDip.Api.Migrations
 
                             b1.Property<Guid>("TicketId")
                                 .HasColumnType("uniqueidentifier");
-
-                            b1.Property<string>("Title")
-                                .HasColumnType("nvarchar(max)");
 
                             b1.HasKey("EpicId", "Id");
 
@@ -1525,6 +1522,55 @@ namespace DblDip.Api.Migrations
                         });
 
                     b.Navigation("RespondentEmail");
+                });
+
+            modelBuilder.Entity("DblDip.Core.Models.Library", b =>
+                {
+                    b.OwnsMany("DblDip.Core.Models.DigitalAssetReference", "MyFiles", b1 =>
+                        {
+                            b1.Property<Guid>("LibraryId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<Guid>("DigitalAssetId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("LibraryId", "Id");
+
+                            b1.ToTable("Libraries_MyFiles");
+
+                            b1.WithOwner()
+                                .HasForeignKey("LibraryId");
+                        });
+
+                    b.OwnsMany("DblDip.Core.Models.DigitalAssetReference", "MyImages", b1 =>
+                        {
+                            b1.Property<Guid>("LibraryId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<Guid>("DigitalAssetId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("LibraryId", "Id");
+
+                            b1.ToTable("Libraries_MyImages");
+
+                            b1.WithOwner()
+                                .HasForeignKey("LibraryId");
+                        });
+
+                    b.Navigation("MyFiles");
+
+                    b.Navigation("MyImages");
                 });
 
             modelBuilder.Entity("DblDip.Core.Models.Meeting", b =>
@@ -2146,9 +2192,6 @@ namespace DblDip.Api.Migrations
                                 .ValueGeneratedOnAdd()
                                 .HasColumnType("int")
                                 .UseIdentityColumn();
-
-                            b1.Property<string>("Name")
-                                .HasColumnType("nvarchar(max)");
 
                             b1.Property<Guid>("RoleId")
                                 .HasColumnType("uniqueidentifier");

@@ -821,8 +821,7 @@ namespace DblDip.Api.Migrations
                     BlogId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    PostId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -861,7 +860,8 @@ namespace DblDip.Api.Migrations
                 columns: table => new
                 {
                     DashboardCardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DashboardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    DashboardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Options = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -881,8 +881,7 @@ namespace DblDip.Api.Migrations
                     EpicId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    TicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    TicketId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -892,6 +891,46 @@ namespace DblDip.Api.Migrations
                         column: x => x.EpicId,
                         principalTable: "Epics",
                         principalColumn: "EpicId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Libraries_MyFiles",
+                columns: table => new
+                {
+                    LibraryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DigitalAssetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Libraries_MyFiles", x => new { x.LibraryId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_Libraries_MyFiles_Libraries_LibraryId",
+                        column: x => x.LibraryId,
+                        principalTable: "Libraries",
+                        principalColumn: "LibraryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Libraries_MyImages",
+                columns: table => new
+                {
+                    LibraryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DigitalAssetId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Libraries_MyImages", x => new { x.LibraryId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_Libraries_MyImages_Libraries_LibraryId",
+                        column: x => x.LibraryId,
+                        principalTable: "Libraries",
+                        principalColumn: "LibraryId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -1130,8 +1169,7 @@ namespace DblDip.Api.Migrations
                     UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    RoleId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -1226,7 +1264,10 @@ namespace DblDip.Api.Migrations
                 name: "Invoices");
 
             migrationBuilder.DropTable(
-                name: "Libraries");
+                name: "Libraries_MyFiles");
+
+            migrationBuilder.DropTable(
+                name: "Libraries_MyImages");
 
             migrationBuilder.DropTable(
                 name: "Meetings");
@@ -1341,6 +1382,9 @@ namespace DblDip.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Dashboards");
+
+            migrationBuilder.DropTable(
+                name: "Libraries");
 
             migrationBuilder.DropTable(
                 name: "Orders");

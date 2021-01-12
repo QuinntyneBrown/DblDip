@@ -11,12 +11,10 @@ namespace DblDip.Core.Models
 
         }
 
-        public ProfileReference(Guid profileId, string name)
+        public ProfileReference(Guid profileId)
         {
             ProfileId = profileId;
-            Name = name;
         }
         public Guid ProfileId { get; init; }
-        public string Name { get; init; }
     }
 }

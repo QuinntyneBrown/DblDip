@@ -5,6 +5,7 @@ using DblDip.Testing.Builders;
 using DblDip.Testing.Factories;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -84,7 +85,7 @@ namespace DblDip.Api.FunctionalTests
 
             await context.SaveChangesAsync(default);
 
-            var token = TokenFactory.CreateToken(user);
+            var token = TokenFactory.CreateToken(user, new List<Role>());
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { profileId = profile.ProfileId }), Encoding.UTF8, "application/json");
 
@@ -117,7 +118,7 @@ namespace DblDip.Api.FunctionalTests
 
             await context.SaveChangesAsync(default);
 
-            var token = TokenFactory.CreateToken(user);
+            var token = TokenFactory.CreateToken(user, default);
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { profileId = profile.ProfileId }), Encoding.UTF8, "application/json");
 
@@ -152,7 +153,7 @@ namespace DblDip.Api.FunctionalTests
 
             await context.SaveChangesAsync(default);
 
-            var token = TokenFactory.CreateToken(user);
+            var token = TokenFactory.CreateToken(user, default);
 
             var httpResponseMessage = await _fixture.CreateAuthenticatedClient(token).GetAsync(Get.Profiles);
 

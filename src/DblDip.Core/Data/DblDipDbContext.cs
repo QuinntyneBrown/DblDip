@@ -3,6 +3,8 @@ using Microsoft.Extensions.Logging;
 using DblDip.Core.Models;
 using BuildingBlocks.EventStore;
 using DblDip.Core.ValueObjects;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace DblDip.Core.Data
 {
@@ -93,6 +95,10 @@ namespace DblDip.Core.Data
             modelBuilder.Entity<User>().Property(user => user.Username).HasConversion(
                 property => (string)property,
                 property => (Email)property);
+
+            //modelBuilder.Entity<DashboardCard>().Property(user => user.Options).HasConversion(
+            //    property => JsonConvert.SerializeObject(property),
+            //    property => JsonConvert.DeserializeObject<JObject>(property));
         }
 
         protected override void OnTrackedAggregatesChanged(IAggregateRoot aggregateRoot, EntityState entityState)

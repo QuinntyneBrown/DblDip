@@ -8,11 +8,6 @@ namespace DblDip.Core.Models
 {
     public class Dashboard : AggregateRoot
     {
-        protected Dashboard()
-        {
-
-        }
-
         private ICollection<DashboardCard> _dashboardCards;
         public Guid DashboardId { get; private set; }
         public Guid ProfileId { get; private set; }
@@ -20,6 +15,11 @@ namespace DblDip.Core.Models
         public bool IsDefault { get; private set; }
         public DateTime? Deleted { get; private set; }
         public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
+
+        protected Dashboard()
+        {
+
+        }
 
         public Dashboard(IEnumerable<IEvent> events)
             : base(events) { }

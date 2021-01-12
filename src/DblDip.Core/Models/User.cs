@@ -68,12 +68,12 @@ namespace DblDip.Core.Models
 
         protected void When(RoleReferenceAdded roleReferenceAdded)
         {
-            Roles.Add(new RoleReference(roleReferenceAdded.RoleId, roleReferenceAdded.Name));
+            Roles.Add(new RoleReference(roleReferenceAdded.RoleId));
         }
 
         protected void When(RoleReferenceRemoved roleReferenceRemoved)
         {
-            Roles.Remove(new RoleReference(roleReferenceRemoved.RoleId, roleReferenceRemoved.Name));
+            Roles.Remove(new RoleReference(roleReferenceRemoved.RoleId));
         }
 
         public void When(UserRefreshTokenAdded userRefreshTokenAdded)

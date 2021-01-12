@@ -7,11 +7,9 @@ namespace DblDip.Core.Models
     public class RoleReference
     {
         public Guid RoleId { get; set; }
-        public string Name { get; set; }
-        public RoleReference(Guid roleId, string name)
+        public RoleReference(Guid roleId)
         {
             RoleId = roleId;
-            Name = name;
         }
 
         public RoleReference()

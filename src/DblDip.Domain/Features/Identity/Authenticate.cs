@@ -10,6 +10,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace DblDip.Domain.Features
 {
@@ -43,9 +44,15 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
+                var user = await (from u in _context.Users
+                                    where u.Username == request.Username
+                                    select u).SingleAsync();
 
-                var user = _context.Set<User>()
-                    .SingleOrDefault(x => ((string)x.Username).ToLower() == request.Username.ToLower());
+                var roleIds = user.Roles.Select(x => x.RoleId).ToList();
+
+                var roles = await (from role in _context.Roles                                       
+                                    where roleIds.Contains(role.RoleId)
+                                    select role).ToListAsync();
 
                 if (user == null)
                     throw new Exception();
@@ -53,11 +60,11 @@ namespace DblDip.Domain.Features
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();
 
-                var roles = user?.Roles.Select(x => new Claim(Core.Constants.ClaimTypes.Role, x.Name)).ToArray();
+                var claims = roles.Select(x => new Claim(Core.Constants.ClaimTypes.Role, x.Name)).ToArray();
 
                 var userIdClaim = new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}");
 
-                return new Response(_tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }), user.UserId);
+                return new(_tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }), user.UserId);
             }
 
             public bool ValidateUser(User user, string transformedPassword)

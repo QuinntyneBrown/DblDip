@@ -46,10 +46,8 @@ namespace DblDip.Core.Models
 
         public Guid LibraryId { get; private set; }
         public Guid PhotographerId { get; private set; }
-        [NotMapped]
-        public ICollection<Guid> MyImages { get; private set; }
-        [NotMapped]
-        public ICollection<Guid> MyFiles { get; private set; }
+        public ICollection<DigitalAssetReference> MyImages { get; private set; }
+        public ICollection<DigitalAssetReference> MyFiles { get; private set; }
         public DateTime? Deleted { get; private set; }
     }
 }
