@@ -36,12 +36,9 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var dashboard = await _context.FindAsync<Dashboard>(request.Dashboard.DashboardId);
 
                 dashboard.Update(request.Dashboard.Name);
-
-                _context.Add(dashboard);
 
                 await _context.SaveChangesAsync(cancellationToken);
 

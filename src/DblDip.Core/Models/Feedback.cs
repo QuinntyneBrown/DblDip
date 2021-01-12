@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public class Feedback : AggregateRoot
     {
+        public Guid FeedbackId { get; private set; }
+        public Email RespondentEmail { get; private set; }
+        public string Description { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
         protected Feedback()
         {
 
@@ -30,10 +35,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid FeedbackId { get; private set; }
-        public Email RespondentEmail { get; private set; }
-        public string Description { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

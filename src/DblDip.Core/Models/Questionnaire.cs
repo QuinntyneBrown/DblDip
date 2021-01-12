@@ -6,6 +6,8 @@ namespace DblDip.Core.Models
 {
     public class Questionnaire : AggregateRoot
     {
+        public Guid QuestionnaireId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Questionnaire()
         {
             Apply(new QuestionnaireCreated(Guid.NewGuid()));
@@ -40,8 +42,5 @@ namespace DblDip.Core.Models
         {
             Apply(new QuestionnaireRemoved(deleted));
         }
-
-        public Guid QuestionnaireId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

@@ -6,6 +6,14 @@ namespace DblDip.Core.Models
 {
     public class Post : AggregateRoot
     {
+        public Guid PostId { get; private set; }
+        public Guid AuthorId { get; private set; }
+        public string Title { get; private set; }
+        public string Slug { get; private set; }
+        public string Body { get; private set; }
+        public DateTime? Deleted { get; private set; }
+        public DateTime? Published { get; private set; }
+
         protected Post()
         {
 
@@ -69,12 +77,5 @@ namespace DblDip.Core.Models
             Apply(new PostTitleUpdated(title));
         }
 
-        public Guid PostId { get; private set; }
-        public Guid AuthorId { get; private set; }
-        public string Title { get; private set; }
-        public string Slug { get; private set; }
-        public string Body { get; private set; }
-        public DateTime? Deleted { get; private set; }
-        public DateTime? Published { get; private set; }
     }
 }
