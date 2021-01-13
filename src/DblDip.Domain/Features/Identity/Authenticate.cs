@@ -46,15 +46,13 @@ namespace DblDip.Domain.Features
             {
 
                 var userRoles = await(from u in _context.Users
-                                   join rr in _context.Users.SelectMany(x => x.Roles) on true equals true into sj
-                                   from rrr in sj.DefaultIfEmpty()
-                                   join r in _context.Roles on rrr.RoleId equals r.RoleId into oj
-                                   from rr in oj.DefaultIfEmpty()
+                                   join rr in _context.Users.SelectMany(x => x.Roles) on true equals true 
+                                   join r in _context.Roles on rr.RoleId equals r.RoleId
                                    where u.Username == request.Username
                                    select new
                                    {
                                        User = u,
-                                       Role = rr
+                                       Role = r
                                    }).ToListAsync();
 
                 var user = userRoles.FirstOrDefault().User;
