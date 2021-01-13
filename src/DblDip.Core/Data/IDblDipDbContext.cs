@@ -3,10 +3,11 @@ using DblDip.Core.Models;
 using System.Threading;
 using System.Threading.Tasks;
 using BuildingBlocks.EventStore;
+using BuildingBlocks.Core;
 
 namespace DblDip.Core.Data
 {
-    public interface IDblDipDbContext: IEventStore
+    public interface IDblDipDbContext: IDbContext
     {
         DbSet<Account> Accounts { get; }
         DbSet<Availability> Availabilities { get; }
@@ -78,8 +79,5 @@ namespace DblDip.Core.Data
         DbSet<WeddingQuote> WeddingQuotes { get; }
         DbSet<YouTubeVideo> YouTubeVideos { get; }
 
-        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
-        ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValues) where TEntity : class;
-        DbSet<TEntity> Set<TEntity>() where TEntity : class;
     }
 }

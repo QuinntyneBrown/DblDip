@@ -1,17 +1,15 @@
+using BuildingBlocks.EventStore;
+using DblDip.Core.Models;
+using DblDip.Core.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using DblDip.Core.Models;
-using BuildingBlocks.EventStore;
-using DblDip.Core.ValueObjects;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace DblDip.Core.Data
 {
-    public class DblDipDbContext: EventStore, IDblDipDbContext
+    public class DblDipDbContext: DbContext, IDblDipDbContext
     {
-        public DblDipDbContext(DbContextOptions options, IDateTime dateTime, ICorrelationIdAccessor correlationIdAccessor)
-            : base(options, dateTime, correlationIdAccessor)
+        public DblDipDbContext(DbContextOptions<DblDipDbContext> options)
+            : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
         }
@@ -91,25 +89,17 @@ namespace DblDip.Core.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<User>().Property(user => user.Username).HasConversion(
                 property => (string)property,
                 property => (Email)property);
+
+/*            modelBuilder.Entity<RoleReference>()
+        .HasKey(x => new { x.UserId, x.RoleId });*/
 
             //modelBuilder.Entity<DashboardCard>().Property(user => user.Options).HasConversion(
             //    property => JsonConvert.SerializeObject(property),
             //    property => JsonConvert.DeserializeObject<JObject>(property));
         }
 
-        protected override void OnTrackedAggregatesChanged(IAggregateRoot aggregateRoot, EntityState entityState)
-        {
-            if (Entry(aggregateRoot).State == EntityState.Detached)
-            {
-                Attach(aggregateRoot);
-
-                Entry(aggregateRoot).State = entityState;
-
-            }
-        }
     }
 }

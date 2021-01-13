@@ -21,7 +21,7 @@ namespace DblDip.Testing
 {
     public class ApiTestFixture : WebApplicationFactory<Startup>, IDisposable
     {
-        private IDblDipDbContext _context;
+        private IEventStore _context;
         private IConfiguration _configuration;
         private readonly Guid _correlationId = Guid.NewGuid();
 
@@ -51,14 +51,14 @@ namespace DblDip.Testing
                 {
                     var scopedServices = scope.ServiceProvider;
 
+                    var store = scopedServices.GetRequiredService<IEventStore>();
                     var context = scopedServices.GetRequiredService<IDblDipDbContext>();
-
-                    DbInitializer.Initialize(context, ConfigurationFactory.Create());
+                    DbInitializer.Initialize(context, store, ConfigurationFactory.Create());
 
                 }
             });
         }
-        public IDblDipDbContext Context
+        public IEventStore Context
         {
             get
             {
@@ -70,9 +70,9 @@ namespace DblDip.Testing
 
                     var dateTime = new MachineDateTime();
 
-                    _context = new DblDipDbContext(options, dateTime, new TestCorrelationIdAccessor(_correlationId));
+                    _context = new EventStore(options, dateTime, new TestCorrelationIdAccessor(_correlationId), default);
 
-                    DbInitializer.Initialize(_context, _configuration);
+                    DbInitializer.Initialize(default, default, _configuration);
                 }
 
                 return _context;
@@ -129,11 +129,11 @@ namespace DblDip.Testing
 
         protected override void Dispose(bool disposing)
         {
-            var options = new DbContextOptionsBuilder()
+            var options = new DbContextOptionsBuilder<EventStore>()
                 .UseSqlServer(_configuration[DataDefaultConnectionString])
                 .Options;
 
-            var context = new DblDipDbContext(options, default, new TestCorrelationIdAccessor(_correlationId));
+            var context = new EventStore(options, default, new TestCorrelationIdAccessor(_correlationId), default);
 
             foreach (var storedEvent in context.StoredEvents.Where(x => x.CorrelationId == _correlationId))
             {

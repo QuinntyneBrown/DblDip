@@ -1,3 +1,4 @@
+using BuildingBlocks.EventStore;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -30,9 +31,9 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _context;
 
-            public Handler(IDblDipDbContext context) => _context = context;
+            public Handler(IEventStore context) => _context = context;
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {

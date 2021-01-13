@@ -22,7 +22,7 @@ namespace DblDip.Core.Models
         public byte[] Salt { get; private set; }
         public bool PasswordResetRequired { get; private set; }
         public string RefreshToken { get; private set; }
-        public ICollection<RoleReference> Roles { get; private set; }
+        public ICollection<RoleReference> Roles { get; private set; } = new HashSet<RoleReference>();
         public DateTime? Deleted { get; private set; }
 
         public User(IEnumerable<IEvent> events)

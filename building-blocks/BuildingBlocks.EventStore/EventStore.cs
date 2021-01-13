@@ -1,64 +1,64 @@
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using static BuildingBlocks.EventStore.AggregateRoot;
 using static Newtonsoft.Json.JsonConvert;
+using static System.Runtime.Serialization.FormatterServices;
 
 namespace BuildingBlocks.EventStore
 {
     public class EventStore : DbContext, IEventStore
     {
-        private readonly List<StoredEvent> _changes = new List<StoredEvent>();
         private readonly IDateTime _dateTime;
         private readonly ICorrelationIdAccessor _correlationIdAccessor;
-        protected virtual void OnTrackedAggregatesChanged(IAggregateRoot aggregateRoot, EntityState entityState)
-        {
+        private readonly IMediator _meditator;
 
-        }
 
         protected readonly List<IAggregateRoot> _trackedAggregates = new List<IAggregateRoot>();
         protected List<IAggregateRoot> TrackedAggregates { get; }
-        public EventStore(DbContextOptions options, IDateTime dateTime, ICorrelationIdAccessor correlationIdAccessor)
+        public EventStore(DbContextOptions options,IDateTime dateTime, ICorrelationIdAccessor correlationIdAccessor, IMediator mediator)
             : base(options)
         {
             ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 
             _dateTime = dateTime;
             _correlationIdAccessor = correlationIdAccessor;
+            _meditator = mediator;
         }
 
         public DbSet<StoredEvent> StoredEvents { get; protected set; }
 
-        public async Task<TAggregateRoot> LoadAsync<TAggregateRoot>(Guid id)
-            where TAggregateRoot : AggregateRoot
+        public override async ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValues)
+            => (await FindAsync(typeof(TEntity), keyValues)) as TEntity;
+
+        public override ValueTask<object> FindAsync(Type entityType, params object[] keyValues)
         {
-            var events = (await StoredEvents.Where(x => x.StreamId == id).OrderBy(x => x.CreatedOn).ToListAsync())
+            var streamId = new Guid($"{keyValues[0]}");
+
+            var events = StoredEvents.Where(x => x.StreamId == streamId).OrderBy(x => x.CreatedOn).ToList()
                     .Select(x => DeserializeObject(x.Data, Type.GetType(x.DotNetType)) as IEvent);
 
             if (!events.Any())
-                return null;
+                return default;
 
-            var aggregate = events.Aggregate(Create<TAggregateRoot>(), (x, y) => x.Apply(y) as TAggregateRoot);
+            var aggregate = events.Aggregate(GetUninitializedObject(entityType) as IAggregateRoot, (x, y) => x.Apply(y));
 
             aggregate.ClearChanges();
 
             _trackedAggregates.Add(aggregate);
 
-            OnTrackedAggregatesChanged(aggregate, EntityState.Modified);
-
-            return aggregate;
+            return new ValueTask<object>(aggregate);
         }
+
+        public async Task<TAggregateRoot> LoadAsync<TAggregateRoot>(Guid id)
+            where TAggregateRoot : AggregateRoot
+            => await FindAsync<TAggregateRoot>(id);
 
         public void Add(IAggregateRoot aggregateRoot)
-        {
-            _trackedAggregates.Add(aggregateRoot);
-
-            OnTrackedAggregatesChanged(aggregateRoot, EntityState.Added);
-
-        }
+            => _trackedAggregates.Add(aggregateRoot);
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {
@@ -66,11 +66,12 @@ namespace BuildingBlocks.EventStore
             {
                 var type = aggregateRoot.GetType();
 
-                StoredEvents.AddRange(aggregateRoot.DomainEvents
-                    .Select(@event => {
+                var storedEvents = aggregateRoot.DomainEvents
+                    .Select(@event =>
+                    {
                         var type = aggregateRoot.GetType();
 
-                        return new StoredEvent
+                        var storedEvent = new StoredEvent
                         {
                             StoredEventId = Guid.NewGuid(),
                             Aggregate = aggregateRoot.GetType().Name,
@@ -82,7 +83,13 @@ namespace BuildingBlocks.EventStore
                             CreatedOn = @event.Created,
                             CorrelationId = _correlationIdAccessor.CorrelationId
                         };
-                    }));
+
+                        return storedEvent;
+                    });
+
+                await _meditator?.Publish(new EventStoreChanged { Events = storedEvents });
+
+                StoredEvents.AddRange(storedEvents);
             }
 
             _trackedAggregates.Clear();

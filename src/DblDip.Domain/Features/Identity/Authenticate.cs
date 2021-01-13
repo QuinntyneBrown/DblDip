@@ -44,18 +44,25 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-                var user = await (from u in _context.Users
-                                    where u.Username == request.Username
-                                    select u).SingleAsync();
 
-                var roleIds = user.Roles.Select(x => x.RoleId).ToList();
+                var userRoles = await(from u in _context.Users
+                                   join rr in _context.Users.SelectMany(x => x.Roles) on true equals true into sj
+                                   from rrr in sj.DefaultIfEmpty()
+                                   join r in _context.Roles on rrr.RoleId equals r.RoleId into oj
+                                   from rr in oj.DefaultIfEmpty()
+                                   where u.Username == request.Username
+                                   select new
+                                   {
+                                       User = u,
+                                       Role = rr
+                                   }).ToListAsync();
 
-                var roles = await (from role in _context.Roles                                       
-                                    where roleIds.Contains(role.RoleId)
-                                    select role).ToListAsync();
+                var user = userRoles.FirstOrDefault().User;
 
                 if (user == null)
                     throw new Exception();
+
+                var roles = userRoles.Select(x => x.Role).ToList();
 
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();

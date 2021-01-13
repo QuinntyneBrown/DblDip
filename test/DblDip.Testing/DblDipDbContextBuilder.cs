@@ -13,16 +13,12 @@ namespace DblDip.Testing
 
         public static DblDipDbContext WithDefaults()
         {
-            var options = new DbContextOptionsBuilder()
+            var options = new DbContextOptionsBuilder<DblDipDbContext>()
                 .UseInMemoryDatabase($"{Guid.NewGuid()}")
                 .Options;
 
-            var dateTime = new MachineDateTime();
-            var appDbContext = new DblDipDbContext(options, dateTime, new TestCorrelationIdAccessor(Guid.NewGuid()));
 
-            DbInitializer.Initialize(appDbContext, ConfigurationFactory.Create());
-
-            appDbContext.SaveChangesAsync(default).GetAwaiter().GetResult();
+            var appDbContext = new DblDipDbContext(options);
 
             return appDbContext;
         }

@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
+using DblDip.Core.Handlers;
 
 namespace DblDip.Api
 {
@@ -64,7 +65,7 @@ namespace DblDip.Api
 
             services.AddHttpContextAccessor();
 
-            services.AddMediatR(typeof(Authenticate));
+            services.AddMediatR(typeof(Authenticate), typeof(EventStoreChangedHandler));
 
             services.AddTransient<IAvailabilityCheck, AvailabilityCheck>();
 
@@ -75,6 +76,18 @@ namespace DblDip.Api
             services.AddEventStore();
 
             services.AddDbContext<DblDipDbContext>((options =>
+            {
+                options
+                .LogTo(Console.WriteLine)
+                .UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
+                    builder => builder
+                    .MigrationsAssembly("DblDip.Api")
+                        .EnableRetryOnFailure())
+                .EnableSensitiveDataLogging();
+            }));
+
+
+            services.AddDbContext<EventStore>((options =>
             {
                 options
                 .LogTo(Console.WriteLine)

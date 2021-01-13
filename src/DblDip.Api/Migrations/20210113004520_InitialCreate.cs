@@ -627,27 +627,6 @@ namespace DblDip.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "StoredEvents",
-                columns: table => new
-                {
-                    StoredEventId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    StreamId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Type = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Aggregate = table.Column<string>(type: "nvarchar(450)", nullable: true),
-                    AggregateDotNetType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Sequence = table.Column<int>(type: "int", nullable: false),
-                    Data = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    DotNetType = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatedOn = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Version = table.Column<int>(type: "int", nullable: false),
-                    CorrelationId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_StoredEvents", x => x.StoredEventId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Stories",
                 columns: table => new
                 {
@@ -1039,6 +1018,26 @@ namespace DblDip.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ServiceReference",
+                columns: table => new
+                {
+                    PhotographerProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ServiceId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ServiceReference", x => new { x.PhotographerProfileId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_ServiceReference_Profiles_PhotographerProfileId",
+                        column: x => x.PhotographerProfileId,
+                        principalTable: "Profiles",
+                        principalColumn: "ProfileId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Quotes_LineItems",
                 columns: table => new
                 {
@@ -1203,11 +1202,6 @@ namespace DblDip.Api.Migrations
                         principalColumns: new[] { "SurveyId", "SurveyResultId" },
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_StoredEvents_StreamId_Aggregate",
-                table: "StoredEvents",
-                columns: new[] { "StreamId", "Aggregate" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -1309,9 +1303,6 @@ namespace DblDip.Api.Migrations
                 name: "Privileges");
 
             migrationBuilder.DropTable(
-                name: "Profiles");
-
-            migrationBuilder.DropTable(
                 name: "Questionnaires");
 
             migrationBuilder.DropTable(
@@ -1330,13 +1321,13 @@ namespace DblDip.Api.Migrations
                 name: "RoleReference");
 
             migrationBuilder.DropTable(
+                name: "ServiceReference");
+
+            migrationBuilder.DropTable(
                 name: "Services");
 
             migrationBuilder.DropTable(
                 name: "Shots");
-
-            migrationBuilder.DropTable(
-                name: "StoredEvents");
 
             migrationBuilder.DropTable(
                 name: "Stories");
@@ -1403,6 +1394,9 @@ namespace DblDip.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Profiles");
 
             migrationBuilder.DropTable(
                 name: "ShotLists");

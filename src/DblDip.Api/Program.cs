@@ -31,6 +31,7 @@ namespace DblDip.Api
             using (var scope = services.CreateScope())
             {
                 var context = scope.ServiceProvider.GetRequiredService<DblDipDbContext>();
+                var store = scope.ServiceProvider.GetRequiredService<EventStore>();
                 var configuration = scope.ServiceProvider.GetRequiredService<IConfiguration>();
 
                 if (args.Contains("ci"))
@@ -39,17 +40,20 @@ namespace DblDip.Api
                 if (args.Contains("dropdb"))
                 {
                     context.Database.EnsureDeleted();
+                    store.Database.EnsureDeleted();
                 }
 
                 if (args.Contains("migratedb"))
                 {
                     context.Database.Migrate();
+                    store.Database.Migrate();
                 }
 
                 if (args.Contains("seeddb"))
                 {
                     context.Database.EnsureCreated();
-                    DbInitializer.Initialize(context, configuration);
+                    store.Database.EnsureCreated();
+                    DbInitializer.Initialize(context, store, configuration);
                 }
 
                 if (args.Contains("secret"))

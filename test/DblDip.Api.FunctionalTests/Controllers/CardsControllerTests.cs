@@ -39,9 +39,9 @@ namespace DblDip.Api.FunctionalTests
 
             var response = JsonConvert.DeserializeObject<CreateCard.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
 
-            var sut = context.FindAsync<Card>(response.Card.CardId);
+            var sut = await context.FindAsync<Card>(response.Card.CardId);
 
-            Assert.NotEqual(default, response.Card.CardId);
+            Assert.NotEqual(default, sut.CardId);
         }
 
         [Fact]

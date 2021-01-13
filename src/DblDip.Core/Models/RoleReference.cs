@@ -6,13 +6,13 @@ namespace DblDip.Core.Models
     [Owned]
     public class RoleReference
     {
-        public Guid RoleId { get; set; }
+        public Guid RoleId { get; init; }
         public RoleReference(Guid roleId)
         {
             RoleId = roleId;
         }
 
-        public RoleReference()
+        private RoleReference()
         {
 
         }

@@ -19,49 +19,6 @@ namespace DblDip.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.1");
 
-            modelBuilder.Entity("BuildingBlocks.EventStore.StoredEvent", b =>
-                {
-                    b.Property<Guid>("StoredEventId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Aggregate")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("AggregateDotNetType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("CorrelationId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("CreatedOn")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Data")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("DotNetType")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Sequence")
-                        .HasColumnType("int");
-
-                    b.Property<Guid>("StreamId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Type")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("Version")
-                        .HasColumnType("int");
-
-                    b.HasKey("StoredEventId");
-
-                    b.HasIndex("StreamId", "Aggregate");
-
-                    b.ToTable("StoredEvents");
-                });
-
             modelBuilder.Entity("DblDip.Core.Models.Account", b =>
                 {
                     b.Property<Guid>("AccountId")
@@ -2523,6 +2480,27 @@ namespace DblDip.Api.Migrations
 
             modelBuilder.Entity("DblDip.Core.Models.Photographer", b =>
                 {
+                    b.OwnsMany("DblDip.Core.Models.ServiceReference", "Services", b1 =>
+                        {
+                            b1.Property<Guid>("PhotographerProfileId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<Guid>("ServiceId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("PhotographerProfileId", "Id");
+
+                            b1.ToTable("ServiceReference");
+
+                            b1.WithOwner()
+                                .HasForeignKey("PhotographerProfileId");
+                        });
+
                     b.OwnsOne("DblDip.Core.ValueObjects.Location", "PrimaryLocation", b1 =>
                         {
                             b1.Property<Guid>("PhotographerProfileId")
@@ -2555,6 +2533,8 @@ namespace DblDip.Api.Migrations
                         });
 
                     b.Navigation("PrimaryLocation");
+
+                    b.Navigation("Services");
                 });
 #pragma warning restore 612, 618
         }
