@@ -8,7 +8,6 @@ namespace DblDip.Core.Models
     public class DashboardCard
     {
         public Guid DashboardCardId { get; set; }
-
         public string Options { get; set; }
         public DashboardCard()
         {

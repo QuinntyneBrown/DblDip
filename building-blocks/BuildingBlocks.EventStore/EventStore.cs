@@ -31,11 +31,10 @@ namespace BuildingBlocks.EventStore
 
         public DbSet<StoredEvent> StoredEvents { get; protected set; }
 
-        public override async ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValues)
-            => (await FindAsync(typeof(TEntity), keyValues)) as TEntity;
-
-        public override ValueTask<object> FindAsync(Type entityType, params object[] keyValues)
+        public override ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValues)
         {
+            var entityType = typeof(TEntity);
+
             var streamId = new Guid($"{keyValues[0]}");
 
             var events = StoredEvents.Where(x => x.StreamId == streamId).OrderBy(x => x.CreatedOn).ToList()
@@ -50,15 +49,10 @@ namespace BuildingBlocks.EventStore
 
             _trackedAggregates.Add(aggregate);
 
-            return new ValueTask<object>(aggregate);
+            return new ValueTask<TEntity>(Task.FromResult(aggregate as TEntity));
         }
 
-        public async Task<TAggregateRoot> LoadAsync<TAggregateRoot>(Guid id)
-            where TAggregateRoot : AggregateRoot
-            => await FindAsync<TAggregateRoot>(id);
-
-        public void Add(IAggregateRoot aggregateRoot)
-            => _trackedAggregates.Add(aggregateRoot);
+        public void Add(IAggregateRoot aggregateRoot) => _trackedAggregates.Add(aggregateRoot);
 
         public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken)
         {

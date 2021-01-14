@@ -1,16 +1,16 @@
-using BuildingBlocks.Core;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BuildingBlocks.EventStore
 {
-    public interface IEventStore: IDbContext
+    public interface IEventStore
     {
         DbSet<StoredEvent> StoredEvents { get; }
-        Task<TAggregateRoot> LoadAsync<TAggregateRoot>(Guid id)
-            where TAggregateRoot : AggregateRoot;
         void Add(IAggregateRoot aggregateRoot);
-
+        ValueTask<TEntity> FindAsync<TEntity>(params object[] keyValues) where TEntity : class;
+        //ValueTask<object> FindAsync(Type entityType, params object[] keyValues);
+        Task<int> SaveChangesAsync(CancellationToken cancellationToken);
     }
 }

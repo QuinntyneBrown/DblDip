@@ -11,11 +11,6 @@ namespace DblDip.Core.Models
 {
     public class User : AggregateRoot
     {
-        protected User()
-        {
-
-        }
-
         public Guid UserId { get; private set; }
         public Email Username { get; private set; }
         public string Password { get; private set; }
@@ -24,7 +19,10 @@ namespace DblDip.Core.Models
         public string RefreshToken { get; private set; }
         public ICollection<RoleReference> Roles { get; private set; } = new HashSet<RoleReference>();
         public DateTime? Deleted { get; private set; }
+        protected User()
+        {
 
+        }
         public User(IEnumerable<IEvent> events)
             : base(events) { }
 

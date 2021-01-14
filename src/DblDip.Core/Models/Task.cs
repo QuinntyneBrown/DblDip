@@ -8,11 +8,6 @@ namespace DblDip.Core.Models
 {
     public class Task : AggregateRoot, IScheduledAggregate
     {
-        protected Task()
-        {
-
-        }
-
         public Guid TaskId { get; private set; }
         public Guid OwnerId { get; private set; }
         public string Name { get; private set; }
@@ -24,6 +19,10 @@ namespace DblDip.Core.Models
         public Task(Guid ownerId, string description)
         {
             Apply(new TaskCreated(Guid.NewGuid(), ownerId, description));
+        }
+        protected Task()
+        {
+
         }
         protected override void When(dynamic @event) => When(@event);
 

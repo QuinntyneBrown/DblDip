@@ -7,13 +7,12 @@ namespace DblDip.Core.Models
 {
     public class WeddingQuote : Quote
     {
+        public Guid WeddingQuoteId { get; private set; }
+        public Guid WeddingId { get; private set; }
         protected WeddingQuote()
         {
 
         }
-
-        public Guid WeddingQuoteId { get; private set; }
-        public Guid WeddingId { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public WeddingQuote(Email billToEmail, Wedding wedding, Rate rate)

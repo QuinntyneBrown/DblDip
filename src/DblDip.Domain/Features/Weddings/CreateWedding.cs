@@ -1,4 +1,4 @@
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -26,12 +26,12 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
             private readonly IConfiguration _configuration;
 
-            public Handler(IDblDipDbContext context, IConfiguration configuration)
+            public Handler(IEventStore store, IConfiguration configuration)
             {
-                _context = context;
+                _store = store;
                 _configuration = configuration;
             }
 
@@ -48,9 +48,9 @@ namespace DblDip.Domain.Features
 
                 var wedding = new Wedding(home, home, location, request.DateTime, request.Hours);
 
-                _context.Add(wedding);
+                _store.Add(wedding);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
 
                 return new Response(wedding.ToDto());
             }

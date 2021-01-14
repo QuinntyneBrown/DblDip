@@ -1,4 +1,4 @@
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using DblDip.Core.ValueObjects;
 using DblDip.Domain.IntegrationEvents;
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 
 namespace DblDip.Domain.Features
 {
@@ -33,12 +33,12 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
             private readonly IMediator _mediator;
 
-            public Handler(IDblDipDbContext context, IMediator mediator)
+            public Handler(IEventStore store, IMediator mediator)
             {
-                _context = context;
+                _store = store;
                 _mediator = mediator;
             }
 
@@ -48,9 +48,9 @@ namespace DblDip.Domain.Features
 
                 var client = new Client(request.Name, request.Email);
 
-                _context.Add(client);
+                _store.Add(client);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
 
                 await _mediator.Publish(new ProfileCreated(client));
 

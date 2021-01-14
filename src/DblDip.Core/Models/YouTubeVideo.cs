@@ -6,15 +6,14 @@ namespace DblDip.Core.Models
 {
     public class YouTubeVideo : AggregateRoot
     {
-        protected YouTubeVideo()
-        {
-
-        }
-
         public Guid YouTubeVideoId { get; private set; }
         public string NativeYouTubeVideoId { get; private set; }
         public string Description { get; private set; }
         public DateTime? Deleted { get; private set; }
+        protected YouTubeVideo()
+        {
+
+        }
         protected override void When(dynamic @event) => When(@event);
 
         public YouTubeVideo(string value)

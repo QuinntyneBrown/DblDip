@@ -7,6 +7,12 @@ namespace DblDip.Core.Models
 {
     public class Equipment : AggregateRoot
     {
+        public Guid EquipmentId { get; private set; }
+        public string Name { get; private set; }
+        public Price Price { get; private set; }
+        public string Description { get; private set; }
+        public Guid? ReceiptDigitalAssetId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected Equipment()
         {
 
@@ -52,11 +58,5 @@ namespace DblDip.Core.Models
             Apply(new EquipmentRemoved(deleted));
         }
 
-        public Guid EquipmentId { get; private set; }
-        public string Name { get; private set; }
-        public Price Price { get; private set; }
-        public string Description { get; private set; }
-        public Guid? ReceiptDigitalAssetId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

@@ -1,4 +1,4 @@
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -29,19 +29,19 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
 
-            public Handler(IDblDipDbContext context) => _context = context;
+            public Handler(IEventStore store) => _store = store;
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                var story = await _context.FindAsync<Story>(request.Story.StoryId);
+                var story = await _store.FindAsync<Story>(request.Story.StoryId);
 
                 story.Update();
 
-                _context.Add(story);
+                _store.Add(story);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
 
                 return new Response()
                 {

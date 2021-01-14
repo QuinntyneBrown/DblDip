@@ -10,11 +10,6 @@ namespace DblDip.Core.Models
 {
     public class Wedding : PhotographyProject
     {
-        protected Wedding()
-        {
-
-        }
-
         public Guid WeddingId { get; private set; }
         public Location StartLocation { get; private set; }
         public Location EndLocation { get; private set; }
@@ -27,6 +22,10 @@ namespace DblDip.Core.Models
             .ToList()).Value;
 
         public override DateRange Scheduled => Timeline.Scheduled;
+        protected Wedding()
+        {
+
+        }
         protected override void When(dynamic @event) => When(@event);
 
         public Wedding(Location start, Location end, Location location, DateTime dateTime, int hours)

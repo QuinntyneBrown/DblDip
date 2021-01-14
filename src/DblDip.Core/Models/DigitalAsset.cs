@@ -15,11 +15,6 @@ namespace DblDip.Core.Models
 {
     public class DigitalAsset : AggregateRoot
     {
-        protected DigitalAsset()
-        {
-
-        }
-
         public DigitalAsset(string name, byte[] bytes, string contentType)
         {
             Apply(new DigitalAssetCreated(Guid.NewGuid(), name, bytes, contentType));
@@ -35,6 +30,11 @@ namespace DblDip.Core.Models
         }
 
         protected override void EnsureValidState()
+        {
+
+        }
+
+        protected DigitalAsset()
         {
 
         }

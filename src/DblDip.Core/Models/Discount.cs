@@ -6,11 +6,12 @@ namespace DblDip.Core.Models
 {
     public class Discount: AggregateRoot
     {
+        public Guid DiscountId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Discount()
         {
 
         }
-
         protected override void When(dynamic @event) => When(@event);
 
         public void When(DiscountCreated discountCreated)
@@ -42,8 +43,5 @@ namespace DblDip.Core.Models
         {
             Apply(new DiscountRemoved(deleted));
         }
-
-        public Guid DiscountId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

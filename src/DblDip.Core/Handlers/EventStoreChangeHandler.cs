@@ -27,7 +27,7 @@ namespace DblDip.Core.Handlers
             {
                 var type = Type.GetType(storedEvent.AggregateDotNetType);
 
-                var entity = await FindAsync(type, storedEvent.StreamId);
+                var entity = await GetAggregateAsync(type, storedEvent.StreamId);
                 
                 entity.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)) as IEvent);
             }
@@ -35,18 +35,11 @@ namespace DblDip.Core.Handlers
             await _context.SaveChangesAsync(cancellationToken);
         }
 
-        private async Task<IAggregateRoot> FindAsync(Type type, Guid streamId)
+        private async Task<IAggregateRoot> GetAggregateAsync(Type type, Guid streamId)
         {
-
             var aggregate = _inMemoryAggregates.SingleOrDefault(x => x.Key == streamId).Value;
 
-            bool addToInMemoryAggregates = false;
-
-            if (aggregate == null)
-            {
-                aggregate = (await _context.FindAsync(type, streamId)) as IAggregateRoot;
-                addToInMemoryAggregates = true;
-            }
+            aggregate ??= (await _context.FindAsync(type, streamId)) as IAggregateRoot;
 
             if (aggregate == null)
             {
@@ -55,7 +48,7 @@ namespace DblDip.Core.Handlers
                 _ = _context.Add(aggregate);
             }
 
-            if (addToInMemoryAggregates)
+            if (!_inMemoryAggregates.Any(x => x.Key == streamId))
             {
                 _inMemoryAggregates.Add(streamId, aggregate);
             }

@@ -1,5 +1,5 @@
 using BuildingBlocks.EventStore;
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using FluentValidation;
 using MediatR;
 using DblDip.Core.Models;
@@ -31,21 +31,21 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Unit>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
             private readonly IDateTime _dateTime;
 
-            public Handler(IDblDipDbContext context, IDateTime dateTime) => (_context, _dateTime) = (context, dateTime);
+            public Handler(IEventStore store, IDateTime dateTime) => (_store, _dateTime) = (store, dateTime);
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var lead = await _context.FindAsync<Lead>(request.LeadId);
+                var lead = await _store.FindAsync<Lead>(request.LeadId);
 
                 lead.Remove(_dateTime.UtcNow);
 
-                _context.Add(lead);
+                _store.Add(lead);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
 
                 return new Unit { };
             }

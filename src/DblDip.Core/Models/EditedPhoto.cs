@@ -6,6 +6,7 @@ namespace DblDip.Core.Models
 {
     public class EditedPhoto : Service
     {
+        public Guid EditedPhotoId { get; private set; }
         public EditedPhoto()
             : base(default, default, default)
         {
@@ -28,7 +29,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid EditedPhotoId { get; private set; }
     }
 }

@@ -1,4 +1,4 @@
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -32,11 +32,11 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
             private readonly IMediator _mediator;
-            public Handler(IDblDipDbContext context, IMediator mediator)
+            public Handler(IEventStore store, IMediator mediator)
             {
-                _context = context;
+                _store = store;
                 _mediator = mediator;
             }
 
@@ -45,9 +45,9 @@ namespace DblDip.Domain.Features
 
                 var photographer = new Photographer(request.Name, request.Email);
 
-                _context.Add(photographer);
+                _store.Add(photographer);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
 
                 await _mediator.Publish(new ProfileCreated(photographer));
 

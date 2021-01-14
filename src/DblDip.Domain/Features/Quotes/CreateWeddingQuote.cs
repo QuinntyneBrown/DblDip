@@ -1,5 +1,5 @@
 using BuildingBlocks.EventStore;
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using FluentValidation;
 using MediatR;
 using DblDip.Core.Models;
@@ -36,28 +36,28 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
             private readonly IDateTime _dateTime;
             private readonly IMediator _mediator;
 
-            public Handler(IDblDipDbContext context, IDateTime dateTime, IMediator mediator)
+            public Handler(IEventStore store, IDateTime dateTime, IMediator mediator)
             {
-                _context = context;
+                _store = store;
                 _dateTime = dateTime;
                 _mediator = mediator;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-                var wedding = await _context.FindAsync<Wedding>(request.WeddingId);
+                var wedding = await _store.FindAsync<Wedding>(request.WeddingId);
 
-                var rate = await _context.FindAsync<Rate>(PhotographyRate);
+                var rate = await _store.FindAsync<Rate>(PhotographyRate);
 
                 var quote = new WeddingQuote((Email)request.Email, wedding, rate);
 
-                _context.Add(quote);
+                _store.Add(quote);
 
-                await _context.SaveChangesAsync(default);
+                await _store.SaveChangesAsync(default);
 
                 await _mediator.Publish(new QuoteCreated(quote));
 
