@@ -7,7 +7,7 @@ namespace DblDip.Testing.Builders
 {
     public class MediatorBuilder
     {
-        private IMediator _mediator;
+        private readonly IMediator _mediator;
 
         public static IMediator WithDefaults()
         {

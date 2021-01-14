@@ -1,5 +1,6 @@
-using DblDip.Core.Data;
 using BuildingBlocks.Core;
+using BuildingBlocks.EventStore;
+using DblDip.Core.Data;
 using DblDip.Core.Models;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -10,26 +11,20 @@ namespace DblDip.Domain.Features
 {
     public class Refresh
     {
-        public class Request : IRequest<Response>
-        {
-            public string AccessToken { get; init; }
-            public string RefreshToken { get; init; }
-        }
+        public record Request(string AccessToken, string RefreshToken) : IRequest<Response>;
 
-        public class Response
-        {
-            public string AccessToken { get; init; }
-            public string RefreshToken { get; init; }
-        }
+        public record Response(string AccessToken, string RefreshToken);
 
         public class Handler : IRequestHandler<Request, Response>
         {
             private readonly IDblDipDbContext _context;
+            private readonly IEventStore _store;
             private readonly ITokenProvider _tokenProvider;
-            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider)
+            public Handler(IDblDipDbContext context, IEventStore store, ITokenProvider tokenProvider)
             {
                 _context = context;
                 _tokenProvider = tokenProvider;
+                _store = store;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
@@ -37,7 +32,7 @@ namespace DblDip.Domain.Features
 
                 var principal = _tokenProvider.GetPrincipalFromExpiredToken(request.AccessToken);
                 var username = principal.Identity.Name;
-                var user = await _context.Set<User>().FirstOrDefaultAsync(x => x.Username == username);
+                var user = await _context.Users.SingleAsync(x => x.Username == username, cancellationToken);
                 var refreshToken = user.RefreshToken;
 
                 if (refreshToken != request.RefreshToken)
@@ -49,15 +44,11 @@ namespace DblDip.Domain.Features
 
                 user.AddRefreshToken(_tokenProvider.GenerateRefreshToken());
 
-                _context.Add(user);
+                _store.Add(user);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
 
-                return new Response
-                {
-                    AccessToken = accessToken,
-                    RefreshToken = user.RefreshToken
-                };
+                return new (accessToken, user.RefreshToken);
             }
         }
     }
