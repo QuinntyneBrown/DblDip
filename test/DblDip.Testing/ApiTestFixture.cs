@@ -3,7 +3,9 @@ using DblDip.Api;
 using DblDip.Core.Data;
 using DblDip.Data;
 using DblDip.Testing.AuthenticationHandlers;
+using DblDip.Testing.Builders;
 using DblDip.Testing.Factories;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -11,6 +13,7 @@ using Microsoft.AspNetCore.TestHost;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Moq;
 using System;
 using System.Linq;
 using System.Net.Http;
@@ -21,9 +24,10 @@ namespace DblDip.Testing
 {
     public class ApiTestFixture : WebApplicationFactory<Startup>, IDisposable
     {
-        private IEventStore _context;
+        private IEventStore _store;
         private IConfiguration _configuration;
         private readonly Guid _correlationId = Guid.NewGuid();
+        private IMediator _mediator;
 
         public ApiTestFixture()
         {
@@ -53,6 +57,7 @@ namespace DblDip.Testing
 
                     var store = scopedServices.GetRequiredService<IEventStore>();
                     var context = scopedServices.GetRequiredService<IDblDipDbContext>();
+                    _mediator = scopedServices.GetRequiredService<IMediator>();
                     DbInitializer.Initialize(context, store, ConfigurationFactory.Create());
 
                 }
@@ -62,24 +67,30 @@ namespace DblDip.Testing
         {
             get
             {
-                if (_context == null)
+                if (_store == null)
                 {
-                    var options = new DbContextOptionsBuilder()
+                    var options = new DbContextOptionsBuilder<EventStore>()
+                        .UseSqlServer(_configuration[DataDefaultConnectionString])
+                        .Options;
+
+                    var contextOptions = new DbContextOptionsBuilder<DblDipDbContext>()
                         .UseSqlServer(_configuration[DataDefaultConnectionString])
                         .Options;
 
                     var dateTime = new MachineDateTime();
 
-                    _context = new EventStore(options, dateTime, new TestCorrelationIdAccessor(_correlationId), default);
+                    _store = new EventStore(options, dateTime, new TestCorrelationIdAccessor(_correlationId), MediatorBuilder.WithDefaults());
 
-                    DbInitializer.Initialize(default, default, _configuration);
+                    var context = new DblDipDbContext(contextOptions);
+
+                    DbInitializer.Initialize(context, _store, _configuration);
                 }
 
-                return _context;
+                return _store;
             }
             set
             {
-                _context = value;
+                _store = value;
             }
         }
 

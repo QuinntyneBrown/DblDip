@@ -1,5 +1,7 @@
 using BuildingBlocks.EventStore;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
+using Moq;
 using System;
 
 namespace DblDip.Testing
@@ -14,8 +16,11 @@ namespace DblDip.Testing
                 .UseInMemoryDatabase($"{Guid.NewGuid()}")
                 .Options;
 
+            var dateTime = new MachineDateTime();
 
-            var eventStore = new EventStore(options, default, default, default);
+            var correlationIdAccessor = new TestCorrelationIdAccessor(Guid.NewGuid());
+
+            var eventStore = new EventStore(options, dateTime, correlationIdAccessor, Mock.Of<IMediator>());
 
             return eventStore;
         }
