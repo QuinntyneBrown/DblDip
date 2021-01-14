@@ -22,6 +22,8 @@ namespace DblDip.Domain.UnitTests.Sagas
 
             var quote = new WeddingQuote(email, wedding, rate);
 
+            var eventStore = new EventStoreBuilder().Build();
+
             var context = new DblDipDbContextBuilder()
                 .Add(rate)
                 .Add(wedding)
@@ -29,7 +31,7 @@ namespace DblDip.Domain.UnitTests.Sagas
                 .SaveChanges()
                 .Build();
 
-            var sut = new QuoteCreatedSaga(context);
+            var sut = new QuoteCreatedSaga(context, eventStore);
 
             await sut.Handle(new QuoteCreated(quote), default);
 

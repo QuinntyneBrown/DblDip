@@ -14,10 +14,12 @@ namespace DblDip.Domain.UnitTests.Sagas
         public async System.Threading.Tasks.Task Should_CreateUserAndAccountWithRolesUponProfileCreated()
         {
             var context = DblDipDbContextBuilder.WithDefaults();
-
+            
+            var store = EventStoreBuilder.WithDefaults();
+            
             var profile = ClientBuilder.WithDefaults();
 
-            var sut = new ProfileCreatedSaga(context);
+            var sut = new ProfileCreatedSaga(store);
 
             await sut.Handle(new ProfileCreated(profile), default);
 

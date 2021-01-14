@@ -5,15 +5,16 @@ using DblDip.Domain.IntegrationEvents;
 using MediatR;
 using System;
 using System.Threading;
+using BuildingBlocks.EventStore;
 
 namespace DblDip.Domain.Sagas
 {
     public class ProfileCreatedSaga : INotificationHandler<ProfileCreated>
     {
-        private readonly IDblDipDbContext _context;
+        private readonly IEventStore _store;
 
-        public ProfileCreatedSaga(IDblDipDbContext context)
-            => _context = context;
+        public ProfileCreatedSaga(IEventStore store)
+            => _store = store;
 
         public async System.Threading.Tasks.Task Handle(ProfileCreated notification, CancellationToken cancellationToken)
         {
@@ -23,10 +24,10 @@ namespace DblDip.Domain.Sagas
 
             var role = profile switch
             {
-                Client => await _context.FindAsync<Role>(Constants.Roles.Client),
-                Photographer => await _context.FindAsync<Role>(Constants.Roles.Photographer),
-                ProjectManager => await _context.FindAsync<Role>(Constants.Roles.ProjectManager),
-                SystemAdministrator => await _context.FindAsync<Role>(Constants.Roles.SystemAdministrator),
+                Client => await _store.FindAsync<Role>(Constants.Roles.Client),
+                Photographer => await _store.FindAsync<Role>(Constants.Roles.Photographer),
+                ProjectManager => await _store.FindAsync<Role>(Constants.Roles.ProjectManager),
+                SystemAdministrator => await _store.FindAsync<Role>(Constants.Roles.SystemAdministrator),
                 _ => throw new NotImplementedException()
             };
 
@@ -34,11 +35,11 @@ namespace DblDip.Domain.Sagas
 
             var account = new Account(profile.ProfileId, profile.Name, user.UserId);
 
-            _context.Add(user);
+            _store.Add(user);
 
-            _context.Add(account);
+            _store.Add(account);
 
-            await _context.SaveChangesAsync(cancellationToken);
+            await _store.SaveChangesAsync(cancellationToken);
         }
     }
 }

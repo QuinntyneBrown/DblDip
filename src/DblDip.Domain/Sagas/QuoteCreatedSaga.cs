@@ -1,3 +1,4 @@
+using BuildingBlocks.EventStore;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
@@ -9,11 +10,13 @@ namespace DblDip.Domain.Sagas
 {
     public class QuoteCreatedSaga : INotificationHandler<QuoteCreated>
     {
+        private readonly IEventStore _store;
         private readonly IDblDipDbContext _context;
 
-        public QuoteCreatedSaga(IDblDipDbContext context)
+        public QuoteCreatedSaga(IDblDipDbContext context, IEventStore store)
         {
             _context = context;
+            _store = store;
         }
 
         public async System.Threading.Tasks.Task Handle(QuoteCreated notification, CancellationToken cancellationToken)
@@ -30,13 +33,13 @@ namespace DblDip.Domain.Sagas
 
                 var account = new Account(profile.ProfileId, "", user.UserId);
 
-                _context.Add(profile);
+                _store.Add(profile);
 
-                _context.Add(account);
+                _store.Add(account);
 
-                _context.Add(user);
+                _store.Add(user);
 
-                await _context.SaveChangesAsync(cancellationToken);
+                await _store.SaveChangesAsync(cancellationToken);
             }
         }
     }
