@@ -1,5 +1,4 @@
 using BuildingBlocks.EventStore;
-using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
 using System.Threading;
@@ -18,15 +17,9 @@ namespace DblDip.Domain.Features
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public EquipmentDto Equipment { get; init; }
-        }
+        public record Request(EquipmentDto Equipment) : IRequest<Response>;
 
-        public class Response
-        {
-            public EquipmentDto Equipment { get; init; }
-        }
+        public record Response(EquipmentDto Equipment);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -36,17 +29,13 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var equipment = new DblDip.Core.Models.Equipment(request.Equipment.Name, request.Equipment.Price, request.Equipment.Description);
 
                 _store.Add(equipment);
 
                 await _store.SaveChangesAsync(cancellationToken);
 
-                return new Response()
-                {
-                    Equipment = equipment.ToDto()
-                };
+                return new (equipment.ToDto());
             }
         }
     }

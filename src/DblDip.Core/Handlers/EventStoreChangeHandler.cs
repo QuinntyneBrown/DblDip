@@ -32,7 +32,7 @@ namespace DblDip.Core.Handlers
                 entity.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)) as IEvent);
             }
 
-            await _context.SaveChangesAsync(cancellationToken);
+            await _context.SaveChangesAsync(cancellationToken);           
         }
 
         private async Task<IAggregateRoot> GetAggregateAsync(Type type, Guid streamId)
@@ -49,7 +49,7 @@ namespace DblDip.Core.Handlers
             }
 
             if (!_inMemoryAggregates.Any(x => x.Key == streamId))
-            {
+            {                
                 _inMemoryAggregates.Add(streamId, aggregate);
             }
 

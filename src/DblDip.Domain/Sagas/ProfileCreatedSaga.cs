@@ -1,11 +1,10 @@
-using DblDip.Core.Data;
+using BuildingBlocks.EventStore;
 using DblDip.Core;
 using DblDip.Core.Models;
 using DblDip.Domain.IntegrationEvents;
 using MediatR;
 using System;
 using System.Threading;
-using BuildingBlocks.EventStore;
 
 namespace DblDip.Domain.Sagas
 {

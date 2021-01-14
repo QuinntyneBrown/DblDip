@@ -1,5 +1,4 @@
 using BuildingBlocks.EventStore;
-using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
@@ -19,15 +18,9 @@ namespace DblDip.Domain.Features
             }
         }
 
-        public class Request : IRequest<Response>
-        {
-            public CardDto Card { get; init; }
-        }
+        public record Request(CardDto Card) : IRequest<Response>;
 
-        public class Response
-        {
-            public CardDto Card { get; init; }
-        }
+        public record Response(CardDto Card);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -37,17 +30,13 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var card = new Card(request.Card.Name, request.Card.Description);
 
                 _store.Add(card);
 
                 await _store.SaveChangesAsync(cancellationToken);
 
-                return new Response()
-                {
-                    Card = card.ToDto()
-                };
+                return new (card.ToDto());
             }
         }
     }

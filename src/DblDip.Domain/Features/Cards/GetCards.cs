@@ -1,6 +1,4 @@
 using DblDip.Core.Data;
-using DblDip.Core.Data;
-using DblDip.Core.Models;
 using MediatR;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +26,7 @@ namespace DblDip.Domain.Features
             {
                 return new Response()
                 {
-                    Cards = _context.Set<Card>().Select(x => x.ToDto()).ToList()
+                    Cards = _context.Cards.Select(x => x.ToDto()).ToList()
                 };
             }
         }
