@@ -1,8 +1,8 @@
+using DblDip.Core;
 using DblDip.Core.Data;
+using DblDip.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
-using DblDip.Core;
-using DblDip.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +13,9 @@ namespace DblDip.Domain.Features
 {
     public class GetDashboardsByCurrentProfile
     {
-        public class Request : IRequest<Response> { }
+        public record Request : IRequest<Response>;
 
-        public class Response
-        {
-            public List<DashboardDto> Dashboards { get; init; }
-        }
+        public record Response(List<DashboardDto> Dashboards);
 
         public class Handler : IRequestHandler<Request, Response>
         {
@@ -39,10 +36,7 @@ namespace DblDip.Domain.Features
 
                 var dashboards = _context.Set<Dashboard>().Where(x => x.ProfileId == profileId);
 
-                return new Response()
-                {
-                    Dashboards = _context.Set<Dashboard>().Select(x => x.ToDto()).ToList()
-                };
+                return new (_context.Set<Dashboard>().Select(x => x.ToDto()).ToList());
             }
         }
     }

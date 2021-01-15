@@ -1,12 +1,11 @@
 using BuildingBlocks.EventStore;
-using MediatR;
 using DblDip.Core.Models;
+using MediatR;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using static DblDip.Core.Models.Dashboard;
 
 namespace DblDip.Domain.Features
 {
@@ -35,7 +34,7 @@ namespace DblDip.Domain.Features
 
                 await _store.SaveChangesAsync(cancellationToken);
 
-                return new Response(dashboard.ToDto());
+                return new (dashboard.ToDto());
             }
         }
     }
