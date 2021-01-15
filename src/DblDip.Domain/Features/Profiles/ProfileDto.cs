@@ -14,6 +14,7 @@ namespace DblDip.Domain.Features
         public string Name { get; set;}
         public string Firstname { get; set;}
         public string Lastname { get; set;}
+        public string Type { get; set; }
         public string DotNetType { get; set;}
         public DateTime? Deleted { get; protected set; }
     }
