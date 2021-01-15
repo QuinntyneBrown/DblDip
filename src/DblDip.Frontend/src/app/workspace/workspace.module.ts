@@ -6,9 +6,10 @@ import { RouterModule } from '@angular/router';
 import { WorkspaceRoutingModule } from './workspace-routing.module';
 import { ClientsModule } from './clients/clients.module';
 import { SharedModule } from '@shared/shared.module';
+import { SelectProfileComponent } from './profiles/select-profile/select-profile.component';
 
 @NgModule({
-  declarations: [WorkspaceComponent],
+  declarations: [WorkspaceComponent, SelectProfileComponent],
   imports: [
     ClientsModule,
     LeadsModule,

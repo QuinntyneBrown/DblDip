@@ -20,7 +20,7 @@ import { HeadersInterceptor, JwtInterceptor, baseUrl } from '@core';
   providers: [
     {
       provide: baseUrl,
-      useValue: 'https://localhost:5001/'
+      useValue: 'https://localhost:44348/'
     },
     {
       provide: HTTP_INTERCEPTORS,

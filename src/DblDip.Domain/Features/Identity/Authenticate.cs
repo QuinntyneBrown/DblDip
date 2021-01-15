@@ -45,22 +45,26 @@ namespace DblDip.Domain.Features
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var userRoles = await(from u in _context.Users
-                                   join rr in _context.Users.SelectMany(x => x.Roles) on true equals true 
-                                   join r in _context.Roles on rr.RoleId equals r.RoleId
-                                   where u.Username == request.Username
-                                   select new
-                                   {
-                                       User = u,
-                                       Role = r
-                                   }).ToListAsync();
+                var userAccountRoles = await(from u in _context.Users
+                                             join a in _context.Accounts on u.UserId equals a.UserId
+                                             join rr in _context.Users.SelectMany(x => x.Roles) on true equals true 
+                                             join r in _context.Roles on rr.RoleId equals r.RoleId
+                                             where u.Username == request.Username
+                                             select new
+                                             {
+                                                 User = u,
+                                                 Role = r,
+                                                 Account = a
+                                             }).ToListAsync();
 
-                var user = userRoles.FirstOrDefault().User;
+                var user = userAccountRoles.FirstOrDefault().User;
+
+                var account = userAccountRoles.First().Account;
 
                 if (user == null)
                     throw new Exception();
 
-                var roles = userRoles.Select(x => x.Role).ToList();
+                var roles = userAccountRoles.Select(x => x.Role).ToList();
 
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();
@@ -69,7 +73,9 @@ namespace DblDip.Domain.Features
 
                 var userIdClaim = new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}");
 
-                return new(_tokenProvider.Get(request.Username, new List<Claim> { userIdClaim }), user.UserId);
+                var accountIdClaim = new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}");
+
+                return new(_tokenProvider.Get(request.Username, new List<Claim> { userIdClaim, accountIdClaim }), user.UserId);
             }
 
             public bool ValidateUser(User user, string transformedPassword)

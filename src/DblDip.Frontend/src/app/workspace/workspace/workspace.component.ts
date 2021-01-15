@@ -11,6 +11,7 @@ export class WorkspaceComponent implements OnInit {
   constructor(private authService: AuthService, private redirectService: RedirectService) { }
 
   ngOnInit(): void {
+
   }
 
   public logout() {

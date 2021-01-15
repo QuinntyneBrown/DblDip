@@ -112,7 +112,17 @@ namespace DblDip.Data
 
                     user.AddRole(Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
 
+                    var sysAdmin = new SystemAdministrator("Quinntyne", user.Username);
+
+                    var account = new Account(sysAdmin.ProfileId, sysAdmin.Name, user.UserId);
+
+                    sysAdmin.UpdateAccountId(account.AccountId);
+
                     store.Add(user);
+
+                    store.Add(sysAdmin);
+
+                    store.Add(account);
 
                     store.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }

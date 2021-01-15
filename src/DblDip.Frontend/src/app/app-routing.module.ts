@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AuthGuard } from '@core/auth.guard';
 import { LoginComponent } from './login/login/login.component';
 import { NotFoundComponent } from './not-found/not-found/not-found.component';
+import { CurrentProfileGuard } from './workspace/profiles/current-profile.guard';
 
 
 const routes: Routes = [
@@ -15,7 +16,7 @@ const routes: Routes = [
   { 
     path: "workspace", 
     loadChildren: () => import("src/app/workspace/workspace.module").then(x => x.WorkspaceModule),
-    canActivate: [AuthGuard]    
+    canActivate: [AuthGuard, CurrentProfileGuard]    
   },
   { 
     path: "public", 
