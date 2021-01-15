@@ -11,7 +11,7 @@ namespace BuildingBlocks.Core
 {
     public interface ITokenProvider
     {
-        string Get(string username, List<Claim> customClaims = null);
+        string Get(string username, IEnumerable<Claim> customClaims = null);
         ClaimsPrincipal GetPrincipalFromExpiredToken(string token);
         string GenerateRefreshToken();
     }
@@ -22,7 +22,7 @@ namespace BuildingBlocks.Core
         public TokenProvider(IConfiguration configuration)
             => _configuration = configuration;
 
-        public string Get(string uniqueName, List<Claim> customClaims = null)
+        public string Get(string uniqueName, IEnumerable<Claim> customClaims = null)
         {
             var now = DateTime.UtcNow;
             var nowDateTimeOffset = new DateTimeOffset(now);

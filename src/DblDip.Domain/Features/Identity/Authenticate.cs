@@ -64,18 +64,18 @@ namespace DblDip.Domain.Features
                 if (user == null)
                     throw new Exception();
 
-                var roles = userAccountRoles.Select(x => x.Role).ToList();
+                var roles = userAccountRoles.Select(x => x.Role);
 
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();
 
-                var claims = roles.Select(x => new Claim(Core.Constants.ClaimTypes.Role, x.Name)).ToArray();
+                var claims = roles.Select(x => new Claim(Core.Constants.ClaimTypes.Role, x.Name));
 
-                var userIdClaim = new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}");
+                claims = claims.Concat(new List<Claim> {
+                    new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}"),
+                    new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}") });
 
-                var accountIdClaim = new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}");
-
-                return new(_tokenProvider.Get(request.Username, new List<Claim> { userIdClaim, accountIdClaim }), user.UserId);
+                return new(_tokenProvider.Get(user.Username, claims), user.UserId);
             }
 
             public bool ValidateUser(User user, string transformedPassword)
