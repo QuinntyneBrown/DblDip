@@ -11,6 +11,7 @@ using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using DblDip.Domain.Extensions;
 
 namespace DblDip.Domain.Features
 {
@@ -34,12 +35,14 @@ namespace DblDip.Domain.Features
             private readonly IDblDipDbContext _context;
             private readonly IPasswordHasher _passwordHasher;
             private readonly ITokenProvider _tokenProvider;
+            private readonly ITokenBuilder _tokenBuilder;
 
-            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider, IPasswordHasher passwordHasher)
+            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider, IPasswordHasher passwordHasher, ITokenBuilder tokenBuilder)
             {
                 _context = context;
                 _tokenProvider = tokenProvider;
                 _passwordHasher = passwordHasher;
+                _tokenBuilder = tokenBuilder;
             }
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
@@ -64,18 +67,23 @@ namespace DblDip.Domain.Features
                 if (user == null)
                     throw new Exception();
 
-                var roles = userAccountRoles.Select(x => x.Role);
-
                 if (!ValidateUser(user, _passwordHasher.HashPassword(user.Salt, request.Password)))
                     throw new Exception();
 
-                var claims = roles.Select(x => new Claim(Core.Constants.ClaimTypes.Role, x.Name));
 
-                claims = claims.Concat(new List<Claim> {
-                    new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}"),
-                    new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}") });
+                _tokenBuilder.AddUsername(user.Username);
 
-                return new(_tokenProvider.Get(user.Username, claims), user.UserId);
+                foreach (var role in userAccountRoles.Select(x => x.Role))
+                {
+                    _tokenBuilder.AddOrUpdateClaim(new Claim(Constants.ClaimTypes.Role, role.Name));
+                }
+
+                _tokenBuilder.AddOrUpdateClaim(new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}"));
+
+                _tokenBuilder.AddOrUpdateClaim(new Claim(Constants.ClaimTypes.UserId, $"{account.UserId}"));
+
+                return new(_tokenBuilder.Build(), user.UserId);
+
             }
 
             public bool ValidateUser(User user, string transformedPassword)

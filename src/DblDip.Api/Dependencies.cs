@@ -106,6 +106,8 @@ namespace DblDip.Api
 
             services.AddSingleton<ITokenProvider, TokenProvider>();
 
+            services.AddTransient<ITokenBuilder, TokenBuilder>();
+
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler
             {
                 InboundClaimTypeMap = new Dictionary<string, string>()
