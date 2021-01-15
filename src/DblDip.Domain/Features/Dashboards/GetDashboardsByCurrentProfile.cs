@@ -1,8 +1,8 @@
 using DblDip.Core;
 using DblDip.Core.Data;
-using DblDip.Core.Models;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,12 +31,11 @@ namespace DblDip.Domain.Features
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
 
-                var profileId = new Guid(_httpContextAccessor.HttpContext.User
-                    .FindFirst(Constants.ClaimTypes.ProfileId).Value);
+                var profileId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.ProfileId).Value);
 
-                var dashboards = _context.Set<Dashboard>().Where(x => x.ProfileId == profileId);
+                var dashboards = await _context.Dashboards.Where(x => x.ProfileId == profileId).Select(x => x.ToDto()).ToListAsync();
 
-                return new (_context.Set<Dashboard>().Select(x => x.ToDto()).ToList());
+                return new (dashboards);
             }
         }
     }

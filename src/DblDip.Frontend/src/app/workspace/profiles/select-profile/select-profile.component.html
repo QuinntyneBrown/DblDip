@@ -1,0 +1,6 @@
+<div *ngIf="profiles$ | async as profiles">
+    <div *ngFor="let profile of profiles" (click)="handleProfileSelect(profile)">
+        {{ profile.type }}
+    </div>
+
+</div>

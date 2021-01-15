@@ -1,16 +1,15 @@
+using BuildingBlocks.Core;
+using BuildingBlocks.EventStore;
+using DblDip.Core;
+using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
-using DblDip.Core.Data;
-using DblDip.Core.Models;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Linq;
-using System;
 using Microsoft.AspNetCore.Http;
-using BuildingBlocks.Core;
-using DblDip.Core;
+using System;
 using System.Collections.Generic;
 using System.Security.Claims;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DblDip.Domain.Features
 {
@@ -29,10 +28,10 @@ namespace DblDip.Domain.Features
 
         public class Handler : IRequestHandler<Request, Response>
         {
-            private readonly IDblDipDbContext _context;
+            private readonly IEventStore _context;
             private readonly ITokenProvider _tokenProvider;
             private readonly IHttpContextAccessor _httpContextAccessor;
-            public Handler(IDblDipDbContext context, ITokenProvider tokenProvider, IHttpContextAccessor httpContextAccessor)
+            public Handler(IEventStore context, ITokenProvider tokenProvider, IHttpContextAccessor httpContextAccessor)
             {
                 _context = context;
                 _tokenProvider = tokenProvider;
@@ -58,6 +57,7 @@ namespace DblDip.Domain.Features
 
                 return new Response(_tokenProvider.Get(user.Username, new List<Claim> {
                     new (Constants.ClaimTypes.UserId, $"{user.UserId}"),
+                    new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}"),
                     new (Constants.ClaimTypes.ProfileId, $"{request.ProfileId}")
                 }));
             }

@@ -1,11 +1,10 @@
 using BuildingBlocks.EventStore;
-using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
-using System;
 
 namespace DblDip.Domain.Features
 {
@@ -34,7 +33,11 @@ namespace DblDip.Domain.Features
             private readonly IEventStore _store;
             private readonly IDateTime _dateTime;
 
-            public Handler(IEventStore store, IDateTime dateTime) => (_store, _dateTime) = (store, dateTime);
+            public Handler(IEventStore store, IDateTime dateTime)
+            {
+                _store = store;
+                _dateTime = dateTime;
+            }
 
             public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
             {

@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { currentProfileKey } from '@core';
+import { accessTokenKey, currentProfileKey } from '@core';
 import { LocalStorageService } from '@core/local-storage.service';
 import { DialogService } from '@shared/dialog.service';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
+import { AccountsService } from '../account/accounts.service';
 import { SelectProfileComponent } from './select-profile/select-profile.component';
 
 @Injectable({
@@ -19,15 +20,34 @@ export class CurrentProfileGuard implements CanActivate {
         return true;
       }
 
-      return this._dialogService.open<SelectProfileComponent>(SelectProfileComponent)
-      .destroyed
+      const component = this._dialogService.open<SelectProfileComponent>(SelectProfileComponent);
+
+      return component
+      .selectedProfile$
       .pipe(
-        map(x => true)
-      );
+        switchMap(profile => {          
+          return this._accountService.setCurrentProfile({ profileId: profile.profileId })
+          .pipe(
+            map(x => {
+              return {
+                profile,
+                accessToken: x.accessToken
+              }
+            })
+          )
+        }),
+        map(x => {
+          this._localStorageService.put({ name: accessTokenKey, value: x.accessToken });
+          this._localStorageService.put({ name: currentProfile, value: x.profile });
+          return true;
+        })
+      )
   }
 
-  constructor(private _dialogService: DialogService, private _localStorageService: LocalStorageService) {
-
+  constructor(
+    private _accountService: AccountsService,
+    private _dialogService: DialogService, 
+    private _localStorageService: LocalStorageService) {
   }
   
 }
