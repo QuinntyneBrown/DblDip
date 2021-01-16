@@ -1,17 +1,16 @@
-using DblDip.Core.Data;
 using BuildingBlocks.Core;
+using DblDip.Core;
+using DblDip.Core.Data;
+using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
-using DblDip.Core;
-using DblDip.Core.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using DblDip.Domain.Extensions;
 
 namespace DblDip.Domain.Features
 {
@@ -71,16 +70,15 @@ namespace DblDip.Domain.Features
                     throw new Exception();
 
 
-                _tokenBuilder.AddUsername(user.Username);
-
                 foreach (var role in userAccountRoles.Select(x => x.Role))
                 {
                     _tokenBuilder.AddOrUpdateClaim(new Claim(Constants.ClaimTypes.Role, role.Name));
                 }
 
-                _tokenBuilder.AddOrUpdateClaim(new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}"));
-
-                _tokenBuilder.AddOrUpdateClaim(new Claim(Constants.ClaimTypes.UserId, $"{account.UserId}"));
+                _tokenBuilder
+                    .AddUsername(user.Username)
+                    .AddOrUpdateClaim(new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}"))
+                    .AddOrUpdateClaim(new Claim(Constants.ClaimTypes.UserId, $"{account.UserId}"));
 
                 return new(_tokenBuilder.Build(), user.UserId);
 
