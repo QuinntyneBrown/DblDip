@@ -1,4 +1,4 @@
 ﻿namespace DblDip.Domain.Features
 {
-    public record DashboardCardOptionsDto(int Top, int Right, int Bottom, int Left);
+    public record DashboardCardOptionsDto(int Top, int Left, int Height, int Width);
 }

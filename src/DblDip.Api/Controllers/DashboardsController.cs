@@ -32,7 +32,7 @@ namespace DblDip.Api.Controllers
             => await _mediator.Send(request);
 
         [Authorize]
-        [HttpGet("current", Name = "GetDashboardsByCurrentUserRoute")]
+        [HttpGet("current-profile", Name = "GetDashboardsByCurrentProfileRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]

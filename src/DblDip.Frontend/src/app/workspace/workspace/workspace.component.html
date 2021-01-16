@@ -5,7 +5,7 @@
   
   <h1>DblDip: Workspace</h1>
 </mat-toolbar>  
-
+<app-dashboard-header></app-dashboard-header>
 <mat-sidenav-container>
     <mat-sidenav #drawer mode="side" (click)="drawer.close()">
       <button mat-button routerLink="/workspace/leads">Leads</button>
@@ -13,6 +13,7 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
+      
       <div class="router-outlet-container">
         <router-outlet #router></router-outlet>
       </div>

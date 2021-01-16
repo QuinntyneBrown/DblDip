@@ -24,6 +24,13 @@ export class DashboardsService {
       );
   }
 
+  public getCurrentDashboardsByCurrentProfile(): Observable<Dashboard[]> {
+    return this._client.get<{ dashboards: Dashboard[] }>(`${this._baseUrl}api/dashboards/current-profile`)
+      .pipe(
+        map(x => x.dashboards)
+      );
+  }
+
   public getBydashboardId(options: { dashboardId: number }): Observable<Dashboard> {
     return this._client.get<{ dashboard: Dashboard }>(`${this._baseUrl}api/dashboards/${options.dashboardId}`)
       .pipe(

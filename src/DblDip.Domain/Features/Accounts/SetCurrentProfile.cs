@@ -1,19 +1,14 @@
 using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core;
-using DblDip.Core.Data;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
-using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using DblDip.Domain.Extensions;
 
 namespace DblDip.Domain.Features
 {
@@ -51,8 +46,6 @@ namespace DblDip.Domain.Features
                 var account = await _store.FindAsync<Account>(accountId);
 
                 account.SetCurrentProfileId(request.ProfileId);
-
-                _store.Add(account);
 
                 await _store.SaveChangesAsync(default);
 

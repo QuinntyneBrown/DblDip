@@ -21,7 +21,8 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
     ) { }
 
   ngOnInit(): void {
-    //this.dashboardService.getCurrentDashboardByProfileId()
+    this.dashboardService.getCurrentDashboardsByCurrentProfile()
+    .subscribe();
   }
 
   public logout() {

@@ -30,7 +30,6 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
-
                 var profileId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.ProfileId).Value);
 
                 var dashboards = await _context.Dashboards.Where(x => x.ProfileId == profileId).Select(x => x.ToDto()).ToListAsync();
