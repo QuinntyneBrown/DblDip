@@ -1,1 +1,21 @@
-<p>manage-dashboards works!</p>
+<mat-card *ngIf="dashboards$ | async as dashboards">
+
+    <mat-card-title>
+        Manage Dashboards
+    </mat-card-title>
+    <mat-card-content>
+        <mat-selection-list #selectedDashboards>
+            <mat-list-option *ngFor="let dashboard of dashboards" [value]="dashboard">
+                {{ dashboard.name }}
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button (click)="close()">
+            Cancel
+        </button>
+        <button mat-raised-button (click)="remove(selectedDashboards.selectedOptions.selected)" *ngIf="selectedDashboards.selectedOptions.selected.length" >
+            Delete
+        </button>
+    </mat-card-actions>
+</mat-card>

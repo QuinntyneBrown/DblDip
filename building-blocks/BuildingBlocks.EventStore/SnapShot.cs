@@ -1,4 +1,3 @@
-using BuildingBlocks.EventStore;
 using System;
 using System.Collections.Generic;
 

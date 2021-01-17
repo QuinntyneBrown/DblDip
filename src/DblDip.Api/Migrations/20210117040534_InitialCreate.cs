@@ -157,7 +157,8 @@ namespace DblDip.Api.Migrations
                     ProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsDefault = table.Column<bool>(type: "bit", nullable: false),
-                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    Created = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {

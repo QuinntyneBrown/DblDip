@@ -1,1 +1,19 @@
-<p>dashboard-header works!</p>
+<button mat-icon-button (click)="manageDashboards()">
+    <mat-icon>
+        more_vert
+    </mat-icon>
+</button>
+<ul>
+    <li *ngFor="let dashboard of dashboards$ | async">
+        <a routerLink="/dashboard/{{ dashboard.dashboardId }}">{{ dashboard.name }}</a>
+    </li>
+    <li *ngIf="!dashboardInEditMode">
+        <a (click)="tryToAddDashboard()">+</a>
+    </li>
+    <li *ngIf="dashboardInEditMode">
+        <form novalidate [formGroup]="form" autocomplete="off" spellcheck="false">
+            <input type="text" id="name" formControlName="name" />
+            <button (click)="tryToSaveDashboard()">Save</button>
+        </form>
+    </li>
+</ul>

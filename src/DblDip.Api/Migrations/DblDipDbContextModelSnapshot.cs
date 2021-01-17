@@ -207,6 +207,9 @@ namespace DblDip.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime?>("Created")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("Deleted")
                         .HasColumnType("datetime2");
 

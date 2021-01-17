@@ -3,6 +3,7 @@ using DblDip.Core.Models;
 using DblDip.Core.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
+using System.Collections.Generic;
 
 namespace DblDip.Core.Data
 {
@@ -11,7 +12,7 @@ namespace DblDip.Core.Data
         public DblDipDbContext(DbContextOptions<DblDipDbContext> options)
             : base(options)
         {
-            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+
         }
 
         public static readonly ILoggerFactory ConsoleLoggerFactory
@@ -93,12 +94,8 @@ namespace DblDip.Core.Data
                 property => (string)property,
                 property => (Email)property);
 
-/*            modelBuilder.Entity<RoleReference>()
-        .HasKey(x => new { x.UserId, x.RoleId });*/
+            modelBuilder.Entity<Dashboard>().HasQueryFilter(p => !p.Deleted.HasValue);
 
-            //modelBuilder.Entity<DashboardCard>().Property(user => user.Options).HasConversion(
-            //    property => JsonConvert.SerializeObject(property),
-            //    property => JsonConvert.DeserializeObject<JObject>(property));
         }
 
     }

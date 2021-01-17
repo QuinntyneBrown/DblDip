@@ -42,6 +42,10 @@ export class DashboardsService {
     return this._client.delete<void>(`${this._baseUrl}api/dashboards/${options.dashboard.dashboardId}`);
   }
 
+  public removeDashboards(options: { dashboardIds: string }): Observable<void> {
+    return this._client.delete<void>(`${this._baseUrl}api/dashboards/range?${options.dashboardIds}`);
+  }
+
   public save(options: { dashboard: Dashboard }): Observable<{ dashboardId: number }> {
     return this._client.post<{ dashboardId: number }>(`${this._baseUrl}api/dashboards`, { dashboard: options.dashboard });
   }  

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { takeUntil } from 'rxjs/operators';
+import { takeUntil, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from '@core/auth.service';
@@ -10,7 +10,7 @@ import { RedirectService } from '@core/redirect.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnDestroy {
+export class LoginComponent implements OnDestroy, OnInit {
 
   private readonly _destroyed: Subject<void> = new Subject();
 
@@ -20,6 +20,10 @@ export class LoginComponent implements OnDestroy {
     private redirectService: RedirectService
   ) { }
 
+  ngOnInit() {
+    this.authService.logout();
+  }
+  
   public handleTryToLogin($event: { username: string, password: string }) {
     this.authService
     .tryToLogin({

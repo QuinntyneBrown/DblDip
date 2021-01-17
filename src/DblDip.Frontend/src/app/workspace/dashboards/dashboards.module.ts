@@ -5,6 +5,8 @@ import { ManageDashboardsComponent } from './manage-dashboards/manage-dashboards
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DashboardCardConfigurationComponent } from './dashboard-card-configuration/dashboard-card-configuration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { SharedModule } from '@shared';
 
 const declarations = [DashboardHeaderComponent, ManageDashboardsComponent, DashboardComponent, DashboardCardConfigurationComponent];
 
@@ -13,7 +15,9 @@ const declarations = [DashboardHeaderComponent, ManageDashboardsComponent, Dashb
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule,
+    SharedModule
   ],
   exports: declarations,
 })

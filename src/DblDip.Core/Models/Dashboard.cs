@@ -14,7 +14,8 @@ namespace DblDip.Core.Models
         public string Name { get; private set; }
         public bool IsDefault { get; private set; }
         public DateTime? Deleted { get; private set; }
-        public IReadOnlyList<DashboardCard> DashboardCards => _dashboardCards.ToList();
+        public DateTime? Created { get; private set; }
+        public IEnumerable<DashboardCard> DashboardCards => _dashboardCards.ToList();
 
         protected Dashboard()
         {
@@ -36,6 +37,7 @@ namespace DblDip.Core.Models
             Name = dashboardCreated.Name;
             DashboardId = dashboardCreated.DashboardId;
             ProfileId = dashboardCreated.ProfileId;
+            Created = dashboardCreated.Created;
         }
 
         public void When(DashboardRemoved dashboardRemoved)

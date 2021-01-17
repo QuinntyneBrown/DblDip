@@ -38,7 +38,7 @@ export class CurrentProfileGuard implements CanActivate {
         }),
         map(x => {
           this._localStorageService.put({ name: accessTokenKey, value: x.accessToken });
-          this._localStorageService.put({ name: currentProfile, value: x.profile });
+          this._localStorageService.put({ name: currentProfileKey, value: x.profile });
           return true;
         })
       )

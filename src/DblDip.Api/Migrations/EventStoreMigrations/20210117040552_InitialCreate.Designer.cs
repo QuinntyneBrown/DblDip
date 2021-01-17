@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DblDip.Api.Migrations.EventStoreMigrations
 {
     [DbContext(typeof(EventStore))]
-    [Migration("20210116011714_InitialCreate")]
+    [Migration("20210117040552_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

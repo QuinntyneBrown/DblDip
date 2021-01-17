@@ -23,16 +23,22 @@ namespace DblDip.Core.Handlers
 
         public async Task Handle(EventStoreChanged notification, CancellationToken cancellationToken)
         {
-            foreach (var storedEvent in notification.Events)
+            try
             {
-                var type = Type.GetType(storedEvent.AggregateDotNetType);
+                foreach (var storedEvent in notification.Events)
+                {
+                    var type = Type.GetType(storedEvent.AggregateDotNetType);
 
-                var entity = await GetAggregateAsync(type, storedEvent.StreamId);
-                
-                entity.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)) as IEvent);
+                    var entity = await GetAggregateAsync(type, storedEvent.StreamId);
+
+                    entity.Apply(JsonConvert.DeserializeObject(storedEvent.Data, Type.GetType(storedEvent.DotNetType)) as IEvent);
+                }
+
+                await _context.SaveChangesAsync(cancellationToken);
+            }catch(Exception e)
+            {
+                throw e;
             }
-
-            await _context.SaveChangesAsync(cancellationToken);           
         }
 
         private async Task<IAggregateRoot> GetAggregateAsync(Type type, Guid streamId)

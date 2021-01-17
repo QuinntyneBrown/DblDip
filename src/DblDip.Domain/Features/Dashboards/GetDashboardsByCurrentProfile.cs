@@ -32,7 +32,10 @@ namespace DblDip.Domain.Features
             {
                 var profileId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.ProfileId).Value);
 
-                var dashboards = await _context.Dashboards.Where(x => x.ProfileId == profileId).Select(x => x.ToDto()).ToListAsync();
+                var dashboards = await _context.Dashboards
+                    .Where(x => x.ProfileId == profileId)
+                    .OrderBy(x => x.Created)
+                    .Select(x => x.ToDto()).ToListAsync();
 
                 return new (dashboards);
             }

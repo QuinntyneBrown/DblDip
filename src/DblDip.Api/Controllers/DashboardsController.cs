@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using DblDip.Domain.Features;
 using System.Net;
 using System.Threading.Tasks;
+using System.Collections;
+using System;
+using System.Collections.Generic;
 
 namespace DblDip.Api.Controllers
 {
@@ -54,5 +57,13 @@ namespace DblDip.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.OK)]
         public async Task Remove([FromRoute] RemoveDashboard.Request request)
             => await _mediator.Send(request);
+
+        [Authorize]
+        [HttpDelete("range", Name = "RemoveDashboardsRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        public async Task RemoveDashboards([FromQuery] IEnumerable<Guid> dashboardIds)
+            => await _mediator.Send(new RemoveDashboards.Request(dashboardIds));
     }
 }

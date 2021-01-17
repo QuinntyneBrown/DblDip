@@ -1,0 +1,104 @@
+// @import 'src/framework/_breakpoints';
+
+:host {
+    background-color: #3f51b5;
+    height: 40px;
+    ul {
+        margin:0;
+        padding:0;
+        display: inline-block;
+
+        li {
+            list-style: none;
+            display: inline-block;
+            margin: 0px 10px 0px 10px;
+            padding: 0;
+        }
+    }
+
+    a,
+    a:active,
+    a:visited,
+    a:link {
+        line-height: 40px;
+        cursor: pointer;
+        text-decoration: none;
+        color: #fff;
+    }
+
+    button[mat-icon-button] {
+        color: #fff;
+    }
+    
+    input[type=text] {
+        display: inline;
+        width: 200px;
+        margin: 0;
+        outline: none;
+        line-height: 20px;
+        padding: 0px 10px;
+    }    
+
+    button {
+        margin-left: 10px;
+        display: inline-block;
+    }
+}
+// :host {
+//     display: grid;
+//     background-color: #2A7ACF;
+//     height: 40px;
+//     color: #fff;
+//     --dots-button-color: #fff;
+//     --dots-button-hover-color: #2A7ACF;
+//     --cog-button-color: #fff;
+//     grid-template-columns: 200px 1fr 100px;
+// }
+
+// ul li {
+//     list-style: none;
+//     display: inline-block;
+//     margin: 0px 10px 0px 10px;
+//     padding: 0;
+// }
+
+// ul li:first-child {
+//     margin: 0px 10px 0px 0px;
+// }
+
+// form {
+//     display:inline-block;
+// }
+
+// h1 {
+//     display: inline-block;
+//     margin: 0px 0px 0px 20px;
+//     padding: 0px 10px;
+//     font-size: 1.25em;
+//     line-height: 40px;
+//     background-color: rgb(0, 90, 158);
+// }
+
+// ul {
+//     display: inline-block;
+//     margin: 0px 0px 0px 20px;
+//     padding: 0;
+// }
+
+
+
+//     a.active {
+//         border-bottom: 3px solid #333;
+//     }
+
+
+
+// button {
+//     display: inline;
+//     margin: 0;
+// }
+
+// cs-dots-button, cs-cog-button {
+//     margin-top: 8px;
+//     width: 24px;
+// }
