@@ -1216,6 +1216,32 @@ namespace DblDip.Api.Migrations
                     b.HasDiscriminator().HasValue("Engagement");
                 });
 
+            modelBuilder.Entity("DblDip.Core.Models.Account", b =>
+                {
+                    b.OwnsMany("DblDip.Core.Models.ProfileReference", "Profiles", b1 =>
+                        {
+                            b1.Property<Guid>("AccountId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<Guid>("ProfileId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("AccountId", "Id");
+
+                            b1.ToTable("ProfileReference");
+
+                            b1.WithOwner()
+                                .HasForeignKey("AccountId");
+                        });
+
+                    b.Navigation("Profiles");
+                });
+
             modelBuilder.Entity("DblDip.Core.Models.Blog", b =>
                 {
                     b.OwnsMany("DblDip.Core.Models.PostReference", "Posts", b1 =>

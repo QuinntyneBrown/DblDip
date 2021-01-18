@@ -15,7 +15,7 @@ namespace DblDip.Domain.Features
         {
             public Validator()
             {
-
+                RuleFor(x => x.DashboardIds).NotEmpty();
             }
         }
 

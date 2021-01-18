@@ -191,9 +191,9 @@ Developed from Google Java style.
 *   If `const` isn’t possible, `readonly` can be a suitable alternative.
 *   Prefer named constants to magic numbers.
 
-### IEnumerable vs IList vs IReadOnlyList
+### IEnumerable vs IList vs List
 
-*   For inputs use the most restrictive collection type possible, for example `IReadOnlyCollection` / `IReadOnlyList` / `IEnumerable` as inputs to methods when the inputs should be immutable.
+*   For inputs use the most restrictive collection type possible, for example `IReadOnlyCollection` / `List` / `IEnumerable` as inputs to methods when the inputs should be immutable.
 *   For outputs, if passing ownership of the returned container to the owner, prefer `IList` over `IEnumerable`. If not transferring ownership, prefer the most restrictive option.
 
 ### Generators vs containers
@@ -271,7 +271,7 @@ For example:
 
 ### Array vs List
 
-*   In general, prefer `List<>` over arrays for public variables, properties, and return types (keeping in mind the guidance on `IList` / `IEnumerable` / `IReadOnlyList` above).
+*   In general, prefer `List<>` over arrays for public variables, properties, and return types (keeping in mind the guidance on `IList` / `IEnumerable` / `List` above).
 *   Prefer `List<>` when the size of the container can change.
 *   Prefer arrays when the size of the container is fixed and known at construction time.
 *   Prefer array for multidimensional arrays.

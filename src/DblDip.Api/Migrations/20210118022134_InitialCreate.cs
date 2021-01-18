@@ -795,6 +795,26 @@ namespace DblDip.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "ProfileReference",
+                columns: table => new
+                {
+                    AccountId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ProfileId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ProfileReference", x => new { x.AccountId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_ProfileReference_Accounts_AccountId",
+                        column: x => x.AccountId,
+                        principalTable: "Accounts",
+                        principalColumn: "AccountId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "PostReference",
                 columns: table => new
                 {
@@ -1208,9 +1228,6 @@ namespace DblDip.Api.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Accounts");
-
-            migrationBuilder.DropTable(
                 name: "Answer");
 
             migrationBuilder.DropTable(
@@ -1304,6 +1321,9 @@ namespace DblDip.Api.Migrations
                 name: "Privileges");
 
             migrationBuilder.DropTable(
+                name: "ProfileReference");
+
+            migrationBuilder.DropTable(
                 name: "Questionnaires");
 
             migrationBuilder.DropTable(
@@ -1389,6 +1409,9 @@ namespace DblDip.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "Roles");
+
+            migrationBuilder.DropTable(
+                name: "Accounts");
 
             migrationBuilder.DropTable(
                 name: "Quotes");

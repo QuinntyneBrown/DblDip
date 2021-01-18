@@ -3,6 +3,7 @@ using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DblDip.Core.Models
 {
@@ -72,7 +73,7 @@ namespace DblDip.Core.Models
         public DateTime? Deleted { get; private set; }
         public DateTime? Completed { get; private set; }
         public string Description { get; private set; }
-        public IReadOnlyList<Guid> TaskReferences => _taskReferences.AsReadOnly();
+        public List<Guid> TaskReferences => _taskReferences.ToList();
 
 
         public string Notes { get; private set; }

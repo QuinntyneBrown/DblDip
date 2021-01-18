@@ -2,7 +2,7 @@ using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace DblDip.Core.Models
 {
@@ -13,10 +13,10 @@ namespace DblDip.Core.Models
         public Guid CurrentProfileId { get; private set; }
         public string Name { get; private set; }
         public Guid UserId { get; private set; }
-        public IReadOnlyList<Guid> ProfileIds => new ReadOnlyCollection<Guid>(_profileIds);
+        public List<ProfileReference> Profiles => _profileIds.ToList();
         public DateTime? Deleted { get; private set; }
         
-        private IList<Guid> _profileIds;
+        private IEnumerable<ProfileReference> _profileIds;
         public Account(Guid profileId, string name, Guid userId)
         {
             Apply(new AccountCreated(Guid.NewGuid(), new List<Guid> { profileId }, profileId, name, userId));
@@ -32,7 +32,7 @@ namespace DblDip.Core.Models
         public void When(AccountCreated accountCreated)
         {
             AccountId = accountCreated.AccountId;
-            _profileIds = accountCreated.ProfileIds;
+            _profileIds = accountCreated.ProfileIds.Select(x => new ProfileReference(x));
             DefaultProfileId = accountCreated.DefaultProfileId;
             Name = accountCreated.Name;
             UserId = accountCreated.AccountHolderUserId;

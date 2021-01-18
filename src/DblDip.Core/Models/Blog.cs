@@ -3,6 +3,7 @@ using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DblDip.Core.Models
 {
@@ -13,7 +14,7 @@ namespace DblDip.Core.Models
         public string Name { get; private set; }
         public Email AuthorEmail { get; private set; }
         public DateTime? Deleted { get; private set; }
-        public IReadOnlyList<PostReference> Posts => _posts.AsReadOnly();
+        public List<PostReference> Posts => _posts.ToList();
 
         public Blog()
         {

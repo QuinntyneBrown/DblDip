@@ -1,9 +1,8 @@
-using DblDip.Core.Data;
 using DblDip.Core;
-using DblDip.Core.Models;
-using DblDip.Domain.Features;
+using DblDip.Core.Data;
 using MediatR;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,14 +30,15 @@ namespace DblDip.Domain.Features
 
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
 
-                
-                var user = await _context.FindAsync<User>(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.UserId).Value));
+                var accountId = new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.AccountId).Value);
 
-                var account = _context.Set<Account>().Single(x => x.UserId == user.UserId);
+                var profiles = await (from account in _context.Accounts
+                                      join profileReference in _context.Accounts.SelectMany(x => x.Profiles) on true equals true
+                                      join profile in _context.Profiles on profileReference.ProfileId equals profile.ProfileId
+                                      where account.AccountId == accountId
+                                      select profile.ToDto()).ToListAsync();
 
-                return new Response(_context.Set<Profile>().Where(x => account.ProfileIds.Contains(x.ProfileId))
-                    .Select(x => x.ToDto())
-                    .ToList());
+                return new (profiles);
             }
         }
     }

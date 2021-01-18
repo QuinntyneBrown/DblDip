@@ -50,9 +50,9 @@ namespace DblDip.Core.Models
         public Guid AuthorId { get; private set; }
         public string Description { get; private set; }
         private IEnumerable<TicketReference> _ticketReferences;
-        public IReadOnlyList<TicketReference> TicketReferences => _ticketReferences.ToList();
+        public List<TicketReference> TicketReferences => _ticketReferences.ToList();
         private IEnumerable<Guid> _storyReferences;
-        public IReadOnlyList<Guid> StoryReferences => _storyReferences.ToList();
+        public List<Guid> StoryReferences => _storyReferences.ToList();
         public DateTime? Deleted { get; private set; }
     }
 }

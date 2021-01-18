@@ -2,6 +2,7 @@ using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DblDip.Core.Models
 {
@@ -11,8 +12,8 @@ namespace DblDip.Core.Models
 
         private List<Guid> _messageIds;
         public Guid ConversationId { get; private set; }
-        public IReadOnlyList<Guid> ProfileIds => _profileIds.AsReadOnly();
-        public IReadOnlyList<Guid> MessageIds => _messageIds.AsReadOnly();
+        public List<Guid> ProfileIds => _profileIds.ToList();
+        public List<Guid> MessageIds => _messageIds.ToList();
         public DateTime? Deleted { get; private set; }
         public Conversation()
         {
