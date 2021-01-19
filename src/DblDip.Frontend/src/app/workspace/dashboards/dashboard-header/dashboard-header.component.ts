@@ -4,6 +4,7 @@ import { DialogService } from '@shared/dialog.service';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Dashboard } from '../dashboard';
+import { DashboardStore } from '../dashboard.store';
 import { DashboardsService } from '../dashboards.service';
 import { ManageDashboardsComponent } from '../manage-dashboards/manage-dashboards.component';
 
@@ -12,30 +13,22 @@ import { ManageDashboardsComponent } from '../manage-dashboards/manage-dashboard
   templateUrl: './dashboard-header.component.html',
   styleUrls: ['./dashboard-header.component.scss']
 })
-export class DashboardHeaderComponent implements OnInit, OnDestroy {
+export class DashboardHeaderComponent implements OnDestroy {
 
   private readonly _destroyed: Subject<void> = new Subject();
 
-  public dashboards$: BehaviorSubject<Dashboard[]>  = new BehaviorSubject([] as Dashboard[]);
+  public dashboards$: Observable<Dashboard[]>  = this._dashboardStore.dashboards$.asObservable();
   
   public dashboardInEditMode: Partial<Dashboard> | null = null;
 
   public form = new FormGroup({ name: new FormControl('', [Validators.required]) });
   
   constructor(
+    private _dashboardStore: DashboardStore,
     private _dashboardsService: DashboardsService,
     private _dialogService: DialogService
   ) { }
 
-  ngOnInit(): void {
-    this._dashboardsService.getCurrentDashboardsByCurrentProfile()
-    .pipe(
-      takeUntil(this._destroyed),
-      tap(
-        x => this.dashboards$.next(x)
-      )
-    ).subscribe();
-  }
 
   tryToAddDashboard() { this.dashboardInEditMode = {}; }
 
@@ -59,8 +52,8 @@ export class DashboardHeaderComponent implements OnInit, OnDestroy {
 
   manageDashboards() {
     this._dialogService.open<ManageDashboardsComponent>(ManageDashboardsComponent);
-    
   }
+
   ngOnDestroy() {
     this._destroyed.next();
     this._destroyed.complete();

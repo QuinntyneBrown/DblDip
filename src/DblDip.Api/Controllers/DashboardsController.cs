@@ -1,12 +1,11 @@
+using DblDip.Domain.Features;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using DblDip.Domain.Features;
-using System.Net;
-using System.Threading.Tasks;
-using System.Collections;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.Threading.Tasks;
 
 namespace DblDip.Api.Controllers
 {

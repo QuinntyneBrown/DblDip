@@ -13,10 +13,10 @@ namespace DblDip.Core.Models
         public Guid CurrentProfileId { get; private set; }
         public string Name { get; private set; }
         public Guid UserId { get; private set; }
-        public List<ProfileReference> Profiles => _profileIds.ToList();
+        public List<ProfileReference> Profiles => _profiles;
         public DateTime? Deleted { get; private set; }
         
-        private IEnumerable<ProfileReference> _profileIds;
+        private List<ProfileReference> _profiles;
         public Account(Guid profileId, string name, Guid userId)
         {
             Apply(new AccountCreated(Guid.NewGuid(), new List<Guid> { profileId }, profileId, name, userId));
@@ -32,7 +32,7 @@ namespace DblDip.Core.Models
         public void When(AccountCreated accountCreated)
         {
             AccountId = accountCreated.AccountId;
-            _profileIds = accountCreated.ProfileIds.Select(x => new ProfileReference(x));
+            _profiles = accountCreated.ProfileIds.Select(x => new ProfileReference(x)).ToList();
             DefaultProfileId = accountCreated.DefaultProfileId;
             Name = accountCreated.Name;
             UserId = accountCreated.AccountHolderUserId;

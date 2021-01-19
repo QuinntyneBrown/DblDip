@@ -14,38 +14,37 @@ namespace DblDip.Data
     {
         public static void Initialize(IDblDipDbContext context, IEventStore store, IConfiguration configuration)
         {
-            RoleConfiguration.Seed(store, configuration);
+            RoleConfiguration.Seed(store);
             SystemLocationConfiguration.Seed(store, configuration);
-            CardConfiguration.Seed(store, context, configuration);
-            UserConfiguration.Seed(context, store, configuration);
-            DashboardConfiguration.Seed(context, store, configuration);
-
+            CardConfiguration.Seed(store, context);
+            UserConfiguration.Seed(context, store);
+            DashboardConfiguration.Seed(context, store);
         }
 
         internal class RoleConfiguration
         {
-            public static void Seed(IEventStore store, IConfiguration configuration)
+            public static void Seed(IEventStore store)
             {
-                AddRoleIfDoesntExists(store, DblDip.Core.Constants.Roles.Lead, nameof(DblDip.Core.Constants.Roles.Lead)).GetAwaiter().GetResult();
+                AddRoleIfDoesntExists(store, Constants.Roles.Lead, nameof(Constants.Roles.Lead));
 
-                AddRoleIfDoesntExists(store, DblDip.Core.Constants.Roles.Client, nameof(DblDip.Core.Constants.Roles.Client)).GetAwaiter().GetResult();
+                AddRoleIfDoesntExists(store, Constants.Roles.Client, nameof(Constants.Roles.Client));
 
-                AddRoleIfDoesntExists(store, DblDip.Core.Constants.Roles.Photographer, nameof(DblDip.Core.Constants.Roles.Photographer)).GetAwaiter().GetResult();
+                AddRoleIfDoesntExists(store, Constants.Roles.Photographer, nameof(Constants.Roles.Photographer));
 
-                AddRoleIfDoesntExists(store, DblDip.Core.Constants.Roles.ProjectManager, nameof(DblDip.Core.Constants.Roles.ProjectManager)).GetAwaiter().GetResult();
+                AddRoleIfDoesntExists(store, Constants.Roles.ProjectManager, nameof(Constants.Roles.ProjectManager));
 
-                AddRoleIfDoesntExists(store, DblDip.Core.Constants.Roles.SystemAdministrator, nameof(DblDip.Core.Constants.Roles.SystemAdministrator)).GetAwaiter().GetResult();
+                AddRoleIfDoesntExists(store, Constants.Roles.SystemAdministrator, nameof(Constants.Roles.SystemAdministrator));
 
-                async System.Threading.Tasks.Task AddRoleIfDoesntExists(IEventStore store, Guid roleId, string name)
+                void AddRoleIfDoesntExists(IEventStore store, Guid roleId, string name)
                 {
-                    var role = await store.FindAsync<Role>(roleId);
+                    var role = store.FindAsync<Role>(roleId).GetAwaiter().GetResult();
 
                     role ??= new Role(roleId, name);
 
                     if (role.DomainEvents.Any())
                     {
                         store.Add(role);
-                        await store.SaveChangesAsync(default);
+                        store.SaveChangesAsync(default).GetAwaiter().GetResult();
                     }
                 }
             }
@@ -53,7 +52,7 @@ namespace DblDip.Data
 
         internal class RateConfiguration
         {
-            public static void Seed(IEventStore store, IConfiguration configuration)
+            public static void Seed(IEventStore store)
             {
                 SeedRate(nameof(PhotographyRate), Price.Create(100).Value, PhotographyRate);
 
@@ -80,10 +79,10 @@ namespace DblDip.Data
 
         internal class CardConfiguration
         {
-            public static void Seed(IEventStore store, IDblDipDbContext context, IConfiguration configuration)
+            public static void Seed(IEventStore store, IDblDipDbContext context)
             {
 
-                var card = context.Set<Card>().FirstOrDefault(x => x.Name == "Leads");
+                var card = context.Cards.SingleOrDefault(x => x.Name == "Leads");
 
                 if (card == null)
                 {
@@ -93,15 +92,13 @@ namespace DblDip.Data
 
                     store.SaveChangesAsync(default).GetAwaiter().GetResult();
                 }
-
             }
         }
 
         internal class UserConfiguration
         {
-            public static void Seed(IDblDipDbContext context, IEventStore store, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IEventStore store)
             {
-
                 var username = (Email)"quinntynebrown@gmail.com";
 
                 var user = context.Users.FirstOrDefault(x => x.Username ==username);
@@ -131,13 +128,13 @@ namespace DblDip.Data
 
         internal class DashboardConfiguration
         {
-            public static void Seed(IDblDipDbContext context, IEventStore store, IConfiguration configuration)
+            public static void Seed(IDblDipDbContext context, IEventStore store)
             {
-                var user = context.Set<User>().Single(x => x.Username == "quinntynebrown@gmail.com");
+                var user = context.Users.Single(x => x.Username == "quinntynebrown@gmail.com");
 
                 var profile = context.Profiles.Single(x => x.Name == "Quinntyne");
 
-                var dashboard = context.Set<Dashboard>().FirstOrDefault(x => x.Name == "Default" && x.ProfileId == profile.ProfileId);
+                var dashboard = context.Dashboards.FirstOrDefault(x => x.Name == "Default" && x.ProfileId == profile.ProfileId);
 
                 if (dashboard == null)
                 {
