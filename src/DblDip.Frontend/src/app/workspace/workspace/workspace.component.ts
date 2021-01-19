@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService, RedirectService } from '@core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { takeUntil, tap } from 'rxjs/operators';
-import { DashboardStore } from '../dashboards/dashboard.store';
 import { DashboardsService } from '../dashboards/dashboards.service';
 
 @Component({
@@ -17,24 +16,23 @@ export class WorkspaceComponent implements OnInit, OnDestroy {
   public vm$: Observable<any> | undefined;
 
   constructor(
-    private dashboardStore: DashboardStore,
-    private authService: AuthService, 
-    private dashboardService: DashboardsService,
-    private redirectService: RedirectService
+    private _authService: AuthService, 
+    private _dashboardsService: DashboardsService,
+    private _redirectService: RedirectService
     ) { }
 
   ngOnInit(): void {
-    this.dashboardService.getCurrentDashboardsByCurrentProfile()
+    this._dashboardsService.getCurrentDashboardsByCurrentProfile()
     .pipe(
       takeUntil(this.destroyed),
-      tap(x => this.dashboardStore.dashboards$.next(x))
+      tap(x => this._dashboardsService.dashboards$.next(x))
     )
     .subscribe();
   }
 
   public logout() {
-    this.authService.logout();
-    this.redirectService.redirectToLogin();
+    this._authService.logout();
+    this._redirectService.redirectToLogin();
   }
 
   ngOnDestroy() {

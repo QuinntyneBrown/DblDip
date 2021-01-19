@@ -1,10 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService } from '@shared/dialog.service';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Dashboard } from '../dashboard';
-import { DashboardStore } from '../dashboard.store';
 import { DashboardsService } from '../dashboards.service';
 import { ManageDashboardsComponent } from '../manage-dashboards/manage-dashboards.component';
 
@@ -17,14 +16,13 @@ export class DashboardHeaderComponent implements OnDestroy {
 
   private readonly _destroyed: Subject<void> = new Subject();
 
-  public dashboards$: Observable<Dashboard[]>  = this._dashboardStore.dashboards$.asObservable();
+  public dashboards$: Observable<Dashboard[]>  = this._dashboardsService.dashboards$.asObservable();
   
   public dashboardInEditMode: Partial<Dashboard> | null = null;
 
   public form = new FormGroup({ name: new FormControl('', [Validators.required]) });
   
   constructor(
-    private _dashboardStore: DashboardStore,
     private _dashboardsService: DashboardsService,
     private _dialogService: DialogService
   ) { }
@@ -45,7 +43,7 @@ export class DashboardHeaderComponent implements OnDestroy {
         this.form.reset();
       }),
       switchMap(x => this._dashboardsService.getCurrentDashboardsByCurrentProfile()),
-      tap(x => this.dashboards$.next(x))
+      tap(x => this._dashboardsService.dashboards$.next(x))
     )
     .subscribe();
   }

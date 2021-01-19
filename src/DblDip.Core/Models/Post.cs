@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
@@ -23,7 +24,7 @@ namespace DblDip.Core.Models
 
         public Post(Guid authorId, string title)
         {
-            Apply(new PostCreated(Guid.NewGuid(), authorId, title));
+            Apply(new PostCreated(Guid.NewGuid(), authorId, title, title.GenerateSlug()));
         }
         public void When(PostRemoved postRemoved)
         {
@@ -40,6 +41,7 @@ namespace DblDip.Core.Models
             PostId = postCreated.PostId;
             AuthorId = postCreated.AuthorId;
             Title = postCreated.Title;
+            Slug = postCreated.Slug;
         }
 
         public void When(PostBodyUpdated postBodyUpdated)
@@ -50,11 +52,15 @@ namespace DblDip.Core.Models
         public void When(PostTitleUpdated postTitleUpdated)
         {
             Title = postTitleUpdated.Title;
+            Slug = postTitleUpdated.Slug;
         }
 
         protected override void EnsureValidState()
         {
-
+            if(string.IsNullOrEmpty(this.Title))
+            {
+                throw new Exception();
+            }
         }
 
         public void Remove(DateTime deleted)
@@ -74,8 +80,7 @@ namespace DblDip.Core.Models
 
         public void UpdateTitle(string title)
         {
-            Apply(new PostTitleUpdated(title));
+            Apply(new PostTitleUpdated(title, title.GenerateSlug()));
         }
-
     }
 }

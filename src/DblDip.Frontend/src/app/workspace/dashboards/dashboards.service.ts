@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { baseUrl } from '@core/constants';
 import { HttpClient } from '@angular/common/http';
 import { Dashboard } from './dashboard';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -10,7 +10,9 @@ import { map } from 'rxjs/operators';
 })
 export class DashboardsService {
 
-  public currentDashboard$: BehaviorSubject<Dashboard> = new BehaviorSubject(null as any);
+  public dashboard$: Subject<Dashboard> = new Subject();
+
+  public dashboards$: Subject<Dashboard[]> = new Subject();
   
   constructor(
     @Inject(baseUrl) private _baseUrl: string,
