@@ -58,7 +58,7 @@ namespace DblDip.Api.Controllers
         }
 
         [AllowAnonymous]
-        [HttpGet("page/{page}", Name = "GetBlogPageRoute")]
+        [HttpGet("{blogId}/page/{page}", Name = "GetBlogPageRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetBlogPage.Response), (int)HttpStatusCode.OK)]
