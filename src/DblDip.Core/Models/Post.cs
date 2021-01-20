@@ -11,7 +11,9 @@ namespace DblDip.Core.Models
         public Guid AuthorId { get; private set; }
         public string Title { get; private set; }
         public string Slug { get; private set; }
+        public string Abstract { get; set; }
         public string Body { get; private set; }
+        public string Categories { get; set; }
         public DateTime? Deleted { get; private set; }
         public DateTime? Published { get; private set; }
 

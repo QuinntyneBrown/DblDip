@@ -57,6 +57,14 @@ namespace DblDip.Api.Controllers
             return response;
         }
 
+        [AllowAnonymous]
+        [HttpGet("page/{page}", Name = "GetBlogPageRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(GetBlogPage.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetBlogPage.Response>> GetPage([FromRoute] GetBlogPage.Request request)
+            => await _mediator.Send(request);
+
         [Authorize]
         [HttpGet(Name = "GetBlogsRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
