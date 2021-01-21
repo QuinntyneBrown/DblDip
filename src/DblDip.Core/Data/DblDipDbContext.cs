@@ -1,9 +1,6 @@
-using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
-using DblDip.Core.ValueObjects;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
 
 namespace DblDip.Core.Data
 {
@@ -11,9 +8,7 @@ namespace DblDip.Core.Data
     {
         public DblDipDbContext(DbContextOptions<DblDipDbContext> options)
             : base(options)
-        {
-
-        }
+        { }
 
         public static readonly ILoggerFactory ConsoleLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
@@ -90,13 +85,9 @@ namespace DblDip.Core.Data
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().Property(user => user.Username).HasConversion(
-                property => (string)property,
-                property => (Email)property);
+            base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<Dashboard>().HasQueryFilter(p => !p.Deleted.HasValue);
-
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(DblDipDbContext).Assembly);
         }
-
     }
 }
