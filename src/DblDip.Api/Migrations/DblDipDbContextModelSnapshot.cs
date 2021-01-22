@@ -613,10 +613,16 @@ namespace DblDip.Api.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Abstract")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid>("AuthorId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Body")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Categories")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("Deleted")

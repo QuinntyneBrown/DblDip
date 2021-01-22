@@ -468,7 +468,9 @@ namespace DblDip.Api.Migrations
                     AuthorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Title = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Slug = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Abstract = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Body = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Categories = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Deleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Published = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },

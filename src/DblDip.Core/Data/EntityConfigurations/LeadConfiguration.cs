@@ -8,7 +8,7 @@ namespace DblDip.Core.Data
     {
         public void Configure(EntityTypeBuilder<Lead> builder)
         {
-            builder.HasQueryFilter(p => !p.Deleted.HasValue);
+            
         }
     }
 }
