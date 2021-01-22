@@ -6,6 +6,7 @@ namespace DblDip.Core.Models
 {
     public class SystemAdministrator : Profile
     {
+        public Guid SystemAdministratorId { get; private set; }
         protected SystemAdministrator()
         {
 
@@ -38,7 +39,5 @@ namespace DblDip.Core.Models
         {
             Apply(new SystemAdministratorUpdated());
         }
-
-        public Guid SystemAdministratorId { get; private set; }
     }
 }

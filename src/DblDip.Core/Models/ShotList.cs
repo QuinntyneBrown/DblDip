@@ -7,6 +7,10 @@ namespace DblDip.Core.Models
 {
     public class ShotList : AggregateRoot
     {
+        public Guid ShotListId { get; private set; }
+        public string PhotographyProject { get; private set; }
+        public ICollection<Shot> Shots { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public ShotList()
@@ -63,11 +67,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ShotListUpdated());
         }
-
-        public Guid ShotListId { get; private set; }
-        public string PhotographyProject { get; private set; }
-        public ICollection<Shot> Shots { get; private set; }
-        public DateTime? Deleted { get; private set; }
-
     }
 }

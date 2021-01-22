@@ -6,6 +6,11 @@ namespace DblDip.Core.Models
 {
     public class Service : AggregateRoot
     {
+        public Guid ServiceId { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public Guid DigitalAssetId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected override void When(dynamic @event)
         {
             if (@event is ServiceCreated || @event is ServiceRemoved || @event is ServiceUpdated)
@@ -56,11 +61,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ServiceRemoved(deleted));
         }
-
-        public Guid ServiceId { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public Guid DigitalAssetId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

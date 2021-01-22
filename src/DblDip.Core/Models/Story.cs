@@ -9,6 +9,17 @@ namespace DblDip.Core.Models
 {
     public class Story : AggregateRoot
     {
+        public Guid StoryId { get; private set; }
+        public StoryPoints StoryPoints { get; private set; }
+        public StoryPoints ArchitectureStoryPoints { get; private set; }
+        public DateTime? Started { get; private set; }
+        public DateTime? Deleted { get; private set; }
+        public DateTime? Completed { get; private set; }
+        public string Description { get; private set; }
+        public List<TaskReference> TaskReferences => _taskReferences.ToList();
+        public string Notes { get; private set; }
+
+        private List<TaskReference> _taskReferences;
         public Story()
         {
             Apply(new StoryCreated(Guid.NewGuid()));
@@ -18,7 +29,7 @@ namespace DblDip.Core.Models
         public void When(StoryCreated storyCreated)
         {
             StoryId = storyCreated.StoryId;
-            _taskReferences = new List<Guid>();
+            _taskReferences = new List<TaskReference>();
         }
 
         public void When(StoryUpdated storyUpdated)
@@ -33,12 +44,12 @@ namespace DblDip.Core.Models
 
         public void When(StoryTaskAdded storyTaskAdded)
         {
-            _taskReferences.Add(storyTaskAdded.TaskId);
+            _taskReferences.Add(new TaskReference(storyTaskAdded.TaskId));
         }
 
         public void When(StoryTaskRemoved storyTaskRemoved)
         {
-            _taskReferences.Remove(storyTaskRemoved.TaskId);
+            _taskReferences.Remove(new TaskReference(storyTaskRemoved.TaskId));
         }
 
         protected override void EnsureValidState()
@@ -65,19 +76,5 @@ namespace DblDip.Core.Models
         {
             Apply(new StoryTaskRemoved(taskId));
         }
-
-        public Guid StoryId { get; private set; }
-        public StoryPoints StoryPoints { get; private set; }
-        public StoryPoints ArchitectureStoryPoints { get; private set; }
-        public DateTime? Started { get; private set; }
-        public DateTime? Deleted { get; private set; }
-        public DateTime? Completed { get; private set; }
-        public string Description { get; private set; }
-        public List<Guid> TaskReferences => _taskReferences.ToList();
-
-
-        public string Notes { get; private set; }
-
-        private List<Guid> _taskReferences;
     }
 }

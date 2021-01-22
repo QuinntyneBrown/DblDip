@@ -13,9 +13,9 @@ namespace DblDip.Core.Models
 
         }
 
-        public ServiceReference(Guid ServiceId)
+        public ServiceReference(Guid serviceId)
         {
-            ServiceId = ServiceId;
+            ServiceId = serviceId;
         }
     }
 }

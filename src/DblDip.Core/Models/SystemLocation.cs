@@ -7,15 +7,15 @@ namespace DblDip.Core.Models
 {
     public class SystemLocation : AggregateRoot
     {
-        protected SystemLocation()
-        {
-
-        }
-
         public Guid SystemLocationId { get; private set; }
         public string Name { get; private set; }
         public Location Location { get; private set; }
         public DateTime? Deleted { get; private set; }
+
+        protected SystemLocation()
+        {
+
+        }
 
         protected override void When(dynamic @event) => When(@event);
 

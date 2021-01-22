@@ -6,6 +6,8 @@ namespace DblDip.Core.Models
 {
     public class Referral : AggregateRoot
     {
+        public Guid ReferralId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Referral()
         {
             Apply(new ReferralCreated(Guid.NewGuid()));
@@ -41,8 +43,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ReferralRemoved(deleted));
         }
-
-        public Guid ReferralId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

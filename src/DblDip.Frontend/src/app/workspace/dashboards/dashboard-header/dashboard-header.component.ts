@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DialogService } from '@shared/dialog.service';
 import { Observable, Subject } from 'rxjs';
@@ -10,7 +10,9 @@ import { ManageDashboardsComponent } from '../manage-dashboards/manage-dashboard
 @Component({
   selector: 'app-dashboard-header',
   templateUrl: './dashboard-header.component.html',
-  styleUrls: ['./dashboard-header.component.scss']
+  styleUrls: ['./dashboard-header.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  host: {'class': 'dashboard-header'}
 })
 export class DashboardHeaderComponent implements OnDestroy {
 

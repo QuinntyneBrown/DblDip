@@ -8,6 +8,13 @@ namespace DblDip.Core.Models
 {
     public class Role : AggregateRoot
     {
+        public Guid RoleId { get; private set; }
+        public string Name { get; private set; }
+        public DateTime? Deleted { get; private set; }
+        public List<Privilege> Privileges => _privileges.ToList();
+
+        private List<Privilege> _privileges;
+
         protected Role()
         {
 
@@ -55,12 +62,5 @@ namespace DblDip.Core.Models
         {
             Apply(new PrivilegesUpdated(privileges));
         }
-
-        public Guid RoleId { get; private set; }
-        public string Name { get; private set; }
-        public DateTime? Deleted { get; private set; }
-        public List<Privilege> Privileges => _privileges.ToList();
-
-        private List<Privilege> _privileges;
     }
 }

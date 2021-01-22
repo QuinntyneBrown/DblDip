@@ -6,6 +6,12 @@ namespace DblDip.Core.Models
 {
     public class Expense : AggregateRoot
     {
+        public Guid ExpenseId { get; private set; }
+        public string Description { get; private set; }
+        public ExpenseCategory Category { get; private set; }
+        public Guid ProjectId { get; private set; }
+        public DateTime? Deleted { get; private set; }
+
         public Expense()
         {
             Apply(new ExpenseCreated(Guid.NewGuid()));
@@ -41,11 +47,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ExpenseRemoved(deleted));
         }
-
-        public Guid ExpenseId { get; private set; }
-        public string Description { get; private set; }
-        public ExpenseCategory Category { get; private set; }
-        public Guid ProjectId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

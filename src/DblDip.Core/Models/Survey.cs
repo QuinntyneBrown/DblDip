@@ -9,6 +9,11 @@ namespace DblDip.Core.Models
 {
     public class Survey : AggregateRoot
     {
+        public Guid SurveyId { get; private set; }
+        public string Name { get; private set; }
+        public IEnumerable<SurveyQuestion> SurveyQuestions { get; private set; }
+        public IEnumerable<SurveyResult> SurveyResults { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected Survey()
         {
 
@@ -78,12 +83,5 @@ namespace DblDip.Core.Models
         {
             Apply(new SurveyRemoved(deleted));
         }
-
-        public Guid SurveyId { get; private set; }
-        public string Name { get; private set; }
-
-        public IEnumerable<SurveyQuestion> SurveyQuestions { get; private set; }
-        public IEnumerable<SurveyResult> SurveyResults { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }
