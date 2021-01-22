@@ -2,6 +2,10 @@
 
 Photography Business Management Software using ASP.NET Core and Angular 10 to support my side passion of photography.
 
+## Give a Star! :star:
+
+If you like or are using this project to learn or start your solution, please give it a star. Thanks!
+
 ## How to run locally
 
 1. [Download and install the .NET Core SDK](https://dotnet.microsoft.com/download)
