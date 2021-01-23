@@ -6,6 +6,9 @@ namespace DblDip.Core.Models
 {
     public class Invoice : AggregateRoot
     {
+
+        public Guid InvoiceId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Invoice()
@@ -42,7 +45,5 @@ namespace DblDip.Core.Models
             Apply(new InvoiceUpdated());
         }
 
-        public Guid InvoiceId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

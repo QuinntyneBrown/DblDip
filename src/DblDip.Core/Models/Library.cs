@@ -2,12 +2,16 @@ using BuildingBlocks.EventStore;
 using DblDip.Core.DomainEvents;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DblDip.Core.Models
 {
     public class Library : AggregateRoot
     {
+        public Guid LibraryId { get; private set; }
+        public Guid PhotographerId { get; private set; }
+        public ICollection<DigitalAssetReference> MyImages { get; private set; }
+        public ICollection<DigitalAssetReference> MyFiles { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Library()
         {
             Apply(new LibraryCreated(Guid.NewGuid()));
@@ -43,11 +47,5 @@ namespace DblDip.Core.Models
         {
             Apply(new LibraryRemoved(deleted));
         }
-
-        public Guid LibraryId { get; private set; }
-        public Guid PhotographerId { get; private set; }
-        public ICollection<DigitalAssetReference> MyImages { get; private set; }
-        public ICollection<DigitalAssetReference> MyFiles { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

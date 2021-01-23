@@ -8,6 +8,11 @@ namespace DblDip.Core.Models
 {
     public class Meeting : AggregateRoot, IScheduledAggregate
     {
+        public Guid MeetingId { get; private set; }
+        public DateRange Scheduled { get; private set; }
+        public string Name { get; private set; }
+        public string Description { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Meeting()
         {
             Apply(new MeetingCreated(Guid.NewGuid()));
@@ -44,11 +49,5 @@ namespace DblDip.Core.Models
             Apply(new MeetingRemoved(deleted));
         }
 
-        public Guid MeetingId { get; private set; }
-
-        public DateRange Scheduled { get; private set; }
-        public string Name { get; private set; }
-        public string Description { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

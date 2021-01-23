@@ -6,6 +6,7 @@ namespace DblDip.Core.Models
     [Owned]
     public class ProfileReference
     {
+        public Guid ProfileId { get; init; }
         protected ProfileReference()
         {
 
@@ -15,6 +16,6 @@ namespace DblDip.Core.Models
         {
             ProfileId = profileId;
         }
-        public Guid ProfileId { get; init; }
+
     }
 }

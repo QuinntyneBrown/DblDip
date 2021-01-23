@@ -6,6 +6,8 @@ namespace DblDip.Core.Models
 {
     public class Point : AggregateRoot
     {
+        public Guid PointId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Point()
         {
             Apply(new PointCreated(Guid.NewGuid()));
@@ -41,8 +43,5 @@ namespace DblDip.Core.Models
         {
             Apply(new PointRemoved(deleted));
         }
-
-        public Guid PointId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

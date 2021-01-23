@@ -15,6 +15,10 @@ namespace DblDip.Core.Models
 {
     public class DigitalAsset : AggregateRoot
     {
+        public Guid DigitalAssetId { get; private set; }
+        public string Name { get; private set; }
+        public byte[] Bytes { get; private set; }
+        public string ContentType { get; private set; }
         public DigitalAsset(string name, byte[] bytes, string contentType)
         {
             Apply(new DigitalAssetCreated(Guid.NewGuid(), name, bytes, contentType));
@@ -39,10 +43,7 @@ namespace DblDip.Core.Models
 
         }
 
-        public Guid DigitalAssetId { get; private set; }
-        public string Name { get; private set; }
-        public byte[] Bytes { get; private set; }
-        public string ContentType { get; private set; }
+
 
         public static async System.Threading.Tasks.Task<ICollection<DigitalAsset>> Upload(IHttpContextAccessor httpContextAccessor, IDblDipDbContext context, CancellationToken cancellationToken)
         {

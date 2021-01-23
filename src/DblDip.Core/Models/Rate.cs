@@ -7,6 +7,10 @@ namespace DblDip.Core.Models
 {
     public class Rate : AggregateRoot
     {
+        public Guid RateId { get; private set; }
+        public string Name { get; private set; }
+        public Price Price { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected Rate()
         {
 
@@ -49,10 +53,5 @@ namespace DblDip.Core.Models
         {
             Apply(new RateRemoved(deleted));
         }
-
-        public Guid RateId { get; private set; }
-        public string Name { get; private set; }
-        public Price Price { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

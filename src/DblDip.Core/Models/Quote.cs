@@ -9,6 +9,14 @@ namespace DblDip.Core.Models
 {
     public class Quote : AggregateRoot
     {
+        public Guid QuoteId { get; protected set; }
+        public Guid VendorId { get; private set; }
+        public Email BillToEmail { get; protected set; }
+        public Price Total => (Price)LineItems.Sum(x => x.Amount);
+        public ICollection<LineItem> LineItems { get; protected set; }
+        public DateTime? Completed { get; protected set; }
+        public DateTime? Declined { get; protected set; }
+        public DateTime? Accepted { get; protected set; }
         protected Quote()
         {
 
@@ -77,15 +85,5 @@ namespace DblDip.Core.Models
         {
             Apply(new QuoteAccepted(accepted));
         }
-
-        public Guid QuoteId { get; protected set; }
-        public Guid VendorId { get; private set; }
-        public Email BillToEmail { get; protected set; }
-        public Price Total => (Price)LineItems.Sum(x => x.Amount);
-        public ICollection<LineItem> LineItems { get; protected set; }
-        public DateTime? Completed { get; protected set; }
-        public DateTime? Declined { get; protected set; }
-        public DateTime? Accepted { get; protected set; }
-
     }
 }

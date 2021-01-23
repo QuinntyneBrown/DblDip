@@ -7,6 +7,9 @@ namespace DblDip.Core.Models
 {
     public class Lead : Profile
     {
+        public Guid LeadId { get; private set; }
+        public LeadStatus Status { get; private set; }
+
         protected Lead()
         {
 
@@ -40,7 +43,5 @@ namespace DblDip.Core.Models
             base.Remove(deleted);
         }
 
-        public Guid LeadId { get; private set; }
-        public LeadStatus Status { get; private set; }
     }
 }

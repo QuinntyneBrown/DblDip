@@ -5,6 +5,8 @@ namespace DblDip.Core.Models
 {
     public class FamilyPortrait : PhotographyProject
     {
+        public Guid FamilyPortraitId { get; private set; }
+        public override DateRange Scheduled { get; }
         public FamilyPortrait()
             :base()
         {
@@ -17,8 +19,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid FamilyPortraitId { get; private set; }
-        public override DateRange Scheduled { get; }
     }
 }

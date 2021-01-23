@@ -6,6 +6,9 @@ namespace DblDip.Core.Models
 {
     public class Receipt : AggregateRoot
     {
+        public Guid ReceiptId { get; private set; }
+        public Guid DigitalAssetId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Receipt()
         {
             Apply(new ReceiptCreated(Guid.NewGuid()));
@@ -40,9 +43,5 @@ namespace DblDip.Core.Models
         {
             Apply(new ReceiptUpdated());
         }
-
-        public Guid ReceiptId { get; private set; }
-        public Guid DigitalAssetId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

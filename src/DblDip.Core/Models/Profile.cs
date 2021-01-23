@@ -7,12 +7,6 @@ namespace DblDip.Core.Models
 {
     public class Profile : AggregateRoot
     {
-        protected Profile()
-        {
-
-        }
-
-
         public Guid ProfileId { get; private set; }
         public Guid? DefaultDashboardId { get; private set; }
         public Guid AccountId { get; private set; }
@@ -25,6 +19,11 @@ namespace DblDip.Core.Models
         public string Type { get; private set; }
         public string DotNetType { get; private set; }
         public DateTime? Deleted { get; protected set; }
+
+        protected Profile()
+        {
+
+        }
 
         public Profile(string name, Email email, System.Type type)
         {

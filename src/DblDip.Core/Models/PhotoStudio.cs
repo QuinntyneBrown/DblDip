@@ -7,6 +7,8 @@ namespace DblDip.Core.Models
 {
     public class PhotoStudio : AggregateRoot
     {
+        public Guid PhotoStudioId { get; private set; }
+        public DateTime? Deleted { get; set; }
         public PhotoStudio()
         {
             Apply(new PhotoStudioCreated(Guid.NewGuid()));
@@ -44,8 +46,5 @@ namespace DblDip.Core.Models
         {
             Apply(new PhotoStudioRemoved(deleted));
         }
-
-        public Guid PhotoStudioId { get; private set; }
-        public DateTime? Deleted { get; set; }
     }
 }

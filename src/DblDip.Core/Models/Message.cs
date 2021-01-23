@@ -6,6 +6,14 @@ namespace DblDip.Core.Models
 {
     public class Message : AggregateRoot
     {
+        public Guid MessageId { get; private set; }
+        public Guid ConversationId { get; set; }
+        public Guid ToProfileId { get; set; }
+        public Guid FromProfileId { get; set; }
+        public string Subject { get; set; }
+        public string Content { get; set; }
+        public bool Read { get; set; }
+        public DateTime? Deleted { get; private set; }
         public Message()
         {
             Apply(new MessageCreated(Guid.NewGuid()));
@@ -43,13 +51,5 @@ namespace DblDip.Core.Models
             Apply(new MessageUpdated());
         }
 
-        public Guid MessageId { get; private set; }
-        public Guid ConversationId { get; set; }
-        public Guid ToProfileId { get; set; }
-        public Guid FromProfileId { get; set; }
-        public string Subject { get; set; }
-        public string Content { get; set; }
-        public bool Read { get; set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

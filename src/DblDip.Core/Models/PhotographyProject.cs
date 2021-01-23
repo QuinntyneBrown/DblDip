@@ -8,6 +8,14 @@ namespace DblDip.Core.Models
 {
     public abstract class PhotographyProject : AggregateRoot, IScheduledAggregate
     {
+        public Guid PhotographyProjectId { get; private set; }
+        public abstract DateRange Scheduled { get; }
+        public Guid PhotographerId { get; private set; }
+        public Guid ParticipantId { get; private set; }
+        public Guid AdditionalParticipantIds { get; private set; }
+        public Guid? VendorId { get; private set; }
+        public DateTime? GallerySent { get; private set; }
+        public DateTime? Deleted { get; private set; }
         protected PhotographyProject()
         {
 
@@ -49,14 +57,5 @@ namespace DblDip.Core.Models
         {
 
         }
-
-        public Guid PhotographyProjectId { get; private set; }
-        public abstract DateRange Scheduled { get; }
-        public Guid PhotographerId { get; private set; }
-        public Guid ParticipantId { get; private set; }
-        public Guid AdditionalParticipantIds { get; private set; }
-        public Guid? VendorId { get; private set; }
-        public DateTime? GallerySent { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

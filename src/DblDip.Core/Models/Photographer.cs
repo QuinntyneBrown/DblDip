@@ -2,12 +2,15 @@ using DblDip.Core.DomainEvents;
 using DblDip.Core.ValueObjects;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DblDip.Core.Models
 {
     public class Photographer : Profile
     {
+        public Guid PhotographerId { get; private set; }
+        public Guid CompanyId { get; private set; }
+        public ICollection<ServiceReference> Services { get; private set; }
+        public Location PrimaryLocation { get; private set; }
         protected Photographer()
         {
 
@@ -51,9 +54,6 @@ namespace DblDip.Core.Models
             Apply(new PhotographerUpdated());
         }
 
-        public Guid PhotographerId { get; private set; }
-        public Guid CompanyId { get; private set; }
-        public ICollection<ServiceReference> Services { get; private set; }
-        public Location PrimaryLocation { get; private set; }
+
     }
 }

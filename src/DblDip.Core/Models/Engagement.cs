@@ -6,6 +6,7 @@ namespace DblDip.Core.Models
 {
     public class Engagement : Service
     {
+        public Guid EngagementId { get; private set; }
         protected override void When(dynamic @event) => When(@event);
 
         public Engagement()
@@ -28,6 +29,5 @@ namespace DblDip.Core.Models
             Apply(new EngagementUpdated());
         }
 
-        public Guid EngagementId { get; private set; }
     }
 }

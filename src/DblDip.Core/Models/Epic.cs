@@ -8,6 +8,14 @@ namespace DblDip.Core.Models
 {
     public class Epic : AggregateRoot
     {
+        public Guid EpicId { get; private set; }
+        public Guid AuthorId { get; private set; }
+        public string Description { get; private set; }
+        private IEnumerable<TicketReference> _ticketReferences;
+        public List<TicketReference> TicketReferences => _ticketReferences.ToList();
+        private List<StoryReference> _storyReferences;
+        public List<StoryReference> StoryReferences => _storyReferences.ToList();
+        public DateTime? Deleted { get; private set; }
         public Epic()
         {
             Apply(new EpicCreated(Guid.NewGuid()));
@@ -18,7 +26,7 @@ namespace DblDip.Core.Models
         {
             EpicId = epicCreated.EpicId;
             _ticketReferences = new List<TicketReference>();
-            _storyReferences = new List<Guid>();
+            _storyReferences = new List<StoryReference>();
         }
 
         public void When(EpicUpdated epicUpdated)
@@ -46,13 +54,6 @@ namespace DblDip.Core.Models
             Apply(new EpicRemoved(deleted));
         }
 
-        public Guid EpicId { get; private set; }
-        public Guid AuthorId { get; private set; }
-        public string Description { get; private set; }
-        private IEnumerable<TicketReference> _ticketReferences;
-        public List<TicketReference> TicketReferences => _ticketReferences.ToList();
-        private IEnumerable<Guid> _storyReferences;
-        public List<Guid> StoryReferences => _storyReferences.ToList();
-        public DateTime? Deleted { get; private set; }
+
     }
 }

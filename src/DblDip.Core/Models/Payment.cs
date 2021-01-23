@@ -6,6 +6,8 @@ namespace DblDip.Core.Models
 {
     public class Payment : AggregateRoot
     {
+        public Guid PaymentId { get; private set; }
+        public DateTime? Deleted { get; private set; }
         public Payment()
         {
             Apply(new PaymentCreated(Guid.NewGuid()));
@@ -41,8 +43,5 @@ namespace DblDip.Core.Models
         {
             Apply(new PaymentRemoved(deleted));
         }
-
-        public Guid PaymentId { get; private set; }
-        public DateTime? Deleted { get; private set; }
     }
 }

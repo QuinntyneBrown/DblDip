@@ -6,6 +6,8 @@ namespace DblDip.Core.Models
 {
     public class ProjectManager : Profile
     {
+
+        public Guid ProjectManagerId { get; private set; }
         protected ProjectManager()
         {
 
@@ -39,6 +41,5 @@ namespace DblDip.Core.Models
             Apply(new ProjectManagerUpdated());
         }
 
-        public Guid ProjectManagerId { get; private set; }
     }
 }

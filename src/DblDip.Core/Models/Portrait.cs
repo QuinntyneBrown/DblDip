@@ -5,6 +5,8 @@ namespace DblDip.Core.Models
 {
     public class Portrait : PhotographyProject
     {
+        public override DateRange Scheduled { get; }
+        public Guid PortraitId { get; private set; }
         public Portrait()
         {
 
@@ -16,7 +18,6 @@ namespace DblDip.Core.Models
         {
 
         }
-        public override DateRange Scheduled { get; }
-        public Guid PortraitId { get; private set; }
+
     }
 }
