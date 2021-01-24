@@ -9,7 +9,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '@shared';
 import { CreateDashboardComponent } from './create-dashboard/create-dashboard.component';
 
-const declarations = [DashboardHeaderComponent, ManageDashboardsComponent, DashboardComponent, DashboardCardConfigurationComponent];
+const declarations = [DashboardHeaderComponent, ManageDashboardsComponent, DashboardComponent, DashboardCardConfigurationComponent, CreateDashboardComponent];
 
 @NgModule({
   declarations,
@@ -20,7 +20,6 @@ const declarations = [DashboardHeaderComponent, ManageDashboardsComponent, Dashb
     RouterModule,
     SharedModule
   ],
-  exports: declarations,
-  declarations: [CreateDashboardComponent],
+  exports: declarations
 })
 export class DashboardsModule { }
