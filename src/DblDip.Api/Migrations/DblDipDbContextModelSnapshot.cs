@@ -1450,6 +1450,27 @@ namespace DblDip.Api.Migrations
 
             modelBuilder.Entity("DblDip.Core.Models.Epic", b =>
                 {
+                    b.OwnsMany("DblDip.Core.Models.StoryReference", "StoryReferences", b1 =>
+                        {
+                            b1.Property<Guid>("EpicId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<Guid>("StoryId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("EpicId", "Id");
+
+                            b1.ToTable("StoryReference");
+
+                            b1.WithOwner()
+                                .HasForeignKey("EpicId");
+                        });
+
                     b.OwnsMany("DblDip.Core.Models.TicketReference", "TicketReferences", b1 =>
                         {
                             b1.Property<Guid>("EpicId")
@@ -1470,6 +1491,8 @@ namespace DblDip.Api.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("EpicId");
                         });
+
+                    b.Navigation("StoryReferences");
 
                     b.Navigation("TicketReferences");
                 });
@@ -1929,6 +1952,27 @@ namespace DblDip.Api.Migrations
 
             modelBuilder.Entity("DblDip.Core.Models.Story", b =>
                 {
+                    b.OwnsMany("DblDip.Core.Models.TaskReference", "TaskReferences", b1 =>
+                        {
+                            b1.Property<Guid>("StoryId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Id")
+                                .ValueGeneratedOnAdd()
+                                .HasColumnType("int")
+                                .UseIdentityColumn();
+
+                            b1.Property<Guid>("TaskId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.HasKey("StoryId", "Id");
+
+                            b1.ToTable("TaskReference");
+
+                            b1.WithOwner()
+                                .HasForeignKey("StoryId");
+                        });
+
                     b.OwnsOne("DblDip.Core.ValueObjects.StoryPoints", "ArchitectureStoryPoints", b1 =>
                         {
                             b1.Property<Guid>("StoryId")
@@ -1964,6 +2008,8 @@ namespace DblDip.Api.Migrations
                     b.Navigation("ArchitectureStoryPoints");
 
                     b.Navigation("StoryPoints");
+
+                    b.Navigation("TaskReferences");
                 });
 
             modelBuilder.Entity("DblDip.Core.Models.Survey", b =>

@@ -434,14 +434,14 @@ namespace DblDip.Api.Migrations
                 columns: table => new
                 {
                     PhotoStudioId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location_Longitude = table.Column<double>(type: "float", nullable: true),
                     Location_Latitude = table.Column<double>(type: "float", nullable: true),
                     Location_Street = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location_City = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Location_Province = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Location_PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Deleted = table.Column<DateTime>(type: "datetime2", nullable: true)
+                    Location_PostalCode = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -877,6 +877,26 @@ namespace DblDip.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "StoryReference",
+                columns: table => new
+                {
+                    EpicId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_StoryReference", x => new { x.EpicId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_StoryReference_Epics_EpicId",
+                        column: x => x.EpicId,
+                        principalTable: "Epics",
+                        principalColumn: "EpicId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "TicketReference",
                 columns: table => new
                 {
@@ -1124,6 +1144,26 @@ namespace DblDip.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TaskReference",
+                columns: table => new
+                {
+                    StoryId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TaskId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TaskReference", x => new { x.StoryId, x.Id });
+                    table.ForeignKey(
+                        name: "FK_TaskReference_Stories_StoryId",
+                        column: x => x.StoryId,
+                        principalTable: "Stories",
+                        principalColumn: "StoryId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "SurveyQuestions",
                 columns: table => new
                 {
@@ -1353,13 +1393,16 @@ namespace DblDip.Api.Migrations
                 name: "Shots");
 
             migrationBuilder.DropTable(
-                name: "Stories");
+                name: "StoryReference");
 
             migrationBuilder.DropTable(
                 name: "SurveyQuestions");
 
             migrationBuilder.DropTable(
                 name: "SystemLocations");
+
+            migrationBuilder.DropTable(
+                name: "TaskReference");
 
             migrationBuilder.DropTable(
                 name: "Tasks");
@@ -1426,6 +1469,9 @@ namespace DblDip.Api.Migrations
 
             migrationBuilder.DropTable(
                 name: "ShotLists");
+
+            migrationBuilder.DropTable(
+                name: "Stories");
 
             migrationBuilder.DropTable(
                 name: "Epics");
