@@ -5,7 +5,7 @@ namespace DblDip.Domain.Features
 {
     public class AccountDto
     {
-        public Guid AccountId { get; init; }
+        public Guid? AccountId { get; init; }
         public Guid DefaultProfileId { get; init; }
         public string Name { get; init; }
         public Guid AccountHolderUserId { get; init; }

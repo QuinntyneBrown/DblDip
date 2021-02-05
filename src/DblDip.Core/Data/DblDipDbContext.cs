@@ -8,7 +8,9 @@ namespace DblDip.Core.Data
     {
         public DblDipDbContext(DbContextOptions<DblDipDbContext> options)
             : base(options)
-        { }
+        { 
+
+        }
 
         public static readonly ILoggerFactory ConsoleLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });

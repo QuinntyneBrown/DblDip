@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class AccountsService {
+export class AccountService {
 
   constructor(
     @Inject(baseUrl) private _baseUrl: string,
@@ -22,7 +22,7 @@ export class AccountsService {
       );
   }
 
-  public getByaccountId(options: { accountId: number }): Observable<Account> {
+  public getById(options: { accountId: string }): Observable<Account> {
     return this._client.get<{ account: Account }>(`${this._baseUrl}api/accounts/${options.accountId}`)
       .pipe(
         map(x => x.account)
@@ -33,11 +33,11 @@ export class AccountsService {
     return this._client.delete<void>(`${this._baseUrl}api/accounts/${options.account.accountId}`);
   }
 
-  public save(options: { account: Account }): Observable<{ accountId: number }> {
-    return this._client.post<{ accountId: number }>(`${this._baseUrl}api/accounts`, { account: options.account });
-  }  
-
-  public setCurrentProfile(options: { profileId: string }): Observable<{ accessToken: string }> {
-    return this._client.put<{ accessToken: string }>(`${this._baseUrl}api/accounts/current-profile`, { profileId: options.profileId });
-  } 
+  public create(options: { account: Account }): Observable<{ account: Account }> {
+    return this._client.post<{ account: Account }>(`${this._baseUrl}api/accounts`, { account: options.account });
+  }
+  
+  public update(options: { account: Account }): Observable<{ account: Account }> {
+    return this._client.put<{ account: Account }>(`${this._baseUrl}api/accounts`, { account: options.account });
+  }
 }

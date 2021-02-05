@@ -20,6 +20,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
 using DblDip.Core.Handlers;
+using BuildingBlocks.AspNetCore.Extensions;
 
 namespace DblDip.Api
 {
@@ -54,6 +55,8 @@ namespace DblDip.Api
             {
                 options.OperationFilter<AuthorizationHeaderParameterOperationFilter>();
             });
+
+            services.AddValidation(typeof(Authenticate));
 
             services.AddCors(options => options.AddPolicy("CorsPolicy",
                 builder => builder
