@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using MediatR;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace DblDip.Domain.Features
     {
         public class Request : IRequest<Response> { }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public List<EquipmentDto> Equipment { get; init; }
         }

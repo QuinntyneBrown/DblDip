@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -26,7 +27,7 @@ namespace DblDip.Domain.Features
             public Email Email { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public ClientDto Client { get; init; }
         }

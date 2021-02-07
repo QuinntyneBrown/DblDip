@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using BuildingBlocks.Core;
 using MediatR;
@@ -19,7 +20,7 @@ namespace DblDip.Domain.Features
     {
         public class Request : IRequest<Response> { }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public List<Guid> DigitalAssetIds { get; init; }
         }

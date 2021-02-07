@@ -1,3 +1,4 @@
+using BuildingBlocks.AspNetCore;
 using DblDip.Core;
 using DblDip.Core.Data;
 using MediatR;
@@ -15,7 +16,16 @@ namespace DblDip.Domain.Features
     {
         public record Request : IRequest<Response>;
 
-        public record Response(List<ProfileDto> Profiles);
+        public class Response
+        {
+            public Response(List<ProfileDto> profiles)
+            {
+                Profiles = profiles;
+            }
+
+            public List<ProfileDto> Profiles { get; set; }
+        }
+
 
         public class Handler : IRequestHandler<Request, Response>
         {

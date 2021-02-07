@@ -23,7 +23,14 @@ namespace DblDip.Domain.Features
         }
         public record Request(Guid ProfileId): IRequest<Response>;
     
-        public record Response(string AccessToken);
+        public class Response: ResponseBase
+        {
+            public Response(string accessToken)
+            {
+                AccessToken = accessToken;
+            }
+            public string AccessToken { get; set; }
+        }
 
         public class Handler : IRequestHandler<Request, Response>
         {

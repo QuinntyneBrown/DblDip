@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using MediatR;
 using DblDip.Core.Models;
@@ -15,7 +16,7 @@ namespace DblDip.Domain.Features
             public Guid DigitalAssetId { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public DigitalAssetDto DigitalAsset { get; init; }
         }

@@ -1,11 +1,11 @@
 using BuildingBlocks.EventStore;
-using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
 using MediatR;
 using System.Threading;
 using System.Threading.Tasks;
 using System;
+using BuildingBlocks.Core;
 
 namespace DblDip.Domain.Features
 {
@@ -19,7 +19,7 @@ namespace DblDip.Domain.Features
             }
         }
 
-        public class Request : IRequest<Unit>
+        public class Request : IRequest<ResponseBase>
         {
             public Guid AccountId { get; set; }
         }
@@ -29,7 +29,7 @@ namespace DblDip.Domain.Features
             public AccountDto Account { get; set; }
         }
 
-        public class Handler : IRequestHandler<Request, Unit>
+        public class Handler : IRequestHandler<Request, ResponseBase>
         {
             private readonly IEventStore _store;
             private readonly IDateTime _dateTime;
@@ -40,7 +40,7 @@ namespace DblDip.Domain.Features
                 _dateTime = dateTime;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            public async Task<ResponseBase> Handle(Request request, CancellationToken cancellationToken)
             {
 
                 var account = await _store.FindAsync<Account>(request.AccountId);

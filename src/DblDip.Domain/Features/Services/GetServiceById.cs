@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
 using MediatR;
@@ -15,7 +16,7 @@ namespace DblDip.Domain.Features
             public Guid ServiceId { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public ServiceDto Service { get; init; }
         }

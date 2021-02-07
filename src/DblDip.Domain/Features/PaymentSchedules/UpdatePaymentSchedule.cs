@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -22,7 +23,7 @@ namespace DblDip.Domain.Features
             public PaymentScheduleDto PaymentSchedule { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public PaymentScheduleDto PaymentSchedule { get; set; }
         }

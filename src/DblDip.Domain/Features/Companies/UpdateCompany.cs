@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
@@ -24,7 +25,7 @@ namespace DblDip.Domain.Features
             public CompanyDto Company { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public CompanyDto Company { get; init; }
         }

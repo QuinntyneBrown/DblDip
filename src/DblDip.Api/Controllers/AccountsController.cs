@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using DblDip.Domain.Features;
 using System.Net;
 using System.Threading.Tasks;
+using BuildingBlocks.Core;
 
 namespace DblDip.Api.Controllers
 {
@@ -27,8 +28,8 @@ namespace DblDip.Api.Controllers
         [HttpPut("default-profile", Name = "SetDefaultProfileRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(Unit), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<Unit>> DefaultProfile([FromBody] SetDefaultProfile.Request request)
+        [ProducesResponseType(typeof(ResponseBase), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<ResponseBase>> DefaultProfile([FromBody] SetDefaultProfile.Request request)
             => await _mediator.Send(request);
 
         [Authorize]

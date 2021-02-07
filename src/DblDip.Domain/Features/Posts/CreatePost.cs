@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -20,7 +21,7 @@ namespace DblDip.Domain.Features
 
         public record Request(PostDto Post) : IRequest<Response>;
 
-        public class Response
+        public class Response: ResponseBase
         {
             public PostDto Post { get; init; }
         }

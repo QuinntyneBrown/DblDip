@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using DblDip.Core;
 using DblDip.Core.Models;
@@ -13,7 +14,7 @@ namespace DblDip.Domain.Features
     {
         public class Request : IRequest<Response> { }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public DashboardDto Dashboard { get; init; }
         }

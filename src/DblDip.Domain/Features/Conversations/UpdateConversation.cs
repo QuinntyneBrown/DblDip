@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -23,7 +24,7 @@ namespace DblDip.Domain.Features
             public ConversationDto Conversation { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public ConversationDto Conversation { get; set; }
         }

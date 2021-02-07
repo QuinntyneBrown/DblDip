@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
 using MediatR;
@@ -12,7 +13,7 @@ namespace DblDip.Domain.Features
     {
         public class Request : IRequest<Response> { }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public List<FamilyPortraitDto> FamilyPortraits { get; init; }
         }

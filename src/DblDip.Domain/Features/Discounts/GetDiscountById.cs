@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
 using MediatR;
@@ -14,7 +15,7 @@ namespace DblDip.Domain.Features
             public Guid DiscountId { get; set; }        
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public DiscountDto Discount { get; set; }
         }

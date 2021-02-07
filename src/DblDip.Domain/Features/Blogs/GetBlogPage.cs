@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +17,7 @@ namespace DblDip.Domain.Features
             public int Page { get; init; } = 1;
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public BlogPageDto BlogPage { get; set; }
         }

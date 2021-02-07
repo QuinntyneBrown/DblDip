@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using BuildingBlocks.EventStore;
 using FluentValidation;
@@ -24,7 +25,7 @@ namespace DblDip.Domain.Features
             public Guid LeadId { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public LeadDto Lead { get; init; }
         }

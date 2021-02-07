@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
 using MediatR;
@@ -15,7 +16,7 @@ namespace DblDip.Domain.Features
             public Guid ConversationId { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public ConversationDto Conversation { get; set; }
         }

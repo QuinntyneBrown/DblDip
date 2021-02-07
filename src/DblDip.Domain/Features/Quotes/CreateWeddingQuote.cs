@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using BuildingBlocks.EventStore;
 using FluentValidation;
@@ -29,7 +30,7 @@ namespace DblDip.Domain.Features
             public string Email { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public WeddingQuoteDto Quote { get; init; }
         }

@@ -1,13 +1,13 @@
-using FluentValidation;
-using MediatR;
+using BuildingBlocks.Core;
+using DblDip.Core;
 using DblDip.Core.Data;
 using DblDip.Core.Models;
-using System.Threading;
-using System.Threading.Tasks;
-using System.Linq;
+using FluentValidation;
+using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
-using DblDip.Core;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace DblDip.Domain.Features
 {
@@ -21,8 +21,8 @@ namespace DblDip.Domain.Features
             }
         }
 
-        public record Request(Guid ProfileId) : IRequest<Unit>;
-        public class Handler : IRequestHandler<Request, Unit>
+        public record Request(Guid ProfileId) : IRequest<ResponseBase>;
+        public class Handler : IRequestHandler<Request, ResponseBase>
         {
             private readonly IDblDipDbContext _context;
             private readonly IHttpContextAccessor _httpContextAccessor;
@@ -32,7 +32,7 @@ namespace DblDip.Domain.Features
                 _httpContextAccessor = httpContextAccessor;
             }
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<ResponseBase> Handle(Request request, CancellationToken cancellationToken) {
 
                 var user = await _context.FindAsync<User>(new Guid(_httpContextAccessor.HttpContext.User.FindFirst(Constants.ClaimTypes.UserId).Value));
 

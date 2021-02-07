@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -23,7 +24,7 @@ namespace DblDip.Domain.Features
             public ReceiptDto Receipt { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public ReceiptDto Receipt { get; init; }
         }

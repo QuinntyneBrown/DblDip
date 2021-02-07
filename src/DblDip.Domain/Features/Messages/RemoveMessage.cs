@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
@@ -24,7 +25,7 @@ namespace DblDip.Domain.Features
             public Guid MessageId { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public MessageDto Message { get; set; }
         }

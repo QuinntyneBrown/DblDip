@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
 using FluentValidation;
@@ -22,7 +23,7 @@ namespace DblDip.Domain.Features
             public DiscountDto Discount { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public DiscountDto Discount { get; set; }
         }

@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using FluentValidation;
 using MediatR;
 using DblDip.Core.Data;
@@ -25,7 +26,7 @@ namespace DblDip.Domain.Features
             public Guid PhotographerId { get; init; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public Guid DigitalAssetId { get; init; }
         }

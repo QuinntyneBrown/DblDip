@@ -1,3 +1,4 @@
+using BuildingBlocks.Core;
 using BuildingBlocks.EventStore;
 using BuildingBlocks.EventStore;
 using DblDip.Core.Models;
@@ -23,7 +24,7 @@ namespace DblDip.Domain.Features
             public Guid DiscountId { get; set; }
         }
 
-        public class Response
+        public class Response: ResponseBase
         {
             public DiscountDto Discount { get; set; }
         }
