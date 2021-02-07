@@ -8,11 +8,13 @@ import { ClientsModule } from './clients/clients.module';
 import { SharedModule } from '@shared/shared.module';
 import { DashboardsModule } from './dashboards/dashboards.module';
 import { ProfilesModule } from './profiles/profiles.module';
+import { RatesModule } from './rates/rates.module';
 
 @NgModule({
   declarations: [WorkspaceComponent],
   imports: [
     ProfilesModule,
+    RatesModule,
     ClientsModule,
     DashboardsModule,
     LeadsModule,

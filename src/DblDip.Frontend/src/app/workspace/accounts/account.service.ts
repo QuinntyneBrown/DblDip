@@ -40,4 +40,8 @@ export class AccountService {
   public update(options: { account: Account }): Observable<{ account: Account }> {
     return this._client.put<{ account: Account }>(`${this._baseUrl}api/accounts`, { account: options.account });
   }
+
+  public setCurrentProfile(options: { profileId: string }): Observable<{ accessToken: string }> {
+    return this._client.put<{ accessToken: string }>(`${this._baseUrl}api/accounts`, { profileId: options.profileId });
+  }  
 }

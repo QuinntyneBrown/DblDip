@@ -1,0 +1,30 @@
+<div *ngIf="vm$ | async as vm">
+  
+  <h1>Rate List</h1>
+
+    <button mat-raised-button (click)="create()">Create</button>
+    <table mat-table [dataSource]="vm.dataSource$" class="mat-elevation-z8">
+  
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Name </th>
+        <td mat-cell *matCellDef="let rate"> {{ rate.name }} </td>
+      </ng-container>
+
+        
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td style="width:200px" mat-cell *matCellDef="let rate">             
+            <button mat-icon-button (click)="edit(rate); $event.stopPropagation();">             
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="delete(rate); $event.stopPropagation();">
+              <mat-icon>delete</mat-icon>
+            </button>            
+          </td>
+        </ng-container>
+        
+        <tr mat-header-row *matHeaderRowDef="vm.columnsToDisplay"></tr>
+        <tr mat-row *matRowDef="let data; columns: vm.columnsToDisplay"></tr>
+      
+      </table>
+</div>

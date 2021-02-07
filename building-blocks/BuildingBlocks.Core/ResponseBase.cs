@@ -4,6 +4,6 @@ namespace BuildingBlocks.Core
 {
     public class ResponseBase
     {
-        public List<string> ErrorMessages { get; set; }
+        public List<string> ValidationErrors { get; set; }
     }
 }

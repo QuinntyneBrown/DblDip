@@ -5,7 +5,7 @@ import { LocalStorageService } from '@core/local-storage.service';
 import { DialogService } from '@shared/dialog.service';
 import { Observable } from 'rxjs';
 import { map, switchMap, tap } from 'rxjs/operators';
-import { AccountsService } from '../account/accounts.service';
+import { AccountService } from '../accounts/account.service';
 import { SelectProfileComponent } from './select-profile/select-profile.component';
 
 @Injectable({
@@ -45,7 +45,7 @@ export class CurrentProfileGuard implements CanActivate {
   }
 
   constructor(
-    private _accountService: AccountsService,
+    private _accountService: AccountService,
     private _dialogService: DialogService, 
     private _localStorageService: LocalStorageService) {
   }

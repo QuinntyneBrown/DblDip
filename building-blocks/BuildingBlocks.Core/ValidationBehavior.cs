@@ -31,7 +31,7 @@ namespace BuildingBlocks.Core
 
                 foreach(var failure in failures)
                 {
-                    response.ErrorMessages.Add(failure.ErrorMessage);
+                    response.ValidationErrors.Add(failure.ErrorMessage);
                 }
 
                 return response;
