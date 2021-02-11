@@ -42,5 +42,18 @@ namespace DblDip.Testing.Factories
 
             return _tokenProvider.Get(user.Username, claims);
         }
+
+        public static string CreateToken(User user, Account account, IEnumerable<Role> roles)
+        {
+
+            var claims = roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name))
+                .ToList();
+
+            claims.Add(new Claim(Constants.ClaimTypes.UserId, $"{user.UserId}"));
+
+            claims.Add(new Claim(Constants.ClaimTypes.AccountId, $"{account.AccountId}"));
+
+            return _tokenProvider.Get(user.Username, claims);
+        }
     }
 }

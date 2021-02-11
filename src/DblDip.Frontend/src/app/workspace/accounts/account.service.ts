@@ -42,6 +42,6 @@ export class AccountService {
   }
 
   public setCurrentProfile(options: { profileId: string }): Observable<{ accessToken: string }> {
-    return this._client.put<{ accessToken: string }>(`${this._baseUrl}api/accounts`, { profileId: options.profileId });
+    return this._client.put<{ accessToken: string }>(`${this._baseUrl}api/accounts/current-profile`, { profileId: options.profileId });
   }  
 }

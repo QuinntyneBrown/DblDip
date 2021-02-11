@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 
@@ -16,8 +17,7 @@ namespace BuildingBlocks.Core
 
         public TokenBuilder AddUsername(string username)
         {
-            this._username = username;
-
+            _username = username;
             return this;
         }
 
@@ -25,6 +25,12 @@ namespace BuildingBlocks.Core
         {
             _username = claimsPrincipal.Identity.Name;
 
+            if(string.IsNullOrEmpty(_username))
+            {
+                _username = claimsPrincipal.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value;
+
+            }
+            
             _claims = claimsPrincipal.Claims.ToList();
 
             return this;

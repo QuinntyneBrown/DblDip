@@ -85,7 +85,7 @@ namespace DblDip.Api.FunctionalTests
 
             await context.SaveChangesAsync(default);
 
-            var token = TokenFactory.CreateToken(user, new List<Role>());
+            var token = TokenFactory.CreateToken(user, account, new List<Role>());
 
             StringContent stringContent = new StringContent(JsonConvert.SerializeObject(new { profileId = profile.ProfileId }), Encoding.UTF8, "application/json");
 

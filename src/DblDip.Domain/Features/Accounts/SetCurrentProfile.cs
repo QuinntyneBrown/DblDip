@@ -21,6 +21,7 @@ namespace DblDip.Domain.Features
                 RuleFor(x => x.ProfileId).NotEqual(Guid.NewGuid());
             }
         }
+
         public record Request(Guid ProfileId): IRequest<Response>;
     
         public class Response: ResponseBase

@@ -106,8 +106,6 @@ namespace DblDip.Testing
                         .Options;
                     var dateTime = new MachineDateTime();
 
-                    
-
                     _dataIntegrityService = new DataIntegrityService();
                 }
 
@@ -127,7 +125,9 @@ namespace DblDip.Testing
                 {
                     services.AddAuthentication(scheme)
                         .AddScheme<AuthenticationSchemeOptions, TestAuthenticationHandler>(
-                            scheme, options => { });
+                            scheme, options => { 
+
+                            });
                 });
             }).CreateClient();
 
