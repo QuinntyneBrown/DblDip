@@ -17,6 +17,15 @@ dotnet build
 dotnet run
 ```
 3. Open your browser to: `https://localhost:5001`.
+5. [Download and install the node package manager](https://nodejs.org/en/download)
+6. Open a terminal such as **PowerShell**, **Command Prompt**, or **bash** and navigate to the `src/DblDip.Frontend` folder
+7. Run the following commands:
+```sh
+npm install -g @angular/cli
+npm install
+ng serve
+```
+8. Open your browser to: `https://localhost:4200`.
 
 ## To Run the Integration tests
 1. [Download and install the .NET Core SDK](https://dotnet.microsoft.com/download)
