@@ -16,7 +16,7 @@ If you like or are using this project to learn or start your solution, please gi
 dotnet build
 dotnet run
 ```
-3. Open your browser to: `https://localhost:5001`.
+4. Open your browser to: `https://localhost:5001`.
 5. [Download and install the node package manager](https://nodejs.org/en/download)
 6. Open a terminal such as **PowerShell**, **Command Prompt**, or **bash** and navigate to the `src/DblDip.Frontend` folder
 7. Run the following commands:
