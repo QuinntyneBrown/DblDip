@@ -18,5 +18,4 @@ namespace BuildingBlocks.EventStore
         public int Version { get; set; }
         public Guid CorrelationId { get; set; }
     }
-
 }

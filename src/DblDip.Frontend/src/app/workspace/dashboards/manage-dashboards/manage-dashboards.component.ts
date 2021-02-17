@@ -1,7 +1,8 @@
 import { OverlayRef } from '@angular/cdk/overlay';
 import { Component, OnInit } from '@angular/core';
+import { FormArray } from '@angular/forms';
 import { MatListOption } from '@angular/material/list';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Dashboard } from '../dashboard';
 import { DashboardsModule } from '../dashboards.module';
 import { DashboardsService } from '../dashboards.service';
@@ -13,12 +14,15 @@ import { DashboardsService } from '../dashboards.service';
 })
 export class ManageDashboardsComponent implements OnInit {
 
+  private readonly _destroyed$: Subject<void> = new Subject();
+  
   public dashboards$: Observable<Dashboard[]> = this._dashboardsService.getCurrentDashboardsByCurrentProfile();
+
+  public dashboards: FormArray = new FormArray([]);
 
   constructor(private _dashboardsService: DashboardsService, private _overlayRef: OverlayRef) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   close() {
     this._overlayRef.dispose();
