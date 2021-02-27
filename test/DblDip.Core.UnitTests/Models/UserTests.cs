@@ -9,29 +9,29 @@ namespace DblDip.Domain.UnitTests.Models
         [Fact]
         public void ShouldCreateUser()
         {
-            var user = new User("quinntynebrown@gmail.com", "password");
+            var actual = new User("quinntynebrown@gmail.com", "password");
 
-            Assert.NotEqual(default, user.UserId);
-            Assert.NotEqual(default, user.Roles);
-            Assert.False(user.PasswordResetRequired);
+            Assert.NotEqual(default, actual.UserId);
+            Assert.NotEqual(default, actual.Roles);
+            Assert.False(actual.PasswordResetRequired);
         }
 
         [Fact]
         public void ShouldRequirePasswordReset()
         {
-            var user = new User("quinntynebrown@gmail.com");
+            var actual = new User("quinntynebrown@gmail.com");
 
-            Assert.NotEqual(default, user.UserId);
-            Assert.NotEqual(default, user.Roles);
-            Assert.True(user.PasswordResetRequired);
+            Assert.NotEqual(default, actual.UserId);
+            Assert.NotEqual(default, actual.Roles);
+            Assert.True(actual.PasswordResetRequired);
         }
 
         [Fact]
         public void ShouldAddRole()
         {
-            var user = new User("quinntynebrown@gmail.com", "password");
-            user.AddRole(Guid.NewGuid(), "Admin");
-            Assert.Single(user.Roles);
+            var actual = new User("quinntynebrown@gmail.com", "password");
+            actual.AddRole(Guid.NewGuid(), "Admin");
+            Assert.Single(actual.Roles);
         }
 
         [Fact]
@@ -46,12 +46,14 @@ namespace DblDip.Domain.UnitTests.Models
         [Fact]
         public void ShouldChangePassword()
         {
-            var user = new User("quinntynebrown@gmail.com", "");
-            var salt1 = user.Salt;
-            user.ChangePassword("Foo");
-            var salt2 = user.Salt;
+            var expectedPassword = "Foo";
 
-            Assert.Equal("Foo", user.Password);
+            var actual = new User("quinntynebrown@gmail.com", "");
+            var salt1 = actual.Salt;
+            actual.ChangePassword(expectedPassword);
+            var salt2 = actual.Salt;
+
+            Assert.Equal(expectedPassword, actual.Password);
             Assert.Equal(salt1, salt2);
         }
     }
