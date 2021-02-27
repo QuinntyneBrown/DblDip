@@ -84,24 +84,32 @@ namespace DblDip.Core.Models
 
         }
 
-        public void ChangePassword(string password)
+        public User ChangePassword(string password)
         {
             Apply(new UserPasswordChanged(password));
+
+            return this;
         }
 
-        public void AddRole(Guid roleId, string name)
+        public User AddRole(Guid roleId, string name)
         {
             Apply(new RoleReferenceAdded(roleId, name));
+
+            return this;
         }
 
-        public void RemoveRole(Guid roleId, string value)
+        public User RemoveRole(Guid roleId, string value)
         {
             Apply(new RoleReferenceRemoved(roleId, value));
+
+            return this;
         }
 
-        public void AddRefreshToken(string refreshToken)
+        public User AddRefreshToken(string refreshToken)
         {
             Apply(new UserRefreshTokenAdded(refreshToken));
+
+            return this;
         }
     }
 }

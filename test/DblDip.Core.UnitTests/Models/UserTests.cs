@@ -37,10 +37,12 @@ namespace DblDip.Domain.UnitTests.Models
         [Fact]
         public void ShouldRemoveRole()
         {
-            var user = new User("quinntynebrown@gmail.com", "password");
-            user.AddRole(Guid.NewGuid(), "Admin");
-            user.RemoveRole(Guid.NewGuid(), "Admin");
-            Assert.Empty(user.Roles);
+            var roleId = Guid.NewGuid();
+            var actual = new User("quinntynebrown@gmail.com", "password")
+                .AddRole(roleId, "Admin")
+                .RemoveRole(roleId, "Admin");
+
+            Assert.Empty(actual.Roles);
         }
 
         [Fact]
@@ -48,13 +50,11 @@ namespace DblDip.Domain.UnitTests.Models
         {
             var expectedPassword = "Foo";
 
-            var actual = new User("quinntynebrown@gmail.com", "");
-            var salt1 = actual.Salt;
-            actual.ChangePassword(expectedPassword);
-            var salt2 = actual.Salt;
+            var actual = new User("quinntynebrown@gmail.com", password: "")
+                .ChangePassword(expectedPassword);
 
             Assert.Equal(expectedPassword, actual.Password);
-            Assert.Equal(salt1, salt2);
+            Assert.NotEqual(default, actual.Salt);
         }
     }
 }
