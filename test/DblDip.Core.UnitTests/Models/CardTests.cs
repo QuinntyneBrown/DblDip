@@ -16,5 +16,10 @@ namespace DblDip.Core.UnitTests
         {
 
         }
+
+        public void Setup()
+        {
+
+        }
     }
 }

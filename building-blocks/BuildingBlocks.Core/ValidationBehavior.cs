@@ -27,9 +27,9 @@ namespace BuildingBlocks.Core
 
             if (failures.Any())
             {
-                var response = await next();
+                var response = new TResponse();
 
-                foreach(var failure in failures)
+                foreach (var failure in failures)
                 {
                     response.ValidationErrors.Add(failure.ErrorMessage);
                 }
