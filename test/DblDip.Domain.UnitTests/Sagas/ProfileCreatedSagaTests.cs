@@ -1,10 +1,10 @@
 using DblDip.Core.Models;
-using DblDip.Domain.IntegrationEvents;
 using DblDip.Domain.Sagas;
 using DblDip.Testing;
 using DblDip.Testing.Builders;
 using System.Linq;
 using Xunit;
+using static DblDip.Core.Constants;
 
 namespace DblDip.Domain.UnitTests.Sagas
 {
@@ -21,13 +21,13 @@ namespace DblDip.Domain.UnitTests.Sagas
 
             var sut = new ProfileCreatedSaga(store);
 
-            await sut.Handle(new ProfileCreated(profile), default);
+            await sut.Handle(new (profile), default);
 
             var user = context.Set<User>().Where(x => x.Username == profile.Email).Single();
 
             Assert.NotNull(user);
 
-            Assert.Contains(user.Roles, x => x.RoleId == DblDip.Core.Constants.Roles.Client);
+            Assert.Contains(user.Roles, x => x.RoleId == Roles.Client);
         }
     }
 }

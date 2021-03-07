@@ -17,6 +17,7 @@ namespace DblDip.Api.FunctionalTests
     public class AccountsControllerTests : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _fixture;
+
         public AccountsControllerTests(ApiTestFixture fixture)
         {
             _fixture = fixture;
